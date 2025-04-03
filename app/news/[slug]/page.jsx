@@ -6,7 +6,9 @@ import PopularNews from '../../../components/news/PopularNews'
 import Search from '../../../components/Search'
 import Title from '../../../components/Title'
 import { base_api_url } from "../../../config/config"
-import htmlParser from "react-html-parser"
+// import htmlParser from "react-html-parser"
+
+import parse from 'html-react-parser';
 import React from 'react'
 import Footer from '../../../components/Footer'
 import RelatedNews from '../../../components/news/RelatedNews'
@@ -44,7 +46,7 @@ const details = async ({ params }) => {
                                             <span>{news?.date} /</span>
                                             <span>{news?.writerName}</span>
                                         </div>
-                                        <p>{htmlParser(news?.description)}</p>
+                                        <p>{parse(news?.description)}</p>
                                     </div>
                                 </div>
                             </div>
