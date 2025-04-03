@@ -42,7 +42,7 @@ const page = async({ params }) => {
                             <div className='w-full pr-0 xl:pr-4'>
                                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                                     {
-                                        [1, 2, 3, 4, 5, 6].map(() => <SimpleDetailsNewsCard news={news} type='details-news' height={200} />)
+                                        [1, 2, 3, 4, 5, 6].map(() => <SimpleDetailsNewsCard news={news} key={news?.category} type='details-news' height={200} />)
                                     }
                                 </div>
                             </div>
@@ -57,7 +57,7 @@ const page = async({ params }) => {
                                         </div>
                                         <div className='grid grid-cols-1 gap-y-3'>
                                             {
-                                                [1, 2, 3, 4, 5, 6].map(() => <NewsCard item={news}/>)
+                                                [1, 2, 3, 4, 5, 6].map(() => <NewsCard key={news?.category} item={news}/>)
                                             }
                                         </div>
                                     </div>

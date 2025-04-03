@@ -22,7 +22,7 @@ const Headlines = ({ news }) => {
                             Object.keys(news).length > 0 &&
                             Object.keys(news).map((c, i) => <>
                                 {
-                                    news[c].length > 0 && news[c].map((n, j) => <Link className='py-3 block font-semibold hover:text-[#c80000] pr-12 text-sm' href={`/news/${n.sulg}`}>{n.title}</Link>)
+                                    news[c].length > 0 && news[c].map((n, j) => <Link key={n.title} className='py-3 block font-semibold hover:text-[#c80000] pr-12 text-sm' href={`/news/${n.sulg}`}>{n.title}</Link>)
                                 }
                             </>)
                         }

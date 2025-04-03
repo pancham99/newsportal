@@ -15,9 +15,9 @@ const Footer = () => {
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
                             <div className='text-xl text-red-600 font-extrabold'>TopBriefing</div>
-                            <h2 className='text-slate-300'>Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around</h2>
+                            <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
 
-                            <h2 className='text-slate-300'>Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around</h2>
+                            <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
                         </div>
                     </div>
 
@@ -54,9 +54,9 @@ const Footer = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-y-1">
-                                        <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+                                        <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</h2>
                                         <div className='flex gap-x-2 text-xs font-normal text-white'>
-                                            <span> August 25, 2024 /</span>
+                                            <span> {`August 25, 2024`} /</span>
                                             <span>madhusudan</span>
                                         </div>
                                     </div>
