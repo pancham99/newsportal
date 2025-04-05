@@ -20,11 +20,9 @@ const page = async({ params }) => {
             revalidate:1
         }
     });
-
-    console.log("cate nnnnnnnnnnnnn  data", data )
     const { news, relatedNews } = await data.json()
 
-    console.log(news, "cate nnnnnnnnnnnnn nnnnnnn")
+
   
 
 

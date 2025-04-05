@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React from 'react'
 
 const SimpleNewsCard = ({item, type}) => {
-    console.log(item, "item")
     return (
         <div className='group relative'>
             <div className='overflow-hidden'>

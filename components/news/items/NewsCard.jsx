@@ -3,8 +3,6 @@ import React from "react";
 import Link from 'next/link'
 
 const NewsCard = ({item}) => {
-
-    console.log("recent news")
     return (
         <div className="bg-white shadow flex p-4">
             <div className="relative group overflow-hidden h-full ">
