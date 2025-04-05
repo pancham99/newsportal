@@ -16,7 +16,7 @@ import Footer from '../../../components/Footer'
 import RelatedNews from '../../../components/news/RelatedNews'
 import Image from "next/image";
 
-const details =  ({ params }) => {
+const Details =  ({ params }) => {
     const { slug } = params
 
     const [news, setNews] = useState([])
@@ -101,4 +101,4 @@ const details =  ({ params }) => {
     )
 }
 
-export default details
+export default Details

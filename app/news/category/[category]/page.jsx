@@ -10,7 +10,7 @@ import Title from '../../../../components/Title'
 // import React, { useEffect, useState } from 'react'
 import { base_api_url } from '../../../../config/config'
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
 
     const { category } = params
 
@@ -93,4 +93,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page
+export default Page
