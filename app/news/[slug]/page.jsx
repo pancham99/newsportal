@@ -27,7 +27,7 @@ const details =  ({ params }) => {
     // });
     // const { news, relatedNews } = await data.json()
 
-    useeffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
             const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
                 next: {
