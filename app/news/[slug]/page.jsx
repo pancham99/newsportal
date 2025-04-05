@@ -1,3 +1,5 @@
+"use client"
+import { useEffect, useState } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb'
 import Category from '../../../components/Category'
 import NewsCard from '../../../components/news/items/NewsCard'
@@ -14,14 +16,29 @@ import Footer from '../../../components/Footer'
 import RelatedNews from '../../../components/news/RelatedNews'
 import Image from "next/image";
 
-const details = async ({ params }) => {
+const details =  ({ params }) => {
     const { slug } = params
-    const data = await fetch(`${base_api_url}/api/news/details/${slug}`,{
-        next:{
-            revalidate:1
-        }
-    });
-    const { news, relatedNews } = await data.json()
+
+    const [news, setNews] = useState([])
+    // const data = await fetch(`${base_api_url}/api/news/details/${slug}`,{
+    //     next:{
+    //         revalidate:1
+    //     }
+    // });
+    // const { news, relatedNews } = await data.json()
+
+    useeffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
+                next: {
+                    revalidate: 1
+                }
+            });
+            const data = await res.json();
+            setNews(data.news);
+        };
+        fetchData();
+    }, []);
 
     return (
         <div>

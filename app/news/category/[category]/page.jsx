@@ -1,4 +1,5 @@
-// "use client"
+"use client"
+import { useEffect, useState } from 'react'
 import Breadcrumb from '../../../../components/Breadcrumb'
 import Category from '../../../../components/Category'
 import NewsCard from '../../../../components/news/items/NewsCard'
@@ -9,18 +10,34 @@ import Title from '../../../../components/Title'
 // import React, { useEffect, useState } from 'react'
 import { base_api_url } from '../../../../config/config'
 
-const page = async({ params }) => {
+const page = ({ params }) => {
 
     const { category } = params
 
+    const [news, setNews] = useState([])
+    // const [relatedNews, setRelatedNews] = useState([])
+
    
 
-    const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
-        next:{
-            revalidate:1
-        }
-    });
-    const { news, relatedNews } = await data.json()
+    // const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
+    //     next:{
+    //         revalidate:1
+    //     }
+    // });
+    // const { news, relatedNews } = await data.json()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
+                next: {
+                    revalidate: 1
+                }
+            });
+            const data = await res.json();
+            setNews(data.news);
+        };
+        fetchData();
+    }, []);
 
 
   
