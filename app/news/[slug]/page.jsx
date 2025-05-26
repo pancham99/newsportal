@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { base_api_url } from "../../../config/config";
 import Breadcrumb from '../../../components/Breadcrumb';
@@ -24,7 +23,7 @@ const Details = async ({ params }) => {
         <div>
             <div className="bg-white shadow-sm py-3">
                 <div className="px-4 md:px-8 w-full">
-                    <Breadcrumb one="category" two="Support" />
+                    <Breadcrumb one={news?.category} two={news?.category} />
                 </div>
             </div>
 
@@ -34,13 +33,13 @@ const Details = async ({ params }) => {
                         <div className="w-full xl:w-8/12">
                             <div className="w-full pr-0 xl:pr-4">
                                 <div className="flex flex-col gap-y-5 bg-white relative h-[400px]">
-                                    <div>
+                                    <div className='h-full max-h-full w-full relative'>
                                         {news?.image && (
                                             <Image
                                                 src={news.image}
                                                 alt="News Image"
                                                 fill
-                                                className="object-cover w-fit h-full"
+                                                className=" w-fit h-full"
                                             />
                                         )}
                                     </div>

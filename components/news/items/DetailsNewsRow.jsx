@@ -4,8 +4,6 @@ import SimpleDetailsNewsCard from './SimpleDetailsNewsCard'
 import NewsCard from './NewsCard'
 
 const DetailsNewsRow = ({ news, category, type }) => {
-
-    console.log(news, "details news row");
     return (
         <div className='w-full flex flex-col gap-[14px] pr-2'>
             <Title title={category} />

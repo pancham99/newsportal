@@ -12,8 +12,6 @@ const Header_Category = () => {
 
     const path = usePathname()
     const [categories, set_categores] = useState([])
-    console.log("categories", categories)
-
     const get_categories = async()=>{
         try {
             const res = await fetch(`${base_api_url}/api/category/all`)
