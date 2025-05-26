@@ -77,7 +77,8 @@ const Header_Category = () => {
                     <Link className={`px-4 text-sm font-semibold py-[5px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >Home</Link>
 
                     {
-                        data.map((c, i) => <Link key={c.id} className={`px-4 text-sm font-semibold py-[5px] ${path === c.name ? 'bg-[#00000026]' : ''}`} href={"/"} >{c.name}</Link>)
+                         categories.length>0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${path === c ? 'bg-[#00000026]' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                        // categories.map((c, i) => <Link key={c.id} className={`px-4 text-sm font-semibold py-[5px] ${path === c.name ? 'bg-[#00000026]' : ''}`} href={"/"} >{c.name}</Link>)
                     }
 
                 </div>

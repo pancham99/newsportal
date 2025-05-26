@@ -4,6 +4,8 @@ import SimpleDetailsNewsCard from './SimpleDetailsNewsCard'
 import NewsCard from './NewsCard'
 
 const DetailsNewsRow = ({ news, category, type }) => {
+
+    console.log(news, "details news row");
     return (
         <div className='w-full flex flex-col gap-[14px] pr-2'>
             <Title title={category} />
@@ -12,9 +14,9 @@ const DetailsNewsRow = ({ news, category, type }) => {
 
                 <div className='grid grid-cols-1 gap-y-1'>
                    {
-                    news.map((item, i) => {
+                    news?.map((item, i) => {
                         if (i < 4) {
-                            return <NewsCard item={item} key={i}/>
+                            return <NewsCard news={item} key={i}/>
                           }
                     })
                    }

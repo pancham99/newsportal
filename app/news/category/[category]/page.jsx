@@ -1,5 +1,5 @@
-"use client"
-import { useEffect, useState } from 'react'
+
+// import { useEffect, useState } from 'react'
 import Breadcrumb from '../../../../components/Breadcrumb'
 import Category from '../../../../components/Category'
 import NewsCard from '../../../../components/news/items/NewsCard'
@@ -7,47 +7,16 @@ import SimpleDetailsNewsCard from '../../../../components/news/items/SimpleDetai
 import PopularNews from '../../../../components/news/PopularNews'
 import Search from '../../../../components/Search'
 import Title from '../../../../components/Title'
-// import React, { useEffect, useState } from 'react'
 import { base_api_url } from '../../../../config/config'
 
-const Page =  async ({ params }) => {
-
+const Page = async({ params }) => {
     const { category } = params
-
-    // const [news, setNews] = useState([])
-    // const [relatedNews, setRelatedNews] = useState([])
-
-   
-
     const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
         next:{
             revalidate:1
         }
     });
     const { news, relatedNews } = await data.json()
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
-    //                 next: {
-    //                     revalidate: 1
-    //                 }
-    //             });
-    //             if (!res.ok) {
-    //                 throw new Error(`HTTP error! status: ${res.status}`);
-    //             }
-    //             const data = await res.json();
-    //             setNews(data.news);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
-    //     fetchData();
-    // }, [category]);
-
-  
-
 
     return (
         <div>
@@ -78,7 +47,7 @@ const Page =  async ({ params }) => {
                                         </div>
                                         <div className='grid grid-cols-1 gap-y-3'>
                                             {
-                                                [1, 2, 3, 4, 5, 6].map(() => <NewsCard key={news?.category} item={news}/>)
+                                                [1, 2, 3, 4, 5, 6].map(() => <NewsCard key={news?.category} news={news}/>)
                                             }
                                         </div>
                                     </div>

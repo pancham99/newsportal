@@ -96,7 +96,7 @@ const Home = async () => {
                     <Title title="Recent news" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
-                        news['Sports'].map((item, i) => <NewsCard item={item} key={i} />)
+                        news['Sports'].map((item, i) => <NewsCard news={item} key={i} />)
                       }
                     </div>
                   </div>

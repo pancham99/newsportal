@@ -15,7 +15,7 @@ const DetailsNewsCol = ({ news, category }) => {
                 {
                     news.map((item, i) => {
                         if (i<4) {
-                            return <NewsCard item={item} key={i} />
+                            return <NewsCard news={item} key={i} />
                         }
                     })
                 }
