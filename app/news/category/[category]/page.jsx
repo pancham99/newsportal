@@ -10,41 +10,41 @@ import Title from '../../../../components/Title'
 // import React, { useEffect, useState } from 'react'
 import { base_api_url } from '../../../../config/config'
 
-const Page = ({ params }) => {
+const Page =  async ({ params }) => {
 
     const { category } = params
 
-    const [news, setNews] = useState([])
+    // const [news, setNews] = useState([])
     // const [relatedNews, setRelatedNews] = useState([])
 
    
 
-    // const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
-    //     next:{
-    //         revalidate:1
-    //     }
-    // });
-    // const { news, relatedNews } = await data.json()
+    const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
+        next:{
+            revalidate:1
+        }
+    });
+    const { news, relatedNews } = await data.json()
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
-                    next: {
-                        revalidate: 1
-                    }
-                });
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                const data = await res.json();
-                setNews(data.news);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
-    }, [category]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
+    //                 next: {
+    //                     revalidate: 1
+    //                 }
+    //             });
+    //             if (!res.ok) {
+    //                 throw new Error(`HTTP error! status: ${res.status}`);
+    //             }
+    //             const data = await res.json();
+    //             setNews(data.news);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+    //     fetchData();
+    // }, [category]);
 
   
 
