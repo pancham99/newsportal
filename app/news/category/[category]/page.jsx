@@ -28,17 +28,23 @@ const Page = ({ params }) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
-                next: {
-                    revalidate: 1
+            try {
+                const res = await fetch(`${base_api_url}/api/news/category/${category}`, {
+                    next: {
+                        revalidate: 1
+                    }
+                });
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
                 }
-            });
-            const data = await res.json();
-            setNews(data.news);
+                const data = await res.json();
+                setNews(data.news);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
         fetchData();
-    }, []);
-
+    }, [category]);
 
   
 
