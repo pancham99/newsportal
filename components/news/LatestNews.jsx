@@ -76,7 +76,7 @@ const LatestNews = () => {
       transitionDuration={500}
       >
         {
-            news.map((item, i)=><SimpleNewsCard item={item} key={i}  type='latest'/>)
+            news?.map((item, i)=><SimpleNewsCard item={item} key={i}  type='latest'/>)
         }
       </Carousel>
     </div>

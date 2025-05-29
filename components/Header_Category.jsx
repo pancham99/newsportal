@@ -41,7 +41,7 @@ const Header_Category = () => {
                         <Link className={`px-4 text-sm font-semibold py-[10px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >Home</Link>
 
                         {
-                            categories.length>0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${path === c ? 'bg-[#00000026]' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                            categories?.length>0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${path === c ? 'bg-[#00000026]' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         }
                     </div>
 

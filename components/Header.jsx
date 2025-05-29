@@ -3,7 +3,7 @@ import React from 'react'
 import moment from 'moment'
 import Link from 'next/link'
 import { FaFacebookF } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import bgimage from '../assets/bgimage.webp';
 import add from '../assets/add.jpg';
@@ -17,9 +17,16 @@ const Header = () => {
             <div className='px-5 lg:px-8 flex justify-between items-center bg-[#333333] text-[#cccccc]'>
                 <span className='text-sm'>{moment().format('LLLL')}</span>
                 <div className='flex gap-2'>
-                    <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' href={"#"}><FaFacebookF className="text-white flex justify-center items-center " /></Link>
-                    <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' href={"#"}><FaXTwitter className="text-white flex justify-center items-center " /></Link>
-                    <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' href={"#"}><IoLogoYoutube className="text-white flex justify-center items-center " /></Link>
+                    <Link className='flex justify-center items-center bg-[#ffffff2b] p-2'  target="_blank" href={"https://www.facebook.com/people/Top-Briefing/61552965021716/?rdid=GXwcwyboiwHXnvQF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18trThXJnu%2F"}><FaFacebookF className="text-white flex justify-center items-center " /></Link>
+                    <Link className='flex justify-center items-center bg-[#ffffff2b] p-2'  target="_blank"  href={"https://www.instagram.com/topbriefing/?igsh=ZXJ5ZTdrbm9ycTJl#"}><FaInstagram className="text-white flex justify-center items-center " /></Link>
+                    <Link
+                        className="flex justify-center items-center bg-[#ffffff2b] p-2"
+                        href="https://www.youtube.com/results?search_query=topbriefing"
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                    >
+                        <IoLogoYoutube className="text-white text-2xl" />
+                    </Link>
 
                 </div>
             </div>
