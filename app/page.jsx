@@ -38,7 +38,7 @@ const Home = async () => {
 
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
-                  <Title title="Politics" />
+                  <Title title="Technology" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {
                       news['Technology'].map((item, i) => {
