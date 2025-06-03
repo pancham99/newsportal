@@ -18,7 +18,7 @@ export const metadata = {
     siteName: "Top Brefing",
     images: [
       {
-        url: "logo.png",
+        url: "https://newsportal-seven.vercel.app/logo.png",
         width: 1200,
         height: 630,
         alt: "Top Brefing - Trusted News",
