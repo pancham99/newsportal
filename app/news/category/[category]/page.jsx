@@ -11,7 +11,10 @@ import VideoPlayer from '../../../../components/VideoPlayer'
 
 const Page = async ({ params }) => {
     const { category } = params
-    const data = await fetch(`${base_api_url}/api/news/category/${category}`, {
+
+    const decodedCategory = decodeURIComponent(category)
+ 
+    const data = await fetch(`${base_api_url}/api/news/category/${decodedCategory}`, {
         next: {
             revalidate: 1
         }
@@ -26,7 +29,7 @@ const Page = async ({ params }) => {
 
     const { news: allnews } = await news_data.json();
 
-    const allnew = allnews[category] || [];
+    const allnew = allnews[decodedCategory] || [];
 
     console.log(allnew, "allnew");
 
@@ -34,7 +37,7 @@ const Page = async ({ params }) => {
         <div>
             <div className='bg-white shadow-sm py-3'>
                 <div className='px-4 md:px-8 w-full'>
-                    <Breadcrumb one='category' two={category} />
+                    <Breadcrumb one='category' two={decodedCategory} />
                 </div>
             </div>
             <div className='bg-slate-200 w-full'>

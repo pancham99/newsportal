@@ -35,22 +35,22 @@ const Home = async () => {
           <div className="px-4 md:px-8 py-8">
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12">
-                <LatestNews news={news['Politics']} />
+                <LatestNews news={news['राजनीति']} />
               </div>
 
               {/* Technology */}
 
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
-                  <Title title="Technology" />
+                  <Title title="राजनीति" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {
-                      news['Technology'].map((item, i) => {
+                     {
+                      news['राजनीति']?.map((item, i) => {
                         if (i < 4) {
                           return <SimpleNewsCard key={i} item={item} />
                         }
                       })
-                    }
+                    } 
                   </div>
                 </div>
               </div>
@@ -62,11 +62,11 @@ const Home = async () => {
             <div className="w-full">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
-                  <DetailsNewsRow news={news['Sports']} category='Sports' type='details-news' />
-                  <DetailsNews news={news['Health']} category='Health' />
+                  <DetailsNewsRow news={news['खेल']} category='खेल' type='details-news' />
+                  <DetailsNews news={news['स्वास्थ्य']} category='स्वास्थ्य' />
                 </div>
                 <div className="w-full lg:w-4/12">
-                  <DetailsNewsCol news={news['Education']} category='Education' />
+                  <DetailsNewsCol news={news['शिक्षा']} category='शिक्षा' />
 
                 </div>
               </div>
@@ -78,11 +78,9 @@ const Home = async () => {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12">
                   <div className="pr-2">
-                    <DetailsNewsCol news={news['Politics']} category='Politics' />
+                    <DetailsNewsCol news={news['मनोरंजन']} category='मनोरंजन' />
                     <div className=" bg-white shadow mt-2 p-4">
-                      {/* <h1 className="text-2xl font-bold mb-4"> Top Briefing</h1> */}
 
-                      {/* YouTube */}
 
                       <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
 
@@ -92,8 +90,8 @@ const Home = async () => {
                 </div>
                 <div className="w-full lg:w-8/12">
                   <div className="pl-2">
-                    <DetailsNewsRow news={news['Travel']} category='Travel' type='details-news' />
-                    <DetailsNews news={news['Inernational']} category='Inernational' />
+                    <DetailsNewsRow news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' type='details-news' />
+                    <DetailsNews news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' />
                   </div>
                 </div>
 
@@ -106,7 +104,7 @@ const Home = async () => {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
                   <div className="">
-                    <DetailsNewsRow news={news['Technology']} category='Technology' type='details-news' />
+                    {/* <DetailsNewsRow news={news['Technology']} category='Technology' type='details-news' /> */}
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12">
@@ -114,7 +112,7 @@ const Home = async () => {
                     <Title title="Recent news" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
-                        news['Sports'].map((item, i) => <NewsCard news={item} key={i} />)
+                        news['खेल']?.map((item, i) => <NewsCard news={item} key={i} />)
                       }
                     </div>
                   </div>
