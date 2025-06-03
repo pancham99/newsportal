@@ -29,7 +29,7 @@ const Home = async () => {
           <div className="px-4 md:px-8 py-8">
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12">
-                <LatestNews news={news['all']}/>
+                <LatestNews news={news['Politics']}/>
               </div>
 
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
