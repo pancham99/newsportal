@@ -11,6 +11,7 @@ import Title from "../components/Title";
 import Image from "next/image";
 import { base_api_url } from "../config/config"
 import { headers } from "next/headers";
+import VideoPlayer from "../components/VideoPlayer";
 
 const Home = async () => {
 
@@ -21,17 +22,17 @@ const Home = async () => {
     },
   });
 
-  const {news}  = await news_data?.json()
-  
+  const { news } = await news_data?.json()
+
   return (
     <div>
       <main>
-        <Headlines news={news}/>
+        <Headlines news={news} />
         <div className="bg-slate-100 ">
           <div className="px-4 md:px-8 py-8">
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12">
-                <LatestNews news={news['Politics']}/>
+                <LatestNews news={news['Politics']} />
               </div>
 
               {/* Technology */}
@@ -51,7 +52,7 @@ const Home = async () => {
                 </div>
               </div>
             </div>
-            <PopularNews/>
+            <PopularNews />
 
             {/* first section */}
 
@@ -59,10 +60,11 @@ const Home = async () => {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
                   <DetailsNewsRow news={news['Sports']} category='Sports' type='details-news' />
-                  <DetailsNews news={news['Health']} category='Health'/>
+                  <DetailsNews news={news['Health']} category='Health' />
                 </div>
                 <div className="w-full lg:w-4/12">
                   <DetailsNewsCol news={news['Education']} category='Education' />
+
                 </div>
               </div>
             </div>
@@ -74,6 +76,15 @@ const Home = async () => {
                 <div className="w-full lg:w-4/12">
                   <div className="pr-2">
                     <DetailsNewsCol news={news['Politics']} category='Politics' />
+                    <div className=" bg-white shadow mt-2 p-4">
+                      {/* <h1 className="text-2xl font-bold mb-4"> Top Briefing</h1> */}
+
+                      {/* YouTube */}
+
+                      <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
+
+
+                    </div>
                   </div>
                 </div>
                 <div className="w-full lg:w-8/12">
@@ -107,6 +118,15 @@ const Home = async () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="p-4 bg-white">
+          {/* <Category titleStyle="text-gray-700" /> */}
+
+          <div className="">
+
+            <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
           </div>
         </div>
       </main>

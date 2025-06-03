@@ -9,6 +9,7 @@ import Footer from '../../../components/Footer';
 import RelatedNews from '../../../components/news/RelatedNews';
 import parse from 'html-react-parser';
 import Image from "next/image";
+import VideoPlayer from '../../../components/VideoPlayer';
 
 const Details = async ({ params }) => {
     const { slug } = params;
@@ -74,7 +75,12 @@ const Details = async ({ params }) => {
                                     </div>
 
                                     <div className="p-4 bg-white">
-                                        <Category titleStyle="text-gray-700" />
+                                        {/* <Category titleStyle="text-gray-700" /> */}
+
+                                        <div className="">
+
+                                            <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +92,8 @@ const Details = async ({ params }) => {
                     </div>
                 </div>
             </div>
+
+            
 
             <Footer />
         </div>

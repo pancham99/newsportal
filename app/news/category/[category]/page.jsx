@@ -7,6 +7,7 @@ import PopularNews from '../../../../components/news/PopularNews'
 import Search from '../../../../components/Search'
 import Title from '../../../../components/Title'
 import { base_api_url } from '../../../../config/config'
+import VideoPlayer from '../../../../components/VideoPlayer'
 
 const Page = async ({ params }) => {
     const { category } = params
@@ -66,7 +67,21 @@ const Page = async ({ params }) => {
                                         </div>
                                     </div>
                                     <div className='p-4 bg-white'>
-                                        <Category titleStyle={'text-gray-700'} />
+
+                                        <div className="p-6">
+                                            <h1 className="text-2xl font-bold mb-4"> Top Briefing</h1>
+
+                                            {/* YouTube */}
+                                          
+                                            <VideoPlayer url="https://www.youtube.com/shorts/FSuGjn4MKDY" />
+
+                                            {/* MP4 file */}
+                                            {/* <VideoPlayer url="https://www.w3schools.com/html/mov_bbb.mp4" /> */}
+
+                                            {/* Vimeo */}
+                                            {/* <VideoPlayer url="https://vimeo.com/76979871" /> */}
+                                        </div>
+                                        {/* <Category titleStyle={'text-gray-700'} /> */}
                                     </div>
                                 </div>
                             </div>
