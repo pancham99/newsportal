@@ -8,14 +8,26 @@ import Search from '../../../../components/Search'
 import Title from '../../../../components/Title'
 import { base_api_url } from '../../../../config/config'
 
-const Page = async({ params }) => {
+const Page = async ({ params }) => {
     const { category } = params
-    const data = await fetch(`${base_api_url}/api/news/category/${category}`,{
-        next:{
-            revalidate:1
+    const data = await fetch(`${base_api_url}/api/news/category/${category}`, {
+        next: {
+            revalidate: 1
         }
     });
     const { news, relatedNews } = await data.json()
+
+    const news_data = await fetch(`${base_api_url}/api/all/news`, {
+        next: {
+            revalidate: 5
+        },
+    });
+
+    const { news: allnews } = await news_data.json();
+
+    const allnew = allnews[category] || [];
+
+    console.log(allnew, "allnew");
 
     return (
         <div>
@@ -31,7 +43,7 @@ const Page = async({ params }) => {
                             <div className='w-full pr-0 xl:pr-4'>
                                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
                                     {
-                                        [1, 2, 3, 4, 5, 6].map(() => <SimpleDetailsNewsCard news={news} key={news?.category} type='details-news' height={200} />)
+                                        allnew?.map((tems) => <SimpleDetailsNewsCard news={tems} key={news?.category} type='details-news' height={200} />)
                                     }
                                 </div>
                             </div>
@@ -46,7 +58,10 @@ const Page = async({ params }) => {
                                         </div>
                                         <div className='grid grid-cols-1 gap-y-3'>
                                             {
-                                                [1, 2, 3, 4, 5, 6].map(() => <NewsCard key={news?.category} news={news}/>)
+
+                                                allnew?.map((tems) => <NewsCard news={tems} key={news?.category} />)
+
+                                                // [1, 2, 3, 4, 5, 6].map(() => <NewsCard key={news?.category} news={news}/>)
                                             }
                                         </div>
                                     </div>

@@ -10,8 +10,10 @@ import PopularNews from "../components/news/PopularNews";
 import Title from "../components/Title";
 import Image from "next/image";
 import { base_api_url } from "../config/config"
+import { headers } from "next/headers";
 
 const Home = async () => {
+
 
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
     next: {
@@ -32,9 +34,11 @@ const Home = async () => {
                 <LatestNews news={news['Politics']}/>
               </div>
 
+              {/* Technology */}
+
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
-                  <Title title="Technology" />
+                  <Title title="Politics" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {
                       news['Technology'].map((item, i) => {

@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Header_Category from './Header_Category';
 
 
+
 const Header = () => {
     return (
         <div>
@@ -29,6 +30,7 @@ const Header = () => {
                     </Link>
 
                 </div>
+                
             </div>
 
             <div className='h-[200px] ' style={{ backgroundImage: `url(${bgimage.src})`, backgroundSize: "cover" }}>
