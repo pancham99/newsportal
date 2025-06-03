@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <div>
             <div className='px-5 lg:px-8 flex justify-between items-center bg-[#333333] text-[#cccccc]'>
-                <span className='text-sm'>{moment().format('LLLL')}</span>
+                <span className='text-sm'>{moment().local().format('LLLL')}</span>
                 <div className='flex gap-2'>
                     <Link className='flex justify-center items-center bg-[#ffffff2b] p-2'  target="_blank" href={"https://www.facebook.com/people/Top-Briefing/61552965021716/?rdid=GXwcwyboiwHXnvQF&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F18trThXJnu%2F"}><FaFacebookF className="text-white flex justify-center items-center " /></Link>
                     <Link className='flex justify-center items-center bg-[#ffffff2b] p-2'  target="_blank"  href={"https://www.instagram.com/topbriefing/?igsh=ZXJ5ZTdrbm9ycTJl#"}><FaInstagram className="text-white flex justify-center items-center " /></Link>
