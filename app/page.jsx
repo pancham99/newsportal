@@ -12,13 +12,15 @@ import Image from "next/image";
 import { base_api_url } from "../config/config"
 import { headers } from "next/headers";
 import VideoPlayer from "../components/VideoPlayer";
+import AddModel from "../components/AddModel";
+
 
 const Home = async () => {
 
 
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
     next: {
-      revalidate: 5
+      revalidate: 5 
     },
   });
 
@@ -26,6 +28,7 @@ const Home = async () => {
 
   return (
     <div>
+      <AddModel/>
       <main>
         <Headlines news={news} />
         <div className="bg-slate-100 ">
