@@ -7,11 +7,14 @@ const AddModel = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem("hasVisited");
-    if (!hasVisited) {
-      setIsOpen(true);
-      localStorage.setItem("hasVisited", "true");
-    }
+
+
+     setIsOpen(true);
+    // const hasVisited = localStorage.getItem("hasVisited");
+    // if (!hasVisited) {
+    //   setIsOpen(true);
+    //   localStorage.setItem("hasVisited", "true");
+    // }
   }, []);
 
   if (!isOpen) return null;
@@ -26,7 +29,7 @@ const AddModel = () => {
         </p>
         <button
           onClick={() => setIsOpen(false)}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded flex items-center justify-center hover:bg-blue-700 transition-colors duration-300"
         >
           Close
         </button>
