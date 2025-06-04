@@ -5,8 +5,12 @@ import Category from "./Category";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
+import VideoPlayer from "./VideoPlayer";
 
-const Footer = () => {
+const Footer = ({news}) => {
+
+console.log(news, "news in footer");
+    
     return (
         <div className='w-full'>
             <div className='bg-[#1e1919]'>
@@ -27,7 +31,8 @@ const Footer = () => {
                         <div className='grid grid-cols-3 gap-2'>
                             {
                                 [1, 2, 3, 4, 5, 6, 7, 8, 9].map((image, i) => <div key={i}>
-                                    <Image src={"/image.jpg"} alt="" width={100} height={100} className="" />
+                                     <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
+                                    {/* <Image src={"/image.jpg"} alt="" width={100} height={100} className="" /> */}
                                 </div>)
                             }
 
@@ -45,19 +50,19 @@ const Footer = () => {
 
                         <div className='grid grid-cols-1 gap-y-2 pt-3'>
                             {
-                                [1, 2, 3, 4].map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
+                               news.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
                                     <div className="group relative overflow-hidden w-[90px] h-[75px]">
                                         <div className="w-[90px] h-[85px] block group-hover:scale-[1.1] transition-all duration-[1s] ">
-                                            <Image src={"/image.jpg"} alt="" className="" layout="fill" />
+                                            <Image src={r?.image} alt="" className="" layout="fill" />
 
                                             <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-y-1">
-                                        <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}</h2>
+                                        <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">{r?.title?.length > 50 ? r.title.slice(0, 50) + '...' : r.title}</h2>
                                         <div className='flex gap-x-2 text-xs font-normal text-white'>
-                                            <span> {`August 25, 2024`} /</span>
-                                            <span>madhusudan</span>
+                                            <span> {r?.date} /</span>
+                                            <span>{r.writerName}</span>
                                         </div>
                                     </div>
                                 </Link>)

@@ -16,7 +16,7 @@ const SimpleNewsCard = ({item, type}) => {
                     {item.category}
                 </div>
 
-                <Link href={`/news/${item.slug}`} className='text-xl'>{item.title}</Link>
+                <Link href={`/news/${item.slug}`} className='text-xl'>{item?.title?.length > 50 ? item.title.slice(0, 50) + '...' : item.title}</Link>
                 <div className='flex gap-x-2 text-xs font-normal'>
                     <span>{item.date}</span>
                     <span>{item.writerName}</span>
