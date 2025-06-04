@@ -8,8 +8,6 @@ import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 
 const Footer = ({news}) => {
-
-console.log(news, "news in footer");
     
     return (
         <div className='w-full'>
