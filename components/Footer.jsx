@@ -49,7 +49,7 @@ const Footer = ({news}) => {
 
                         <div className='grid grid-cols-1 gap-y-2 pt-3'>
                             {
-                               news.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
+                               news?.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
                                     <div className="group relative overflow-hidden w-[90px] h-[75px]">
                                         <div className="w-[90px] h-[85px] block group-hover:scale-[1.1] transition-all duration-[1s] ">
                                             <Image src={r?.image} alt="" className="" layout="fill" />
