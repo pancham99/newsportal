@@ -104,7 +104,7 @@ const Home = async () => {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
                   <div className="">
-                    {/* <DetailsNewsRow news={news['Technology']} category='Technology' type='details-news' /> */}
+                    <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12">

@@ -13,7 +13,7 @@ const DetailsNewsCol = ({ news, category }) => {
 
             <div className='grid grid-cols-1 gap-y-[14px]'>
                 {
-                    news.map((item, i) => {
+                    news?.map((item, i) => {
                         if (i<4) {
                             return <NewsCard news={item} key={i} />
                         }

@@ -38,7 +38,7 @@ const AddModel = () => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 p-4">
       <div className="bg-white p-2 lg:p-4 rounded shadow-lg w-full max-w-md">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold mb-4">Contact Us</h2>
