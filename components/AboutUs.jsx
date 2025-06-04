@@ -29,7 +29,7 @@ const AboutUs = () => {
                         <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4" />
                         <h3 className="text-xl font-bold">Jagriti Mishra — CEO</h3>
                         <p className="text-gray-700 mt-2">
-                            {`Ravi brings over 15 years of media strategy experience. Former leader at top Indian news channels, he now builds India's most credible news platform.`}
+                            {`Jagriti brings over 15 years of media strategy experience. Former leader at top Indian news channels, he now builds India's most credible news platform.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">MBA, IIM Bangalore | Digital Excellence Award 2022</p>
                     </div>
