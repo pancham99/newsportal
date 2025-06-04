@@ -76,7 +76,7 @@ const AboutUs = () => {
 
 
                         <p className="text-gray-700 mt-2 text-justify">
-                          {`Ms. Anjali Mehra is the driving force behind the technology at Top Briefing News. With over 15 years of experience in software architecture, cloud platforms, and data engineering.`}
+                          {`Ms. Madhusudan is the driving force behind the technology at Top Briefing News. With over 15 years of experience in software architecture, cloud platforms, and data engineering.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">B.tech(computer science and engineering)</p>
                     </div>
