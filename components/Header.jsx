@@ -47,14 +47,14 @@ const Header = () => {
 
                 {/* Content Over the Video */}
                 <div className="relative z-10 px-8 py-14">
-                    <div className="flex justify-center items-center flex-wrap">
+                    <div className="flex justify-center lg:justify-start  items-center flex-wrap">
                         <div className="md:w-4/12 w-full">
                             <div className="flex flex-col justify-center items-center md:items-start">
                                 <Image src="/logo.png" alt="bgimage" width={150} height={150} />
                             </div>
                         </div>
 
-                        <div className="md:w-8/12 w-full hidden md:block">
+                        {/* <div className="md:w-8/12 w-full hidden md:block">
                             <div className="w-full flex justify-end">
                                 <Image
                                     className="w-[400px] h-[100px]"
@@ -64,7 +64,7 @@ const Header = () => {
                                     height={100}
                                 />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
