@@ -20,7 +20,6 @@ const Page = async ({ params }) => {
         }
     });
     const { news, relatedNews } = await data.json()
-
     const news_data = await fetch(`${base_api_url}/api/all/news`, {
         next: {
             revalidate: 5
@@ -28,10 +27,7 @@ const Page = async ({ params }) => {
     });
 
     const { news: allnews } = await news_data.json();
-
     const allnew = allnews[decodedCategory] || [];
-
-    console.log(allnew, "allnew");
 
     return (
         <div>

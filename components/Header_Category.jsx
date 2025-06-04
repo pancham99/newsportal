@@ -11,8 +11,10 @@ import { base_api_url } from "../config/config"
 const Header_Category = () => {
 
     const path = usePathname()
+    console.log(path, "path");
+    const decodedCategory = decodeURIComponent(path.split('/')[3] || '');
     const [categories, set_categores] = useState([])
-    const get_categories = async()=>{
+    const get_categories = async () => {
         try {
             const res = await fetch(`${base_api_url}/api/category/all`)
             const data = await res.json()
@@ -22,7 +24,7 @@ const Header_Category = () => {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         get_categories()
     }, [])
 
@@ -38,10 +40,11 @@ const Header_Category = () => {
                     </div>
 
                     <div className='flex-wrap hidden lg:flex'>
-                        <Link className={`px-4 text-sm font-semibold py-[10px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >Home</Link>
+                        <Link className={`px-4 text-sm font-semibold py-[10px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >होम</Link>
 
                         {
-                            categories?.length>0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${path === c ? 'bg-[#00000026]' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                            categories?.length > 0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] text-white border-b-4 border-blue-800' : ''
+                                }`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         }
                     </div>
 
@@ -72,10 +75,10 @@ const Header_Category = () => {
 
             {
                 cast_show && <div className='flex flex-wrap lg:hidden py-2 px-8'>
-                    <Link className={`px-4 text-sm font-semibold py-[5px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >Home</Link>
+                    <Link className={`px-4 text-sm font-semibold py-[5px] ${path === '/' ? 'bg-[#00000026]' : ''}`} href={"/"} >होम</Link>
 
                     {
-                         categories.length>0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${path === c ? 'bg-[#00000026]' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                        categories.length > 0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         // categories.map((c, i) => <Link key={c.id} className={`px-4 text-sm font-semibold py-[5px] ${path === c.name ? 'bg-[#00000026]' : ''}`} href={"/"} >{c.name}</Link>)
                     }
 
