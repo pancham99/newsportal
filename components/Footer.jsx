@@ -7,8 +7,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 
-const Footer = ({news}) => {
-    
+const Footer = ({ news }) => {
+
     return (
         <div className='w-full'>
             <div className='bg-[#1e1919]'>
@@ -17,7 +17,7 @@ const Footer = ({news}) => {
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
                             <div className='text-xl text-red-600 font-extrabold'>TopBriefing</div>
-                            <Link href={"/about"} className='text-slate-300 text-xl underline'>AboutUs</Link>
+
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
@@ -25,19 +25,27 @@ const Footer = ({news}) => {
                     </div>
 
                     <div className='w-full flex flex-col gap-y-[14px]'>
-                        <div className='text-xl font-bold text-white relative before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:left-0 pl-3'>Gallery</div>
+                        <div className='text-lg font-bold text-white relative before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:left-0 pl-3'>Top Brefing</div>
 
-                        <div className='grid grid-cols-3 gap-2'>
+                        <ul className="space-y-4">
+                            <li><Link href={"/about"} className='text-slate-300 text-md underline'>AboutUs</Link></li>
+                            <li><Link href={"/contact"} className='text-slate-300 text-md underline'>ContactUs</Link></li>
+
+
+                            
+                        </ul>
+
+                        {/* <div className='grid grid-cols-3 gap-2'>
                             {
                                 [1, 2, 3, 4, 5, 6, 7, 8, 9].map((image, i) => <div key={i}>
                                      <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
-                                    {/* <Image src={"/image.jpg"} alt="" width={100} height={100} className="" /> */}
+                                    <Image src={"/image.jpg"} alt="" width={100} height={100} className="" />
                                 </div>)
                             }
 
 
-                            {/*  */}
-                        </div>
+                            
+                        </div> */}
                     </div>
 
                     <div>
@@ -49,7 +57,7 @@ const Footer = ({news}) => {
 
                         <div className='grid grid-cols-1 gap-y-2 pt-3'>
                             {
-                               news?.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
+                                news?.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
                                     <div className="group relative overflow-hidden w-[90px] h-[75px]">
                                         <div className="w-[90px] h-[85px] block group-hover:scale-[1.1] transition-all duration-[1s] ">
                                             <Image src={r?.image} alt="" className="" layout="fill" />

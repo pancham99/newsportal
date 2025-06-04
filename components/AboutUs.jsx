@@ -23,12 +23,16 @@ const AboutUs = () => {
             <div className="mb-12">
                 <h2 className="text-2xl font-semibold text-red-600 mb-8">Meet Our Leadership</h2>
 
-                <div className="grid md:grid-cols-2 gap-10">
+                <div className="grid md:grid-cols-4 gap-10">
                     {/* CEO */}
                     <div className="bg-gray-50 rounded-xl shadow p-6">
-                        <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4" />
-                        <h3 className="text-xl font-bold">Jagriti Mishra — CEO</h3>
-                        <p className="text-gray-700 mt-2">
+                        <div className='flex justify-center '>
+                            <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
+                        </div>
+                        <h3 className="text-xl font-bold text-center">Jagriti Mishra</h3>
+                        <h2 className="text-xl font-bold text-center">CEO & Founder</h2>
+
+                        <p className="text-gray-700 mt-2 text-justify">
                             {`Jagriti brings over 15 years of media strategy experience. Former leader at top Indian news channels, he now builds India's most credible news platform.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">MBA, IIM Bangalore | Digital Excellence Award 2022</p>
@@ -36,13 +40,60 @@ const AboutUs = () => {
 
                     {/* Director */}
                     <div className="bg-gray-50 rounded-xl shadow p-6">
-                        <Image src="/ceo.jpeg" alt="Director" width={100} height={100} className="rounded-full mb-4" />
-                        <h3 className="text-xl font-bold">Shruti Mishra — Director of Content & Operations</h3>
-                        <p className="text-gray-700 mt-2">
+                        <div className='flex justify-center '>
+                            <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
+                        </div>
+                        <h3 className="text-xl font-bold text-center">Shruti Mishra</h3>
+                        <h2 className="text-xl font-bold text-center text-gray-600">Director of Content & Operations</h2>
+
+
+                        <p className="text-gray-700 mt-2 text-justify">
                             With over 10 years in journalism, Anita ensures every piece of news meets the highest editorial standards.
                         </p>
                         <p className="text-sm text-gray-500 mt-2">MA Journalism, DU | Best Editor Award 2023</p>
                     </div>
+
+                    <div className="bg-gray-50 rounded-xl shadow p-6">
+                        <div className='flex justify-center '>
+                            <Image src="/dir.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
+                        </div>
+                        <h3 className="text-xl font-bold text-center">Ashish  Mishra</h3>
+                        <h2 className="text-xl font-bold text-center text-gray-600">Managing Director</h2>
+
+                        <p className="text-gray-700 mt-2 text-justify">
+                            {`Mr. Ashish  Mishra is the visionary Managing Director of Top Briefing News. With over
+              20 years of experience in journalism and digital media.`}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-2">MA Journalism, DU </p>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl shadow p-6">
+                        <div className='flex justify-center '>
+                            <Image src="/cto.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
+                        </div>
+                        <h3 className="text-xl font-bold text-center">Madhusudan</h3>
+                        <h2 className="text-xl font-bold text-center text-gray-600"> Chief Technology Officer (CTO)</h2>
+
+
+                        <p className="text-gray-700 mt-2 text-justify">
+                          {`Ms. Anjali Mehra is the driving force behind the technology at Top Briefing News. With over 15 years of experience in software architecture, cloud platforms, and data engineering.`}
+                        </p>
+                        <p className="text-sm text-gray-500 mt-2">B.tech(computer science and engineering)</p>
+                    </div>
+
+                    {/* <div className="bg-gray-50 rounded-xl shadow p-6">
+                        <div className='flex justify-center '>
+                            <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
+                        </div>
+
+                        <h2 className="text-xl font-bold text-center text-gray-600">Director of Content & Operations</h2>
+                        <h3 className="text-xl font-bold text-center">Shruti Mishra</h3>
+
+                        <p className="text-gray-700 mt-2 text-justify">
+                            With over 10 years in journalism, Anita ensures every piece of news meets the highest editorial standards.
+                        </p>
+                        <p className="text-sm text-gray-500 mt-2">MA Journalism, DU | Best Editor Award 2023</p>
+                    </div> */}
                 </div>
             </div>
 
