@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
-import bgimage from '../assets/bgimage.webp';
+import bgimage from '../assets/image.jpeg';
 import add from '../assets/add.jpg';
 import Image from 'next/image';
 import Header_Category from './Header_Category';
@@ -34,8 +34,7 @@ const Header = () => {
 
             </div>
 
-            <div className="relative h-[200px] overflow-hidden">
-                {/* Background Video */}
+            <div className="relative h-[200px] overflow-hidden lg:hidden">
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
                     src="/videobg.mp4"
@@ -45,7 +44,6 @@ const Header = () => {
                     playsInline
                 />
 
-                {/* Content Over the Video */}
                 <div className="relative z-10 px-8 py-14">
                     <div className="flex justify-center lg:justify-start  items-center flex-wrap">
                         <div className="md:w-4/12 w-full">
@@ -53,6 +51,42 @@ const Header = () => {
                                 <Image src="/logo.png" alt="bgimage" width={150} height={150} />
                             </div>
                         </div>
+
+                        {/* <div className="md:w-8/12 w-full hidden md:block">
+                            <div className="w-full flex justify-end">
+                                <Image
+                                    className="w-[400px] h-[100px]"
+                                    src={add.src}
+                                    alt="ad"
+                                    width={200}
+                                    height={100}
+                                />
+                            </div>
+                        </div> */}
+                    </div>
+                </div>
+            </div>
+
+            <div className='h-[350px] w-full hidden lg:block' style={{ backgroundImage: `url(${bgimage.src})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", }}>
+                {/* <div className="relative h-[200px] overflow-hidden"> */}
+                {/* Background Video */}
+                {/* <video
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src="/videobg.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                /> */}
+
+                {/* Content Over the Video */}
+                <div className="relative z-10 px-8 py-14">
+                    <div className="flex justify-center lg:justify-start  items-center flex-wrap">
+                        {/* <div className="md:w-4/12 w-full">
+                            <div className="flex flex-col justify-center items-center md:items-start">
+                                <Image src="/logo.png" alt="bgimage" width={150} height={150} />
+                            </div>
+                        </div> */}
 
                         {/* <div className="md:w-8/12 w-full hidden md:block">
                             <div className="w-full flex justify-end">
