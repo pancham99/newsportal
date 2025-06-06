@@ -16,8 +16,6 @@ import AddModel from "../components/AddModel";
 
 
 const Home = async () => {
-
-
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
     next: {
       revalidate: 5 

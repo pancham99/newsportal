@@ -7,12 +7,15 @@ import { IoSearch } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 import { BsList } from "react-icons/bs";
 import { base_api_url } from "../config/config"
+import { useRouter } from 'next/navigation';
 
 const Header_Category = () => {
 
     const path = usePathname()
+    const router = useRouter();
     const decodedCategory = decodeURIComponent(path.split('/')[3] || '');
     const [categories, set_categores] = useState([])
+    const [state, setState] = useState('')
     const get_categories = async () => {
         try {
             const res = await fetch(`${base_api_url}/api/category/all`)
@@ -26,6 +29,14 @@ const Header_Category = () => {
     useEffect(() => {
         get_categories()
     }, [])
+
+    const handleStateChange = (e) => {
+    const selectedState = e.target.value;
+    setState(selectedState);
+    if (selectedState) {
+      router.push(`/news/state/${selectedState}`);
+    }
+  };
 
     const [show, setShow] = React.useState(false)
     const [cast_show, setCast_show] = React.useState(false)
@@ -45,6 +56,31 @@ const Header_Category = () => {
                             categories?.length > 0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] text-white border-b-4 border-blue-800' : ''
                                 }`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         }
+                    </div>
+
+                    <div className='flex flex-col text-black h-full'>
+                        {/* <label className='text-md font-medium text-gray-600' htmlFor='राज्य'>राज्य</label> */}
+                        <select
+                            name="state"
+                            value={state}
+                            onChange={handleStateChange}
+                            className=' rounded-md outline-0 border border-gray-300 h-full focus:border-red-500 '
+                            required
+                        >
+                            <option value="">---राज्य चुनें---</option>
+                            <option value="बिहार">बिहार</option>
+                            <option value="उत्तर प्रदेश">उत्तर प्रदेश</option>
+                            <option value="दिल्ली">दिल्ली</option>
+                            <option value="मध्य प्रदेश">मध्य प्रदेश</option>
+                            <option value="राजस्थान">राजस्थान</option>
+                            <option value="महाराष्ट्र">महाराष्ट्र</option>
+                            <option value="गुजरात">गुजरात</option>
+                            <option value="कर्नाटक">कर्नाटक</option>
+                            <option value="तमिलनाडु">तमिलनाडु</option>
+                            <option value="पश्चिम बंगाल">पश्चिम बंगाल</option>
+                        </select>
+
+
                     </div>
 
                     <div className='h-full w-[48px]'>
