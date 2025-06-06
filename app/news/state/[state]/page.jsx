@@ -10,7 +10,7 @@ import PopularNews from '../../../../components/news/PopularNews'
 import VideoPlayer from '../../../../components/VideoPlayer'
 
 async function getNewsByState(stateName) {
-    const res = await fetch(`${base_url}/api/news/state/${stateName}`, {
+    const res = await fetch(`${base_api_url}/api/news/state/${stateName}`, {
         cache: 'no-store',
     });
     const data = await res.json();
