@@ -14,6 +14,7 @@ import { headers } from "next/headers";
 import VideoPlayer from "../components/VideoPlayer";
 import AddModel from "../components/AddModel";
 import Permostion from "../components/Permostion";
+import VideoPermostion from "../components/VideoPermostion";
 
 
 const Home = async () => {
@@ -123,13 +124,14 @@ const Home = async () => {
           </div>
         </div>
 
-        <div className="p-4 bg-white">
+        <div className="">
+          <VideoPermostion/>
           {/* <Category titleStyle="text-gray-700" /> */}
 
-          <div className="">
+          {/* <div className="">
 
             <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
-          </div>
+          </div> */}
         </div>
       </main>
       <Footer news={news['राजनीति']}/>

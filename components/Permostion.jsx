@@ -22,6 +22,7 @@ const Permostion = () => {
         item => item.bannertype === 'promotion' && item.status !== 'deactive'
     );
 
+ 
     // If no active promotion, fallback to local image
     const bannerImage = bannerItem?.image || bgimage;
 
