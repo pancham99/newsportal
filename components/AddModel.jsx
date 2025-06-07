@@ -27,12 +27,12 @@ const AddModel = () => {
   };
 
   useEffect(() => {
-    setIsOpen(true);
-    // const hasVisited = localStorage.getItem("hasVisited");
-    // if (!hasVisited) {
-    //   setIsOpen(true);
-    //   localStorage.setItem("hasVisited", "true");
-    // }
+    // setIsOpen(true);
+    const hasVisited = localStorage.getItem("hasVisited");
+    if (!hasVisited) {
+      setIsOpen(true);
+      localStorage.setItem("hasVisited", "true");
+    }
   }, []);
 
   if (!isOpen) return null;
