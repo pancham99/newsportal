@@ -57,7 +57,7 @@ const AboutUs = () => {
                         <div className='flex justify-center '>
                             <Image src="/dir.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
                         </div>
-                        <h3 className="text-xl font-bold text-center">Ashish  Mishra</h3>
+                        <h3 className="text-xl font-bold text-center">Ashwani  Mishra</h3>
                         <h2 className="text-xl font-bold text-center text-gray-600">Managing Director</h2>
 
                         <p className="text-gray-700 mt-2 text-justify">
