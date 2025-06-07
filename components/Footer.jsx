@@ -17,7 +17,11 @@ const Footer = ({ news }) => {
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
                             <div className='text-xl text-red-600 font-extrabold'>TopBriefing</div>
-                            <h1 className="text-xl underline cursor-pointer text-white">contact@topbriefing.in</h1>
+                            <a href="mailto:contact@topbriefing.in">
+                                <h1 className="text-xl underline cursor-pointer text-white">
+                                    contact@topbriefing.in
+                                </h1>
+                            </a>
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
 
@@ -33,7 +37,7 @@ const Footer = ({ news }) => {
                             <li><Link href={"/contact"} className='text-slate-300 text-md underline'>ContactUs</Link></li>
 
 
-                            
+
                         </ul>
 
                         {/* <div className='grid grid-cols-3 gap-2'>
