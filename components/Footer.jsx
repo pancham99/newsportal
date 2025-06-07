@@ -17,11 +17,11 @@ const Footer = ({ news }) => {
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
                             <div className='text-xl text-red-600 font-extrabold'>TopBriefing</div>
-                            <a href="mailto:contact@topbriefing.in">
+                            <Link href="mailto:contact@topbriefing.in">
                                 <h1 className="text-xl underline cursor-pointer text-white">
                                     contact@topbriefing.in
                                 </h1>
-                            </a>
+                            </Link>
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
 
