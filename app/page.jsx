@@ -13,6 +13,7 @@ import { base_api_url } from "../config/config"
 import { headers } from "next/headers";
 import VideoPlayer from "../components/VideoPlayer";
 import AddModel from "../components/AddModel";
+import Permostion from "../components/Permostion";
 
 
 const Home = async () => {
@@ -95,6 +96,8 @@ const Home = async () => {
 
               </div>
             </div>
+
+            <Permostion/>
 
             {/* 3rd section */}
 
