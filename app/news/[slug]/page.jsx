@@ -31,9 +31,9 @@ const Details = async ({ params }) => {
             <div className="bg-slate-200 w-full">
                 <div className="px-4 md:px-8 w-full py-8">
                     <div className="flex flex-wrap">
-                        <div className="w-full xl:w-8/12">
+                        <div className="w-full xl:w-8/12 overflow-y-scroll hide-scrollbar h-[800px]">
                             <div className="w-full pr-0 xl:pr-4">
-                                <div className="flex flex-col gap-y-5 bg-white relative h-[400px]">
+                                <div className="flex flex-col gap-y-5 bg-white relative  h-[400px] ">
                                     <div className='h-full max-h-full w-full relative'>
                                         {news?.image && (
                                             <Image
@@ -63,14 +63,19 @@ const Details = async ({ params }) => {
                                     <Search />
                                     <div className="w-full flex-col gap-y-[14px] bg-white pt-4">
                                         <div className="pl-4">
-                                            <Title title="Recent news" />
+                                            <Title title="Recent video" />
                                         </div>
                                         <div className="grid grid-cols-1 gap-y-3">
-                                            {
+                                            {/* {
                                                 [1, 2, 3, 4,].map((_, index) => (
                                                     <NewsCard key={index} news={news} />
                                                 ))
-                                            }
+                                            } */}
+
+                                            <div className="p-4">
+
+                                                <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
+                                            </div>
                                         </div>
                                     </div>
 
@@ -87,13 +92,13 @@ const Details = async ({ params }) => {
                         </div>
                     </div>
 
-                    <div className="pt-8">
-                        <RelatedNews news={relatedNews} type="Related news" />
+                    <div className="pt-8 h-48">
+                        {/* <RelatedNews news={relatedNews} type="Related news" /> */}
                     </div>
                 </div>
             </div>
 
-            
+
 
             <Footer />
         </div>

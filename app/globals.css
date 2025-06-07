@@ -2,4 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.hide-scrollbar {
+  scrollbar-width: solid 4px red; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+ scrollbar-width: solid 4px red;;  /* Chrome, Safari */
+}
+
 
