@@ -61,7 +61,7 @@ const AboutUs = () => {
                         <h2 className="text-xl font-bold text-center text-gray-600">Managing Director</h2>
 
                         <p className="text-gray-700 mt-2 text-justify">
-                            {`Mr. Ashish  Mishra is the visionary Managing Director of Top Briefing News. With over
+                            {`Mr. Ashwani  Mishra is the visionary Managing Director of Top Briefing News. With over
               20 years of experience in journalism and digital media.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">MA Journalism, DU </p>
