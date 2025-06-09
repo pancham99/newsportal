@@ -21,7 +21,7 @@ const VideoAdvertisement = ({
 
 
     const advertisement = permostion.filter(
-        item => item.videotype === 'advertisement' && item.status !== 'deactive'
+        item => item?.videotype === 'advertisement' && item?.status !== 'deactive'
     );
 
     console.log(advertisement, "advertisement");
@@ -49,7 +49,7 @@ const VideoAdvertisement = ({
     return (
         <div className="">
             <div className='gap-2'>
-                {advertisement.length > 0 ? (
+                {advertisement?.length > 0 ? (
                     <div className='space-y-5 '>
                         {
                             advertisement?.slice(0, 3).map((item, index) => (
