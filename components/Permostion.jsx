@@ -18,7 +18,7 @@ const Permostion = () => {
     };
 
     // ⬇️ Find banner that is promotion type AND active
-    const bannerItem = permostion.find(
+    const bannerItem = permostion?.find(
         item => item.bannertype === 'promotion' && item.status !== 'deactive'
     );
 
