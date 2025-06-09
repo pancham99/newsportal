@@ -10,6 +10,7 @@ import RelatedNews from '../../../components/news/RelatedNews';
 import parse from 'html-react-parser';
 import Image from "next/image";
 import VideoPlayer from '../../../components/VideoPlayer';
+import VideoAdvertisement from '../../../components/VideoAdvertisement';
 
 const Details = async ({ params }) => {
     const { slug } = params;
@@ -60,33 +61,32 @@ const Details = async ({ params }) => {
                         <div className="w-full xl:w-4/12">
                             <div className="w-full pl-0 xl:pl-4">
                                 <div className="flex flex-col gap-8">
-                                    <Search />
-                                    <div className="w-full flex-col gap-y-[14px] bg-white pt-4">
+                                    {/* <Search /> */}
+                                    <div className="w-full flex-col gap-y-[14px] bg-white pt-4 h-full">
                                         <div className="pl-4">
                                             <Title title="Recent video" />
                                         </div>
-                                        <div className="grid grid-cols-1 gap-y-3">
+                                        <div className="grid grid-cols-1 gap-y-2">
+
+
                                             {/* {
                                                 [1, 2, 3, 4,].map((_, index) => (
                                                     <NewsCard key={index} news={news} />
                                                 ))
                                             } */}
 
-                                            <div className="p-4">
+                                            <div className="p-2 bg-white gap-2">
 
-                                                <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
+                                                <VideoAdvertisement />
+
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="p-4 bg-white">
-                                        {/* <Category titleStyle="text-gray-700" /> */}
+                                    {/* <div className="p-4 bg-white">
+                                        <Category titleStyle="text-gray-700" />
 
-                                        <div className="">
-
-                                            <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
-                                        </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

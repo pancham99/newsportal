@@ -14,7 +14,8 @@ import { headers } from "next/headers";
 import VideoPlayer from "../components/VideoPlayer";
 import AddModel from "../components/AddModel";
 import Permostion from "../components/Permostion";
-import VideoPermostion from "../components/VideoPermostion";
+import VideoPermostion from "../components/VideoAdvertisement";
+import VideoAdvertisement from "../components/VideoAdvertisement";
 
 
 const Home = async () => {
@@ -125,7 +126,9 @@ const Home = async () => {
         </div>
 
         <div className="">
-          <VideoPermostion/>
+          {/* <VideoPermostion/> */}
+
+          {/* <VideoAdvertisement/> */}
           {/* <Category titleStyle="text-gray-700" /> */}
 
           {/* <div className="">
