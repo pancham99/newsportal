@@ -14,8 +14,7 @@ import { headers } from "next/headers";
 import VideoPlayer from "../components/VideoPlayer";
 import AddModel from "../components/AddModel";
 import Permostion from "../components/Permostion";
-import VideoPermostion from "../components/VideoAdvertisement";
-import VideoAdvertisement from "../components/VideoAdvertisement";
+
 
 
 const Home = async () => {
