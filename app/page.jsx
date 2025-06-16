@@ -1,27 +1,46 @@
-import Footer from "../components/Footer";
-import Headlines from "../components/Headlines";
-import DetailsNews from "../components/news/items/DetailsNews";
-import DetailsNewsCol from "../components/news/items/DetailsNewsCol";
-import DetailsNewsRow from "../components/news/items/DetailsNewsRow";
-import NewsCard from "../components/news/items/NewsCard";
-import SimpleNewsCard from "../components/news/items/SimpleNewsCard";
-import LatestNews from "../components/news/LatestNews";
-import PopularNews from "../components/news/PopularNews";
-import Title from "../components/Title";
-import Image from "next/image";
+import dynamic from 'next/dynamic'
+
+const Footer = dynamic(() => import("../components/Footer"));
+const Headlines = dynamic(() => import("../components/Headlines"));
+const DetailsNews = dynamic(() => import("../components/news/items/DetailsNews"));
+const DetailsNewsCol = dynamic(() => import("../components/news/items/DetailsNewsCol"));
+const DetailsNewsRow = dynamic(() => import("../components/news/items/DetailsNewsRow"));
+const NewsCard = dynamic(() => import("../components/news/items/NewsCard"));
+const SimpleNewsCard = dynamic(() => import("../components/news/items/SimpleNewsCard"));
+const LatestNews = dynamic(() => import("../components/news/LatestNews"));
+const PopularNews = dynamic(() => import("../components/news/PopularNews"));
+const Title = dynamic(() => import("../components/Title"));
+const VideoPlayer = dynamic(() => import("../components/VideoPlayer"));
+const AddModel = dynamic(() => import("../components/AddModel"));
+const Permostion = dynamic(() => import("../components/Permostion"));
+const VideoPermostion = dynamic(() => import("../components/VideoAdvertisement"));
+const VideoAdvertisement = dynamic(() => import("../components/VideoAdvertisement"));
+import RecentNews from "../components/news/RecentNews";
+
+// import Footer from "../components/Footer";
+// import Headlines from "../components/Headlines";
+// import DetailsNews from "../components/news/items/DetailsNews";
+// import DetailsNewsCol from "../components/news/items/DetailsNewsCol";
+// import DetailsNewsRow from "../components/news/items/DetailsNewsRow";
+// import NewsCard from "../components/news/items/NewsCard";
+// import SimpleNewsCard from "../components/news/items/SimpleNewsCard";
+// import LatestNews from "../components/news/LatestNews";
+// import PopularNews from "../components/news/PopularNews";
+// import Title from "../components/Title";
+// import Image from "next/image";
 import { base_api_url } from "../config/config"
-import { headers } from "next/headers";
-import VideoPlayer from "../components/VideoPlayer";
-import AddModel from "../components/AddModel";
-import Permostion from "../components/Permostion";
-import VideoPermostion from "../components/VideoAdvertisement";
-import VideoAdvertisement from "../components/VideoAdvertisement";
+// import { headers } from "next/headers";
+// import VideoPlayer from "../components/VideoPlayer";
+// import AddModel from "../components/AddModel";
+// import Permostion from "../components/Permostion";
+// import VideoPermostion from "../components/VideoAdvertisement";
+// import VideoAdvertisement from "../components/VideoAdvertisement";
 
 
 const Home = async () => {
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
     next: {
-      revalidate: 5 
+      revalidate: 5
     },
   });
 
@@ -29,7 +48,7 @@ const Home = async () => {
 
   return (
     <div>
-      <AddModel/>
+      <AddModel />
       <main>
         <Headlines news={news} />
         <div className="bg-slate-100 ">
@@ -45,13 +64,13 @@ const Home = async () => {
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
                   <Title title="राजनीति" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                     {
+                    {
                       news['राजनीति']?.map((item, i) => {
                         if (i < 4) {
                           return <SimpleNewsCard key={i} item={item} />
                         }
                       })
-                    } 
+                    }
                   </div>
                 </div>
               </div>
@@ -99,7 +118,7 @@ const Home = async () => {
               </div>
             </div>
 
-            <Permostion/>
+            <Permostion />
 
             {/* 3rd section */}
 
@@ -114,8 +133,51 @@ const Home = async () => {
                   <div className="pl-2">
                     <Title title="Recent news" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      {
+                      <RecentNews/>
+                      {/* {
                         news['खेल']?.map((item, i) => <NewsCard news={item} key={i} />)
+                      } */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div className="w-full mt-5">
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-8/12">
+                  <div className="">
+                    {
+                      news['अपराध']?.length > 0
+                        ? (
+                          <DetailsNewsRow
+                            news={news['अपराध']}
+                            category='अपराध'
+                            type='details-news'
+                          />
+                        )
+                        : (
+                          <p className="text-gray-500 p-4"></p>
+                        )
+                    }
+                  </div>
+                </div>
+                <div className="w-full lg:w-4/12">
+                  <div className="pl-2">
+                    {/* <Title title="Recent news" /> */}
+                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
+                      {
+                        news['लाइफस्टाइल']?.length > 0
+                          ? (
+                            news['लाइफस्टाइल'].map((item, i) => (
+                              <NewsCard news={item} key={i} />
+                            ))
+                          )
+                          : (
+                            <p className="text-gray-500 p-4"></p>
+                          )
                       }
                     </div>
                   </div>
@@ -137,7 +199,7 @@ const Home = async () => {
           </div> */}
         </div>
       </main>
-      <Footer news={news['राजनीति']}/>
+      <Footer news={news['राजनीति']} />
     </div>
   );
 }

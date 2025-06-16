@@ -6,11 +6,13 @@ import { base_api_url } from "../config/config"
 
 const Permostion = () => {
     const [permostion, setPermostion] = useState([]);
+    // console.log('Permostion component rendered', permostion);
 
     const get_permostion = async () => {
         try {
             const res = await fetch(`${base_api_url}/api/banner/getall`);
             const data = await res.json();
+            // console.log('Fetched banners:', data);
             setPermostion(data.banners);
         } catch (error) {
             console.log(error);

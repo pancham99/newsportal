@@ -66,6 +66,8 @@ const LatestNews = () => {
 
   return (
     <div className='w-full flex flex-col-reverse gap-3 pr-0 lg:pr-2'>
+
+     {news?.length > 0 && (
       <Carousel
       autoPlay={true}
       arrows={false}
@@ -78,7 +80,7 @@ const LatestNews = () => {
         {
             news?.map((item, i)=><SimpleNewsCard item={item} key={i}  type='latest'/>)
         }
-      </Carousel>
+      </Carousel>)}
     </div>
   )
 }

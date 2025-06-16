@@ -1,14 +1,16 @@
 import Image from "next/image";
 import React from "react";
 import Link from 'next/link'
+import moment from 'moment-timezone';
 
-const NewsCard = ({news}) => {
+const NewsCard = ({ news }) => {
+    const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     return (
         <div className="bg-white shadow flex p-4">
             <div className="relative group overflow-hidden h-full ">
 
                 <div className="group-hover:scale-[1.1] transition-all duration-[1s] w-[100px] md:w-[160px] h-[93px] lg:w-[100px] relative">
-                   <Image src={news?.image} alt="" layout="fill" className="" />
+                    <Image src={news?.image} alt="" layout="fill" className="" />
 
                     <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
                 </div>
@@ -18,7 +20,7 @@ const NewsCard = ({news}) => {
 
                 <Link href={`/news/${news?.slug}`} className="text-sm font-semibold text-[#333333] hover:text-[#c80000]">{news?.title}</Link>
                 <div className='flex gap-x-2 text-xs font-normal'>
-                    <span>{news?.date} /</span>
+                    <span>{news?.date} / {formattedTime}</span>
                     <span>{news?.writerName}</span>
                 </div>
             </div>

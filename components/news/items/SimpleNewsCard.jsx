@@ -1,8 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import moment from 'moment-timezone';
 
 const SimpleNewsCard = ({item, type}) => {
+    const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     return (
         <div className='group relative'>
             <div className='overflow-hidden'>
@@ -18,7 +20,7 @@ const SimpleNewsCard = ({item, type}) => {
 
                 <Link href={`/news/${item.slug}`} className='text-xl'>{item?.title?.length > 50 ? item.title.slice(0, 50) + '...' : item.title}</Link>
                 <div className='flex gap-x-2 text-xs font-normal'>
-                    <span>{item.date}</span>
+                    <span>{item.date} / {formattedTime}</span>
                     <span>{item.writerName}</span>
                 </div>
             </div>

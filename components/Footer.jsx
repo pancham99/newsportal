@@ -6,6 +6,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
+import Subscribe from "./Subscribe";
 
 const Footer = ({ news }) => {
 
@@ -27,6 +28,7 @@ const Footer = ({ news }) => {
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
                         </div>
+                        <Subscribe/>
                     </div>
 
                     <div className='w-full flex flex-col gap-y-[14px]'>

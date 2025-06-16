@@ -20,7 +20,7 @@ const VideoAdvertisement = ({
 
 
 
-    const advertisement = permostion.filter(
+    const advertisement = permostion?.filter(
         item => item?.videotype === 'advertisement' && item?.status !== 'deactive'
     );
 

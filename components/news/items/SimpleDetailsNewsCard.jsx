@@ -2,8 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 const { convert } = require('html-to-text');
+import moment from 'moment-timezone';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
+  const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
   return (
     <div className='bg-white shadow'>
       <div className='group relative overflow-hidden'>
@@ -27,7 +29,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
         <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}>{news?.title}</Link>
 
         <div className='flex gap-x-2 text-xs font-normal'>
-          <span>{news?.date} /</span>
+          <span>{news?.date} / {formattedTime}</span>
           <span>{news?.writerName}</span>
         </div>
         {
