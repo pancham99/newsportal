@@ -10,7 +10,7 @@ const RecentNews = () => {
 
     const get_recent = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/news/recent/news`)
+            const res = await fetch(`${base_api_url}/api/news/recent/news`)
             const data = await res.json()
             setRecent(data.recentNews)  // <-- यहाँ पर fix किया है
         } catch (error) {
