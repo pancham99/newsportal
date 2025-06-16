@@ -31,12 +31,12 @@ const Header_Category = () => {
     }, [])
 
     const handleStateChange = (e) => {
-    const selectedState = e.target.value;
-    setState(selectedState);
-    if (selectedState) {
-      router.push(`/news/state/${selectedState}`);
-    }
-  };
+        const selectedState = e.target.value;
+        setState(selectedState);
+        if (selectedState) {
+            router.push(`/news/state/${selectedState}`);
+        }
+    };
 
     const [show, setShow] = React.useState(false)
     const [cast_show, setCast_show] = React.useState(false)

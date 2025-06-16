@@ -16,6 +16,7 @@ const Permostion = dynamic(() => import("../components/Permostion"));
 const VideoPermostion = dynamic(() => import("../components/VideoAdvertisement"));
 const VideoAdvertisement = dynamic(() => import("../components/VideoAdvertisement"));
 import RecentNews from "../components/news/RecentNews";
+import Advertisement from "../components/Advertisement";
 
 // import Footer from "../components/Footer";
 // import Headlines from "../components/Headlines";
@@ -133,7 +134,7 @@ const Home = async () => {
                   <div className="pl-2">
                     <Title title="ताजा खबरें" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      <RecentNews/>
+                      <RecentNews />
                       {/* {
                         news['खेल']?.map((item, i) => <NewsCard news={item} key={i} />)
                       } */}
@@ -184,6 +185,53 @@ const Home = async () => {
                 </div>
               </div>
             </div>
+
+            <div className="w-full mt-2">
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-8/12">
+                  <div className="">
+                    {
+                      news['मौसम']?.length > 0
+                        ? (
+                          <DetailsNewsRow
+                            news={news['मौसम']}
+                            category='मौसम'
+                            type='details-news'
+                          />
+                        )
+                        : (
+                          <p className="text-gray-500 p-4"></p>
+                        )
+                    }
+                  </div>
+                </div>
+                <div className="w-full lg:w-4/12">
+                  <div className="pl-2">
+
+                    <Advertisement/>
+                    {/* <Title title="अपराध" /> */}
+                    {/* <div className='grid grid-cols-1 gap-y-1 mt-3'>
+                      {
+                        news['अपराध']?.length > 0
+                          ? (
+                            news['अपराध'].map((item, i) => (
+                              <NewsCard news={item} key={i} />
+                            ))
+                          )
+                          : (
+                            <p className="text-gray-500 p-4"></p>
+                          )
+                      }
+                    </div> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
           </div>
         </div>
 
