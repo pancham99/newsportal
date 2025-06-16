@@ -129,6 +129,9 @@ const Home = async () => {
                   <div className="">
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
+                  <div className='mt-2'>
+                    <Advertisement image={'/promotion.jpg'}/>
+                  </div>
                 </div>
                 <div className="w-full lg:w-4/12">
                   <div className="pl-2">
@@ -208,7 +211,7 @@ const Home = async () => {
                 <div className="w-full lg:w-4/12">
                   <div className="pl-2">
 
-                    <Advertisement/>
+                    <Advertisement image={'/Car-Sales-Poster-Templates.png'}/>
                     {/* <Title title="अपराध" /> */}
                     {/* <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {

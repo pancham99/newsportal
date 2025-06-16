@@ -3,12 +3,12 @@
 import Image from "next/image";
 import React from "react";
 
-const Advertisement = () => {
+const Advertisement = ({image}) => {
   return (
     <div className="flex justify-center items-center min-h-[400px] bg-gradient-to-br from-yellow-400 via-white to-gray-300 py-10 px-4 rounded-lg shadow-xl">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-md w-full transform hover:scale-105 transition-transform duration-500">
         <Image
-          src={"/Car-Sales-Poster-Templates.png"}
+          src={image}
           alt="Car Sale Promo"
           width={400}
           height={411}
