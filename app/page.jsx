@@ -131,7 +131,7 @@ const Home = async () => {
                 </div>
                 <div className="w-full lg:w-4/12">
                   <div className="pl-2">
-                    <Title title="Recent news" />
+                    <Title title="ताजा खबरें" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       <RecentNews/>
                       {/* {
@@ -145,16 +145,16 @@ const Home = async () => {
 
 
 
-            <div className="w-full mt-5">
+            <div className="w-full mt-2">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
                   <div className="">
                     {
-                      news['अपराध']?.length > 0
+                      news['लाइफस्टाइल']?.length > 0
                         ? (
                           <DetailsNewsRow
-                            news={news['अपराध']}
-                            category='अपराध'
+                            news={news['लाइफस्टाइल']}
+                            category='लाइफस्टाइल'
                             type='details-news'
                           />
                         )
@@ -166,12 +166,12 @@ const Home = async () => {
                 </div>
                 <div className="w-full lg:w-4/12">
                   <div className="pl-2">
-                    {/* <Title title="Recent news" /> */}
+                    <Title title="अपराध" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
-                        news['लाइफस्टाइल']?.length > 0
+                        news['अपराध']?.length > 0
                           ? (
-                            news['लाइफस्टाइल'].map((item, i) => (
+                            news['अपराध'].map((item, i) => (
                               <NewsCard news={item} key={i} />
                             ))
                           )
