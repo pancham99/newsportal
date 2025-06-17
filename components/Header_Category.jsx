@@ -134,7 +134,8 @@ const Header_Category = () => {
                     <Link className={`px-4 text-sm font-semibold py-[5px] ${path === '/' ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={"/"} >होम</Link>
 
                     {
-                        categories?.length > 0 && categories?.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                        categories?.length > 0 && categories
+                                .filter(c => c.category !== null).map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         // categories.map((c, i) => <Link key={c.id} className={`px-4 text-sm font-semibold py-[5px] ${path === c.name ? 'bg-[#00000026]' : ''}`} href={"/"} >{c.name}</Link>)
                     }
 
