@@ -8,6 +8,7 @@ import Title from '../../../../components/Title'
 import NewsCard from '../../../../components/news/items/NewsCard'
 import PopularNews from '../../../../components/news/PopularNews'
 import VideoPlayer from '../../../../components/VideoPlayer'
+import Advertisement from '../../../../components/Advertisement'
 
 async function getNewsByState(stateName) {
     const res = await fetch(`${base_api_url}/api/news/state/${stateName}`, {
@@ -71,8 +72,9 @@ const Page = async ({ params }) => {
 
                                 <div className='p-4 bg-white'>
                                     <div className="p-6">
-                                        <h1 className="text-2xl font-bold mb-4">Top Briefing</h1>
-                                        <VideoPlayer url="https://www.youtube.com/shorts/FSuGjn4MKDY" />
+                                        {/* <h1 className="text-2xl font-bold mb-4">Top Briefing</h1> */}
+                                        <Advertisement one={'1'} advertisement={'advertisement'}/>
+                                        {/* <VideoPlayer url="https://www.youtube.com/shorts/FSuGjn4MKDY" /> */}
                                     </div>
                                 </div>
 

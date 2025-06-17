@@ -131,7 +131,7 @@ const Home = async () => {
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
                   <div className='mt-2 w-full rounded-md'>
-                    <AdvertisementComp/>
+                    <AdvertisementComp one={'0'} advertisement={'advertisement'}/>
                     {/* <Advertisement image={'/promotion.jpg'}/> */}
                   </div>
                 </div>
@@ -213,7 +213,7 @@ const Home = async () => {
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
                   <div className="pl-2">
 
-                    <Advertisement image={'/Car-Sales-Poster-Templates.png'}/>
+                    <Advertisement one={'1'} advertisement={'advertisement'}/>
                     {/* <Title title="अपराध" /> */}
                     {/* <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
