@@ -11,6 +11,7 @@ import parse from 'html-react-parser';
 import Image from "next/image";
 import VideoPlayer from '../../../components/VideoPlayer';
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
+import moment from 'moment-timezone';
 
 const Details = async ({ params }) => {
     const { slug } = params;
@@ -20,6 +21,8 @@ const Details = async ({ params }) => {
     });
 
     const { news, relatedNews } = await res.json();
+
+     const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
 
     return (
         <div>
@@ -49,7 +52,7 @@ const Details = async ({ params }) => {
                                         <h3 className="text-red-700 font-medium text-xl">{news?.category}</h3>
                                         <h2 className="text-3xl text-gray-700 font-bold">{news?.title}</h2>
                                         <div className="flex gap-x-2 text-xs font-normal">
-                                            <span>{news?.date} /</span>
+                                            <span>{news?.date} / {formattedTime}</span>
                                             <span>{news?.writerName}</span>
                                         </div>
                                         <div className="prose max-w-none">{parse(news?.description || "")}</div>

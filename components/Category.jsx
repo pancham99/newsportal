@@ -19,7 +19,8 @@ const Category = async ({ titleStyle }) => {
             </div>
             <div className={`flex flex-col justify-start items-start text-sm gap-y-2 ${titleStyle} pt-2`}>
                 {
-                   categories && categories.length>0 && categories.map((item, i) => <li className=' list-none' key={i}>
+                   categories && categories.length>0 && categories
+                                .filter(c => c.category !== null).map((item, i) => <li className=' list-none' key={i}>
                         <Link href={"#"}>{item.category} ({item.count})</Link>
                     </li>)
                 }

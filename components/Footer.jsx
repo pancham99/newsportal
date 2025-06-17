@@ -67,7 +67,7 @@ const Footer = ({ news }) => {
                                 news?.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
                                     <div className="group relative overflow-hidden w-[90px] h-[75px]">
                                         <div className="w-[90px] h-[85px] block group-hover:scale-[1.1] transition-all duration-[1s] ">
-                                            <Image src={r?.image} alt="" className="" layout="fill" />
+                                            <Image src={r?.image} alt="" className="" fill  />
 
                                             <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
                                         </div>

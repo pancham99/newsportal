@@ -10,7 +10,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
     <div className='bg-white shadow'>
       <div className='group relative overflow-hidden'>
         <div style={{ height: `${height}px` }} className={`w-full  group-hover:scale-[1.1] transition-all duration-[1s]`}>
-          <Image className='' src={news?.image} alt='' layout='fill' />
+          <Image className='' src={news?.image} alt='' fill />
         </div>
 
         <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
@@ -28,7 +28,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
       </div>
 
       <div className='p-5'>
-        <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}>{news?.title}</Link>
+        <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}>{news?.title?.length > 50 ? news.title.slice(0, 50) + '...' : news.title}</Link>
 
         <div className='flex gap-x-2 text-xs font-normal'>
           <span>{news?.date} / {formattedTime}</span>

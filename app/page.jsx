@@ -17,6 +17,7 @@ const VideoPermostion = dynamic(() => import("../components/VideoAdvertisement")
 const VideoAdvertisement = dynamic(() => import("../components/VideoAdvertisement"));
 import RecentNews from "../components/news/RecentNews";
 import Advertisement from "../components/Advertisement";
+import AdvertisementComp from "../components/AdvertisementComp";
 
 // import Footer from "../components/Footer";
 // import Headlines from "../components/Headlines";
@@ -95,7 +96,7 @@ const Home = async () => {
 
             {/* second section */}
 
-            <div className="w-full">
+            <div className="w-full lg:mt-0 mt-4">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12">
                   <div className="pr-2">
@@ -109,7 +110,7 @@ const Home = async () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-8/12">
+                <div className="w-full lg:w-8/12 lg:mt-0 mt-4">
                   <div className="pl-2">
                     <DetailsNewsRow news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' type='details-news' />
                     <DetailsNews news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' />
@@ -129,11 +130,12 @@ const Home = async () => {
                   <div className="">
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
-                  <div className='mt-2'>
-                    <Advertisement image={'/promotion.jpg'}/>
+                  <div className='mt-2 w-full rounded-md'>
+                    <AdvertisementComp/>
+                    {/* <Advertisement image={'/promotion.jpg'}/> */}
                   </div>
                 </div>
-                <div className="w-full lg:w-4/12">
+                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
                   <div className="pl-2">
                     <Title title="ताजा खबरें" />
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
@@ -208,7 +210,7 @@ const Home = async () => {
                     }
                   </div>
                 </div>
-                <div className="w-full lg:w-4/12">
+                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
                   <div className="pl-2">
 
                     <Advertisement image={'/Car-Sales-Poster-Templates.png'}/>

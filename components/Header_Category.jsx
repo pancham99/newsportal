@@ -15,6 +15,7 @@ const Header_Category = () => {
     const router = useRouter();
     const decodedCategory = decodeURIComponent(path.split('/')[3] || '');
     const [categories, set_categores] = useState([])
+    console.log('categories', categories)
     const [state, setState] = useState('')
     const get_categories = async () => {
         try {
@@ -52,10 +53,30 @@ const Header_Category = () => {
                     <div className='flex-wrap hidden lg:flex'>
                         <Link className={`px-4 text-sm font-semibold py-[10px] ${path === '/' ? 'bg-[#00000026] border-b-4 border-blue-800' : ''}`} href={"/"} >होम</Link>
 
+
                         {
+                            categories?.length > 0 &&
+                            categories
+                                .filter(c => c.category !== null) 
+                                .map((c, i) => (
+                                    <Link
+                                        key={i}
+                                        className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category
+                                                ? 'bg-[#00000026] text-white border-b-4 border-blue-800'
+                                                : ''
+                                            }`}
+                                        href={`/news/category/${c.category}`}
+                                    >
+                                        {c.category}
+                                    </Link>
+                                ))
+                        }
+
+
+                        {/* {
                             categories?.length > 0 && categories.map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] text-white border-b-4 border-blue-800' : ''
                                 }`} href={`/news/category/${c.category}`} >{c.category}</Link>)
-                        }
+                        } */}
                     </div>
 
                     <div className='flex flex-col text-black h-full'>

@@ -50,7 +50,7 @@ const LatestNews = () => {
       const ButtonGroup = ({next, previous}) =>{
          return <div className='flex justify-between items-center'>
             <div className='text-xl font-bold text-[#333333] relative before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:-left-0 pl-3'>
-                Latest News
+               लेटेस्ट न्यूज़
             </div>
             <div className='flex justify-center items-center gap-x-3 '>
               <button onClick={() =>previous()} className='w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200'>
