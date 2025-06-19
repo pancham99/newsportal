@@ -3,7 +3,6 @@ import { base_api_url } from "../../../config/config";
 import Breadcrumb from '../../../components/Breadcrumb';
 import Category from '../../../components/Category';
 import NewsCard from '../../../components/news/items/NewsCard';
-import Search from '../../../components/Search';
 import Title from '../../../components/Title';
 import Footer from '../../../components/Footer';
 import RelatedNews from '../../../components/news/RelatedNews';
@@ -12,6 +11,9 @@ import Image from "next/image";
 import VideoPlayer from '../../../components/VideoPlayer';
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
+import dynamic from 'next/dynamic';
+
+const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
 const Details = async ({ params }) => {
     const { slug } = params;
@@ -22,7 +24,7 @@ const Details = async ({ params }) => {
 
     const { news, relatedNews } = await res.json();
 
-     const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
 
     return (
         <div>
@@ -55,7 +57,7 @@ const Details = async ({ params }) => {
                                             <span>{news?.date} / {formattedTime}</span>
                                             <span>{news?.writerName}</span>
                                         </div>
-                                        <div className="prose max-w-none">{parse(news?.description || "")}</div>
+                                        <NewsDescription description={news?.description} />
                                     </div>
                                 </div>
                             </div>
@@ -64,31 +66,19 @@ const Details = async ({ params }) => {
                         <div className="w-full xl:w-4/12">
                             <div className="w-full pl-0 xl:pl-4">
                                 <div className="flex flex-col gap-8">
-                                    {/* <Search /> */}
                                     <div className="w-full flex-col gap-y-[14px] bg-white pt-4 h-full">
                                         <div className="pl-4">
                                             <Title title="Recent video" />
                                         </div>
                                         <div className="grid grid-cols-1 gap-y-2">
-
-
-                                            {/* {
-                                                [1, 2, 3, 4,].map((_, index) => (
-                                                    <NewsCard key={index} news={news} />
-                                                ))
-                                            } */}
-
                                             <div className="p-2 bg-white gap-2">
-
                                                 <VideoAdvertisement />
-
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* <div className="p-4 bg-white">
                                         <Category titleStyle="text-gray-700" />
-
                                     </div> */}
                                 </div>
                             </div>
@@ -100,8 +90,6 @@ const Details = async ({ params }) => {
                     </div>
                 </div>
             </div>
-
-
 
             <Footer />
         </div>
