@@ -27,7 +27,7 @@ const RecentNews = () => {
             <div className="pl-2">
                 <div className='grid grid-cols-1 gap-y-1 mt-3'>
                     {
-                        recent?.map((item, i) => <NewsCard news={item} key={i} />)
+                        recent?.slice(0,6).map((item, i) => <NewsCard news={item} key={i} />)
                     }
                 </div>
             </div>

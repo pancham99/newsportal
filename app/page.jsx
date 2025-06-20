@@ -18,6 +18,7 @@ const VideoAdvertisement = dynamic(() => import("../components/VideoAdvertisemen
 import RecentNews from "../components/news/RecentNews";
 import Advertisement from "../components/Advertisement";
 import AdvertisementComp from "../components/AdvertisementComp";
+import Stories from "../components/Stories"
 
 // import Footer from "../components/Footer";
 // import Headlines from "../components/Headlines";
@@ -47,8 +48,6 @@ const Home = async () => {
   });
 
   const { news } = await news_data?.json()
-
-  console.log("news", news);
 
   return (
     <div>
@@ -122,7 +121,14 @@ const Home = async () => {
               </div>
             </div>
 
+            <div className='py-5'>
+                <Title title="बड़ी ख़बरें" />
+              <Stories />
+            </div>
+
             <Permostion />
+
+
 
             {/* 3rd section */}
 
@@ -133,7 +139,7 @@ const Home = async () => {
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
                   <div className='mt-2 w-full rounded-md'>
-                    <AdvertisementComp one={'0'} advertisement={'advertisement'}/>
+                    <AdvertisementComp one={'0'} advertisement={'advertisement'} />
                     {/* <Advertisement image={'/promotion.jpg'}/> */}
                   </div>
                 </div>
@@ -215,7 +221,7 @@ const Home = async () => {
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
                   <div className="pl-2">
 
-                    <Advertisement one={'1'} advertisement={'advertisement'}/>
+                    <Advertisement one={'1'} advertisement={'advertisement'} />
                     {/* <Title title="अपराध" /> */}
                     {/* <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
