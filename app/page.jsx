@@ -48,6 +48,8 @@ const Home = async () => {
 
   const { news } = await news_data?.json()
 
+  console.log("news", news);
+
   return (
     <div>
       <AddModel />
