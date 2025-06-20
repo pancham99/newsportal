@@ -7,7 +7,7 @@ const DetailsNewsCol = dynamic(() => import("../components/news/items/DetailsNew
 const DetailsNewsRow = dynamic(() => import("../components/news/items/DetailsNewsRow"));
 const NewsCard = dynamic(() => import("../components/news/items/NewsCard"));
 const SimpleNewsCard = dynamic(() => import("../components/news/items/SimpleNewsCard"));
-// const LatestNews = dynamic(() => import("../components/news/LatestNews"));
+const LatestNews = dynamic(() => import("../components/news/LatestNews"));
 const PopularNews = dynamic(() => import("../components/news/PopularNews"));
 const Title = dynamic(() => import("../components/Title"));
 const VideoPlayer = dynamic(() => import("../components/VideoPlayer"));
@@ -26,7 +26,7 @@ import AdvertisementComp from "../components/AdvertisementComp";
 // import DetailsNewsRow from "../components/news/items/DetailsNewsRow";
 // import NewsCard from "../components/news/items/NewsCard";
 // import SimpleNewsCard from "../components/news/items/SimpleNewsCard";
-import LatestNews from "../components/news/LatestNews";
+// import LatestNews from "../components/news/LatestNews";
 // import PopularNews from "../components/news/PopularNews";
 // import Title from "../components/Title";
 // import Image from "next/image";
