@@ -210,11 +210,11 @@ const Stories = () => {
                 /> */}
                             </div>
                             <div  className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">
-                                <p className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
+                               <Link href={`/news/${story?.slug}`} className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
 
                                     {story?.title?.length > 50 ? story.title.slice(0, 50) + '...' : story.title}
                                     {/* {story.title} */}
-                                </p>
+                                </Link>
                             </div>
                         </div>
                     </div>
