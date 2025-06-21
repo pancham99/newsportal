@@ -14,7 +14,6 @@ const AdvertisementComp = ({advertisement, one}) => {
     try {
       const res = await fetch(`${base_api_url}/api/banner/getall`);
       const data = await res.json();
-      // console.log('Fetched banners:', data);
       setPermostion(data.banners);
     } catch (error) {
       console.log(error);
@@ -44,13 +43,7 @@ const AdvertisementComp = ({advertisement, one}) => {
           height={400}
           className="w-full h-36"
         />
-        {/* <div className="p-4 bg-gradient-to-r from-black to-gray-900 text-white">
-          <h2 className="text-2xl font-bold mb-2">Limited Time Offer!</h2>
-          <p className="text-lg mb-3">Starting at <span className="font-extrabold text-yellow-400">$49,099</span></p>
-          <button className="bg-yellow-400 text-black px-5 py-2 rounded-md font-semibold hover:bg-yellow-500 transition duration-300">
-            Contact Now
-          </button>
-        </div> */}
+  
       </div>
     </div>
   );
