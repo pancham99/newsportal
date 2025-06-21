@@ -78,12 +78,7 @@ const Home = async () => {
                 </div>
               </div>
             </div>
-
-             <div className='py-5'>
-                <Title title="बड़ी ख़बरें" />
-              <Stories />
-            </div>
-           
+            <PopularNews />
 
             {/* first section */}
 
@@ -126,7 +121,10 @@ const Home = async () => {
               </div>
             </div>
 
-            <PopularNews />
+            <div className='py-5'>
+                <Title title="बड़ी ख़बरें" />
+              <Stories />
+            </div>
 
             <Permostion />
 
