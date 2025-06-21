@@ -152,7 +152,7 @@ const Stories = () => {
                 ref={scrollRef}
                 className="flex gap-3 overflow-x-auto p-3 hide-scrollbar scrollbar-hide"
             >
-                {recent?.map((news, index) => (
+                {recent?.map((story, index) => (
                     <div
                         key={index}
                         className="min-w-[180px] max-w-[180px] flex-shrink-0 rounded-lg overflow-hidden hide-scrollbar shadow-md "
@@ -160,8 +160,8 @@ const Stories = () => {
                         <div className="w-full h-40 relative">
 
                             <Image
-                                src={news.image}
-                                alt={news.username}
+                                src={story.image}
+                                alt={story.username}
                                 fill
                                 className="object-cover"
                             />
@@ -187,11 +187,11 @@ const Stories = () => {
                         <div className="p-2 h-full bg-white">
                             <div className="flex-cols items-center gap-2">
                                 <span className="text-xs text-gray-800 font-medium truncate">
-                                    {news.writerName}
+                                    {story.writerName}
                                 </span>
 
                                 <div className="text-xs text-gray-800 font-medium truncate">
-                                    {news?.date} / {formattedTime}
+                                    {story?.date} / {formattedTime}
                                 </div>
 
                                 {/* <Image
@@ -209,12 +209,12 @@ const Stories = () => {
                   height={14}
                 /> */}
                             </div>
-                            <div className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">
-                                <Link href={`/news/${news?.slug}`} className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
+                            <div  className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">
+                                <p className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
 
-                                    {news?.title?.length > 50 ? news.title.slice(0, 50) + '...' : news.title}
+                                    {story?.title?.length > 50 ? story.title.slice(0, 50) + '...' : story.title}
                                     {/* {story.title} */}
-                                </Link>
+                                </p>
                             </div>
                         </div>
                     </div>
