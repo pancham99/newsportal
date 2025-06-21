@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from 'react';
 import { base_api_url } from "../config/config"
 import moment from 'moment-timezone';
+import Link from "next/link";
 
 
 
@@ -154,7 +155,7 @@ const Stories = () => {
                 {recent?.map((story, index) => (
                     <div
                         key={index}
-                        className="min-w-[180px] max-w-[180px] flex-shrink-0 rounded-lg overflow-hidden hide-scrollbar shadow-md bg-black"
+                        className="min-w-[180px] max-w-[180px] flex-shrink-0 rounded-lg overflow-hidden hide-scrollbar shadow-md "
                     >
                         <div className="w-full h-40 relative">
 
@@ -208,9 +209,13 @@ const Stories = () => {
                   height={14}
                 /> */}
                             </div>
-                            <p className="text-xs text-gray-600 mt-1 line-clamp-2">
-                                {story.title}
-                            </p>
+                            <Link href={`/news/${story?.slug}`} className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">
+                                <p className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
+
+                                    {story?.title?.length > 50 ? story.title.slice(0, 50) + '...' : story.title}
+                                    {story.title}
+                                </p>
+                            </Link>
                         </div>
                     </div>
                 ))}
