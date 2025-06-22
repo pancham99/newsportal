@@ -1,6 +1,7 @@
 "use client";
+import dynamic from 'next/dynamic';
 import React, { useState, useEffect } from 'react';
-import Carousel from 'react-multi-carousel';
+const Carousel = dynamic(() => import('react-multi-carousel'), { ssr: false });
 import 'react-multi-carousel/lib/styles.css';
 import SimpleNewsCard from './items/SimpleNewsCard';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";

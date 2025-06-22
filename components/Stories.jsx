@@ -150,7 +150,7 @@ const Stories = () => {
 
             <div
                 ref={scrollRef}
-                className="flex gap-3 overflow-x-auto p-3 hide-scrollbar scrollbar-hide"
+                className="flex gap-3 overflow-x-auto p-3 custom-scrollbar"
             >
                 {recent?.map((story, index) => (
                     <div

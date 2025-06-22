@@ -10,40 +10,21 @@ const SimpleNewsCard = dynamic(() => import("../components/news/items/SimpleNews
 const LatestNews = dynamic(() => import("../components/news/LatestNews"));
 const PopularNews = dynamic(() => import("../components/news/PopularNews"));
 const Title = dynamic(() => import("../components/Title"));
-const VideoPlayer = dynamic(() => import("../components/VideoPlayer"));
+const VideoPlayer = dynamic(() => import("../components/VideoPlayer"), { ssr: false });
 const AddModel = dynamic(() => import("../components/AddModel"));
 const Permostion = dynamic(() => import("../components/Permostion"));
-const VideoPermostion = dynamic(() => import("../components/VideoAdvertisement"));
-const VideoAdvertisement = dynamic(() => import("../components/VideoAdvertisement"));
 import RecentNews from "../components/news/RecentNews";
 import Advertisement from "../components/Advertisement";
 import AdvertisementComp from "../components/AdvertisementComp";
 import Stories from "../components/Stories"
-
-// import Footer from "../components/Footer";
-// import Headlines from "../components/Headlines";
-// import DetailsNews from "../components/news/items/DetailsNews";
-// import DetailsNewsCol from "../components/news/items/DetailsNewsCol";
-// import DetailsNewsRow from "../components/news/items/DetailsNewsRow";
-// import NewsCard from "../components/news/items/NewsCard";
-// import SimpleNewsCard from "../components/news/items/SimpleNewsCard";
-// import LatestNews from "../components/news/LatestNews";
-// import PopularNews from "../components/news/PopularNews";
-// import Title from "../components/Title";
-// import Image from "next/image";
 import { base_api_url } from "../config/config"
-// import { headers } from "next/headers";
-// import VideoPlayer from "../components/VideoPlayer";
-// import AddModel from "../components/AddModel";
-// import Permostion from "../components/Permostion";
-// import VideoPermostion from "../components/VideoAdvertisement";
-// import VideoAdvertisement from "../components/VideoAdvertisement";
+
 
 
 const Home = async () => {
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
     next: {
-      revalidate: 5
+      revalidate: 300
     },
   });
 
@@ -97,6 +78,11 @@ const Home = async () => {
 
             {/* second section */}
 
+            <div className='py-5'>
+              <Title title="बड़ी ख़बरें" />
+              <Stories />
+            </div>
+
             <div className="w-full lg:mt-0 mt-4">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12">
@@ -113,18 +99,18 @@ const Home = async () => {
                 </div>
                 <div className="w-full lg:w-8/12 lg:mt-0 mt-4">
                   <div className="pl-2">
-                    <DetailsNewsRow news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' type='details-news' />
-                    <DetailsNews news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' />
+                    <DetailsNewsRow news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' type='details-news' />
+
+                    {/* <DetailsNewsRow news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' type='details-news' /> */}
+                    {/* <DetailsNews news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' /> */}
+                    <DetailsNews news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' />
                   </div>
                 </div>
 
               </div>
             </div>
 
-            <div className='py-5'>
-                <Title title="बड़ी ख़बरें" />
-              <Stories />
-            </div>
+
 
             <Permostion />
 
@@ -140,7 +126,6 @@ const Home = async () => {
                   </div>
                   <div className='mt-2 w-full rounded-md'>
                     <AdvertisementComp one={'0'} advertisement={'advertisement'} />
-                    {/* <Advertisement image={'/promotion.jpg'}/> */}
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
@@ -240,11 +225,6 @@ const Home = async () => {
                 </div>
               </div>
             </div>
-
-
-
-
-
           </div>
         </div>
 
