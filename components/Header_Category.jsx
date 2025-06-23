@@ -8,28 +8,17 @@ import { IoClose } from "react-icons/io5";
 import { BsList } from "react-icons/bs";
 import { base_api_url } from "../config/config"
 import { useRouter } from 'next/navigation';
+import useFetch from '../hooks/useFetch'; 
 
 const Header_Category = () => {
-
     const path = usePathname()
     const router = useRouter();
-    const decodedCategory = decodeURIComponent(path.split('/')[3] || '');
-    const [categories, set_categores] = useState([])
-    console.log('categories', categories)
-    const [state, setState] = useState('')
-    const get_categories = async () => {
-        try {
-            const res = await fetch(`${base_api_url}/api/category/all`)
-            const data = await res.json()
-            set_categores(data.categories)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const { data, loading, error } = useFetch(`${base_api_url}/api/category/all`);
+    const categories = data?.categories || [];
 
-    useEffect(() => {
-        get_categories()
-    }, [])
+
+    const decodedCategory = decodeURIComponent(path.split('/')[3] || '');
+    const [state, setState] = useState('')
 
     const handleStateChange = (e) => {
         const selectedState = e.target.value;
@@ -57,13 +46,13 @@ const Header_Category = () => {
                         {
                             categories?.length > 0 &&
                             categories
-                                .filter(c => c.category !== null) 
+                                .filter(c => c.category !== null)
                                 .map((c, i) => (
                                     <Link
                                         key={i}
                                         className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category
-                                                ? 'bg-[#00000026] text-white border-b-4 border-blue-800'
-                                                : ''
+                                            ? 'bg-[#00000026] text-white border-b-4 border-blue-800'
+                                            : ''
                                             }`}
                                         href={`/news/category/${c.category}`}
                                     >
@@ -135,7 +124,7 @@ const Header_Category = () => {
 
                     {
                         categories?.length > 0 && categories
-                                .filter(c => c.category !== null).map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
+                            .filter(c => c.category !== null).map((c, i) => <Link key={i} className={`px-4 text-sm font-semibold py-[10px] ${decodedCategory === c.category ? 'bg-[#00000026] border-b-4 border-red-800' : ''}`} href={`/news/category/${c.category}`} >{c.category}</Link>)
                         // categories.map((c, i) => <Link key={c.id} className={`px-4 text-sm font-semibold py-[5px] ${path === c.name ? 'bg-[#00000026]' : ''}`} href={"/"} >{c.name}</Link>)
                     }
 

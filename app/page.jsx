@@ -18,6 +18,7 @@ import Advertisement from "../components/Advertisement";
 import AdvertisementComp from "../components/AdvertisementComp";
 import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
+import ShortVideos from "../components/ShortVideos";
 
 
 
@@ -89,11 +90,10 @@ const Home = async () => {
                   <div className="pr-2">
                     <DetailsNewsCol news={news['मनोरंजन']} category='मनोरंजन' />
                     <div className=" bg-white shadow mt-2 p-4">
-
-
-                      <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
-
-
+                      <div className='py-1'>
+                        <Title title="शॉर्ट वीडियो" />
+                      </div>
+                      <ShortVideos />
                     </div>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ const Home = async () => {
                   <div className="">
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
-                  <div className='mt-2 w-full rounded-md'>
+                  <div className='mt-2 bg-white w-full rounded-md lg:mr-4 p-2'>
                     <AdvertisementComp one={'0'} advertisement={'advertisement'} />
                   </div>
                 </div>

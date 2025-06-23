@@ -1,50 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import bgimage from '../assets/image.jpeg';
-import { base_api_url } from "../config/config"
+import { base_api_url } from "../config/config";
+import useFetch from '../hooks/useFetch';
 
-const AdvertisementComp = ({advertisement, one}) => {
+const AdvertisementComp = ({ advertisement, one }) => {
+  const { data } = useFetch(`${base_api_url}/api/banner/getall`);
+  const permostion = data?.banners || [];
 
-   const [permostion, setPermostion] = useState([]);
-  console.log('Permostion component rendered', permostion);
-
-  const get_permostion = async () => {
-    try {
-      const res = await fetch(`${base_api_url}/api/banner/getall`);
-      const data = await res.json();
-      setPermostion(data.banners);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // ⬇️ Find banner that is promotion type AND active
   const bannerItem = permostion?.filter(
     item => item.bannertype === advertisement && item.status !== 'deactive' && item.status !== 'pending'
   );
-  console.log('Banner Item:', bannerItem);
 
+  // Banner image मिलेगा तो वही वरना null रखेंगे
+  const bannerImage = bannerItem[one]?.image || null;
 
-  // If no active promotion, fallback to local image
-  const bannerImage = bannerItem[one]?.image || bgimage;
-
-  useEffect(() => {
-    get_permostion();
-  }, []);
   return (
-    <div className="group relative overflow-hidden mr-2  rounded-md ">
-      <div className="w-full  group-hover:scale-[1.1] transition-all duration-[1s]">
+    <div className="relative w-full max-w-[900px] h-64 rounded-md overflow-hidden bg-gray-100 flex items-center justify-center">
+      {bannerImage ? (
         <Image
           src={bannerImage}
-          alt="Car Sale Promo"
-          width={700}
-          height={400}
-          className="w-full h-36"
+          alt="Advertisement Banner"
+          fill
+          className="object-contain"
         />
-  
-      </div>
+      ) : (
+        <span className="text-gray-500 text-lg font-semibold">ADVERTISEMENT</span>
+      )}
     </div>
   );
 };

@@ -80,7 +80,7 @@ const Header = () => {
                     <div className="flex justify-center lg:justify-start items-center flex-wrap">
                         <div className="">
                             <div className="flex flex-col md:items-start">
-                                <Image src="/logo.png" alt="bgimage" width={150} height={150} />
+                                <Image  src="/logo.png" alt="bgimage" width={150} height={150} />
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { base_api_url } from "../../config/config";
 import { getCachedNews, setCachedNews } from "../../utils/NewsCache";
 
+
 const LatestNews = () => {
   // Start with cached data if available
   const [news, setNews] = useState(() => getCachedNews() || []);

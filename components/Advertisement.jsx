@@ -4,36 +4,22 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import bgimage from '../assets/image.jpeg';
 import { base_api_url } from "../config/config"
+import useFetch from "../hooks/useFetch";
 
 const Advertisement = ({ advertisement, one }) => {
 
-  const [permostion, setPermostion] = useState([]);
-  console.log('Permostion component rendered', permostion);
-
-  const get_permostion = async () => {
-    try {
-      const res = await fetch(`${base_api_url}/api/banner/getall`);
-      const data = await res.json();
-      // console.log('Fetched banners:', data);
-      setPermostion(data.banners);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { data, loading, error } = useFetch(`${base_api_url}/api/banner/getall`);
+  const permostion = data?.banners || [];
 
   // ⬇️ Find banner that is promotion type AND active
   const bannerItem = permostion?.filter(
     item => item.bannertype === advertisement && item.status !== 'deactive' && item.status !== 'pending'
   );
-  console.log('Banner Item:', bannerItem);
 
 
   // If no active promotion, fallback to local image
-  const bannerImage = bannerItem[one]?.image || bgimage;
+  const bannerImage = bannerItem[one]?.image ;
 
-  useEffect(() => {
-    get_permostion();
-  }, []);
   return (
     <div className="flex justify-center items-center min-h-[400px] bg-gradient-to-br from-yellow-400 via-white to-gray-300 py-10 px-4 rounded-lg shadow-xl">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden max-w-md w-full transform hover:scale-105 transition-transform duration-500">

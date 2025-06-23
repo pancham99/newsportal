@@ -8,8 +8,8 @@ import dynamic from "next/dynamic";
 import Title from './Title';
 
 const VideoAdvertisement = ({
-    width = '100%',
-    height = '40%',
+    width = '50%',
+    height = '10%',
     controls = true,
     playing = false,
     loop = false,
@@ -30,8 +30,7 @@ const VideoAdvertisement = ({
         try {
             const res = await fetch(`${base_api_url}/api/video/getall`);
             const data = await res.json();
-            console.log(res, "res");
-            console.log(data, "data");
+
             setPermostion(data?.data);
         } catch (error) {
             console.log(error);
@@ -55,7 +54,7 @@ const VideoAdvertisement = ({
                             advertisement?.slice(0, 3).map((item, index) => (
                                 <div key={index} className='flex flex-col w-full h-full rounded-md gap-4 p-4' >
                                     {/* <h1>{item?.title}</h1> */}
-                                    <Title title={item?.title} />
+                                    {/* <Title title={item?.title} /> */}
                                     <ReactPlayer
                                         url={item?.videos}
                                         width={width}

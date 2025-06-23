@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from 'react';
+import {useRef } from 'react';
 import { base_api_url } from "../config/config"
 import moment from 'moment-timezone';
 import Link from "next/link";
+import useFetch from '../hooks/useFetch'; 
 
 
 
@@ -94,27 +95,10 @@ import Link from "next/link";
 // ];
 
 const Stories = () => {
-
-    const [recent, setRecent] = useState([])
+    const { data, loading, error } = useFetch(`${base_api_url}/api/news/recent/news`);
+        const recent = data?.recentNews || [];
     const formattedTime = moment(recent?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
-
-    console.log(recent, "recent")
     const scrollRef = useRef();
-
-    const get_recent = async () => {
-        try {
-            const res = await fetch(`${base_api_url}/api/news/recent/news`)
-            const data = await res.json()
-            setRecent(data.recentNews)  // <-- यहाँ पर fix किया है
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    useEffect(() => {
-        get_recent()
-    }, [])
-
 
     const scrollLeft = () => {
         scrollRef.current.scrollBy({
