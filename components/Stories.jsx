@@ -97,7 +97,7 @@ import useFetch from '../hooks/useFetch';
 const Stories = () => {
     const { data, loading, error } = useFetch(`${base_api_url}/api/news/recent/news`);
         const recent = data?.recentNews || [];
-    const formattedTime = moment(recent?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    const formattedTime = moment.utc(recent?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     const scrollRef = useRef();
 
     const scrollLeft = () => {

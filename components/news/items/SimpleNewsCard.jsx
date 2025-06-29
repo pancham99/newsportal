@@ -4,7 +4,7 @@ import React from 'react'
 import moment from 'moment-timezone';
 
 const SimpleNewsCard = ({item, type}) => {
-    const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+     const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     return (
         <div className='group relative'>
             <div className='overflow-hidden'>

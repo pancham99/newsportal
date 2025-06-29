@@ -19,6 +19,7 @@ import AdvertisementComp from "../components/AdvertisementComp";
 import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
 import ShortVideos from "../components/ShortVideos";
+import AdvertisementSection from "../components/AdvertisementSection";
 
 
 
@@ -228,17 +229,11 @@ const Home = async () => {
           </div>
         </div>
 
-        <div className="">
-          {/* <VideoPermostion/> */}
-
-          {/* <VideoAdvertisement/> */}
-          {/* <Category titleStyle="text-gray-700" /> */}
-
-          {/* <div className="">
-
-            <VideoPlayer url="https://www.youtube.com/watch?v=pW5GVpFEgOM" />
-          </div> */}
-        </div>
+        {/* <div className="">
+          <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="top" />
+          <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" />
+         
+        </div> */}
       </main>
       <Footer news={news['राजनीति']} />
     </div>

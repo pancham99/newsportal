@@ -8,6 +8,7 @@ import Search from '../../../../components/Search'
 import Title from '../../../../components/Title'
 import { base_api_url } from '../../../../config/config'
 import VideoPlayer from '../../../../components/VideoPlayer'
+import AdvertisementSection from '../../../../components/AdvertisementSection'
 
 const Page = async ({ params }) => {
     const { category } = params
@@ -71,6 +72,9 @@ const Page = async ({ params }) => {
                                             <h1 className="text-2xl font-bold mb-4"> Top Briefing</h1>
 
                                             {/* YouTube */}
+                                            <div className='w-full'>
+                                                 <AdvertisementSection pageTarget="ctegorypage" deviceTarget="desktop" />
+                                            </div>
                                           
                                             <VideoPlayer url="https://www.youtube.com/shorts/FSuGjn4MKDY" />
 

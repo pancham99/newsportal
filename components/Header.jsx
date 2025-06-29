@@ -14,6 +14,7 @@ import { base_api_url } from '../config/config';
 
 const Header = () => {
     const [Banner, setBanner] = useState([]);
+    console.log(Banner, "Banner Data");
     const [loading, setLoading] = useState(true);  // <-- loading state
 
     const get_permostion = async () => {
@@ -33,8 +34,14 @@ const Header = () => {
     }, []);
 
     const bannerItem = Banner?.find(
-        item => item.bannertype === 'Banner' && item.status !== 'deactive'
+        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device == 'desktop'
     );
+
+     const bannerMobile = Banner?.find(
+        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device == 'mobile'
+    );
+    console.log(bannerItem, "Banner Item");
+    
 
     // 👇 Image selection logic
     const bannerImage = bannerItem?.image || bgimage.src;
@@ -54,7 +61,25 @@ const Header = () => {
             </div>
 
             {/* Mobile Video Section */}
-            <div className="relative h-[200px] overflow-hidden lg:hidden">
+            <div 
+                className='h-[360px] w-full  lg:hidden transition-all duration-500 ease-in-out'
+                style={{
+                    backgroundImage: `url(${loading ? bgimage.src : bannerMobile})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                }}
+            >
+                <div className="">
+                    <div className="flex justify-center lg:justify-start items-center flex-wrap">
+                        <div className="">
+                            <div className="flex flex-col md:items-start">
+                                <Image  src="/logo.png" alt="bgimage" width={150} height={150} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="relative h-[200px] overflow-hidden lg:hidden">
                 <video className="absolute top-0 left-0 w-full h-full object-cover" src="/videobg.mp4" autoPlay loop muted playsInline />
                 <div className="relative z-10 px-8 py-14">
                     <div className="flex justify-center lg:justify-start items-center flex-wrap">
@@ -65,7 +90,7 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Desktop Banner Section */}
             <div 

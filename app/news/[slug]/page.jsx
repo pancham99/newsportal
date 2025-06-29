@@ -24,7 +24,9 @@ const Details = async ({ params }) => {
 
     const { news, relatedNews } = await res.json();
 
-    const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+      const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+      console.log(formattedTime, "formattedTime");
 
     return (
         <div>

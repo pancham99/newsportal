@@ -6,6 +6,7 @@ import moment from 'moment-timezone';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
   const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+
   return (
     <div className='bg-white shadow'>
       <div className='group relative overflow-hidden'>
