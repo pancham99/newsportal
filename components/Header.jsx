@@ -7,7 +7,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import bgimage from '../assets/image.jpeg';
-import add from '../assets/add.jpg';
+import bgimage2 from '../assets/mobileBanner.jpeg';
 import Image from 'next/image';
 import Header_Category from './Header_Category';
 import { base_api_url } from '../config/config';
@@ -41,8 +41,8 @@ const Header = () => {
         item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device === 'mobile'
     );
    
-     const mobileImage = bannerMobile?.image || bgimage.src;
-      console.log(bannerMobile, "bannerMobile");
+     const mobileImage = bannerMobile?.image || bgimage2.src;
+    //   console.log(bannerMobile, "bannerMobile");
     // console.log(bannerItem, "Banner Item");
     
 
@@ -67,7 +67,7 @@ const Header = () => {
             <div 
                 className='h-[360px] w-full  lg:hidden transition-all duration-500 ease-in-out'
                 style={{
-                    backgroundImage: `url(${loading ? bgimage.src : mobileImage})`,
+                    backgroundImage: `url(${loading ? bgimage2.src : mobileImage})`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                 }}
