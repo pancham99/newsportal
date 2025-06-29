@@ -14,7 +14,7 @@ import { base_api_url } from '../config/config';
 
 const Header = () => {
     const [Banner, setBanner] = useState([]);
-    console.log(Banner, "Banner Data");
+
     const [loading, setLoading] = useState(true);  // <-- loading state
 
     const get_permostion = async () => {
@@ -34,13 +34,16 @@ const Header = () => {
     }, []);
 
     const bannerItem = Banner?.find(
-        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device == 'desktop'
+        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device === 'desktop'
     );
 
      const bannerMobile = Banner?.find(
-        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device == 'mobile'
+        item => item.bannertype === 'Banner' && item.status !== 'deactive' && item.device === 'mobile'
     );
-    console.log(bannerItem, "Banner Item");
+   
+     const mobileImage = bannerMobile?.image || bgimage.src;
+      console.log(bannerMobile, "bannerMobile");
+    // console.log(bannerItem, "Banner Item");
     
 
     // 👇 Image selection logic
@@ -64,7 +67,7 @@ const Header = () => {
             <div 
                 className='h-[360px] w-full  lg:hidden transition-all duration-500 ease-in-out'
                 style={{
-                    backgroundImage: `url(${loading ? bgimage.src : bannerMobile})`,
+                    backgroundImage: `url(${loading ? bgimage.src : mobileImage})`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                 }}
