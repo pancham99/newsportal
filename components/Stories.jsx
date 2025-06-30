@@ -139,7 +139,7 @@ const Stories = () => {
                 {recent?.map((story, index) => (
                     <div
                         key={index}
-                        className="min-w-[180px] max-w-[180px] flex-shrink-0 rounded-lg overflow-hidden hide-scrollbar shadow-md "
+                        className="min-w-[180px] border-2 border-slate-200 max-w-[180px] flex-shrink-0 rounded-lg overflow-hidden hide-scrollbar shadow-md "
                     >
                         <div className="w-full h-40 relative">
 

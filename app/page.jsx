@@ -80,12 +80,14 @@ const Home = async () => {
 
             {/* second section */}
 
-            <div className='py-5'>
+            <div className=' '>
               <Title title="बड़ी ख़बरें" />
-              <Stories />
+              <div className='p-1 py-2 bg-white'>
+                <Stories />
+              </div>
             </div>
 
-            <div className="w-full lg:mt-0 mt-4">
+            <div className="w-full lg:mt-2 mt-6">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12">
                   <div className="pr-2">
@@ -101,9 +103,6 @@ const Home = async () => {
                 <div className="w-full lg:w-8/12 lg:mt-0 mt-4">
                   <div className="pl-2">
                     <DetailsNewsRow news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' type='details-news' />
-
-                    {/* <DetailsNewsRow news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' type='details-news' /> */}
-                    {/* <DetailsNews news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' /> */}
                     <DetailsNews news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' />
                   </div>
                 </div>
@@ -207,13 +206,14 @@ const Home = async () => {
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
                   <div className="pl-2">
 
-                    <Advertisement one={'1'} advertisement={'advertisement'} />
-                    {/* <Title title="अपराध" /> */}
-                    {/* <div className='grid grid-cols-1 gap-y-1 mt-3'>
+                    {/* <Advertisement one={'1'} advertisement={'advertisement'} /> */}
+                    {/* <Title title="राशि" /> */}
+                     {news['राशि']?.length > 0 && <Title title="राशि" />}
+                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
-                        news['अपराध']?.length > 0
+                        news['राशि']?.length > 0
                           ? (
-                            news['अपराध'].map((item, i) => (
+                            news['राशि'].map((item, i) => (
                               <NewsCard news={item} key={i} />
                             ))
                           )
@@ -221,7 +221,51 @@ const Home = async () => {
                             <p className="text-gray-500 p-4"></p>
                           )
                       }
-                    </div> */}
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div className="w-full mt-2">
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-8/12">
+                  <div className="">
+                    {
+                      news['राष्ट्रीय']?.length > 0
+                        ? (
+                          <DetailsNewsRow
+                            news={news['राष्ट्रीय']}
+                            category='राष्ट्रीय'
+                            type='details-news'
+                          />
+                        )
+                        : (
+                          <p className="text-gray-500 p-4"></p>
+                        )
+                    }
+                  </div>
+                </div>
+                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
+                  <div className="pl-2">
+
+                    {news['बाज़ार']?.length > 0 && <Title title="बाज़ार" />}
+
+                    {/* <Title title="बाज़ार" /> */}
+                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
+                      {
+                        news['बाज़ार']?.length > 0
+                          ? (
+                            news['बाज़ार'].map((item, i) => (
+                              <NewsCard news={item} key={i} />
+                            ))
+                          )
+                          : (
+                            <p className="text-gray-500 p-4"></p>
+                          )
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
