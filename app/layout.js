@@ -6,14 +6,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Top Briefing - Latest Breaking News, Headlines & Updates",
-  description: "Stay informed with Top Briefing - your trusted source for breaking news, latest headlines, world events, politics, technology, and more.",
-  keywords: "top briefing, breaking news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates",
+  description:
+    "Stay informed with Top Briefing - your trusted source for breaking news, latest headlines, world events, politics, technology, and more.",
+  keywords:
+    "top briefing, breaking news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates",
   authors: [{ name: "Top Briefing Team", url: "https://www.topbriefing.in" }],
-  creator: "Top Brefing",
+  creator: "Top Briefing",
   metadataBase: new URL("https://www.topbriefing.in"),
   openGraph: {
     title: "Top Briefing - Trusted News Coverage",
-    description: "Get the most relevant and trending news stories daily. Updated regularly with world news, politics, business, and tech.",
+    description:
+      "Get the most relevant and trending news stories daily. Updated regularly with world news, politics, business, and tech.",
     url: "https://www.topbriefing.in",
     siteName: "Top Briefing",
     images: [
@@ -27,6 +30,8 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  themeColor: "#d92323",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {

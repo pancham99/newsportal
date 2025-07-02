@@ -80,7 +80,7 @@ const Home = async () => {
 
             {/* second section */}
 
-            <div className=' '>
+            <div className='lg:mt-0 mt-6 '>
               <Title title="बड़ी ख़बरें" />
               <div className='p-1 py-2 bg-white'>
                 <Stories />
