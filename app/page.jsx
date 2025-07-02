@@ -34,7 +34,7 @@ const Home = async () => {
 
   return (
     <div>
-      <AddModel />
+      {/* <AddModel /> */}
       <main>
         <Headlines news={news} />
         <div className="bg-slate-100 ">
