@@ -89,7 +89,7 @@ const Home = async () => {
 
             <div className="w-full lg:mt-2 mt-6">
               <div className="flex flex-wrap">
-                <div className="w-full lg:w-4/12">
+                <div className="w-full lg:w-4/12 h-full">
                   <div className="pr-2">
                     <DetailsNewsCol news={news['मनोरंजन']} category='मनोरंजन' />
                     <div className=" bg-white shadow mt-2 p-4">
@@ -208,7 +208,7 @@ const Home = async () => {
 
                     {/* <Advertisement one={'1'} advertisement={'advertisement'} /> */}
                     {/* <Title title="राशि" /> */}
-                     {news['राशि']?.length > 0 && <Title title="राशि" />}
+                    {news['राशि']?.length > 0 && <Title title="राशि" />}
                     <div className='grid grid-cols-1 gap-y-1 mt-3'>
                       {
                         news['राशि']?.length > 0
@@ -221,7 +221,7 @@ const Home = async () => {
                             <p className="text-gray-500 p-4"></p>
                           )
                       }
-                    </div> 
+                    </div>
                   </div>
                 </div>
               </div>
@@ -270,14 +270,16 @@ const Home = async () => {
                 </div>
               </div>
             </div>
+
+            <div className="mt-4 bg-white  rounded-md">
+              <AdvertisementSection pageTarget="news" deviceTarget="all" placementKey="top" />
+              {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
+
+            </div>
           </div>
         </div>
 
-        {/* <div className="">
-          <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="top" />
-          <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" />
-         
-        </div> */}
+
       </main>
       <Footer news={news['राजनीति']} />
     </div>

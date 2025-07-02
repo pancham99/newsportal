@@ -3,16 +3,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
+import { base_api_url } from "../config/config"
 
 const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
   const [banner, setBanner] = useState(null);
-  console.log("pageTarget", pageTarget);
+  console.log("banner", banner);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBanner = async () => {
       try {
-        const { data } = await axios.get("http://localhost:5000/api/advertisement/bases/input", {
+        const { data } = await axios.get(`${base_api_url}/api/advertisement/bases/input`, {
           params: { pageTarget, deviceTarget, placementKey }
         });
         if (data.success) {
@@ -36,8 +37,9 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
   if (!banner) return <p className="text-center py-4">No ad available</p>;
 
   return (
-    <div className="w-full p-4">
-      <div className="border rounded shadow-md overflow-hidden relative group">
+    <div className="w-full ">
+      <h3 className="text-xs text-gray-600 text-center ">Advertisement</h3>
+      <div className="border rounded shadow-md overflow-hidden relative group p-2">
         {/* Video priority over image */}
         {banner.video ? (
           <video
@@ -53,7 +55,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
                 alt={banner.title || "Advertisement"}
                 width={800}
                 height={400}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-[230px] object-contain bg-contain group-hover:scale-105 transition-transform duration-500"
               />
             </a>
           ) : (
@@ -62,7 +64,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
               alt={banner.title || "Advertisement"}
               width={800}
               height={400}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-[230px] object-contain bg-contain group-hover:scale-105 transition-transform duration-500"
             />
           )
         ) : (
@@ -71,13 +73,15 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
           </div>
         )}
 
-        <div className="p-2">
-          <h3 className="font-semibold text-lg">{banner.title}</h3>
+        <div className="p-2 flex justify-center">
+          <div>
+            <h3 className="font-semibold text-lg">{banner.title}</h3>
           {banner.description && (
             <p className="text-sm text-gray-600">{banner.description}</p>
           )}
-          <p className="text-xs text-gray-400">Priority: {banner.priority}</p>
-          <p className="text-xs text-gray-400">Amount: ₹{banner.amount}</p>
+          {/* <p className="text-xs text-gray-400">Priority: {banner.priority}</p> */}
+          {/* <p className="text-xs text-gray-400">Amount: ₹{banner.amount}</p> */}
+          </div>
         </div>
       </div>
     </div>

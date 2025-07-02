@@ -3,7 +3,7 @@ import Title from '../Title'
 import SimpleDetailsNewsCard from './items/SimpleDetailsNewsCard'
 import { base_api_url } from "../../config/config"
 
-const PopularNews = async({type, news}) => {
+const PopularNews = async ({type, item}) => {
 
   const data = await fetch(`${base_api_url}/api/popular/news`,{
     next:{
@@ -11,6 +11,8 @@ const PopularNews = async({type, news}) => {
     }
 });
 const { popularNews } = await data.json()
+
+
 
 
     return (
