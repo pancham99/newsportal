@@ -12,40 +12,41 @@ import VideoPlayer from '../../../components/VideoPlayer';
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
 import dynamic from 'next/dynamic';
+import AdvertisementSection from '../../../components/AdvertisementSection';
 
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+    const { slug } = params;
 
-  const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
-    cache: 'no-store',
-  });
+    const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
+        cache: 'no-store',
+    });
 
-  const { news } = await res.json();
+    const { news } = await res.json();
 
-  const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
+    const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
 
-  return {
-    title: `${news?.title} | Top Briefing`,
-    description: cleanDescription.slice(0, 150),
-    keywords: `${news?.category}, ${news?.writerName}, Top Briefing`,
-    openGraph: {
-      title: `${news?.title} | Top Briefing`,
-      description: cleanDescription.slice(0, 150),
-      images: [
-        {
-          url: news?.image,
-          width: 1200,
-          height: 630,
-          alt: news?.title,
+    return {
+        title: `${news?.title} | Top Briefing`,
+        description: cleanDescription.slice(0, 150),
+        keywords: `${news?.category}, ${news?.writerName}, Top Briefing`,
+        openGraph: {
+            title: `${news?.title} | Top Briefing`,
+            description: cleanDescription.slice(0, 150),
+            images: [
+                {
+                    url: news?.image,
+                    width: 1200,
+                    height: 630,
+                    alt: news?.title,
+                },
+            ],
+            type: 'article',
+            publishedTime: news?.createdAt,
         },
-      ],
-      type: 'article',
-      publishedTime: news?.createdAt,
-    },
-  };
+    };
 }
 
 
@@ -60,8 +61,8 @@ const Details = async ({ params }) => {
     const { news, relatedNews } = await res.json();
 
     // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
-      const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
-      console.log(formattedTime, "formattedTime");
+    const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    console.log(formattedTime, "formattedTime");
 
     return (
         <div>
@@ -122,8 +123,13 @@ const Details = async ({ params }) => {
                         </div>
                     </div>
 
-                    <div className="pt-8 h-48">
-                        {/* <RelatedNews news={relatedNews} type="Related news" /> */}
+                    {/* <div className="pt-8 h-48">
+                        <RelatedNews news={relatedNews} type="Related news" />
+                    </div> */}
+                    <div className="mt-4 bg-white  rounded-md">
+                        <AdvertisementSection pageTarget="news" deviceTarget="desktop" placementKey="sidebar" />
+                        {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
+
                     </div>
                 </div>
             </div>

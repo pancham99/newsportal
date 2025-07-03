@@ -7,7 +7,6 @@ import { base_api_url } from "../config/config"
 
 const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
   const [banner, setBanner] = useState(null);
-  console.log("banner", banner);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -75,10 +74,10 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
 
         <div className="p-2 flex justify-center">
           <div>
-            <h3 className="font-semibold text-lg">{banner.title}</h3>
+            {/* <h3 className="font-semibold text-lg">{banner.title}</h3>
           {banner.description && (
             <p className="text-sm text-gray-600">{banner.description}</p>
-          )}
+          )} */}
           {/* <p className="text-xs text-gray-400">Priority: {banner.priority}</p> */}
           {/* <p className="text-xs text-gray-400">Amount: ₹{banner.amount}</p> */}
           </div>
