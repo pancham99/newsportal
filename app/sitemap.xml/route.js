@@ -1,4 +1,4 @@
-import { base_api_url } from "../../../config/config";
+import { base_api_url } from "../../config/config";
 
 export async function GET() {
   const baseUrl = "https://www.topbriefing.in";
