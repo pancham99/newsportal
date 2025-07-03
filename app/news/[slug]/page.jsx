@@ -15,6 +15,41 @@ import dynamic from 'next/dynamic';
 
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
+
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+
+  const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
+    cache: 'no-store',
+  });
+
+  const { news } = await res.json();
+
+  const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
+
+  return {
+    title: `${news?.title} | Top Briefing`,
+    description: cleanDescription.slice(0, 150),
+    keywords: `${news?.category}, ${news?.writerName}, Top Briefing`,
+    openGraph: {
+      title: `${news?.title} | Top Briefing`,
+      description: cleanDescription.slice(0, 150),
+      images: [
+        {
+          url: news?.image,
+          width: 1200,
+          height: 630,
+          alt: news?.title,
+        },
+      ],
+      type: 'article',
+      publishedTime: news?.createdAt,
+    },
+  };
+}
+
+
+
 const Details = async ({ params }) => {
     const { slug } = params;
 

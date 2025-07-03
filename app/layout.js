@@ -9,7 +9,7 @@ export const metadata = {
   description:
     "Stay informed with Top Briefing - your trusted source for breaking news, latest headlines, world events, politics, technology, and more.",
   keywords:
-    "top briefing, breaking news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates",
+    "top briefing, breaking news, hindi news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates हिंदी न्यूज़, today news in hindi, breaking news hindi, live news hindi, aaj ki taza khabar, hindi news headlines, trending news, latest hindi news, politics news, bollywood news, cricket news, job news, education news, tech news, viral news, राशिफल, health news, hindi samachar, hindi media, top hindi news, hindi newspaper, latest english news, world news, indian news, breaking updates",
   authors: [{ name: "Top Briefing Team", url: "https://www.topbriefing.in" }],
   creator: "Top Briefing",
   metadataBase: new URL("https://www.topbriefing.in"),

@@ -28,6 +28,12 @@ const Header_Category = () => {
         }
     };
 
+     useEffect(() => {
+        if (path === '/') {
+            setState('');
+        }
+    }, [path]);
+
     const [show, setShow] = React.useState(false)
     const [cast_show, setCast_show] = React.useState(false)
 
