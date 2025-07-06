@@ -67,7 +67,7 @@ const AboutUs = () => {
                         <p className="text-sm text-gray-500 mt-2">MA Journalism, DU </p>
                     </div>
 
-                    <div className="bg-gray-50 rounded-xl shadow p-6">
+                    {/* <div className="bg-gray-50 rounded-xl shadow p-6">
                         <div className='flex justify-center '>
                             <Image src="/cto.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
                         </div>
@@ -79,7 +79,7 @@ const AboutUs = () => {
                           {`Ms. Madhusudan is the driving force behind the technology at Top Briefing News. With over 15 years of experience in software architecture, cloud platforms, and data engineering.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">B.tech(computer science and engineering)</p>
-                    </div>
+                    </div> */}
 
                     {/* <div className="bg-gray-50 rounded-xl shadow p-6">
                         <div className='flex justify-center '>

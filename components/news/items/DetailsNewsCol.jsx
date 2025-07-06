@@ -11,7 +11,7 @@ const DetailsNewsCol = ({ news, category }) => {
                 <SimpleDetailsNewsCard news={news[0]} type='details-news' height={300} />
             </div>
 
-            <div className='grid grid-cols-1 gap-y-[14px]'>
+            <div className='grid grid-cols-1 gap-y-[5px]'>
                 {
                     news?.map((item, i) => {
                         if (i<4) {

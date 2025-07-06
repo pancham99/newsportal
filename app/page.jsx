@@ -170,9 +170,11 @@ const Home = async () => {
                       {
                         news['अपराध']?.length > 0
                           ? (
-                            news['अपराध'].map((item, i) => (
-                              <NewsCard news={item} key={i} />
-                            ))
+                            news['अपराध'].map((item, i) => {
+                              if (i < 4) {
+                                return <NewsCard news={item} key={i} />
+                              }
+                            })
                           )
                           : (
                             <p className="text-gray-500 p-4"></p>
@@ -213,9 +215,12 @@ const Home = async () => {
                       {
                         news['राशि']?.length > 0
                           ? (
-                            news['राशि'].map((item, i) => (
-                              <NewsCard news={item} key={i} />
-                            ))
+                            news['राशि']?.map((item, i) => {
+                              if (i < 4) {
+                                return <NewsCard news={item} key={i} />
+                              }
+                              // <NewsCard news={item} key={i} />
+                            })
                           )
                           : (
                             <p className="text-gray-500 p-4"></p>
