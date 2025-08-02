@@ -38,6 +38,7 @@ const Header = () => {
         localStorage.removeItem("token");
         setUser(null);
         setToken(null);
+        window.location.href = "/";  // Redirect to home page after logout
     };
 
 

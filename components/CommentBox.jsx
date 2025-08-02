@@ -15,6 +15,10 @@ const CommentBox = ({ newsId, onCommentAdded }) => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState('');
 
+
+
+  
+
   // Sync user info
   useEffect(() => {
     if (user) {
