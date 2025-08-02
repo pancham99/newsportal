@@ -55,6 +55,10 @@ const Header = () => {
             <div className='px-2 lg:px-8 flex justify-between items-center bg-[#333333] text-[#cccccc]'>
                 <span className='text-sm'>{moment().tz("Asia/Kolkata").format('LLLL')}</span>
                 <div className='flex gap-2'>
+
+                    <div>
+                        <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' href={"/authPage"}>Login</Link>
+                    </div>
                     <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' target="_blank" href={"https://www.facebook.com/people/Top-Briefing/61552965021716/"}><FaFacebookF className="text-white" /></Link>
                     <Link className='flex justify-center items-center bg-[#ffffff2b] p-2' target="_blank" href={"https://www.instagram.com/topbriefing/"}><FaInstagram className="text-white" /></Link>
                     <Link className="flex justify-center items-center bg-[#ffffff2b] p-2" href="https://www.youtube.com/results?search_query=topbriefing" target="_blank" rel="noopener noreferrer">

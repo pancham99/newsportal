@@ -13,6 +13,8 @@ import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
 import dynamic from 'next/dynamic';
 import AdvertisementSection from '../../../components/AdvertisementSection';
+import CommentForm from "../../../components/CommentForm"
+
 
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
@@ -62,7 +64,6 @@ const Details = async ({ params }) => {
 
     // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
-    console.log(formattedTime, "formattedTime");
 
     return (
         <div>
@@ -97,9 +98,16 @@ const Details = async ({ params }) => {
                                         </div>
                                         <NewsDescription description={news?.description} />
                                     </div>
+
+
                                 </div>
+
                             </div>
+
                         </div>
+
+
+
 
                         <div className="w-full xl:w-4/12">
                             <div className="w-full pl-0 xl:pl-4">
@@ -126,8 +134,10 @@ const Details = async ({ params }) => {
                     {/* <div className="pt-8 h-48">
                         <RelatedNews news={relatedNews} type="Related news" />
                     </div> */}
-                    <div className="mt-4 bg-white  rounded-md">
-                        <AdvertisementSection pageTarget="news" deviceTarget="desktop" placementKey="sidebar" />
+                    <div className="mt-4 bg-white w-full xl:w-8/12 rounded-md">
+                        <CommentForm news={news} />
+
+                        {/* <AdvertisementSection pageTarget="news" deviceTarget="desktop" placementKey="sidebar" /> */}
                         {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
 
                     </div>
