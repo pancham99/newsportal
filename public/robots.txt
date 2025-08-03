@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.topbriefing.in
+
+# Sitemaps
+Sitemap: https://www.topbriefing.in/sitemap.xml
