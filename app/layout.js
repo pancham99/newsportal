@@ -9,10 +9,15 @@ export const metadata = {
   description:
     "Stay informed with Top Briefing - your trusted source for breaking news, latest headlines, world events, politics, technology, and more.",
   keywords:
-    "top briefing, breaking news, hindi news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates हिंदी न्यूज़, today news in hindi, breaking news hindi, live news hindi, aaj ki taza khabar, hindi news headlines, trending news, latest hindi news, politics news, bollywood news, cricket news, job news, education news, tech news, viral news, राशिफल, health news, hindi samachar, hindi media, top hindi news, hindi newspaper, latest english news, world news, indian news, breaking updates",
+    // 🔥 English Keywords
+    "top briefing, breaking news, hindi news, latest headlines, trending news, daily updates, world news, politics, tech news, live updates," +
+    // 🔥 Hindi Keywords
+    " हिंदी न्यूज़, आज की ताजा खबरें, आज की मुख्य खबरें, ताजा समाचार, ब्रेकिंग न्यूज़, हिंदी समाचार, राजनीति समाचार, बॉलीवुड समाचार, क्रिकेट न्यूज़, करंट अफेयर्स, सरकारी नौकरी, शिक्षा समाचार, राशिफल, तकनीकी खबरें, हेल्थ न्यूज़, वायरल न्यूज़, भारत समाचार, आज की बड़ी खबरें, न्यूज़ इन हिंदी, दुनिया की खबरें, आज की खबर, लाइव न्यूज़",
+
   authors: [{ name: "Top Briefing Team", url: "https://www.topbriefing.in" }],
   creator: "Top Briefing",
   metadataBase: new URL("https://www.topbriefing.in"),
+
   openGraph: {
     title: "Top Briefing - Trusted News Coverage",
     description:
@@ -30,9 +35,20 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-  // themeColor: "#d92323",
-  // manifest: "/manifest.json",
+
+  x: {
+    card: "summary_large_image",
+    site: "https://x.com/Topbriefing", // replace with your real Twitter handle
+    title: "Top Briefing - Trusted News Coverage",
+    description:
+      "Get daily breaking news, tech, politics, and entertainment in English and Hindi.",
+    images: ["https://www.topbriefing.in/logo.png"],
+  },
+
+  themeColor: "#d92323",
+  // manifest: "/manifest.json", // Uncomment if using PWA
 };
+
 
 
 
