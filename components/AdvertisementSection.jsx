@@ -54,6 +54,8 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
                 alt={banner.title || "Advertisement"}
                 width={800}
                 height={400}
+                loading="lazy"
+                 quality={80}
                 className="w-full h-[230px] object-contain bg-contain group-hover:scale-105 transition-transform duration-500"
               />
             </a>
@@ -63,6 +65,8 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
               alt={banner.title || "Advertisement"}
               width={800}
               height={400}
+              loading="lazy"
+               quality={80}
               className="w-full h-[230px] object-contain bg-contain group-hover:scale-105 transition-transform duration-500"
             />
           )

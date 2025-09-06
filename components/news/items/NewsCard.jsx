@@ -10,7 +10,7 @@ const NewsCard = ({ news }) => {
             <div className="relative group overflow-hidden h-full ">
 
                 <div className="group-hover:scale-[1.1] transition-all duration-[1s] w-[100px] md:w-[160px] h-[93px] lg:w-[100px] relative">
-                    <Image loading="lazy" src={news?.image} alt="Breaking news headline image" fill className="" />
+                    <Image loading="lazy" quality={80} width={700} height={700} src={news?.image} alt="Breaking news headline image"  className="h-full w-full" />
 
                     <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
                 </div>

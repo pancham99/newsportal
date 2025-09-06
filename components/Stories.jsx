@@ -165,9 +165,9 @@ const Stories = () => {
                                 <Image
                                     src={story.image}
                                     alt={story.username}
-                                    fill
-                                    loading="lazy"
-                                    className="object-cover"
+                                   loading="lazy" quality={80} width={700} height={700}
+                                   
+                                    className="object-cover h-full w-full"
                                 />
                                 {/* {story.type === "image" ? (
                                 <Image
