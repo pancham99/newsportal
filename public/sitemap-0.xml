@@ -5,3 +5,34 @@
 <url><loc>https://www.topbriefing.in/contact</loc><lastmod>2025-08-03T14:11:50.385Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://www.topbriefing.in</loc><lastmod>2025-08-03T14:11:50.385Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
+
+
+
+<!-- import { MetadataRoute } from 'next'
+
+const baseUrl = 'https://www.topbriefing.in'
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  // You would dynamically generate these from your CMS/API
+  const categories = [
+    { slug: 'politics', lastModified: new Date(), changeFrequency: 'hourly', priority: 0.9 },
+    { slug: 'sports', lastModified: new Date(), changeFrequency: 'hourly', priority: 0.8 },
+    // Add all categories
+  ]
+  
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'hourly',
+      priority: 1,
+    },
+    ...categories.map((category) => ({
+      url: `${baseUrl}/category/${category.slug}`,
+      lastModified: category.lastModified,
+      changeFrequency: category.changeFrequency as 'hourly',
+      priority: category.priority,
+    })),
+    // Add dynamic news article URLs
+  ]
+} -->

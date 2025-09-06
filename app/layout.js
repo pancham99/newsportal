@@ -38,7 +38,7 @@ export const metadata = {
 
   x: {
     card: "summary_large_image",
-    site: "https://x.com/Topbriefing", // replace with your real Twitter handle
+    site: "https://x.com/Topbriefing", 
     title: "Top Briefing - Trusted News Coverage",
     description:
       "Get daily breaking news, tech, politics, and entertainment in English and Hindi.",

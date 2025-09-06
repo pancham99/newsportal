@@ -52,6 +52,20 @@ const nextConfig = {
 
     // },
 
+    // Rewrites for API or other routing needs
+    async rewrites() {
+        return [
+            {
+                source: '/sitemap.xml',
+                destination: '/api/sitemap',
+            },
+            {
+                source: '/robots.txt',
+                destination: '/api/robots',
+            },
+        ]
+    },
+
 
 };
 
