@@ -11,7 +11,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
     <div className='bg-white shadow'>
       <div className='group relative overflow-hidden'>
         <div style={{ height: `${height}px` }} className={`w-full  group-hover:scale-[1.1] transition-all duration-[1s]`}>
-          <Image loading="lazy" className='' src={news?.image} alt='' fill />
+          <Image loading="lazy" className='' src={news?.image} alt="Breaking news headline image" fill />
         </div>
 
         <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>

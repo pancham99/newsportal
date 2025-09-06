@@ -46,10 +46,10 @@ const LatestNews = () => {
         लेटेस्ट न्यूज़
       </div>
       <div className='flex justify-center items-center gap-x-3'>
-        <button onClick={previous} className='w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200'>
+        <button aria-label="Previous item" onClick={previous} className='w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200'>
           <FiChevronLeft />
         </button>
-        <button onClick={next} className='w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200'>
+        <button aria-label="Next item" onClick={next} className='w-[30px] h-[30px] flex justify-center items-center bg-white border-slate-200'>
           <FiChevronRight />
         </button>
       </div>
