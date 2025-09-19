@@ -1,6 +1,7 @@
 module.exports = {
-  siteUrl: 'https://www.topbriefing.in',
+  siteUrl: "https://www.topbriefing.in",
   generateRobotsTxt: true,
-  sitemapSize: 7000,
-  exclude: ['/admin/**', '/secret/**'],
+  additionalPaths: async (config) => [
+    await config.transform(config, "/topnews"),
+  ],
 };
