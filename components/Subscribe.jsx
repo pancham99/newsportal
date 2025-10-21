@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { base_api_url } from "../config/config"
 
 const Subscribe = () => {
@@ -33,6 +33,14 @@ const Subscribe = () => {
 
 
   };
+
+    // Auto hide message after 3 seconds
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(''), 2000);
+      return () => clearTimeout(timer); // cleanup
+    }
+  }, [message]);
 
   return (
     <div className="w-full mt-2">
