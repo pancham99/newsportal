@@ -8,6 +8,7 @@ import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 import Subscribe from "./Subscribe";
 
+
 const Footer = ({ news }) => {
 
     return (

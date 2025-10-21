@@ -4,7 +4,6 @@ import Marquee from 'react-fast-marquee'
 import Link from 'next/link'
 
 const Headlines = ({ news }) => {
-    console.log(news.slug, "hhhhhhhh")
 
     return (
         <div className='bg-white shadow flex flex-wrap'>
