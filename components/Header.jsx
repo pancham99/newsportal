@@ -147,9 +147,9 @@ const Header = () => {
                 <div className="">
                     <div className="flex justify-center lg:justify-start items-center flex-wrap">
                         <div className="">
-                            <div className="flex flex-col md:items-start">
+                            <Link href={'/'} className="flex flex-col md:items-start">
                                 <Image loading="lazy" src="/logo.png" alt="bgimage" width={150} height={150} />
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>

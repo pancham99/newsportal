@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <sitemap><loc>https://www.topbriefing.in/sitemap-0.xml</loc></sitemap>
+<url><loc>https://www.topbriefing.in/about</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.topbriefing.in/authPage</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.topbriefing.in/contact</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.topbriefing.in/topnews</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.topbriefing.in/</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.topbriefing.in/news</loc><lastmod>2025-09-19T18:18:38.544Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </sitemapindex>
