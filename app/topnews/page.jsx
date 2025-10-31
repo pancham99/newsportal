@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import Head from 'next/head'
 
 const Footer = dynamic(() => import("../../components/Footer"));
 const Headlines = dynamic(() => import("../../components/Headlines"));
@@ -22,43 +21,9 @@ import { base_api_url } from "../../config/config"
 import ShortVideos from "../../components/ShortVideos";
 import AdvertisementSection from "../../components/AdvertisementSection";
 
-// Define site metadata
-const SITE_METADATA = {
-  title: "Top Briefing - Latest Breaking News, Headlines & Updates",
-  description: "Get the latest news in Hindi on politics, sports, entertainment, technology, health, and more. Stay updated with breaking news and in-depth coverage.",
-  siteUrl: "https://www.topbriefing.in",
-  image: "https://www.topbriefing.in/logo.png",
-  twitterHandle: "@topbriefing",
-  fbAppId: process.env.FB_APP_ID || "your_facebook_app_id"
-}
 
-// Generate category URLs for breadcrumb
-const generateCategoryUrl = (category) => {
-  const categorySlugs = {
-    'राजनीति': 'politics',
-    'खेल': 'sports',
-    'स्वास्थ्य': 'health',
-    'शिक्षा': 'education',
-    'मनोरंजन': 'entertainment',
-    'अंतरराष्ट्रीय': 'international',
-    'प्रौद्योगिकी': 'technology',
-    'भक्ति': 'devotion',
-    'लाइफस्टाइल': 'lifestyle',
-    'अपराध': 'crime',
-    'मौसम': 'weather',
-    'राशि': 'horoscope',
-    'राष्ट्रीय': 'national',
-    'बाज़ार': 'market'
-  };
-  
-  return `${SITE_METADATA.siteUrl}/category/${categorySlugs[category] || category}`;
-};
 
-// Function to format date for schema
-const formatSchemaDate = (dateString) => {
-  if (!dateString) return new Date().toISOString();
-  return new Date(dateString).toISOString();
-};
+
 
 const Page = async () => {
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
@@ -69,132 +34,11 @@ const Page = async () => {
 
   const { news } = await news_data?.json()
 
-  // Get the first news item for OG tags
-  const firstNewsItem = news['राजनीति'] && news['राजनीति'][0] ? news['राजनीति'][0] : null;
 
-  // Generate news article structured data
-  const newsArticlesStructuredData = [];
-  Object.keys(news).forEach(category => {
-    news[category]?.slice(0, 3).forEach((article, index) => {
-      if (article.headline && article.description) {
-        newsArticlesStructuredData.push({
-          "@type": "NewsArticle",
-          "headline": article.headline,
-          "description": article.description.substring(0, 160), // Limit description length
-          "image": article.image || SITE_METADATA.image,
-          "datePublished": formatSchemaDate(article.publishedAt),
-          "dateModified": formatSchemaDate(article.updatedAt),
-          "author": {
-            "@type": "Organization",
-            "name": "Top Briefing"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": "Top Briefing",
-            "logo": {
-              "@type": "ImageObject",
-              "url": SITE_METADATA.image
-            }
-          },
-          "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": `${SITE_METADATA.siteUrl}/news/${article.slug || article.id}`
-          }
-        });
-      }
-    });
-  });
-
-  // Generate breadcrumb structured data
-  const breadcrumbStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": SITE_METADATA.siteUrl
-      }
-    ]
-  };
-
-  // Generate organization structured data
-  const organizationStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    "name": "Top Briefing",
-    "url": SITE_METADATA.siteUrl,
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${SITE_METADATA.siteUrl}/logo.png`
-    },
-    "sameAs": [
-      "https://twitter.com/topbriefing",
-      "https://facebook.com/topbriefing",
-      "https://instagram.com/topbriefing"
-    ]
-  };
 
   return (
     <div>
-      {/* SEO Meta Tags */}
-      <Head>
-        <title>{SITE_METADATA.title}</title>
-        <meta name="description" content={SITE_METADATA.description} />
-        <meta name="keywords" content="news, hindi news, breaking news, india news, politics, sports, entertainment, technology, health, education, lifestyle" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href={SITE_METADATA.siteUrl} />
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content={SITE_METADATA.title} />
-        <meta property="og:description" content={SITE_METADATA.description} />
-        <meta property="og:url" content={SITE_METADATA.siteUrl} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={firstNewsItem?.image || SITE_METADATA.image} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:locale" content="hi_IN" />
-        <meta property="og:site_name" content="Top Briefing" />
-        {SITE_METADATA.fbAppId && <meta property="fb:app_id" content={SITE_METADATA.fbAppId} />}
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={SITE_METADATA.twitterHandle} />
-        <meta name="twitter:creator" content={SITE_METADATA.twitterHandle} />
-        <meta name="twitter:title" content={SITE_METADATA.title} />
-        <meta name="twitter:description" content={SITE_METADATA.description} />
-        <meta name="twitter:image" content={firstNewsItem?.image || SITE_METADATA.image} />
-
-        {/* Additional Meta Tags */}
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <meta name="language" content="Hindi" />
-        <meta name="author" content="Top Briefing" />
-        <meta name="geo.region" content="IN" />
-        <meta name="geo.placename" content="India" />
-
-        {/* Structured Data (JSON-LD) */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationStructuredData) }}
-        />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-        />
-
-        {/* News Articles Structured Data */}
-        {newsArticlesStructuredData.length > 0 && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(newsArticlesStructuredData) }}
-          />
-        )}
-      </Head>
-
-      {/* <AddModel /> */}
-      <main  itemScope itemType="https://schema.org/WebPage">
+      <main>
         <Headlines news={news} />
         <div className="bg-slate-100 ">
           <div className="px-4 md:px-8 py-8">
