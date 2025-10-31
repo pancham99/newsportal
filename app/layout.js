@@ -17,10 +17,10 @@ export const metadata = {
     // 🔥 Hindi Keywords
     " हिंदी न्यूज़, आज की ताजा खबरें, आज की मुख्य खबरें, ताजा समाचार, ब्रेकिंग न्यूज़, हिंदी समाचार, राजनीति समाचार, बॉलीवुड समाचार, क्रिकेट न्यूज़, बिजनेस खबरें, सरकारी नौकरी, शिक्षा समाचार, राशिफल, तकनीकी खबरें, हेल्थ न्यूज़, वायरल न्यूज़, भारत समाचार, आज की बड़ी खबरें, न्यूज़ इन हिंदी, दुनिया की खबरें, लाइव न्यूज़",
 
-  authors: [{ name: "Top Briefing", url: "https://www.topbriefing.in" }],
-  creator: "Top Briefing",
-  publisher: "Top Briefing Media Pvt. Ltd.",
-  metadataBase: new URL("https://www.topbriefing.in"),
+  authors: [{ name: "TopBriefing", url: "https://www.topbriefing.in/" }],
+  creator: "TopBriefing",
+  publisher: "TopBriefing Media Pvt. Ltd.",
+  metadataBase: new URL("https://www.topbriefing.in/"),
 
   openGraph: {
     title: "Top Briefing - Trusted Hindi & English News Coverage",
@@ -33,7 +33,7 @@ export const metadata = {
         url: "https://www.topbriefing.in/logo.png",
         width: 1200,
         height: 630,
-        alt: "Top Briefing - Trusted News",
+        alt: "TopBriefing - Trusted News",
       },
     ],
     locale: "en_IN",
@@ -42,7 +42,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    site: "@Topbriefing",
+    site: "Topbriefing",
     title: "Top Briefing - Hindi & English News Updates",
     description:
       "Follow Top Briefing for breaking news, tech, politics, Bollywood, and current affairs in Hindi & English.",
@@ -50,10 +50,10 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: "https://www.topbriefing.in",
+    canonical: "https://www.topbriefing.in/",
     languages: {
-      en: "https://www.topbriefing.in/en",
-      hi: "https://www.topbriefing.in/hi",
+      en: "https://www.topbriefing.in/",
+      hi: "https://www.topbriefing.in/",
     },
   },
 
@@ -91,7 +91,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="https://www.topbriefing.in/favicon.ico" type="image/x-icon" />
 
         {/* ✅ Open Graph (Facebook, LinkedIn, etc.) */}
-        <meta property="og:title" content="Top Briefing – India’s Trusted Source for Breaking News" />
+        <meta property="og:title" content="TopBriefing – India’s Trusted Source for Breaking News" />
         <meta
           property="og:description"
           content="Stay updated with Top Briefing – your go-to Hindi and English news portal for politics, tech, sports, and entertainment."
@@ -99,12 +99,12 @@ export default function RootLayout({ children }) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.topbriefing.in/" />
         <meta property="og:image" content="https://www.topbriefing.in/logo.png" />
-        <meta property="og:site_name" content="Top Briefing" />
+        <meta property="og:site_name" content="Topbriefing" />
 
         {/* ✅ Twitter Card (For better visibility on X / Twitter) */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@Topbriefing" />
-        <meta name="twitter:title" content="Top Briefing – India’s Trusted News Source" />
+        <meta name="twitter:site" content="Topbriefing" />
+        <meta name="twitter:title" content="TopBriefing – India’s Trusted News Source" />
         <meta
           name="twitter:description"
           content="Top Briefing delivers trusted daily news in Hindi and English — from politics to entertainment, all in one place."
@@ -119,7 +119,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "NewsMediaOrganization",
-              name: "Top Briefing",
+              name: "TopBriefing",
               url: "https://www.topbriefing.in",
               logo: "https://www.topbriefing.in/logo.png",
               sameAs: [
