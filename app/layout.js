@@ -69,6 +69,48 @@ export default function RootLayout({ children }) {
   return (
     <html lang="hi">
       <head>
+        {/* ✅ Basic Meta Tags */}
+        <title>Top Briefing – India’s Trusted Source for Breaking News in Hindi & English</title>
+        <meta
+          name="description"
+          content="Top Briefing is India’s trusted online news platform delivering breaking updates in Hindi and English on politics, technology, sports, and entertainment."
+        />
+        <meta
+          name="keywords"
+          content="Top Briefing, Hindi News, English News, India News, Latest News, Breaking News, Political News, Tech News, Sports News, Entertainment News, Today News, Indian Online News"
+        />
+        <meta name="author" content="Top Briefing" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English, Hindi" />
+        <meta name="revisit-after" content="1 day" />
+
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href="https://www.topbriefing.in/" />
+
+        {/* ✅ Favicon */}
+        <link rel="icon" href="https://www.topbriefing.in/favicon.ico" type="image/x-icon" />
+
+        {/* ✅ Open Graph (Facebook, LinkedIn, etc.) */}
+        <meta property="og:title" content="Top Briefing – India’s Trusted Source for Breaking News" />
+        <meta
+          property="og:description"
+          content="Stay updated with Top Briefing – your go-to Hindi and English news portal for politics, tech, sports, and entertainment."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.topbriefing.in/" />
+        <meta property="og:image" content="https://www.topbriefing.in/logo.png" />
+        <meta property="og:site_name" content="Top Briefing" />
+
+        {/* ✅ Twitter Card (For better visibility on X / Twitter) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Topbriefing" />
+        <meta name="twitter:title" content="Top Briefing – India’s Trusted News Source" />
+        <meta
+          name="twitter:description"
+          content="Top Briefing delivers trusted daily news in Hindi and English — from politics to entertainment, all in one place."
+        />
+        <meta name="twitter:image" content="https://www.topbriefing.in/logo.png" />
+
         {/* ✅ Schema.org Structured Data */}
         <Script
           id="structured-data"
@@ -91,6 +133,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
+
 
       <body className={inter.className}>
         <AuthProvider>
@@ -144,7 +187,7 @@ export default function RootLayout({ children }) {
 
 //   x: {
 //     card: "summary_large_image",
-//     site: "https://x.com/Topbriefing", 
+//     site: "https://x.com/Topbriefing",
 //     title: "Top Briefing - Trusted News Coverage",
 //     description:
 //       "Get daily breaking news, tech, politics, and entertainment in English and Hindi.",
