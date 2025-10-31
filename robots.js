@@ -7,6 +7,6 @@ export default function robots() {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://www.topbriefing.in/sitemap.xml',
+    sitemap: 'https://www.topbriefing.in',
   }
 }
