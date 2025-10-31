@@ -62,8 +62,6 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-
-  themeColor: "#d92323",
   // manifest: "/manifest.json", // Uncomment for PWA
 };
 
