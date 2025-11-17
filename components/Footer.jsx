@@ -37,6 +37,7 @@ const Footer = ({ news }) => {
 
                         <ul className="space-y-4">
                             <li><Link href={"/about"} className='text-slate-300 text-md underline'>AboutUs</Link></li>
+                            <li><Link href={"/WriteForUs"} className='text-slate-300 text-md underline'>Write For Us</Link></li>
                             <li><Link href={"/contact"} className='text-slate-300 text-md underline'>ContactUs</Link></li>
 
 
