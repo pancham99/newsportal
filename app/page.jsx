@@ -19,6 +19,7 @@ import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
 import ShortVideos from "../components/ShortVideos";
 import AdvertisementSection from "../components/AdvertisementSection";
+import StockTicker from '../components/StockTicker';
 
 
 const Home = async () => {
@@ -29,11 +30,9 @@ const Home = async () => {
   });
 
   const { news } = await news_data?.json()
-
+ const stocks = ["AAPL", "TSLA", "MSFT", "GOOG"];
   return (
     <div>
-
-
       {/* <AddModel /> */}
       <main>
         <Headlines news={news} />
@@ -300,7 +299,7 @@ export default Home
 
 
 
-// hey fix complete seo used og tag complete 
+// hey fix complete seo used og tag complete
 // import dynamic from 'next/dynamic'
 
 // const Footer = dynamic(() => import("../components/Footer"));

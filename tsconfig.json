@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "robots.js"  ],
+, "robots.js", "app/api/stock/[symbol].js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -42,7 +42,7 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    site: "Topbriefing",
+    site: "Top briefing",
     title: "Top Briefing - Hindi & English News Updates",
     description:
       "Follow Top Briefing for breaking news, tech, politics, Bollywood, and current affairs in Hindi & English.",
