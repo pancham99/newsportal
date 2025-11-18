@@ -19,7 +19,7 @@ import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
 import ShortVideos from "../components/ShortVideos";
 import AdvertisementSection from "../components/AdvertisementSection";
-import StockTicker from '../components/StockTicker';
+
 
 
 const Home = async () => {

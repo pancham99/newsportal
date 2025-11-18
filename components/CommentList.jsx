@@ -22,7 +22,7 @@ const CommentList = ({ newsId, refresh, onCommentAdded }) => {
         if (newsId) {
             fetchComments();
         }
-    }, [newsId, refresh]);
+    }, [newsId, refresh, fetchComments]);
 
     return (
         <div className="bg-white p-4 rounded-lg shadow-md mt-6">
