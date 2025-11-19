@@ -7,8 +7,8 @@ export default function WriteForUs() {
         <h1 className="text-center">Write for Us: Business, Marketing, Startups, SEO, Remote Working & More</h1>
       </div>
       <div className="container mx-auto px-9 space-y-5 text-xl">
-        <p>{`If you want to submit a guest post on <span className="text-blue-700 font-medium">TopBriefing</span>, choose any topic related to business, startups, marketing, SEO, hiring, sales, technology, or growth strategies. Your article should be insightful, well-researched, and valuable for our readers. Continue reading to understand the complete submission process.`}</p>
-        <p>{`<span className="text-blue-700 font-medium">TopBriefing</span> is a growing platform focused on news, business insights, and startup knowledge. We publish high-quality, original articles that help readers stay informed and inspired. Interested in contributing a guest post?`}</p>
+        <p>If you want to submit a guest post on <span className="text-blue-700 font-medium">TopBriefing</span>, choose any topic related to business, startups, marketing, SEO, hiring, sales, technology, or growth strategies. Your article should be insightful, well-researched, and valuable for our readers. Continue reading to understand the complete submission process.</p>
+        <p><span className="text-blue-700 font-medium">TopBriefing</span> is a growing platform focused on news, business insights, and startup knowledge. We publish high-quality, original articles that help readers stay informed and inspired. Interested in contributing a guest post?</p>
         <p>{`We welcome submissions from bloggers, business owners, professionals, writers, industry experts, and thought leaders. To make your submission process smooth, we’ve shared detailed contributor guidelines below. This will help you understand our expectations and ensure your article fits our editorial standards.`}</p>
       </div>
 
@@ -28,7 +28,7 @@ export default function WriteForUs() {
 
       <div className="container mx-auto px-9 py-5 space-y-3">
         <h3 className="text-2xl font-bold"> How to submit your guest post pitch for buildd?</h3>
-        <p>{`Email your pitch for guest post to <a className="text-blue-500 font-semibold">contact@topbriefing.in</a> with "Guest Post: <a className="text-blue-600 font-semibold" href="https://www.topbriefing.in/">TopBriefing</a>" as the subject line.`}</p>
+        <p>Email your pitch for guest post to <a className="text-blue-500 font-semibold">contact@topbriefing.in</a> with Guest Post: <a className="text-blue-600 font-semibold" href="https://www.topbriefing.in/">TopBriefing</a> as the subject line.</p>
       </div>
 
 
