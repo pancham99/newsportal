@@ -33,7 +33,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
 
   if (loading) return <p className="text-center py-4">Loading advertisement...</p>;
 
-  if (!banner) return <p className="text-center py-4">No ad available</p>;
+  if (!banner) return <p className="w-full h-48 border border-gray-300 bg-gray-200 flex items-center justify-center">Advertisement</p>;
 
   return (
     <div className="w-full ">
@@ -71,7 +71,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
             />
           )
         ) : (
-          <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
+          <div className="w-full h-48 border border-gray-300 bg-gray-200 flex items-center justify-center">
             <span className="text-gray-500">No media available</span>
           </div>
         )}

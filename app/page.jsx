@@ -277,7 +277,7 @@ const Home = async () => {
             </div>
 
             <div className="mt-4 bg-white  rounded-md">
-              <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="top" />
+              
               <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="bottom" />
               {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
 
