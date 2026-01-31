@@ -30,7 +30,7 @@ const Home = async () => {
   });
 
   const { news } = await news_data?.json()
- const stocks = ["AAPL", "TSLA", "MSFT", "GOOG"];
+  const stocks = ["AAPL", "TSLA", "MSFT", "GOOG"];
   return (
     <div>
       {/* <AddModel /> */}
@@ -124,7 +124,8 @@ const Home = async () => {
                     <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
                   </div>
                   <div className='mt-2 bg-white w-full rounded-md lg:mr-4 p-2'>
-                    <AdvertisementComp one={'0'} advertisement={'advertisement'} />
+                    {/* <AdvertisementComp one={'0'} advertisement={'advertisement'} /> */}
+                    <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="top" />
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
@@ -277,6 +278,7 @@ const Home = async () => {
 
             <div className="mt-4 bg-white  rounded-md">
               <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="top" />
+              <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="bottom" />
               {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
 
             </div>
