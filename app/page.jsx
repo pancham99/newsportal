@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+
 const Footer = dynamic(() => import("../components/Footer"));
 const Headlines = dynamic(() => import("../components/Headlines"));
 const DetailsNews = dynamic(() => import("../components/news/items/DetailsNews"));
