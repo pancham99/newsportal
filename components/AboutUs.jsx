@@ -81,19 +81,7 @@ const AboutUs = () => {
                         <p className="text-sm text-gray-500 mt-2">B.tech(computer science and engineering)</p>
                     </div>
 
-                    {/* <div className="bg-gray-50 rounded-xl shadow p-6">
-                        <div className='flex justify-center '>
-                            <Image src="/ceo.jpeg" alt="CEO" width={100} height={100} className="rounded-full mb-4 flex justify-center" />
-                        </div>
-
-                        <h2 className="text-xl font-bold text-center text-gray-600">Director of Content & Operations</h2>
-                        <h3 className="text-xl font-bold text-center">Shruti Mishra</h3>
-
-                        <p className="text-gray-700 mt-2 text-justify">
-                            With over 10 years in journalism, Anita ensures every piece of news meets the highest editorial standards.
-                        </p>
-                        <p className="text-sm text-gray-500 mt-2">MA Journalism, DU | Best Editor Award 2023</p>
-                    </div> */}
+                   
                 </div>
             </div>
 
