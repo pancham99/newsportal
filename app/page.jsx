@@ -1,4 +1,5 @@
-import dynamic from 'next/dynamic'
+export const dynamic = "force-dynamic";
+
 const Footer = dynamic(() => import("../components/Footer"));
 const Headlines = dynamic(() => import("../components/Headlines"));
 const DetailsNews = dynamic(() => import("../components/news/items/DetailsNews"));
@@ -23,11 +24,15 @@ import AdvertisementSection from "../components/AdvertisementSection";
 
 
 const Home = async () => {
+  // const news_data = await fetch(`${base_api_url}/api/all/news`, {
+  //   next: {
+  //     revalidate: 60
+  //   },
+  // });
+
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 60
-    },
-  });
+  cache: "no-store",
+});
 
   const { news } = await news_data?.json()
   const stocks = ["AAPL", "TSLA", "MSFT", "GOOG"];
