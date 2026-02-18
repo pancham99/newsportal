@@ -9,12 +9,9 @@ const SimpleNewsCard = dynamic(() => import("../components/news/items/SimpleNews
 const LatestNews = dynamic(() => import("../components/news/LatestNews"));
 const PopularNews = dynamic(() => import("../components/news/PopularNews"));
 const Title = dynamic(() => import("../components/Title"));
-const VideoPlayer = dynamic(() => import("../components/VideoPlayer"), { ssr: false });
-const AddModel = dynamic(() => import("../components/AddModel"));
+
 const Permostion = dynamic(() => import("../components/Permostion"));
-import RecentNews from "../components/news/RecentNews";
-import Advertisement from "../components/Advertisement";
-import AdvertisementComp from "../components/AdvertisementComp";
+import RecentNews from "../components/news/RecentNews"
 import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
 import ShortVideos from "../components/ShortVideos";
@@ -24,9 +21,7 @@ import AdvertisementSection from "../components/AdvertisementSection";
 
 const Home = async () => {
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 300
-    },
+   cache: "no-store",
   });
 
   const { news } = await news_data?.json()

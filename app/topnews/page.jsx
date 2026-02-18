@@ -27,9 +27,7 @@ import AdvertisementSection from "../../components/AdvertisementSection";
 
 const Page = async () => {
   const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 300
-    },
+    cache: "no-store",
   });
 
   const { news } = await news_data?.json()
@@ -303,7 +301,7 @@ export default Page
 
 
 
-// hey fix complete seo used og tag complete 
+// hey fix complete seo used og tag complete
 // import dynamic from 'next/dynamic'
 
 // const Footer = dynamic(() => import("../components/Footer"));

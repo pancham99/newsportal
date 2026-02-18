@@ -16,14 +16,12 @@ const Page = async ({ params }) => {
     const decodedCategory = decodeURIComponent(category)
  
     const data = await fetch(`${base_api_url}/api/news/category/${decodedCategory}`, {
-        next: {
-            revalidate: 1
-        }
+ cache: "no-store",
     });
     const { news, relatedNews } = await data.json()
     const news_data = await fetch(`${base_api_url}/api/all/news`, {
         next: {
-            revalidate: 5
+            cache: 'no-store',
         },
     });
 
