@@ -43,7 +43,7 @@ const Home = async () => {
                 <LatestNews news={news['राजनीति']} />
               </div>
 
-              {/* Technology */}
+             
 
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
