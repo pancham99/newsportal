@@ -32,6 +32,8 @@ const Home = async () => {
   const { news } = await news_data?.json()
   const stocks = ["AAPL", "TSLA", "MSFT", "GOOG"];
   return (
+
+    
     <div>
       {/* <AddModel /> */}
       <main>

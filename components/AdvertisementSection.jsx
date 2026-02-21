@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { base_api_url } from "../config/config"
+import AdBanner from "../components/AdBanner";
 
 const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
   const [banner, setBanner] = useState(null);
@@ -39,6 +40,9 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
     <div className="w-full ">
       <h3 className="text-xs text-gray-600 text-center ">Advertisement</h3>
       <div className="border rounded shadow-md overflow-hidden relative group p-2">
+
+
+
         {/* Video priority over image */}
         {banner.video ? (
           <video
@@ -73,6 +77,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
         ) : (
           <div className="w-full h-48 border border-gray-300 bg-gray-200 flex items-center justify-center">
             <span className="text-gray-500">No media available</span>
+             <AdBanner adSlot="8002892607" />
           </div>
         )}
 
