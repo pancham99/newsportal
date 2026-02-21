@@ -128,7 +128,7 @@ const Header_Category = () => {
 
       {/* Mobile Menu */}
       {showMobileMenu && (
-        <div className="md:hidden bg-white shadow-md px-4 py-3 space-y-2">
+        <div className="md:hidden grid grid-cols-3 bg-white shadow-md px-2 py-3 space-y-2">
 
           <Link
             href="/"
@@ -155,7 +155,7 @@ const Header_Category = () => {
           <select
             value={state}
             onChange={handleStateChange}
-            className="w-full h-[40px] text-black rounded-md px-2 border border-gray-300 focus:border-red-500 outline-none mt-2"
+            className="w-full hidden h-[40px] text-black rounded-md px-2 border border-gray-300 focus:border-red-500 outline-none mt-2"
           >
             <option value="">---राज्य चुनें---</option>
             <option value="बिहार">बिहार</option>

@@ -42,9 +42,12 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
       <div className="border rounded shadow-md overflow-hidden relative group p-2">
 
 
-
+        <div className="w-full h-48 border border-gray-300 bg-gray-200 flex items-center justify-center">
+          <span className="text-gray-500">No media available</span>
+          <AdBanner adSlot="8002892607" />
+        </div>
         {/* Video priority over image */}
-        {banner.video ? (
+        {/* {banner.video ? (
           <video
             src={banner.video}
             controls
@@ -79,7 +82,7 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
             <span className="text-gray-500">No media available</span>
              <AdBanner adSlot="8002892607" />
           </div>
-        )}
+        )} */}
 
         <div className="p-2 flex justify-center">
           <div>
@@ -87,8 +90,8 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
           {banner.description && (
             <p className="text-sm text-gray-600">{banner.description}</p>
           )} */}
-          {/* <p className="text-xs text-gray-400">Priority: {banner.priority}</p> */}
-          {/* <p className="text-xs text-gray-400">Amount: ₹{banner.amount}</p> */}
+            {/* <p className="text-xs text-gray-400">Priority: {banner.priority}</p> */}
+            {/* <p className="text-xs text-gray-400">Amount: ₹{banner.amount}</p> */}
           </div>
         </div>
       </div>
