@@ -19,7 +19,7 @@ import Stories from "../components/Stories"
 import { base_api_url } from "../config/config"
 import ShortVideos from "../components/ShortVideos";
 import AdvertisementSection from "../components/AdvertisementSection";
-
+import LatestVideosSection from "../components/videoSection/LatestVideoAction";
 
 
 const Home = async () => {
@@ -62,6 +62,16 @@ const Home = async () => {
                 </div>
               </div>
             </div>
+
+            <div>
+        
+        </div>
+
+          <LatestVideosSection
+            title={"topbreaking videos"}
+            subtitle={"देखें ताज़ा वीडियो"}
+           
+          />
             <PopularNews />
 
             {/* first section */}
