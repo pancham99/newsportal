@@ -48,11 +48,6 @@ const Home = async ({ news }) => {
   const breakingNews = breakingData?.news ?? [];
   
 
-  
-
-
-
-
   return (
 
 
