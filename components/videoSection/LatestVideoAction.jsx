@@ -10,7 +10,7 @@ const LatestVideosSection = ({ title, subtitle }) => {
     {
       id: 1,
       type: "youtube",
-      logo: "",
+
       title: "Dark reality of girl",
       videoUrl: "https://www.youtube.com/embed/7uoHwzEtXWU?si=kzzNOEBuvWxjaU1n",
       date: "2025-02-18T10:30:00",
@@ -18,7 +18,7 @@ const LatestVideosSection = ({ title, subtitle }) => {
     {
       id: 2,
       type: "youtube",
-      logo: "",
+
       title: "WHY DO SOME PEOPLE NEVER GAIN WEIGHT ?",
       videoUrl: "https://www.youtube.com/embed/auywRBJqU54?si=PcDKNYZuKV_kHeVF",
       date: "2025-02-17",
