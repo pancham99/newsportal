@@ -12,7 +12,7 @@ import { base_api_url } from "../config/config";
 
 export async function getNews(slug) {
   try {
-    const res = await fetch(`http://localhost:5000/api/news/details/${slug}`, {
+    const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
       cache: "no-store",
     });
 

@@ -7,11 +7,13 @@ import Image from "next/image";
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
 import dynamic from 'next/dynamic';
-import CommentForm from "../../../components/CommentForm"
+// import CommentForm from "../../../components/CommentForm"
 import { getNews } from '../../../utils/getNews';
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 export async function generateMetadata({ params }) {
     const { news } = await getNews(params?.slug);
+
+   
     const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
 
     return {
@@ -110,13 +112,11 @@ const Details = async ({ params }) => {
                     {/* <div className="pt-8 h-48">
                         <RelatedNews news={relatedNews} type="Related news" />
                     </div> */}
-                    <div className="mt-4 bg-white w-full xl:w-8/12 rounded-md">
+                    {/* <div className="mt-4 bg-white w-full xl:w-8/12 rounded-md">
                         <CommentForm news={news} />
 
-                        {/* <AdvertisementSection pageTarget="news" deviceTarget="desktop" placementKey="sidebar" /> */}
-                        {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
