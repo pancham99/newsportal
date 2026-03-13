@@ -8,7 +8,7 @@ import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
 import dynamic from 'next/dynamic';
 import CommentForm from "../../../components/CommentForm"
-import {getNews} from '../../../utils/getNews';
+import { getNews } from '../../../utils/getNews';
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 export async function generateMetadata({ params }) {
     const { news } = await getNews(params?.slug);
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
 
 
 const Details = async ({ params }) => {
- const { news } = await getNews(params?.slug);
+    const { news } = await getNews(params?.slug);
     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
 
     return (

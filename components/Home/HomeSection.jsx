@@ -9,6 +9,7 @@ const SimpleNewsCard = dynamic(() => import("../news/items/SimpleNewsCard"));
 const LatestNews = dynamic(() => import("../news/LatestNews"));
 const PopularNews = dynamic(() => import("../news/PopularNews"));
 const Title = dynamic(() => import("../Title"));
+import SimpleTypeCard from '../news/items/SimpleTypeCard';
 
 const Permostion = dynamic(() => import("../Permostion"));
 import RecentNews from "../news/RecentNews";
@@ -18,21 +19,43 @@ import ShortVideos from "../ShortVideos";
 import AdvertisementSection from "../AdvertisementSection";
 import LatestVideosSection from "../videoSection/LatestVideoAction";
 import Footer from '../Footer';
+import { base_api_url } from '../../config/config';
 
 
-const Home = async ({news}) => {
+const Home = async ({ news }) => {
 
-  const latestRes = await fetch(`http://localhost:5000/api/latest/news`, {
-  next: { revalidate: 300 }
-});
+  const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
+    next: { revalidate: 300 }
+  });
 
-const { latestNews } = await latestRes.json();
+  const { latestNews } = await latestRes.json();
 
+
+
+  const breakingRes = await fetch(
+    `${base_api_url}/api/breaking`,
+    {
+      next: { revalidate: 300 }
+    }
+  );
+
+  if (!breakingRes.ok) {
+    console.error("Breaking API failed");
+  }
+
+  const breakingData = await breakingRes.json();
+
+  const breakingNews = breakingData?.news ?? [];
+  
 
   
+
+
+
+
   return (
 
-    
+
     <div>
 
       <main>
@@ -45,29 +68,35 @@ const { latestNews } = await latestRes.json();
               </div>
               <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
-                  <Title title="राजनीति" />
+                  <Title title="Breaking News" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {
-                      news['राजनीति']?.map((item, i) => {
+                     {
+                      breakingNews?.map((item, i) => {
                         if (i < 4) {
                           return <SimpleNewsCard key={i} item={item} />
                         }
                       })
                     }
+                    {/* {
+                    
+                      breakingNews.slice(0, 4).map((item, i) => (
+                        <SimpleTypeCard key={i} item={item} type={"Breaking News"} />
+                      ))
+                    } */}
                   </div>
                 </div>
               </div>
             </div>
 
             <div>
-        
-        </div>
 
-          <LatestVideosSection
-            title={"topbreaking videos"}
-            subtitle={"देखें ताज़ा वीडियो"}
-           
-          />
+            </div>
+
+            <LatestVideosSection
+              title={"topbreaking videos"}
+              subtitle={"देखें ताज़ा वीडियो"}
+
+            />
             <PopularNews />
 
             {/* first section */}
@@ -285,7 +314,7 @@ const { latestNews } = await latestRes.json();
             </div>
 
             <div className="mt-4 bg-white  rounded-md">
-              
+
               <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="bottom" />
               {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
 
