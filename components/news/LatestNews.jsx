@@ -5,14 +5,10 @@ const Carousel = dynamic(() => import('react-multi-carousel'), { ssr: false });
 import 'react-multi-carousel/lib/styles.css';
 import SimpleNewsCard from './items/SimpleNewsCard';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { base_api_url } from "../../config/config";
-import { getCachedNews, setCachedNews } from "../../utils/NewsCache";
 
 
-const LatestNews = () => {
-  // Start with cached data if available
-  const [news, setNews] = useState(() => getCachedNews() || []);
-  const [loading, setLoading] = useState(!getCachedNews());
+const LatestNews = ({news}) => {
+ 
 
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 1 },
@@ -20,25 +16,6 @@ const LatestNews = () => {
     tablet: { breakpoint: { max: 1024, min: 464 }, items: 1 },
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
-
-  const latest_news_get = async () => {
-    try {
-      const res = await fetch(`${base_api_url}/api/latest/news`);
-      const data = await res.json();
-      setNews(data?.latestNews || []);
-      setCachedNews(data?.latestNews || []);
-    } catch (error) {
-      console.error("Error fetching latest news", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (!getCachedNews()) {
-      latest_news_get();
-    }
-  }, []);
 
   const ButtonGroup = ({ next, previous }) => (
     <div className='flex justify-between items-center'>
@@ -58,8 +35,8 @@ const LatestNews = () => {
 
   return (
     <div className='w-full flex flex-col-reverse gap-3 pr-0 lg:pr-2'>
-      {loading && (
-        <div className="w-full">
+    
+        {/* <div className="w-full">
           <div className="flex gap-4 overflow-hidden border">
             {[1, 2, 3].map((_, i) => (
               <div key={i} role="status" className="max-w-sm p-4 border border-gray-200 rounded-sm shadow-sm animate-pulse md:p-6 dark:border-gray-700">
@@ -86,11 +63,7 @@ const LatestNews = () => {
               </div>
             ))}
           </div>
-        </div>
-
-      )}
-
-      {!loading && news?.length > 0 && (
+        </div> */}
         <Carousel
           autoPlay={true}
           arrows={false}
@@ -104,11 +77,11 @@ const LatestNews = () => {
             <SimpleNewsCard item={item} key={i} type='latest' />
           ))}
         </Carousel>
-      )}
+  
 
-      {!loading && news?.length === 0 && (
+      {/* {!loading && news?.length === 0 && (
         <div className="text-center py-5">कोई लेटेस्ट न्यूज़ उपलब्ध नहीं है।</div>
-      )}
+      )} */}
     </div>
   );
 };

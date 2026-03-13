@@ -1,33 +1,17 @@
 import React from 'react';
 import { base_api_url } from "../../../config/config";
 import Breadcrumb from '../../../components/Breadcrumb';
-import Category from '../../../components/Category';
-import NewsCard from '../../../components/news/items/NewsCard';
 import Title from '../../../components/Title';
 import Footer from '../../../components/Footer';
-import RelatedNews from '../../../components/news/RelatedNews';
-import parse from 'html-react-parser';
 import Image from "next/image";
-import VideoPlayer from '../../../components/VideoPlayer';
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
 import dynamic from 'next/dynamic';
-import AdvertisementSection from '../../../components/AdvertisementSection';
 import CommentForm from "../../../components/CommentForm"
-
-
+import {getNews} from '../../../utils/getNews';
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
-
-
 export async function generateMetadata({ params }) {
-    const { slug } = params;
-
-    const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
-        cache: 'no-store',
-    });
-
-    const { news } = await res.json();
-
+    const { news } = await getNews(params?.slug);
     const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
 
     return {
@@ -54,15 +38,7 @@ export async function generateMetadata({ params }) {
 
 
 const Details = async ({ params }) => {
-    const { slug } = params;
-
-    const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
-        next: { revalidate: 1 }
-    });
-
-    const { news, relatedNews } = await res.json();
-
-    // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+ const { news } = await getNews(params?.slug);
     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
 
     return (
