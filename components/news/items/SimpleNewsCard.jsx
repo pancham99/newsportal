@@ -3,13 +3,23 @@ import Link from 'next/link'
 import React from 'react'
 import moment from 'moment-timezone';
 
-const SimpleNewsCard = ({item, type}) => {
-     const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+const SimpleNewsCard = ({ item, type }) => {
+    //  const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    const formattedDate = moment
+        .utc(item?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("DD MMM YYYY");
+
+    const formattedTime = moment
+        .utc(item?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("hh:mm A");
+
     return (
         <div className='group relative'>
             <div className='overflow-hidden'>
                 <div className={`${type ? 'h-[270px] sm:h-[470px]' : 'h-[228px]'} w-full group-hover:scale-[1.1] transition-all duration-[1s]`}>
-                    <Image loading="lazy" quality={80} width={700} height={700} className='h-full w-full'  src={item.image} alt="Breaking news headline image"  />
+                    <Image loading="lazy" quality={80} width={700} height={700} className='h-full w-full' src={item.image} alt="Breaking news headline image" />
                 </div>
             </div>
             <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300' ></div>
@@ -20,7 +30,7 @@ const SimpleNewsCard = ({item, type}) => {
 
                 <Link href={`/news/${item.slug}`} className='text-xl'>{item?.title?.length > 50 ? item.title.slice(0, 50) + '...' : item.title}</Link>
                 <div className='flex gap-x-2 text-xs font-normal'>
-                    <span>{item.date} / {formattedTime}</span>
+                    <span>{formattedDate} / {formattedTime}</span>
                     <span>{item.writerName}</span>
                 </div>
             </div>

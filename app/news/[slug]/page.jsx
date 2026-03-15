@@ -13,6 +13,9 @@ const NewsDescription = dynamic(() => import('../../../components/news/NewsDescr
 export async function generateMetadata({ params }) {
     const { news } = await getNews(params?.slug);
 
+
+   
+
    
     const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
 
@@ -41,8 +44,18 @@ export async function generateMetadata({ params }) {
 
 const Details = async ({ params }) => {
     const { news } = await getNews(params?.slug);
-    const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
 
+          const formattedDate = moment
+            .utc(news?.date)
+            .tz("Asia/Kolkata")
+            .format("DD MMM YYYY");
+    
+        const formattedTime = moment
+            .utc(news?.date)
+            .tz("Asia/Kolkata")
+            .format("hh:mm A");
+//     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+//  console.log("News", news);
     return (
         <div>
             <div className="bg-white shadow-sm py-3">
@@ -71,7 +84,7 @@ const Details = async ({ params }) => {
                                         <h3 className="text-red-700 font-medium text-xl">{news?.category}</h3>
                                         <h2 className="text-3xl text-gray-700 font-bold">{news?.title}</h2>
                                         <div className="flex gap-x-2 text-xs font-normal">
-                                            <span>{news?.date} / {formattedTime}</span>
+                                            <span>{formattedDate} / {formattedTime}</span>
                                             <span>{news?.writerName}</span>
                                         </div>
                                         <NewsDescription description={news?.description} />
