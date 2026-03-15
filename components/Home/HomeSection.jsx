@@ -23,7 +23,7 @@ import { base_api_url } from '../../config/config';
 
 
 const Home = async ({ news }) => {
-
+  
   const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
     next: { revalidate: 300 }
   });
@@ -46,6 +46,22 @@ const Home = async ({ news }) => {
   const breakingData = await breakingRes.json();
 
   const breakingNews = breakingData?.news ?? [];
+
+ const trendingRes = await fetch(
+    `${base_api_url}/api/trending`,
+    {
+      next: { revalidate: 300 }
+    }
+  );
+
+  if (!trendingRes.ok) {
+    console.error("Trending API failed");
+  }
+
+  const trendingData = await trendingRes.json();
+  const trendingNews = trendingData?.news ?? [];
+
+  
   
 
   return (
@@ -87,12 +103,12 @@ const Home = async ({ news }) => {
 
             </div>
 
-            <LatestVideosSection
+            {/* <LatestVideosSection
               title={"topbreaking videos"}
               subtitle={"देखें ताज़ा वीडियो"}
 
-            />
-            <PopularNews />
+            /> */}
+            <PopularNews items={trendingNews} />
 
             {/* first section */}
 

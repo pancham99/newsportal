@@ -5,7 +5,15 @@ const { convert } = require('html-to-text');
 import moment from 'moment-timezone';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
-  const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+ const formattedDate = moment
+        .utc(news?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("DD MMM YYYY");
+
+    const formattedTime = moment
+        .utc(news?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("hh:mm A");
 
   return (
     <div className='bg-white shadow'>
@@ -32,7 +40,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
         <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}>{news?.title?.length > 50 ? news.title.slice(0, 50) + '...' : news.title}</Link>
 
         <div className='flex gap-x-2 text-xs font-normal'>
-          <span>{news?.date} / {formattedTime}</span>
+          <span>{formattedDate} / {formattedTime}</span>
           <span>{news?.writerName}</span>
         </div>
         {
