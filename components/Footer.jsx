@@ -7,9 +7,20 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 import Subscribe from "./Subscribe";
+import moment from 'moment-timezone';
 
 
 const Footer = ({ news }) => {
+
+    const formattedDate = moment
+        .utc(news?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("DD MMM YYYY");
+
+    const formattedTime = moment
+        .utc(news?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("hh:mm A");
 
     return (
         <div className='w-full'>
@@ -29,7 +40,7 @@ const Footer = ({ news }) => {
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
                         </div>
-                        <Subscribe/>
+                        <Subscribe />
                     </div>
 
                     <div className='w-full flex flex-col gap-y-[14px]'>
@@ -37,6 +48,7 @@ const Footer = ({ news }) => {
 
                         <ul className="space-y-4">
                             <li><Link href={"/about"} className='text-slate-300 text-md underline'>AboutUs</Link></li>
+                            <li><Link href={"/terms"} className='text-slate-300 text-md underline'>Terms & Policies</Link></li>
                             <li><Link href={"/WriteForUs"} className='text-slate-300 text-md underline'>Write For Us</Link></li>
                             <li><Link href={"/contact"} className='text-slate-300 text-md underline'>ContactUs</Link></li>
 
@@ -77,7 +89,10 @@ const Footer = ({ news }) => {
                                     <div className="flex flex-col gap-y-1">
                                         <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">{r?.title?.length > 50 ? r.title.slice(0, 50) + '...' : r.title}</h2>
                                         <div className='flex gap-x-2 text-xs font-normal text-white'>
-                                            <span> {r?.date} /</span>
+                                            <span> {moment
+                                                .utc(r?.createdAt)
+                                                .tz("Asia/Kolkata")
+                                                .format("DD MMM YYYY")} </span>
                                             <span>{r.writerName}</span>
                                         </div>
                                     </div>
@@ -92,7 +107,7 @@ const Footer = ({ news }) => {
             <div className="bg-[#262323]">
                 <div className="px-4 md:px-8 py-5 flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div className="flex gap-y-2 text-gray-400 justify-start items-center">
-                        <span>Copright @ 2024</span> {''}
+                        <span>Copright @ 2026</span> {''}
                         <Link href='https://www.youtube.com/results?search_query=top+briefing' className=' text-xs'> TopBriefing</Link>
                     </div>
 
