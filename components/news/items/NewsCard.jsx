@@ -4,7 +4,19 @@ import Link from 'next/link'
 import moment from 'moment-timezone';
 
 const NewsCard = ({ news }) => {
-    const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+
+
+
+       const formattedDate = moment
+            .utc(news?.createdAt)
+            .tz("Asia/Kolkata")
+            .format("DD MMM YYYY");
+    
+        const formattedTime = moment
+            .utc(news?.createdAt)
+            .tz("Asia/Kolkata")
+            .format("hh:mm A");
     return (
         <div className="bg-white shadow flex p-4">
             <div className="relative group overflow-hidden h-full ">
@@ -20,7 +32,7 @@ const NewsCard = ({ news }) => {
 
                 <Link href={`/news/${news?.slug}`} className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">{news?.title?.length > 50 ? news.title.slice(0, 50) + '...' : news.title}</Link>
                 <div className='lg:flex flex-cols  gap-x-2 text-xs font-normal'>
-                    <span>{news?.date} / {formattedTime}</span>
+                    <span>{formattedDate} / {formattedTime}</span>
                     <span>{news?.writerName}</span>
                 </div>
             </div>

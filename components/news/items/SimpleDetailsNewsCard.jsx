@@ -5,7 +5,11 @@ const { convert } = require('html-to-text');
 import moment from 'moment-timezone';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
- const formattedDate = moment
+ const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
+  const shortText = plainText.slice(0, 300);
+  console.log(news, "nes")
+  
+   const formattedDate = moment
         .utc(news?.createdAt)
         .tz("Asia/Kolkata")
         .format("DD MMM YYYY");
