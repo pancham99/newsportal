@@ -33,7 +33,7 @@ const AboutUs = () => {
                         <h2 className="text-xl font-bold text-center">CEO & Founder</h2>
 
                         <p className="text-gray-700 mt-2 text-justify">
-                            {`Jagriti brings over 15 years of media strategy experience. Former leader at top Indian news channels, he now builds India's most credible news platform.`}
+                            {`Jagriti brings over 15 years of media strategy experience. Former leader at top Indian news channels, She now builds India's most credible news platform.`}
                         </p>
                         <p className="text-sm text-gray-500 mt-2">MBA, IIM Bangalore | Digital Excellence Award 2022</p>
                     </div>
