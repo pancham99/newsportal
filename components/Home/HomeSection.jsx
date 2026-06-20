@@ -335,7 +335,7 @@ const Home = async ({ news }) => {
 
 
       </main>
-      <Footer news={news['राजनीति']} />
+      {/* <Footer news={news['राजनीति']} /> */}
     </div>
   );
 }
