@@ -133,7 +133,7 @@ const Details = async ({ params }) => {
                 </div>
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };

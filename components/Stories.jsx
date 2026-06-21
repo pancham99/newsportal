@@ -10,7 +10,19 @@ import useFetch from '../hooks/useFetch';
 const Stories = () => {
     const { data, loading, error } = useFetch(`${base_api_url}/api/news/recent/news`);
     const recent = data?.recentNews || [];
-    const formattedTime = moment.utc(recent?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    // const formattedTime = moment.utc(recent?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+
+
+    const formattedDate = moment
+        .utc(recent?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("DD MMM YYYY");
+
+    const formattedTime = moment
+        .utc(recent?.createdAt)
+        .tz("Asia/Kolkata")
+        .format("hh:mm A");
+
     const scrollRef = useRef();
 
     const scrollLeft = () => {
@@ -108,23 +120,8 @@ const Stories = () => {
                                     </span>
 
                                     <div className="text-xs text-gray-800 font-medium truncate">
-                                        {story?.date} / {formattedTime}
+                                        {formattedTime} / {formattedDate}
                                     </div>
-
-                                    {/* <Image
-                                    src={story.profilePic || "/ceo.jpeg"}
-                                    alt={story.username}
-                                    width={24}
-                                    height={24}
-                                    className="rounded-full"
-                                /> */}
-
-                                    {/* <Image
-                  src="/facebook-icon.svg"
-                  alt="Facebook"
-                  width={14}
-                  height={14}
-                /> */}
                                 </div>
                                 <div className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">
                                     <Link href={`/news/${story?.slug}`} className="text-xs text-gray-600 hover:text-[#c80000] mt-1 line-clamp-2">
