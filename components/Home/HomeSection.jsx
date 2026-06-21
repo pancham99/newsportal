@@ -29,9 +29,6 @@ const Home = async ({ news }) => {
   });
 
   const { latestNews } = await latestRes.json();
-
-
-
   const breakingRes = await fetch(
     `${base_api_url}/api/breaking`,
     {
@@ -60,15 +57,8 @@ const Home = async ({ news }) => {
 
   const trendingData = await trendingRes.json();
   const trendingNews = trendingData?.news ?? [];
-
-  
-  
-
   return (
-
-
     <div>
-
       <main>
         <Headlines news={news} />
         <div className="bg-slate-100 ">
@@ -335,7 +325,7 @@ const Home = async ({ news }) => {
 
 
       </main>
-      <Footer news={news['राजनीति']} />
+      {/* <Footer news={news['राजनीति']} /> */}
     </div>
   );
 }

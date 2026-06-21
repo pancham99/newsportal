@@ -2,16 +2,34 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import { AuthProvider } from "../context/AuthContext";
+import { base_api_url } from "../config/config";
+import Footer from '../components/Footer';
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }) {
+export default async function  RootLayout({ children }) {
+
+  const news_data = await fetch(`${base_api_url}/api/all/news`, {
+    next: {
+      revalidate: 300
+    },
+  });
+
+  const { news } = await news_data?.json()
   return (
     <html lang="hi">
       <body className={inter.className}>
         <AuthProvider>
           <Header />
-          <main>{children}</main>
+          <main>
+
+            <div className="container mx-auto">
+            {children}
+
+            </div>
+            
+            </main>
+            <Footer news={news['राजनीति']} />
         </AuthProvider>
 
         {/* ✅ Plain script — NOT next/script */}
