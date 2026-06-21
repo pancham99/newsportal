@@ -7,7 +7,7 @@ import moment from 'moment-timezone';
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
  const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
   const shortText = plainText.slice(0, 300);
-  console.log(news, "nes")
+ 
   
    const formattedDate = moment
         .utc(news?.createdAt)
