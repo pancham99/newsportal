@@ -2,10 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import moment from 'moment-timezone';
+import dynamic from 'next/dynamic';
+const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
 const SimpleNewsCard = ({ item, type }) => {
-
-
     const formattedDate = moment
         .utc(item?.createdAt)
         .tz("Asia/Kolkata")
@@ -30,6 +30,11 @@ const SimpleNewsCard = ({ item, type }) => {
                 </div>
 
                 <Link href={`/news/${item.slug}`} className='text-xl'>{item?.title?.length > 50 ? item.title.slice(0, 50) + '...' : item.title}</Link>
+
+                {item?.shortDescription && (
+                    <NewsDescription description={item.shortDescription} />
+                )}
+
                 <div className='flex gap-x-2 text-xs font-normal'>
                     <span>{formattedDate} / {formattedTime}</span>
                     <span>{item.writerName}</span>

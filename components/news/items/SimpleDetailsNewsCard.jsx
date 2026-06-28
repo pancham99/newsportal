@@ -3,6 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 const { convert } = require('html-to-text');
 import moment from 'moment-timezone';
+import NewsDescription from '../NewsDescription';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
  const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
@@ -47,17 +48,11 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
           <span>{formattedDate} / {formattedTime}</span>
           <span>{news?.writerName}</span>
         </div>
-        {
-          type === 'details-news' && (
-            <p className='text-sm pt-3 text-slate-600'>
-              {
-                convert(news?.description).slice(0, 200)
 
-              }
-
-            </p>
-          )
-        }
+         {news?.shortDescription && (
+                    <NewsDescription description={news.shortDescription} />
+                )}
+      
       </div>
     </div>
   )

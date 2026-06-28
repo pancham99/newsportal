@@ -12,13 +12,7 @@ import { getNews } from '../../../utils/getNews';
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 export async function generateMetadata({ params }) {
     const { news } = await getNews(params?.slug);
-
-
-   
-
-   
     const cleanDescription = news?.description?.replace(/<[^>]*>?/gm, '') || '';
-
     return {
         title: `${news?.title} | Top Briefing`,
         description: cleanDescription.slice(0, 150),
@@ -54,8 +48,7 @@ const Details = async ({ params }) => {
             .utc(news?.date)
             .tz("Asia/Kolkata")
             .format("hh:mm A");
-//     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
-//  console.log("News", news);
+
     return (
         <div>
             <div className="bg-white shadow-sm py-3">

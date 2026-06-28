@@ -29,6 +29,8 @@ const Home = async ({ news }) => {
   });
 
   const { latestNews } = await latestRes.json();
+
+  console.log(latestNews, "latestNews")
   const breakingRes = await fetch(
     `${base_api_url}/api/breaking`,
     {
