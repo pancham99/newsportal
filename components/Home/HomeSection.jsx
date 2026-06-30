@@ -23,14 +23,12 @@ import { base_api_url } from '../../config/config';
 
 
 const Home = async ({ news }) => {
-  
+
   const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
     next: { revalidate: 300 }
   });
 
   const { latestNews } = await latestRes.json();
-
-  console.log(latestNews, "latestNews")
   const breakingRes = await fetch(
     `${base_api_url}/api/breaking`,
     {
@@ -46,7 +44,7 @@ const Home = async ({ news }) => {
 
   const breakingNews = breakingData?.news ?? [];
 
- const trendingRes = await fetch(
+  const trendingRes = await fetch(
     `${base_api_url}/api/trending`,
     {
       next: { revalidate: 300 }
@@ -73,7 +71,7 @@ const Home = async ({ news }) => {
                 <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
                   <Title title="Breaking News" />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                     {
+                    {
                       breakingNews?.map((item, i) => {
                         if (i < 4) {
                           return <SimpleNewsCard key={i} item={item} />
@@ -107,7 +105,23 @@ const Home = async ({ news }) => {
             <div className="w-full">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
-                  <DetailsNewsRow news={news['खेल']} category='खेल' type='details-news' />
+
+                  {
+                    news['राष्ट्रीय']?.length > 0
+                      ? (
+                        <DetailsNewsRow
+                          news={news['राष्ट्रीय']}
+                          category='राष्ट्रीय'
+                          type='details-news'
+                        />
+                      )
+                      : (
+                        <p className="text-gray-500 p-4"></p>
+                      )
+                  }
+
+
+
                   <DetailsNews news={news['स्वास्थ्य']} category='स्वास्थ्य' />
                 </div>
                 <div className="w-full lg:w-4/12">
@@ -277,19 +291,7 @@ const Home = async ({ news }) => {
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-8/12">
                   <div className="">
-                    {
-                      news['राष्ट्रीय']?.length > 0
-                        ? (
-                          <DetailsNewsRow
-                            news={news['राष्ट्रीय']}
-                            category='राष्ट्रीय'
-                            type='details-news'
-                          />
-                        )
-                        : (
-                          <p className="text-gray-500 p-4"></p>
-                        )
-                    }
+                    <DetailsNewsRow news={news['खेल']} category='खेल' type='details-news' />
                   </div>
                 </div>
                 <div className="w-full lg:w-4/12 lg:mt-0 mt-4">

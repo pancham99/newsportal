@@ -6,33 +6,33 @@ import moment from 'moment-timezone';
 import NewsDescription from '../NewsDescription';
 
 const SimpleDetailsNewsCard = ({ news, type, height }) => {
- const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
+  const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
   const shortText = plainText.slice(0, 300);
- 
-  
-   const formattedDate = moment
-        .utc(news?.createdAt)
-        .tz("Asia/Kolkata")
-        .format("DD MMM YYYY");
 
-    const formattedTime = moment
-        .utc(news?.createdAt)
-        .tz("Asia/Kolkata")
-        .format("hh:mm A");
+
+  const formattedDate = moment
+    .utc(news?.createdAt)
+    .tz("Asia/Kolkata")
+    .format("DD MMM YYYY");
+
+  const formattedTime = moment
+    .utc(news?.createdAt)
+    .tz("Asia/Kolkata")
+    .format("hh:mm A");
 
   return (
     <div className='bg-white shadow'>
       <div className='group relative overflow-hidden'>
         <div style={{ height: `${height}px` }} className={`w-full  group-hover:scale-[1.1] transition-all duration-[1s]`}>
-          <Image loading="lazy" quality={80} width={700} height={700} className='h-full w-full' src={news?.image} alt="Breaking news headline image"  />
+          <Image loading="lazy" quality={80} width={700} height={700} className='h-full w-full' src={news?.image} alt="Breaking news headline image" />
         </div>
 
         <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
         <div className='absolute left-5 bottom-4 flex justify-start items-start  gap-x-2 text-white font-semibold gap-y-2'>
 
-          { news?.category &&
+          {news?.category &&
             <div className='px-[6px] py-[2px] rounded-sm text-[13px] bg-[#c80000]'>
-               <span>{news.category}</span>
+              <span>{news.category}</span>
             </div>
           }
           {/* <div className='px-[6px] py-[2px] rounded-sm text-[13px] bg-[#c80000]'>
@@ -42,17 +42,18 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
       </div>
 
       <div className='p-5'>
-        <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}>{news?.title?.length > 50 ? news.title.slice(0, 50) + '...' : news.title}</Link>
+        <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}><h2>{news?.title}</h2></Link>
+        {news?.shortDescription && (
+          <p className='prose max-w-none text-sm'>{news.shortDescription}</p>
+          // <NewsDescription description={news.shortDescription} />
+        )}
+
 
         <div className='flex gap-x-2 text-xs font-normal'>
-          <span>{formattedDate} / {formattedTime}</span>
+          <span className='flex gap-x-2 text-xs font-normal'>{formattedDate} / {formattedTime}</span>
           <span>{news?.writerName}</span>
         </div>
 
-         {news?.shortDescription && (
-                    <NewsDescription description={news.shortDescription} />
-                )}
-      
       </div>
     </div>
   )

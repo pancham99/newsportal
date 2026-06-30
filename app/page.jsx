@@ -9,10 +9,6 @@ const Home = async () => {
   });
 
   const { news } = await news_data?.json()
-
-  
-
-
   return (
 
     <>
