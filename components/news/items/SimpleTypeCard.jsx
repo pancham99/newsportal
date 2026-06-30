@@ -3,9 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 import moment from 'moment-timezone';
 
-const SimpleNewsCard = ({item, type}) => {
-
-    console.log("item", item);
+const SimpleNewsCard = ({item, type}) => {ß
 
      const formattedTime = moment(item?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
     return (

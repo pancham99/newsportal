@@ -9,7 +9,7 @@ const NewsDescription = ({ description }) => {
   const shortText = plainText.slice(0, 300);
 
   return (
-    <div className="prose max-w-none">
+    <div className="prose max-w-none text-sm">
       {expanded ? parse(description || "") : `${shortText}...`}
       {!expanded && plainText.length > 300 && (
         <button

@@ -5,11 +5,6 @@ import { base_api_url } from "../../config/config"
 
 const PopularNews = async ({type, items}) => {
 
-
-
-
-
-
     return (
         <div className=' w-full pb-8 mt-4'>
             <div className='flex flex-col w-full gap-y-[14px]'>

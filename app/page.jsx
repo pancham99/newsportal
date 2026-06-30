@@ -9,14 +9,11 @@ const Home = async () => {
   });
 
   const { news } = await news_data?.json()
-
-
   return (
 
- <>
-
- <HomeSection news={news} />
- </>
+    <>
+      <HomeSection news={news} />
+    </>
   );
 }
 export default Home
