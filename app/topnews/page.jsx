@@ -1,5 +1,36 @@
 import dynamic from 'next/dynamic'
 
+export const metadata = {
+  title: 'Top News - ताजा ब्रेकिंग न्यूज़ हिंदी में | Top Briefing',
+  description: 'Top Briefing पर पढ़ें आज की सबसे बड़ी खबरें — राजनीति, खेल, मनोरंजन, स्वास्थ्य, शिक्षा, प्रौद्योगिकी की ताजा ब्रेकिंग न्यूज़ और लाइव अपडेट।',
+  keywords: 'Top News, टॉप न्यूज़, Breaking News, Hindi News, ताजा खबर, ब्रेकिंग न्यूज़, Top Briefing, राजनीति, खेल, मनोरंजन, स्वास्थ्य, आज की खबर, लाइव अपडेट',
+  alternates: {
+    canonical: 'https://topbriefing.in/topnews',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+  },
+  openGraph: {
+    title: 'Top News - ताजा ब्रेकिंग न्यूज़ हिंदी में | Top Briefing',
+    description: 'राजनीति, खेल, मनोरंजन, स्वास्थ्य और अंतरराष्ट्रीय खबरें — Top Briefing पर पढ़ें आज की सबसे बड़ी ब्रेकिंग न्यूज़।',
+    url: 'https://topbriefing.in/topnews',
+    siteName: 'Top Briefing',
+    locale: 'hi_IN',
+    type: 'website',
+    images: [{ url: 'https://topbriefing.in/logo.png', width: 1200, height: 630, alt: 'Top Briefing - ताजा खबरें' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@topbriefing',
+    creator: '@topbriefing',
+    title: 'Top News - ताजा ब्रेकिंग न्यूज़ | Top Briefing',
+    description: 'Top Briefing पर पढ़ें आज की सबसे बड़ी हिंदी ब्रेकिंग न्यूज़।',
+    images: ['https://topbriefing.in/logo.png'],
+  },
+}
+
 const Footer = dynamic(() => import("../../components/Footer"));
 const Headlines = dynamic(() => import("../../components/Headlines"));
 const DetailsNews = dynamic(() => import("../../components/news/items/DetailsNews"));

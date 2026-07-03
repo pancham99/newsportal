@@ -105,18 +105,19 @@ const Header = () => {
 
             {/* Mobile Video Section */}
             <div
-                className='h-[360px] w-full  lg:hidden transition-all duration-500 ease-in-out'
+                className='h-[360px] w-full lg:hidden transition-all duration-500 ease-in-out banner-placeholder'
                 style={{
                     backgroundImage: `url(${loading ? bgimage2.src : mobileImage})`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
                 }}
             >
                 <div className="">
                     <div className="flex justify-start items-center flex-wrap">
                         <div className="">
                             <div className="flex flex-col md:items-start">
-                                <Image loading="lazy" src="/logo.png" alt="bgimage" width={150} height={150} />
+                                <Image priority src="/logo.png" alt="Top Briefing - Hindi News" width={150} height={60} />
                             </div>
                         </div>
                     </div>
@@ -137,18 +138,19 @@ const Header = () => {
 
             {/* Desktop Banner Section */}
             <div
-                className='h-[360px] w-full hidden lg:block transition-all duration-500 ease-in-out'
+                className='h-[360px] w-full hidden lg:block transition-all duration-500 ease-in-out banner-placeholder'
                 style={{
                     backgroundImage: `url(${loading ? bgimage.src : bannerImage})`,
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
                 }}
             >
                 <div className="">
                     <div className="flex justify-center lg:justify-start items-center flex-wrap">
                         <div className="">
                             <Link href={'/'} className="flex flex-col md:items-start">
-                                <Image loading="lazy" src="/logo.png" alt="bgimage" width={150} height={150} />
+                                <Image priority src="/logo.png" alt="Top Briefing - Hindi News" width={150} height={60} />
                             </Link>
                         </div>
                     </div>

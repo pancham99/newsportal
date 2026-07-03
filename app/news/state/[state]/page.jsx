@@ -10,6 +10,49 @@ import PopularNews from '../../../../components/news/PopularNews'
 import VideoPlayer from '../../../../components/VideoPlayer'
 import Advertisement from '../../../../components/Advertisement'
 
+export async function generateMetadata({ params }) {
+    const decodedState = decodeURIComponent(params.state)
+    const canonicalUrl = `https://topbriefing.in/news/state/${params.state}`
+
+    return {
+        title: `${decodedState} समाचार - ताजा हिंदी खबरें | Top Briefing`,
+        description: `Top Briefing पर पढ़ें ${decodedState} की ताजा खबरें, ब्रेकिंग न्यूज़ और लाइव अपडेट। ${decodedState} से जुड़ी सभी बड़ी खबरें हिंदी में।`,
+        keywords: [
+            decodedState,
+            `${decodedState} news`,
+            `${decodedState} समाचार`,
+            `${decodedState} खबर`,
+            `${decodedState} ताजा खबर`,
+            `${decodedState} ब्रेकिंग न्यूज़`,
+            'State News', 'Hindi News', 'Breaking News', 'Top Briefing',
+            'ताजा हिंदी खबरें', 'भारत राज्य समाचार',
+        ].join(', '),
+        alternates: { canonical: canonicalUrl },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 },
+        },
+        openGraph: {
+            title: `${decodedState} समाचार - ताजा हिंदी खबरें | Top Briefing`,
+            description: `${decodedState} की ताजा खबरें, ब्रेकिंग न्यूज़ और लाइव कवरेज — Top Briefing पर।`,
+            url: canonicalUrl,
+            siteName: 'Top Briefing',
+            locale: 'hi_IN',
+            type: 'website',
+            images: [{ url: 'https://topbriefing.in/logo.png', width: 1200, height: 630, alt: `${decodedState} News - Top Briefing` }],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            site: '@topbriefing',
+            creator: '@topbriefing',
+            title: `${decodedState} समाचार | Top Briefing`,
+            description: `${decodedState} की ताजा खबरें और लाइव अपडेट — Top Briefing पर।`,
+            images: ['https://topbriefing.in/logo.png'],
+        },
+    }
+}
+
 async function getNewsByState(stateName) {
     const res = await fetch(`${base_api_url}/api/news/state/${stateName}`, {
         cache: 'no-store',
@@ -22,9 +65,25 @@ const Page = async ({ params }) => {
     const decodedCategory = decodeURIComponent(params.state);
     const news = await getNewsByState(decodedCategory);
 
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://topbriefing.in' },
+            { '@type': 'ListItem', position: 2, name: decodedCategory, item: `https://topbriefing.in/news/state/${params.state}` },
+        ],
+    };
+
     return (
         <div className='bg-slate-200 w-full'>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <div className='px-4 md:px-8 w-full py-8'>
+                <h1 className='text-xl font-bold text-gray-800 mb-4'>
+                    {decodedCategory} - ताजा हिंदी खबरें
+                </h1>
                 <div className='flex flex-wrap'>
 
                     {/* Left Section */}
