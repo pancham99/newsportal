@@ -2,13 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================
+   CLS (Cumulative Layout Shift) Prevention
+   ============================================= */
+
+/* Prevent images from causing layout shift before they load */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure Next.js <Image> fill containers don't collapse before image loads */
+[data-next-image-wrapper] {
+  overflow: hidden;
+}
+
+/* Prevent iframes (YouTube embeds etc.) from shifting layout */
+iframe {
+  max-width: 100%;
+}
+
+/* Reserve space for banner/header background images to prevent CLS */
+.banner-placeholder {
+  background-color: #1a1a2e;
+  min-height: 360px;
+}
+
+/* =============================================
+   Scrollbar Utilities
+   ============================================= */
+
 .hide-scrollbar {
-  scrollbar-width: solid 4px red; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
- scrollbar-width: solid 4px red;;  /* Chrome, Safari */
+  display: none; /* Chrome, Safari */
 }
 
 .custom-scrollbar {
@@ -19,5 +49,3 @@
 .custom-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
-
-

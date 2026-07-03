@@ -20,7 +20,16 @@ const SimpleNewsCard = ({ item, type }) => {
         <div className='group relative'>
             <div className='overflow-hidden'>
                 <div className={`${type ? 'h-[270px] sm:h-[470px]' : 'h-[228px]'} w-full group-hover:scale-[1.1] transition-all duration-[1s]`}>
-                    <Image loading="lazy" quality={80} width={700} height={700} className='h-full w-full' src={item.image} alt="Breaking news headline image" />
+                    <Image
+                        loading="lazy"
+                        quality={85}
+                        width={600}
+                        height={470}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+                        className='h-full w-full object-cover'
+                        src={item.image}
+                        alt={item?.title || "Breaking news headline image"}
+                    />
                 </div>
             </div>
             <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300' ></div>
