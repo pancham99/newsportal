@@ -12,23 +12,18 @@ import { base_api_url } from "../../config/config";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  // const { setUser , user} = useAuth();
-  // console.log(user, "user")
-  const router = useRouter()
+  const { login } = useAuth();
+  const router = useRouter();
 
   const handleLogin = async (form) => {
     try {
       const { data } = await axios.post(`${base_api_url}/api/user/sing`, form);
-    //   toast.success("Login successful");
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user) );
-      if(data.success === true){
-        router.push('/')
+      if (data.success === true) {
+        login(data.user, data.token); // updates context + localStorage in one shot
+        router.back(); // go back to the page they came from (e.g. the news article)
       }
-
     } catch (err) {
       console.error(err);
-      // toast.error(err.response?.data?.message || "Login failed");
     }
   };
 

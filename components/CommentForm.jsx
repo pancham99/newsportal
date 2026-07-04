@@ -1,23 +1,24 @@
 "use client";
 
-import React, { useState } from 'react'
-import CommentList from "../components/CommentList"
-import CommentBox from "../components/CommentBox"
+import CommentList from "./CommentList";
+import LikeButton from "./LikeButton";
 
 const CommentForm = ({ news }) => {
-    const { _id: newsId } = news
+  const newsId = news?._id;
 
-    const [refresh, setRefresh] = useState(false);
+  if (!newsId) return null;
 
-    const handleRefresh = () => {
-        setRefresh(!refresh); // force reload
-    };
+  return (
+    <div className="w-full space-y-4">
+      {/* Like button row */}
+      <div className="flex items-center gap-3 pt-2">
+        <LikeButton newsId={newsId} />
+      </div>
 
-    return (
-        <div className='text-black w-full gap-5'>
-            <CommentList newsId={newsId} refresh={refresh} onCommentAdded={handleRefresh}/>
-        </div>
-    )
-}
+      {/* Comments */}
+      <CommentList newsId={newsId} />
+    </div>
+  );
+};
 
-export default CommentForm
+export default CommentForm;

@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 import { getNews } from '../../../utils/getNews';
 import Breadcrumb from '../../../components/Breadcrumb';
 import Title from '../../../components/Title';
+import AdBanner from '../../../components/AdBanner';
+import CommentForm from '../../../components/CommentForm';
 
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
-const RelatedNews = dynamic(() => import('../../../components/news/RelatedNews'));
 
 /* ─────────────────────────────────────────────
    SEO: generateMetadata
@@ -223,10 +224,35 @@ const Details = async ({ params }) => {
                                             </time>
                                         </div>
 
-                                        {/* Article body */}
-                                        <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
+                                          <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
                                             <NewsDescription description={news?.description} />
                                         </div>
+
+
+                                          {/* ── Like & Comments ── */}
+                                        <CommentForm news={news} />
+
+                                        {/* ── In-article ad (shows between meta and body) ── */}
+                                        <AdBanner
+                                            adSlot="8002892607"
+                                            adFormat="fluid"
+                                            className="my-2"
+                                        />
+
+                                        {/* Article body */}
+                                      
+
+                                        {/* ── Below-article ad ── */}
+                                        <div className="mt-4 pt-4 border-t border-gray-100">
+                                            <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
+                                            <AdBanner
+                                                adSlot="8002892607"
+                                                adFormat="auto"
+                                                className="w-full"
+                                            />
+                                        </div>
+
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -243,6 +269,16 @@ const Details = async ({ params }) => {
                                         <div className="p-3">
                                             <VideoAdvertisement />
                                         </div>
+                                    </div>
+
+                                    {/* ── Sidebar sticky ad ── */}
+                                    <div className="bg-white p-3 rounded-sm">
+                                        <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
+                                        <AdBanner
+                                            adSlot="8002892607"
+                                            adFormat="vertical"
+                                            style={{ minHeight: 250 }}
+                                        />
                                     </div>
                                 </div>
                             </div>
