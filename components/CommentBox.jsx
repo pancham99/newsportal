@@ -1,77 +1,83 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-import { useRouter } from 'next/navigation';
-import { base_api_url } from '../config/config';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
+import { base_api_url } from "../config/config";
 
 const CommentBox = ({ newsId, onCommentAdded }) => {
   const { user } = useAuth();
-  console.log(user)
   const router = useRouter();
-
-  const [commentText, setCommentText] = useState('');
-  const [userName, setUserName] = useState('');
-  const [userId, setUserId] = useState('');
-
-
-
-  
-
-  // Sync user info
-  useEffect(() => {
-    if (user) {
-      setUserName(user.name);
-      setUserId(user._id);
-    }
-  }, [user]);
+  const [commentText, setCommentText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Redirect if user not logged in
     if (!user) {
-      router.push('/authPage'); // or '/login'
+      router.push("/authPage");
       return;
     }
 
-    // ✅ Validate comment input
     if (!commentText.trim()) {
-      alert('Comment cannot be empty');
+      setError("कमेंट खाली नहीं हो सकता");
       return;
     }
 
     try {
+      setLoading(true);
+      setError("");
       await axios.post(`${base_api_url}/api/comment/add`, {
         newsId,
-        userName,
-        userId,
-        commentText,
+        userId: user._id,
+        userName: user.name,
+        commentText: commentText.trim(),
       });
-
-      setCommentText('');
-      if (onCommentAdded) onCommentAdded(); // Refresh comment list
-    } catch (error) {
-      console.error('Error adding comment:', error);
+      setCommentText("");
+      if (onCommentAdded) onCommentAdded();
+    } catch (err) {
+      setError("कमेंट पोस्ट नहीं हो सका, दोबारा कोशिश करें");
+      console.error("Comment error:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 bg-white rounded shadow mt-4">
+    <form onSubmit={handleSubmit} className="mt-4">
       <textarea
-        placeholder="Write a comment..."
-        className="border p-2 w-full rounded mb-2"
-        rows="3"
         value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
+        onChange={(e) => { setCommentText(e.target.value); setError(""); }}
+        placeholder={user ? "अपना कमेंट लिखें..." : "कमेंट करने के लिए लॉगिन करें"}
+        rows={3}
+        disabled={!user}
+        className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700
+                   resize-none outline-none focus:border-red-400 focus:ring-1 focus:ring-red-100
+                   disabled:bg-gray-50 disabled:cursor-not-allowed transition"
       />
-      <button
-        type="submit"
-        className={`px-4 py-2 rounded text-white ${user ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400 cursor-not-allowed"}`}
-      >
-        {user ? "Post Comment" : "Login to Comment"}
-      </button>
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+
+      <div className="flex items-center justify-between mt-2">
+        {!user && (
+          <button
+            type="button"
+            onClick={() => router.push("/authPage")}
+            className="text-xs text-red-600 underline"
+          >
+            लॉगिन / रजिस्टर करें
+          </button>
+        )}
+        <button
+          type="submit"
+          disabled={!user || loading}
+          className="ml-auto px-4 py-1.5 bg-red-600 text-white text-sm rounded-lg
+                     hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
+        >
+          {loading ? "पोस्ट हो रहा है..." : "कमेंट करें"}
+        </button>
+      </div>
     </form>
   );
 };

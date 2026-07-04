@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react'
 import Breadcrumb from '../../../../components/Breadcrumb'
 import Category from '../../../../components/Category'
 import NewsCard from '../../../../components/news/items/NewsCard'
@@ -9,6 +8,7 @@ import Title from '../../../../components/Title'
 import { base_api_url } from '../../../../config/config'
 import VideoPlayer from '../../../../components/VideoPlayer'
 import AdvertisementSection from '../../../../components/AdvertisementSection'
+import AdBanner from '../../../../components/AdBanner'
 
 export async function generateMetadata({ params }) {
     const decodedCategory = decodeURIComponent(params.category)
@@ -132,7 +132,12 @@ const Page = async ({ params }) => {
                         </div>
                     </div>
 
-                    <div className='pt-8'>
+                    <div className='pt-6'>
+                        <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
+                        <AdBanner adSlot="8002892607" adFormat="auto" className="w-full" />
+                    </div>
+
+                    <div className='pt-4'>
                         <PopularNews type='Popular news' />
                     </div>
                 </div>
