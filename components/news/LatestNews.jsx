@@ -5,9 +5,29 @@ const Carousel = dynamic(() => import('react-multi-carousel'), { ssr: false });
 import 'react-multi-carousel/lib/styles.css';
 import SimpleNewsCard from './items/SimpleNewsCard';
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import useLiveNews from '../../hooks/useLiveNews';
 
 
 const LatestNews = ({news}) => {
+  // ─── SSE: Real-time news state ─────────────────────────────
+  // Server se jo initial news aayi (props), usse local state mein lete hain
+  // Taaki SSE se naya news aane par state update ho sake aur UI refresh ho
+  const [liveNews, setLiveNews] = useState(news || []);
+
+  // Props change hone par (server revalidation) state sync karo
+  useEffect(() => {
+    setLiveNews(news || []);
+  }, [news]);
+
+  // ─── SSE Hook: naya news aane par list ke top mein add karo ─
+  useLiveNews((newItem) => {
+    setLiveNews((prev) => {
+      // Duplicate check: same _id ka news already hai toh mat add karo
+      const alreadyExists = prev.some((n) => n._id === newItem._id);
+      if (alreadyExists) return prev;
+      return [newItem, ...prev]; // naya item top pe
+    });
+  });
 
 
   const responsive = {
@@ -46,8 +66,8 @@ const LatestNews = ({news}) => {
           infinite={true}
           transitionDuration={500}
         >
-          {news.map((item, i) => (
-            <SimpleNewsCard item={item} key={i} type='latest' />
+          {liveNews.map((item, i) => (
+            <SimpleNewsCard item={item} key={item._id || i} type='latest' />
           ))}
         </Carousel>
   

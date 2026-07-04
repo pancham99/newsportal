@@ -1,11 +1,8 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import { AuthProvider } from "../context/AuthContext";
 import { base_api_url } from "../config/config";
 import Footer from '../components/Footer';
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default async function  RootLayout({ children }) {
 
@@ -18,7 +15,7 @@ export default async function  RootLayout({ children }) {
   const { news } = await news_data?.json()
   return (
     <html lang="hi">
-      <body className={inter.className}>
+      <body>
         <AuthProvider>
           <Header />
           <main>
