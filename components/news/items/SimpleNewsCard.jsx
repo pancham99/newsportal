@@ -6,6 +6,8 @@ import dynamic from 'next/dynamic';
 const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
 
 const SimpleNewsCard = ({ item, type }) => {
+    console.log('SimpleNewsCard item:', item);
+    
     const formattedDate = moment
         .utc(item?.createdAt)
         .tz("Asia/Kolkata")

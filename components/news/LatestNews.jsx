@@ -8,6 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 
 const LatestNews = ({news}) => {
+  console.log('LatestNews component received news:', news);
 
 
   const responsive = {
