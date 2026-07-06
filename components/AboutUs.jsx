@@ -14,16 +14,16 @@ const ReadMoreText = ({ text, maxLength = 300 }) => {
                 {expanded || !isLong
                     ? text
                     : `${text.substring(0, maxLength)}...`}  {isLong && (
-                <button
-                    onClick={() => setExpanded(!expanded)}
-                    className=" text-red-600 text-sm font-semibold hover:text-red-700"
-                >
-                    {expanded ? "Read Less" : "Read More"}
-                </button>
-            )}
+                        <button
+                            onClick={() => setExpanded(!expanded)}
+                            className=" text-red-600 text-sm font-semibold hover:text-red-700"
+                        >
+                            {expanded ? "Read Less" : "Read More"}
+                        </button>
+                    )}
             </p>
 
-          
+
         </div>
     );
 };
@@ -63,9 +63,9 @@ const AboutUs = () => {
 
                         <ReadMoreText
                             maxLength={350}
-                            text={`Jagriti Mishra is the Founder and Chief Executive Officer (CEO) of Top Briefing, a digital news platform she established in 2024 with the vision of delivering accurate, timely, and trustworthy news to readers across India. She belongs to Bihar and currently lives in Gurugram, Haryana. Driven by a passion for journalism and digital media, Jagriti founded Top Briefing to create a platform where credibility, transparency, and responsible reporting are the highest priorities. Since its launch, she has led the organization's growth by focusing on factual reporting, innovative digital storytelling, and a reader-first approach. Alongside leading Top Briefing, Jagriti has built a successful career in the aviation and travel industry, where she has gained valuable experience in operations, quality assurance, customer service, and process management. Her corporate background has strengthened her leadership, analytical thinking, and decision-making abilities, which continue to guide the platform's development. As CEO, Jagriti oversees the company's strategic vision, editorial standards, and business growth. She works closely with the editorial, creative, and technology teams to ensure that every story published reflects the values of accuracy, integrity, and professionalism.Her journey from Bihar to building her career in Gurugram and launching Top Briefing in 2024 reflects her determination, resilience, and entrepreneurial spirit. She remains committed to making Top Briefing one of India's most trusted and respected digital news platforms."Our mission is to deliver truthful, unbiased, and impactful journalism that empowers readers with reliable information and builds public trust." – Jagriti Mishra`}
+                            text={`Jagriti Mishra is the Founder and Chief Executive Officer (CEO) of Top Briefing, a digital news platform she established in 2024 with the vision of delivering accurate, timely, and trustworthy news to readers across India. She belongs to Bihar and currently lives in Gurugram, Haryana. Driven by a passion for journalism and digital media, Jagriti founded Top Briefing to create a platform where credibility, transparency, and responsible reporting are the highest priorities. Since its launch, she has led the organization's growth by focusing on factual reporting, innovative digital storytelling, and a reader-first approach. Alongside leading Top Briefing, Jagriti has built a successful career in the aviation and travel industry, where she has gained valuable experience in operations, quality assurance, customer service, and process management. Her corporate background has strengthened her leadership, analytical thinking, and decision-making abilities, which continue to guide the platform's development. As CEO, Jagriti oversees the company's strategic vision, editorial standards, and business growth. She works closely with the editorial, creative, and technology teams to ensure that every story published reflects the values of accuracy, integrity, and professionalism.Her journey from Bihar to building her career in Gurugram and launching Top Briefing in 2024 reflects her determination, resilience, and entrepreneurial spirit. She remains committed to making Top Briefing one of India's most trusted and respected digital news platforms.`}
                         />
-                        <p className="text-lg text-blue-600 font-semibold mt-2">B.Com | Delhi University</p>
+                        {/* <p className="text-lg text-blue-600 font-semibold mt-2">B.Com | Delhi University</p> */}
                     </div>
 
                     {/* Director */}
