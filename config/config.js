@@ -1,8 +1,8 @@
 const production = 'production';
 const local = 'dev';
 
-const local_api_url = 'https://bakendtopbrefing.vercel.app/api';  
-const production_api_url = 'https://bakendtopbrefing.vercel.app/api';
+const local_api_url = 'http://localhost:5001';  
+// const production_api_url = 'https://bakendtopbrefing.vercel.app';
 
 // const local_api_url = 'http://localhost:5001';  
 // const production_api_url = 'http://localhost:5001';
