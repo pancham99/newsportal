@@ -10,6 +10,7 @@ const LatestNews = dynamic(() => import("../news/LatestNews"));
 const PopularNews = dynamic(() => import("../news/PopularNews"));
 const Title = dynamic(() => import("../Title"));
 import SimpleTypeCard from '../news/items/SimpleTypeCard';
+import BreakingNewsSlider from '../BreakingNewsSlider';
 
 const Permostion = dynamic(() => import("../Permostion"));
 import RecentNews from "../news/RecentNews";
@@ -139,6 +140,7 @@ const Home = async ({ news }) => {
                 <Stories />
               </div>
             </div>
+            <BreakingNewsSlider/>
 
             <div className="w-full lg:mt-2 mt-6">
               <div className="flex flex-wrap">
