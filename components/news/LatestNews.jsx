@@ -8,9 +8,6 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 
 const LatestNews = ({news}) => {
-  console.log('LatestNews component received news:', news);
-
-
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 1 },
     desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
