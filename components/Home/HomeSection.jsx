@@ -23,6 +23,7 @@ import Footer from '../Footer';
 import { base_api_url } from '../../config/config';
 
 
+
 const Home = async ({ news }) => {
 
   const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
@@ -58,9 +59,14 @@ const Home = async ({ news }) => {
 
   const trendingData = await trendingRes.json();
   const trendingNews = trendingData?.news ?? [];
+
+
+
+  
   return (
     <div>
       <main>
+            
         <Headlines news={news} />
         <div className="bg-slate-100 ">
           <div className="px-4 md:px-8 py-8">
