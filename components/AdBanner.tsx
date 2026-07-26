@@ -40,7 +40,6 @@ export default function AdBanner({
   const pushed = useRef(false);
 
   useEffect(() => {
-    // Guard: push only once per mount, and only when adsbygoogle is available
     if (pushed.current) return;
     try {
       if (typeof window !== "undefined") {
@@ -53,14 +52,23 @@ export default function AdBanner({
     }
   }, []);
 
-  // Don't render during SSR — AdSense is client-only
-  if (typeof window === "undefined") return null;
+  // Set min-height placeholder based on format to eliminate CLS (Cumulative Layout Shift)
+  const minHeightClass =
+    adFormat === "rectangle"
+      ? "min-h-[250px]"
+      : adFormat === "vertical"
+      ? "min-h-[600px]"
+      : adFormat === "horizontal"
+      ? "min-h-[90px]"
+      : "min-h-[90px] md:min-h-[250px]";
 
   return (
-    <div className={`adsense-wrapper overflow-hidden text-center ${className}`}>
+    <div
+      className={`adsense-wrapper overflow-hidden text-center w-full flex items-center justify-center bg-gray-50/50 rounded-sm ${minHeightClass} ${className}`}
+    >
       <ins
         ref={adRef}
-        className="adsbygoogle"
+        className="adsbygoogle w-full"
         style={{ display: "block", ...style }}
         data-ad-client="ca-pub-8439565499673815"
         data-ad-slot={adSlot}

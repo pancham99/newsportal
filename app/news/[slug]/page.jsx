@@ -1,14 +1,12 @@
 import Image from "next/image";
 import VideoAdvertisement from '../../../components/VideoAdvertisement';
 import moment from 'moment-timezone';
-import dynamic from 'next/dynamic';
 import { getNews } from '../../../utils/getNews';
 import Breadcrumb from '../../../components/Breadcrumb';
 import Title from '../../../components/Title';
 import AdBanner from '../../../components/AdBanner';
 import CommentForm from '../../../components/CommentForm';
-
-const NewsDescription = dynamic(() => import('../../../components/news/NewsDescription'), { ssr: false });
+import NewsDescription from '../../../components/news/NewsDescription';
 
 /* ─────────────────────────────────────────────
    SEO: generateMetadata

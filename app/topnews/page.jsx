@@ -41,7 +41,7 @@ const SimpleNewsCard = dynamic(() => import("../../components/news/items/SimpleN
 const LatestNews = dynamic(() => import("../../components/news/LatestNews"));
 const PopularNews = dynamic(() => import("../../components/news/PopularNews"));
 const Title = dynamic(() => import("../../components/Title"));
-const VideoPlayer = dynamic(() => import("../../components/VideoPlayer"), { ssr: false });
+import VideoPlayer from "../../components/VideoPlayer";
 const AddModel = dynamic(() => import("../../components/AddModel"));
 const Permostion = dynamic(() => import("../../components/Permostion"));
 import RecentNews from "../../components/news/RecentNews";
@@ -347,7 +347,7 @@ export default Page
 // const LatestNews = dynamic(() => import("../components/news/LatestNews"));
 // const PopularNews = dynamic(() => import("../components/news/PopularNews"));
 // const Title = dynamic(() => import("../components/Title"));
-// const VideoPlayer = dynamic(() => import("../components/VideoPlayer"), { ssr: false });
+// import VideoPlayer from "../components/VideoPlayer";
 // const AddModel = dynamic(() => import("../components/AddModel"));
 // const Permostion = dynamic(() => import("../components/Permostion"));
 // import RecentNews from "../components/news/RecentNews";

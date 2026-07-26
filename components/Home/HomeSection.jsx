@@ -17,6 +17,7 @@ import ShortVideos from "../ShortVideos";
 import AdvertisementSection from "../AdvertisementSection";
 import { base_api_url } from '../../config/config';
 
+
 const Home = async ({ news }) => {
 
   const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
@@ -69,7 +70,7 @@ const Home = async ({ news }) => {
                     {
                       breakingNews?.map((item, i) => {
                         if (i < 4) {
-                          return <SimpleNewsCard key={i} item={item} />
+                          return <SimpleNewsCard key={i} item={item} priority={i === 0} />
                         }
                       })
                     }

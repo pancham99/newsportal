@@ -37,14 +37,15 @@ const NewsCard = ({ news }) => {
                     <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
                 </div>
             </div>
-            <div className="flex flex-col gap-y-1 w-[calc(100%-100px)] md:w-[calc(100%-160px)]  lg:w-[calc(100%-100px)] pl-3">
-                <Link href={`/news/category/${news?.category}`} className="text-sm font-semibold text-[#c80000]">{news?.category}</Link>
-
-                <Link href={`/news/${news?.slug}`} className="lg:text-sm text-xs font-semibold text-[#333333] hover:text-[#c80000]">{news?.title}</Link>
+            <div className="flex flex-col justify-between w-[calc(100%-100px)] md:w-[calc(100%-160px)] lg:w-[calc(100%-100px)] pl-3 py-0.5">
+                <div>
+                    <Link href={`/news/category/${news?.category}`} className="text-xs font-bold text-[#c80000] uppercase tracking-wider mb-1 block">{news?.category}</Link>
+                    <Link href={`/news/${news?.slug}`} className="text-xs sm:text-sm font-bold text-gray-900 leading-snug hover:text-[#c80000] line-clamp-2 block">{news?.title}</Link>
+                </div>
             
-                <div className='lg:flex flex-cols  gap-x-2 text-xs font-normal'>
+                <div className='flex items-center gap-x-2 text-[11px] text-gray-400 font-normal mt-1'>
                     <span>{formattedDate} / {formattedTime}</span>
-                    <span>{news?.writerName}</span>
+                    {news?.writerName && <span>• {news.writerName}</span>}
                 </div>
             </div>
         </div>

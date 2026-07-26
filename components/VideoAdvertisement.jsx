@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import bgimage from '../assets/image.jpeg';
 import { base_api_url } from "../config/config"
 import ReactPlayer from "react-player";
-import dynamic from "next/dynamic";
 import Title from './Title';
 
 const VideoAdvertisement = ({
@@ -16,15 +15,11 @@ const VideoAdvertisement = ({
     muted = false,
 }) => {
     const [permostion, setPermostion] = useState([]);
-    console.log(permostion, "permostion");
-
-
+    const [hasMounted, setHasMounted] = useState(false);
 
     const advertisement = permostion?.filter(
         item => item?.videotype === 'advertisement' && item?.status !== 'deactive'
     );
-
-    console.log(advertisement, "advertisement");
 
     const get_permostion = async () => {
         try {
@@ -38,11 +33,11 @@ const VideoAdvertisement = ({
     };
 
     useEffect(() => {
+        setHasMounted(true);
         get_permostion();
     }, []);
 
-
-    // ⛔ If banner is not found (deactive or not exist), don't render the div
+    if (!hasMounted) return null;
     if (!advertisement) return null;
 
     return (
@@ -53,8 +48,6 @@ const VideoAdvertisement = ({
                         {
                             advertisement?.slice(0, 3).map((item, index) => (
                                 <div key={index} className='flex flex-col w-full h-full rounded-md gap-4 p-4' >
-                                    {/* <h1>{item?.title}</h1> */}
-                                    {/* <Title title={item?.title} /> */}
                                     <ReactPlayer
                                         url={item?.videos}
                                         width={width}
@@ -81,6 +74,4 @@ const VideoAdvertisement = ({
     );
 };
 
-// export default VideoAdvertisement;
-
-export default dynamic(() => Promise.resolve(VideoAdvertisement), { ssr: false });
+export default VideoAdvertisement;
