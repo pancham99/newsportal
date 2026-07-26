@@ -12,10 +12,16 @@ import NewsDescription from '../../../components/news/NewsDescription';
    SEO: generateMetadata
    ───────────────────────────────────────────── */
 export async function generateMetadata({ params }) {
-    const { news } = await getNews(params?.slug);
+
+        const { slug } = await params;
+        console.log('slug', slug);
+
+    const { news } = await getNews(slug);
+    // const { news } = await getNews(params?.slug);
+    
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim();
     const shortDesc = cleanDescription.slice(0, 155) || 'Top Briefing पर पढ़ें ताजा हिंदी खबरें।';
-    const canonicalUrl = `https://topbriefing.in/news/${params?.slug}`;
+    const canonicalUrl = `https://topbriefing.in/news/${slug}`;
     const newsImage = news?.image || 'https://topbriefing.in/logo.png';
     const articleTitle = news?.title || 'Top Briefing - Hindi News';
 
@@ -157,7 +163,10 @@ function BreadcrumbSchema({ category, title, slug }) {
    Page Component
    ───────────────────────────────────────────── */
 const Details = async ({ params }) => {
-    const { news } = await getNews(params?.slug);
+        const { slug } = await params;
+
+    const { news } = await getNews(slug);
+    // const { news } = await getNews(params?.slug);
 
     const formattedDate = moment.utc(news?.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY");
     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format("hh:mm A");
@@ -165,8 +174,8 @@ const Details = async ({ params }) => {
     return (
         <article>
             {/* Structured Data */}
-            <NewsArticleSchema news={news} slug={params?.slug} />
-            <BreadcrumbSchema category={news?.category} title={news?.title} slug={params?.slug} />
+            <NewsArticleSchema news={news} slug={slug} />
+            <BreadcrumbSchema category={news?.category} title={news?.title} slug={slug} />
 
             {/* Breadcrumb Nav */}
             <div className="bg-white shadow-sm py-3">
