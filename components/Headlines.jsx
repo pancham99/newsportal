@@ -9,9 +9,9 @@ const Headlines = ({ news }) => {
         <div className='bg-white shadow flex flex-wrap'>
             <div className='flex md:w-[170px] w-full bg-[#dddddd] relative after:absolute after:bg-[#dddddd] after:w-[20px] after:left-[160px] after:skew-x-[20deg] after:top-0 after:bottom-0 after:z-30'>
                 <div className='md:pl-8 pl-4 w-full py-2 flex justify-start items-center gap-x-1'>
-                    <spna>
+                    <span>
                         <LoadingSpinner type='Ripple' color={['#800000', '#c80000']} size={'30px'} />
-                    </spna>
+                    </span>
                     <h2 className='text-[#333333] font-semibold text-lg'>Headlines</h2>
                 </div>
             </div>

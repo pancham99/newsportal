@@ -46,14 +46,12 @@ const Footer = ({ news }) => {
                     <div className='w-full flex flex-col gap-y-[14px]'>
                         <div className='text-lg font-bold text-white relative before:absolute before:w-[4px] before:bg-[#c80000] before:h-full before:left-0 pl-3'>Top Brefing</div>
 
-                        <ul className="space-y-4">
-                            <li><Link href={"/about"} className='text-slate-300 text-md underline'>AboutUs</Link></li>
-                            <li><Link href={"/terms"} className='text-slate-300 text-md underline'>Terms & Policies</Link></li>
-                            <li><Link href={"/WriteForUs"} className='text-slate-300 text-md underline'>Write For Us</Link></li>
-                            <li><Link href={"/contact"} className='text-slate-300 text-md underline'>ContactUs</Link></li>
-
-
-
+                        <ul className="space-y-3">
+                            <li><Link href={"/about"} className='text-slate-300 text-sm hover:text-white underline'>About Us</Link></li>
+                            <li><Link href={"/privacy"} className='text-slate-300 text-sm hover:text-white underline'>Privacy Policy</Link></li>
+                            <li><Link href={"/terms"} className='text-slate-300 text-sm hover:text-white underline'>Terms & Disclaimer</Link></li>
+                            <li><Link href={"/WriteForUs"} className='text-slate-300 text-sm hover:text-white underline'>Write For Us</Link></li>
+                            <li><Link href={"/contact"} className='text-slate-300 text-sm hover:text-white underline'>Contact Us</Link></li>
                         </ul>
 
                         {/* <div className='grid grid-cols-3 gap-2'>
@@ -107,8 +105,8 @@ const Footer = ({ news }) => {
             <div className="bg-[#262323]">
                 <div className="px-4 md:px-8 py-5 flex flex-col md:flex-row gap-3 justify-between items-center">
                     <div className="flex gap-y-2 text-gray-400 justify-start items-center">
-                        <span>Copright @ 2026</span> {''}
-                        <Link href='https://www.youtube.com/results?search_query=top+briefing' className=' text-xs'> TopBriefing</Link>
+                        <span>Copyright © 2026</span> {''}
+                        <Link href='https://topbriefing.in' className=' text-xs ml-1 hover:underline'> TopBriefing. All Rights Reserved.</Link>
                     </div>
 
                     <div className='flex gap-2'>

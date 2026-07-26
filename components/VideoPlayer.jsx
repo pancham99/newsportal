@@ -1,10 +1,6 @@
-// components/VideoPlayer.tsx
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
-import dynamic from "next/dynamic";
-
-
 
 const VideoPlayer = ({
   url,
@@ -15,6 +11,16 @@ const VideoPlayer = ({
   loop = false,
   muted = false,
 }) => {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return <div className="aspect-video w-full max-w-3xl mx-auto bg-gray-100 dark:bg-gray-800 rounded-xl animate-pulse" />;
+  }
+
   return (
     <div className="aspect-video w-full max-w-3xl mx-auto">
       <ReactPlayer
@@ -31,4 +37,4 @@ const VideoPlayer = ({
   );
 };
 
-export default dynamic(() => Promise.resolve(VideoPlayer), { ssr: false });
+export default VideoPlayer;

@@ -32,9 +32,19 @@ const AdvertisementSection = ({ pageTarget, deviceTarget, placementKey }) => {
     fetchBanner();
   }, [pageTarget, deviceTarget, placementKey]);
 
-  if (loading) return <p className="text-center py-4">Loading advertisement...</p>;
+  if (loading)
+    return (
+      <div className="w-full h-48 border border-gray-200 bg-gray-100 flex items-center justify-center text-xs text-gray-400 animate-pulse">
+        Loading advertisement...
+      </div>
+    );
 
-  if (!banner) return <p className="w-full h-48 border border-gray-300 bg-gray-200 flex items-center justify-center">Advertisement</p>;
+  if (!banner)
+    return (
+      <div className="w-full h-48 border border-gray-200 bg-gray-50 flex items-center justify-center text-xs text-gray-400">
+        Advertisement
+      </div>
+    );
 
   return (
     <div className="w-full ">
