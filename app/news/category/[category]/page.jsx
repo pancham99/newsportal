@@ -98,11 +98,18 @@ const Page = async ({ params }) => {
                     <div className='flex flex-wrap'>
                         <div className='w-full xl:w-8/12'>
                             <div className='w-full pr-0 xl:pr-4'>
-                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
-                                    {allnew?.map((tems, i) => (
-                                        <SimpleDetailsNewsCard news={tems} key={i} type='details-news' height={200} />
-                                    ))}
-                                </div>
+                                {allnew?.length > 0 ? (
+                                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
+                                        {allnew?.map((tems, i) => (
+                                            <SimpleDetailsNewsCard news={tems} key={i} type='details-news' height={200} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className='bg-white p-8 rounded text-center text-gray-500 shadow-sm'>
+                                        <p className='text-base font-semibold'>इस श्रेणी में वर्तमान में कोई नया समाचार उपलब्ध नहीं है।</p>
+                                        <p className='text-xs text-gray-400 mt-1'>कृपया अन्य श्रेणियों की ताजा खबरें देखें।</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='w-full xl:w-4/12'>

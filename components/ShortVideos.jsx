@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useRef } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useRef, useState, useEffect } from 'react';
 import ReactPlayer from 'react-player';
 import useFetch from '../hooks/useFetch';
 import { base_api_url } from "../config/config";
@@ -16,11 +15,15 @@ const ShortVideos = ({
 }) => {
   const { data, loading, error } = useFetch(`${base_api_url}/api/video/getall`);
   const scrollRef = useRef();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const activeVideos = (data?.data || []).filter(
     (item) => item?.status === 'active'
   );
-  console.log(activeVideos, "activeVideos");
 
   const scrollLeft = () => {
     scrollRef.current?.scrollBy({
@@ -36,7 +39,7 @@ const ShortVideos = ({
     });
   };
 
-  if (loading) return <p className="p-4 text-center">Loading videos...</p>;
+  if (!hasMounted || loading) return <p className="p-4 text-center">Loading videos...</p>;
   if (error) return <p className="p-4 text-center text-red-500">Error loading videos</p>;
   if (activeVideos.length === 0) return <p className="p-4 text-center">No active videos available</p>;
 
@@ -86,4 +89,4 @@ const ShortVideos = ({
   );
 };
 
-export default dynamic(() => Promise.resolve(ShortVideos), { ssr: false });
+export default ShortVideos;

@@ -69,15 +69,27 @@ export default async function RootLayout({ children }) {
     foundingDate: '2023',
     description: 'Top Briefing is India\'s trusted Hindi news portal covering breaking news, politics, sports, entertainment, technology and more.',
     inLanguage: 'hi',
-  }
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Top Briefing',
+    url: 'https://topbriefing.in',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://topbriefing.in/news/search?value={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
 
   return (
     <html lang="hi">
       <body className={inter.className}>
-        {/* Organization schema for Google Knowledge Panel */}
+        {/* Structured Data: Organization & WebSite Schemas */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema, websiteSchema]) }}
         />
         <AuthProvider>
           <Header />

@@ -75,6 +75,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  unoptimized: true,
   reactStrictMode: true,
   images: {
     // unoptimized removed — enables Next.js image optimization (WebP/AVIF, resizing, caching)

@@ -5,7 +5,7 @@ const { convert } = require('html-to-text');
 import moment from 'moment-timezone';
 import NewsDescription from '../NewsDescription';
 
-const SimpleDetailsNewsCard = ({ news, type, height }) => {
+const SimpleDetailsNewsCard = ({ news, type, height, priority = false }) => {
   const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
   const shortText = plainText.slice(0, 300);
 
@@ -25,7 +25,7 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
       <div className='group relative overflow-hidden'>
         <div style={{ height: `${height}px` }} className={`w-full  group-hover:scale-[1.1] transition-all duration-[1s]`}>
           <Image
-            loading="lazy"
+            {...(priority ? { priority: true } : { loading: "lazy" })}
             quality={85}
             width={400}
             height={height || 200}
@@ -50,19 +50,22 @@ const SimpleDetailsNewsCard = ({ news, type, height }) => {
         </div>
       </div>
 
-      <div className='p-5'>
-        <Link className='text-sm font-semibold text-[#333333] hover:text-[#c80000]' href={`/news/${news?.slug}`}><h2>{news?.title}</h2></Link>
-        {news?.shortDescription && (
-          <p className='prose max-w-none text-sm'>{news.shortDescription}</p>
-          // <NewsDescription description={news.shortDescription} />
-        )}
-
-
-        <div className='flex gap-x-2 text-xs font-normal'>
-          <span className='flex gap-x-2 text-xs font-normal'>{formattedDate} / {formattedTime}</span>
-          <span>{news?.writerName}</span>
+      <div className='p-4 sm:p-5 flex flex-col justify-between'>
+        <div>
+          <Link href={`/news/${news?.slug}`} className='text-base sm:text-lg font-bold text-gray-900 hover:text-[#c80000] leading-snug block mb-2 transition-colors duration-200'>
+            <h2 className='line-clamp-2'>{news?.title}</h2>
+          </Link>
+          {news?.shortDescription && (
+            <p className='text-xs sm:text-sm text-gray-600 font-normal leading-relaxed line-clamp-2 mb-3 mt-1'>
+              {news.shortDescription.replace(/<[^>]*>/g, '')}
+            </p>
+          )}
         </div>
 
+        <div className='flex items-center gap-x-2 text-xs text-gray-400 font-medium pt-2 border-t border-gray-100 mt-2'>
+          <span>{formattedDate} / {formattedTime}</span>
+          {news?.writerName && <span>• {news.writerName}</span>}
+        </div>
       </div>
     </div>
   )

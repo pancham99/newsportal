@@ -75,7 +75,7 @@ const Home = async ({ news }) => {
                     {
                       breakingNews?.map((item, i) => {
                         if (i < 4) {
-                          return <SimpleNewsCard key={i} item={item} />
+                          return <SimpleNewsCard key={i} item={item} priority={i === 0} />
                         }
                       })
                     }
