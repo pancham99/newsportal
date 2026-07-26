@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-
 const Headlines = dynamic(() => import("../Headlines"));
 const DetailsNews = dynamic(() => import("../news/items/DetailsNews"));
 const DetailsNewsCol = dynamic(() => import("../news/items/DetailsNewsCol"));
@@ -11,15 +10,11 @@ const PopularNews = dynamic(() => import("../news/PopularNews"));
 const Title = dynamic(() => import("../Title"));
 import SimpleTypeCard from '../news/items/SimpleTypeCard';
 import BreakingNewsSlider from '../BreakingNewsSlider';
-
 const Permostion = dynamic(() => import("../Permostion"));
 import RecentNews from "../news/RecentNews";
 import Stories from "../Stories"
-
 import ShortVideos from "../ShortVideos";
 import AdvertisementSection from "../AdvertisementSection";
-import LatestVideosSection from "../videoSection/LatestVideoAction";
-import Footer from '../Footer';
 import { base_api_url } from '../../config/config';
 
 
@@ -55,12 +50,12 @@ const Home = async ({ news }) => {
   if (!trendingRes.ok) {
     console.error("Trending API failed");
   }
-
   const trendingData = await trendingRes.json();
   const trendingNews = trendingData?.news ?? [];
   return (
     <div>
       <main>
+
         <Headlines news={news} />
         <div className="bg-slate-100 ">
           <div className="px-4 md:px-8 py-8">
@@ -120,9 +115,6 @@ const Home = async ({ news }) => {
                         <p className="text-gray-500 p-4"></p>
                       )
                   }
-
-
-
                   <DetailsNews news={news['स्वास्थ्य']} category='स्वास्थ्य' />
                 </div>
                 <div className="w-full lg:w-4/12">
@@ -140,7 +132,7 @@ const Home = async ({ news }) => {
                 <Stories />
               </div>
             </div>
-            <BreakingNewsSlider/>
+            <BreakingNewsSlider />
 
             <div className="w-full lg:mt-2 mt-6">
               <div className="flex flex-wrap">
