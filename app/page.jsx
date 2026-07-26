@@ -161,10 +161,13 @@ const Home = async () => {
   const { news } = await getHomeNews();
 
   return (
-    <>
+    <div className="">
+
       <WebSiteSchema />
       <HomeSection news={news} />
-    </>
+
+    </div>
+    
   );
 };
 
