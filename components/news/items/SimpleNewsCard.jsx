@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import NewsDescription from '../NewsDescription';
 
 const SimpleNewsCard = ({ item, type, priority = false }) => {
-    console.log('SimpleNewsCard item:', item);
+    // console.log('SimpleNewsCard ite/m:', item);
     
     const formattedDate = moment
         .utc(item?.createdAt)
