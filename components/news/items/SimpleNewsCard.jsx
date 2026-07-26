@@ -6,7 +6,7 @@ import NewsDescription from '../NewsDescription';
 
 const SimpleNewsCard = ({ item, type, priority = false }) => {
     console.log('SimpleNewsCard item:', item);
-    
+
     const formattedDate = moment
         .utc(item?.createdAt)
         .tz("Asia/Kolkata")
