@@ -11,8 +11,9 @@ import AdvertisementSection from '../../../../components/AdvertisementSection'
 import AdBanner from '../../../../components/AdBanner'
 
 export async function generateMetadata({ params }) {
-    const decodedCategory = decodeURIComponent(params.category)
-    const canonicalUrl = `https://topbriefing.in/news/category/${params.category}`
+     const { category } = await params;
+    const decodedCategory = decodeURIComponent(category)
+    const canonicalUrl = `https://topbriefing.in/news/category/${category}`
 
     return {
         title: `${decodedCategory} समाचार - ताजा हिंदी खबरें | Top Briefing`,
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }) {
 }
 
 const Page = async ({ params }) => {
-    const { category } = params
+    const { category } = await params
     const decodedCategory = decodeURIComponent(category)
 
     const data = await fetch(`${base_api_url}/api/news/category/${decodedCategory}`, {

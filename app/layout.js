@@ -94,7 +94,7 @@ export default async function RootLayout({ children }) {
         <AuthProvider>
           <Header />
           <main>
-            <div className="container mx-auto">
+            <div className="container mx-auto hidden">
               {children}
             </div>
           </main>
