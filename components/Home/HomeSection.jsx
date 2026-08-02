@@ -1,333 +1,319 @@
-import dynamic from 'next/dynamic'
-const Headlines = dynamic(() => import("../Headlines"));
-const DetailsNews = dynamic(() => import("../news/items/DetailsNews"));
-const DetailsNewsCol = dynamic(() => import("../news/items/DetailsNewsCol"));
-const DetailsNewsRow = dynamic(() => import("../news/items/DetailsNewsRow"));
-const NewsCard = dynamic(() => import("../news/items/NewsCard"));
-const SimpleNewsCard = dynamic(() => import("../news/items/SimpleNewsCard"));
-const LatestNews = dynamic(() => import("../news/LatestNews"));
-const PopularNews = dynamic(() => import("../news/PopularNews"));
-const Title = dynamic(() => import("../Title"));
-import SimpleTypeCard from '../news/items/SimpleTypeCard';
-import BreakingNewsSlider from '../BreakingNewsSlider';
-const Permostion = dynamic(() => import("../Permostion"));
-import RecentNews from "../news/RecentNews";
-import Stories from "../Stories"
-import ShortVideos from "../ShortVideos";
-import AdvertisementSection from "../AdvertisementSection";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import Marquee from 'react-fast-marquee';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FaFire, FaBell, FaCalendarAlt, FaPlay } from 'react-icons/fa';
+import moment from 'moment-timezone';
+import LatestNewsGrid from './LatestNewsGrid';
+import CategoryGridSection from './CategoryGridSection';
+import VideoUpdatesSection from './VideoUpdatesSection';
 import { base_api_url } from '../../config/config';
 
+// Fallback data matching reference image exact text
+const defaultHeroMain = {
+  category: 'अंतरराष्ट्रीय',
+  title: 'अमेरिका ने दागा ईरान पर हमला... ट्रंप बोले ईरान की अपील पर किया हमला',
+  description: 'कास्तिलो राष्ट्रपति डोनाल्ड ट्रंप ने दावा किया है कि अमेरिका और इज़राइल द्वारा ईरान संगठित वह सैन्य हमले के...',
+  date: '02 Aug 2026, 09:01 AM',
+  writerName: 'Ankit',
+  image: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&auto=format&fit=crop&q=80',
+  slug: 'us-iran-strike-trump-statement'
+};
 
-const Home = async ({ news }) => {
+const defaultMiddleList = [
+  {
+    title: 'भारत और रूस के बीच नई ऊर्जा डील पर सहमति',
+    date: '02 Aug 2026 | 08:20 AM',
+    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&auto=format&fit=crop&q=80',
+    slug: 'india-russia-energy-deal'
+  },
+  {
+    title: 'शेयर बाजार में आई बड़ी गिरावट, निवेशकों की बढ़ी चिंता',
+    date: '02 Aug 2026 | 07:10 AM',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&auto=format&fit=crop&q=80',
+    slug: 'stock-market-crash-update'
+  },
+  {
+    title: 'चीन की नई तकनीक से दुनिया में हलचल',
+    date: '02 Aug 2026 | 07:45 AM',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=80',
+    slug: 'china-new-technology'
+  },
+  {
+    title: 'ओलंपिक 2026: भारत को मिला एक और मेडल',
+    date: '02 Aug 2026 | 06:40 AM',
+    image: 'https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=400&auto=format&fit=crop&q=80',
+    slug: 'olympics-2026-india-medal'
+  }
+];
 
-  const latestRes = await fetch(`${base_api_url}/api/latest/news`, {
-    next: { revalidate: 300 }
-  });
+const defaultTrendingList = [
+  {
+    id: 1,
+    title: 'मानसून ने पकड़ी रफ्तार, कई राज्यों में भारी बारिश का अलर्ट',
+    time: '45 मिनट पहले',
+    slug: 'monsoon-alert-heavy-rain'
+  },
+  {
+    id: 2,
+    title: 'सुप्रीम कोर्ट का बड़ा फैसला, सरकार को लगा झटका',
+    time: '1 घंटा पहले',
+    slug: 'supreme-court-decision'
+  },
+  {
+    id: 3,
+    title: 'सोने की कीमतों में गिरावट, जानें ताजा रेट',
+    time: '2 घंटे पहले',
+    slug: 'gold-price-drop'
+  },
+  {
+    id: 4,
+    title: 'शेयर बाजार में तेजी, सेंसेक्स 500 अंक चढ़ा',
+    time: '3 घंटे पहले',
+    slug: 'sensex-rallies-500-points'
+  },
+  {
+    id: 5,
+    title: 'टीम इंडिया की शानदार जीत, फैंस में खुशी की लहर',
+    time: '4 घंटे पहले',
+    slug: 'team-india-victory'
+  }
+];
 
-  const { latestNews } = await latestRes.json();
-  const breakingRes = await fetch(
-    `${base_api_url}/api/breaking`,
-    {
-      next: { revalidate: 300 }
+const Home = async ({ news = {} }) => {
+  // Fetch latest, breaking, and trending API data safely
+  let latestNews = [];
+  let breakingNews = [];
+  let trendingNews = [];
+
+  try {
+    const latestRes = await fetch(`${base_api_url}/api/latest/news`, { next: { revalidate: 300 } });
+    if (latestRes.ok) {
+      const data = await latestRes.json();
+      latestNews = data?.latestNews || [];
     }
-  );
-
-  if (!breakingRes.ok) {
-    console.error("Breaking API failed");
+  } catch (err) {
+    console.error("Latest API fetch error", err);
   }
 
-  const breakingData = await breakingRes.json();
-
-  const breakingNews = breakingData?.news ?? [];
-
-  const trendingRes = await fetch(
-    `${base_api_url}/api/trending`,
-    {
-      next: { revalidate: 300 }
+  try {
+    const breakingRes = await fetch(`${base_api_url}/api/breaking`, { next: { revalidate: 300 } });
+    if (breakingRes.ok) {
+      const data = await breakingRes.json();
+      breakingNews = data?.news || [];
     }
-  );
-
-  if (!trendingRes.ok) {
-    console.error("Trending API failed");
+  } catch (err) {
+    console.error("Breaking API fetch error", err);
   }
-  const trendingData = await trendingRes.json();
-  const trendingNews = trendingData?.news ?? [];
+
+  try {
+    const trendingRes = await fetch(`${base_api_url}/api/trending`, { next: { revalidate: 300 } });
+    if (trendingRes.ok) {
+      const data = await trendingRes.json();
+      trendingNews = data?.news || [];
+    }
+  } catch (err) {
+    console.error("Trending API fetch error", err);
+  }
+
+  // Format data with fallbacks matching reference screenshot
+  const heroMainItem = latestNews[0] || defaultHeroMain;
+  const middleItems = latestNews.length >= 5 ? latestNews.slice(1, 5) : defaultMiddleList;
+  const trendingItemsList = trendingNews.length >= 5 ? trendingNews.slice(0, 5) : defaultTrendingList;
+
+  const breakingTickerText = breakingNews.length > 0
+    ? breakingNews.map(item => item.title).join(" • ")
+    : "भारत और रूस के बीच नई ऊर्जा डील पर सहमति, व्यापार और निवेश बढ़ेगा";
+
   return (
-    <div>
-      <main>
+    <div className="bg-[#f8f9fa] min-h-screen text-gray-800 font-sans relative">
 
-        <Headlines news={news} />
-        <div className="bg-slate-100 ">
-          <div className="px-4 md:px-8 py-8">
-            <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12">
-                <LatestNews news={latestNews} />
-              </div>
-              <div className="w-full lg:w-6/12 mt-5 lg:mt-0">
-                <div className="flex w-full flex-col  gap-y-[14px] pl-0 lg:pl-2">
-                  <Title title="Breaking News" />
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {
-                      breakingNews?.map((item, i) => {
-                        if (i < 4) {
-                          return <SimpleNewsCard key={i} item={item} priority={i === 0} />
-                        }
-                      })
-                    }
-                    {/* {
-                    
-                      breakingNews.slice(0, 4).map((item, i) => (
-                        <SimpleTypeCard key={i} item={item} type={"Breaking News"} />
-                      ))
-                    } */}
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Floating Sticky Right Subscribe Banner */}
+      <a 
+        href="#subscribe"
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#cc0000] text-white py-3 px-1.5 rounded-l-lg font-bold text-xs shadow-xl hover:bg-red-700 transition-all flex flex-col items-center gap-2 cursor-pointer group"
+        style={{ writingMode: 'vertical-rl' }}
+      >
+        <div className="flex items-center gap-1">
+          <span className="rotate-90 inline-block font-extrabold text-sm">›</span>
+          <span className="tracking-widest uppercase text-[11px]">SUBSCRIBE</span>
+          <FaBell className="text-xs rotate-90 group-hover:scale-110 transition-transform" />
+        </div>
+      </a>
 
-            <div>
+      {/* Main Container */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
 
-            </div>
+        {/* 1. Breaking News Marquee Ticker */}
+        <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2">
+          {/* Red Pill Badge */}
+          <div className="bg-[#cc0000] text-white text-xs font-black px-3 py-1.5 rounded flex items-center gap-1 shrink-0 uppercase tracking-wide">
+            <span className="text-amber-300">⚡</span>
+            <span>BREAKING NEWS</span>
+          </div>
 
-            {/* <LatestVideosSection
-              title={"topbreaking videos"}
-              subtitle={"देखें ताज़ा वीडियो"}
+          {/* Marquee Scrolling Ticker */}
+          <div className="flex-1 overflow-hidden text-xs md:text-sm font-semibold text-gray-800">
+            <Marquee speed={45} pauseOnHover={true} gradient={false}>
+              <span className="pr-12">⚡ {breakingTickerText}</span>
+            </Marquee>
+          </div>
 
-            /> */}
-            <PopularNews items={trendingNews} />
-
-            {/* first section */}
-
-            <div className="w-full">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12">
-
-                  {
-                    news['राष्ट्रीय']?.length > 0
-                      ? (
-                        <DetailsNewsRow
-                          news={news['राष्ट्रीय']}
-                          category='राष्ट्रीय'
-                          type='details-news'
-                        />
-                      )
-                      : (
-                        <p className="text-gray-500 p-4"></p>
-                      )
-                  }
-                  <DetailsNews news={news['स्वास्थ्य']} category='स्वास्थ्य' />
-                </div>
-                <div className="w-full lg:w-4/12">
-                  <DetailsNewsCol news={news['शिक्षा']} category='शिक्षा' />
-
-                </div>
-              </div>
-            </div>
-
-            {/* second section */}
-
-            <div className='lg:mt-0 mt-6 '>
-              <Title title="बड़ी ख़बरें" />
-              <div className='p-1 py-2 bg-white'>
-                <Stories />
-              </div>
-            </div>
-            <BreakingNewsSlider />
-
-            <div className="w-full lg:mt-2 mt-6">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-4/12 h-full">
-                  <div className="pr-2">
-                    <DetailsNewsCol news={news['मनोरंजन']} category='मनोरंजन' />
-                    <div className=" bg-white shadow mt-2 p-4">
-                      <div className='py-1'>
-                        <Title title="शॉर्ट वीडियो" />
-                      </div>
-                      <ShortVideos />
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full lg:w-8/12 lg:mt-0 mt-4">
-                  <div className="pl-2">
-                    <DetailsNewsRow news={news['अंतरराष्ट्रीय']} category='अंतरराष्ट्रीय' type='details-news' />
-                    <DetailsNews news={news['प्रौद्योगिकी']} category='प्रौद्योगिकी' />
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-
-
-            <Permostion />
-
-
-
-            {/* 3rd section */}
-
-            <div className="w-full">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12">
-                  <div className="">
-                    <DetailsNewsRow news={news['भक्ति']} category='भक्ति' type='details-news' />
-                  </div>
-                  <div className='mt-2 bg-white w-full rounded-md lg:mr-4 p-2'>
-                    {/* <AdvertisementComp one={'0'} advertisement={'advertisement'} /> */}
-                    <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="top" />
-                  </div>
-                </div>
-                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
-                  <div className="pl-2">
-                    <Title title="ताजा खबरें" />
-                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      <RecentNews />
-                      {/* {
-                        news['खेल']?.map((item, i) => <NewsCard news={item} key={i} />)
-                      } */}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div className="w-full mt-2">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12">
-                  <div className="">
-                    {
-                      news['लाइफस्टाइल']?.length > 0
-                        ? (
-                          <DetailsNewsRow
-                            news={news['लाइफस्टाइल']}
-                            category='लाइफस्टाइल'
-                            type='details-news'
-                          />
-                        )
-                        : (
-                          <p className="text-gray-500 p-4"></p>
-                        )
-                    }
-                  </div>
-                </div>
-                <div className="w-full lg:w-4/12">
-                  <div className="pl-2">
-                    <Title title="अपराध" />
-                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      {
-                        news['अपराध']?.length > 0
-                          ? (
-                            news['अपराध'].map((item, i) => {
-                              if (i < 4) {
-                                return <NewsCard news={item} key={i} />
-                              }
-                            })
-                          )
-                          : (
-                            <p className="text-gray-500 p-4"></p>
-                          )
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full mt-2">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12">
-                  <div className="">
-                    {
-                      news['मौसम']?.length > 0
-                        ? (
-                          <DetailsNewsRow
-                            news={news['मौसम']}
-                            category='मौसम'
-                            type='details-news'
-                          />
-                        )
-                        : (
-                          <p className="text-gray-500 p-4"></p>
-                        )
-                    }
-                  </div>
-                </div>
-                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
-                  <div className="pl-2">
-
-                    {/* <Advertisement one={'1'} advertisement={'advertisement'} /> */}
-                    {/* <Title title="राशि" /> */}
-                    {news['राशि']?.length > 0 && <Title title="राशि" />}
-                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      {
-                        news['राशि']?.length > 0
-                          ? (
-                            news['राशि']?.map((item, i) => {
-                              if (i < 4) {
-                                return <NewsCard news={item} key={i} />
-                              }
-                              // <NewsCard news={item} key={i} />
-                            })
-                          )
-                          : (
-                            <p className="text-gray-500 p-4"></p>
-                          )
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div className="w-full mt-2">
-              <div className="flex flex-wrap">
-                <div className="w-full lg:w-8/12">
-                  <div className="">
-                    <DetailsNewsRow news={news['खेल']} category='खेल' type='details-news' />
-                  </div>
-                </div>
-                <div className="w-full lg:w-4/12 lg:mt-0 mt-4">
-                  <div className="pl-2">
-
-                    {news['बाज़ार']?.length > 0 && <Title title="बाज़ार" />}
-
-                    {/* <Title title="बाज़ार" /> */}
-                    <div className='grid grid-cols-1 gap-y-1 mt-3'>
-                      {
-                        news['बाज़ार']?.length > 0
-                          ? (
-                            news['बाज़ार'].map((item, i) => (
-                              <NewsCard news={item} key={i} />
-                            ))
-                          )
-                          : (
-                            <p className="text-gray-500 p-4"></p>
-                          )
-                      }
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-4 bg-white  rounded-md">
-
-              <AdvertisementSection pageTarget="home" deviceTarget="all" placementKey="bottom" />
-              {/* <AdvertisementSection pageTarget="home" deviceTarget="desktop" placementKey="bottom" /> */}
-
-            </div>
+          {/* Nav Control Arrows */}
+          <div className="hidden sm:flex items-center gap-1 shrink-0 px-1">
+            <button className="w-6 h-6 rounded border border-gray-200 text-gray-500 hover:text-red-600 flex items-center justify-center bg-gray-50">
+              <FiChevronLeft className="text-xs" />
+            </button>
+            <button className="w-6 h-6 rounded border border-gray-200 text-gray-500 hover:text-red-600 flex items-center justify-center bg-gray-50">
+              <FiChevronRight className="text-xs" />
+            </button>
           </div>
         </div>
 
+        {/* 2. Top Hero & Trending Grid (3 Columns) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8">
+          
+          {/* Column 1: Main Big Hero Card (~50% width / 6 cols) */}
+          <div className="lg:col-span-6 bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col justify-between">
+            <Link href={`/news/${heroMainItem.slug}`} className="group relative block w-full h-[320px] sm:h-[360px] overflow-hidden bg-gray-900">
+              <Image
+                src={heroMainItem.image || defaultHeroMain.image}
+                alt={heroMainItem.title || 'Hero Main News'}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+              />
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent p-5 flex flex-col justify-end">
+                {/* Red Pill Category Tag */}
+                <div>
+                  <span className="bg-[#cc0000] text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow-sm">
+                    {heroMainItem.category || 'अंतरराष्ट्रीय'}
+                  </span>
+                </div>
 
-      </main>
-      {/* <Footer news={news['राजनीति']} /> */}
+                {/* Big Headline */}
+                <h1 className="text-lg sm:text-xl font-extrabold text-white mt-2 leading-snug group-hover:text-red-200 transition-colors drop-shadow-md">
+                  {heroMainItem.title}
+                </h1>
+
+                {/* Excerpt */}
+                <p className="text-xs text-gray-300 font-normal mt-1.5 line-clamp-2 leading-relaxed opacity-90">
+                  {heroMainItem.description || defaultHeroMain.description}
+                </p>
+
+                {/* Meta Date & Writer */}
+                <div className="flex items-center gap-3 text-[11px] text-gray-300 font-medium mt-3">
+                  <span className="flex items-center gap-1">
+                    <FaCalendarAlt className="text-[10px] text-red-400" />
+                    {heroMainItem.createdAt ? moment.utc(heroMainItem.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY, hh:mm A") : (heroMainItem.date || '02 Aug 2026, 09:01 AM')}
+                  </span>
+                  <span>|</span>
+                  <span>{heroMainItem.writerName || 'Ankit'}</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Pagination Dots Footer */}
+            <div className="bg-white py-2 flex items-center justify-center gap-1.5 border-t border-gray-100">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
+              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
+            </div>
+          </div>
+
+          {/* Column 2: Middle Sub-List (4 Stacked Cards ~ 25% width / 3 cols) */}
+          <div className="lg:col-span-3 flex flex-col gap-3">
+            {middleItems.map((item, idx) => (
+              <Link
+                key={idx}
+                href={`/news/${item.slug || 'detail'}`}
+                className="group bg-white rounded-xl p-2.5 border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center gap-3"
+              >
+                {/* Thumbnail Image */}
+                <div className="relative w-20 h-16 rounded-lg overflow-hidden shrink-0 bg-gray-100">
+                  <Image
+                    src={item.image || defaultMiddleList[idx % 4].image}
+                    alt={item.title}
+                    fill
+                    sizes="80px"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Title & Date */}
+                <div className="flex flex-col justify-between flex-1 min-w-0">
+                  <h3 className="font-bold text-xs text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <span className="text-[10px] font-medium text-gray-400 mt-1 block">
+                    {item.createdAt ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY | hh:mm A") : (item.date || defaultMiddleList[idx % 4].date)}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Column 3: Trending News Card (~ 25% width / 3 cols) */}
+          <div className="lg:col-span-3 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-between">
+            <div>
+              {/* Header */}
+              <div className="flex items-center gap-2 pb-3 mb-3 border-b border-gray-100">
+                <FaFire className="text-red-600 text-base" />
+                <h2 className="font-extrabold text-base text-gray-900 tracking-tight">
+                  ट्रेंडिंग न्यूज़
+                </h2>
+              </div>
+
+              {/* Numbered List (1 to 5) */}
+              <div className="space-y-3.5">
+                {trendingItemsList.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={`/news/${item.slug || 'trending'}`}
+                    className="group flex items-start gap-3"
+                  >
+                    {/* Circle Number Badge */}
+                    <div className="w-5 h-5 rounded-full bg-[#cc0000] text-white flex items-center justify-center font-bold text-[11px] shrink-0 mt-0.5 shadow-xs">
+                      {index + 1}
+                    </div>
+
+                    {/* Headline & Relative Time */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-xs text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                        {item.title}
+                      </h3>
+                      <span className="text-[10px] font-medium text-gray-400 mt-0.5 block">
+                        {item.time || `${index + 1} घंटे पहले`}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 3. Section 1: Latest News Grid & Ad Card */}
+        <LatestNewsGrid news={latestNews} />
+
+        {/* 4. Section 2: News By Category Grid */}
+        <CategoryGridSection news={news} />
+
+        {/* 5. Section 3: Video Updates & Newsletter Subscription */}
+        <VideoUpdatesSection />
+
+      </div>
     </div>
   );
-}
-export default Home
+};
+
+export default Home;
+
 
 
 
