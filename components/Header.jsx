@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { FaFacebookF, FaChevronDown, FaBell } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import { IoSearchOutline, IoClose } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
@@ -109,31 +109,39 @@ const Header = () => {
                             </button>
                         )}
 
-                        {/* Social Media Buttons with Official Brand Colors */}
-                        <div className="flex items-center gap-1.5 ml-1">
+                        {/* Social Media Buttons with Official Brand Colors & Hover Animations */}
+                        <div className="flex items-center gap-2 ml-1">
                             <Link
                                 target="_blank"
                                 href="https://www.facebook.com/people/Top-Briefing/61552965021716/"
                                 aria-label="Facebook"
-                                className="w-6 h-6 rounded bg-[#1877F2] hover:opacity-85 text-white flex items-center justify-center transition-all shadow-sm"
+                                className="w-7 h-7 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
                             >
-                                <FaFacebookF className="text-[11px]" />
+                                <FaFacebookF className="text-[12px]" />
                             </Link>
                             <Link
                                 target="_blank"
                                 href="https://www.instagram.com/topbriefing/"
                                 aria-label="Instagram"
-                                className="w-6 h-6 rounded bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#cc2366] hover:opacity-85 text-white flex items-center justify-center transition-all shadow-sm"
+                                className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#cc2366] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
                             >
-                                <FaInstagram className="text-[11px] text-white" />
+                                <FaInstagram className="text-[12px] text-white" />
                             </Link>
                             <Link
                                 target="_blank"
                                 href="https://www.youtube.com/results?search_query=topbriefing"
                                 aria-label="YouTube"
-                                className="w-6 h-6 rounded bg-[#FF0000] hover:opacity-85 text-white flex items-center justify-center transition-all shadow-sm"
+                                className="w-7 h-7 rounded-full bg-[#FF0000] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
                             >
-                                <IoLogoYoutube className="text-[12px]" />
+                                <IoLogoYoutube className="text-[13px]" />
+                            </Link>
+                            <Link
+                                target="_blank"
+                                href="https://x.com/topbriefing"
+                                aria-label="X"
+                                className="w-7 h-7 rounded-full bg-gray-900 text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 border border-gray-300 shadow-sm"
+                            >
+                                <FaXTwitter className="text-[11px]" />
                             </Link>
                         </div>
                     </div>
