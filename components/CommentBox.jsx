@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { base_api_url } from "../config/config";
 
 const CommentBox = ({ newsId, onCommentAdded }) => {
-  const { user } = useAuth();
+  const { user, openModal } = useAuth();
   const router = useRouter();
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,8 @@ const CommentBox = ({ newsId, onCommentAdded }) => {
     e.preventDefault();
 
     if (!user) {
-      router.push("/authPage");
+      if (openModal) openModal("login");
+      else router.push("/authPage");
       return;
     }
 
@@ -52,6 +53,7 @@ const CommentBox = ({ newsId, onCommentAdded }) => {
         onChange={(e) => { setCommentText(e.target.value); setError(""); }}
         placeholder={user ? "अपना कमेंट लिखें..." : "कमेंट करने के लिए लॉगिन करें"}
         rows={3}
+        onClick={() => { if (!user && openModal) openModal("login"); }}
         disabled={!user}
         className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700
                    resize-none outline-none focus:border-red-400 focus:ring-1 focus:ring-red-100
@@ -63,10 +65,10 @@ const CommentBox = ({ newsId, onCommentAdded }) => {
         {!user && (
           <button
             type="button"
-            onClick={() => router.push("/authPage")}
-            className="text-xs text-red-600 underline"
+            onClick={() => { if (openModal) openModal("login"); else router.push("/authPage"); }}
+            className="text-xs text-red-600 font-semibold underline cursor-pointer"
           >
-            लॉगिन / रजिस्टर करें
+            लॉगिन / रजिस्टर करें (Social Login: Google, Facebook, Apple)
           </button>
         )}
         <button
