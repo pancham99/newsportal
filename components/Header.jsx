@@ -150,7 +150,7 @@ const Header = () => {
                         width={180}
                         height={58}
                         priority
-                        className="h-28 w-28"
+                        className="h-24 w-24"
                     />
                 </Link>
                 <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 flex items-center justify-between">
