@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import moment from 'moment-timezone';
 import Link from 'next/link';
@@ -23,7 +22,6 @@ const navMenuList = [
     { name: "टेक्नोलॉजी", slug: "टेक" },
     { name: "मनोरंजन", slug: "मनोरंजन" },
 ];
-
 const Header = () => {
     const pathname = usePathname();
     const router = useRouter();
@@ -81,7 +79,6 @@ const Header = () => {
     };
 
     const decodedCurrentCategory = decodeURIComponent(pathname.split("/")[3] || "");
-
     return (
         <header className="w-full font-sans sticky top-0 z-50 shadow-md">
             {/* Top Bar */}
