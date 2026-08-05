@@ -19,21 +19,17 @@ const Permostion = () => {
         }
     };
 
-    // ⬇️ Find banner that is promotion type AND active
+    // ⬇️ Find banner that is active
     const bannerItem = permostion?.find(
-        item => item.bannertype === 'promotion' && item.status !== 'deactive'
+        item => (item.status === 'active' || item.status === 'Approved') && item.status !== 'deactive' && item.status !== 'pending' && item.image
     );
 
  
-    // If no active promotion, fallback to local image
-    const bannerImage = bannerItem?.image || bgimage;
+    const bannerImage = bannerItem?.image || (typeof bgimage === 'string' ? bgimage : bgimage?.src);
 
     useEffect(() => {
         get_permostion();
     }, []);
-
-    // ⛔ If banner is not found (deactive or not exist), don't render the div
-    if (!bannerItem) return null;
 
     return (
         <div

@@ -57,15 +57,39 @@ const Page = async ({ params }) => {
     const { category } = await params
     const decodedCategory = decodeURIComponent(category)
 
-    const data = await fetch(`${base_api_url}/api/news/category/${decodedCategory}`, {
-        next: { revalidate: 60 }
-    });
-    const { news, relatedNews } = await data.json()
-    const news_data = await fetch(`${base_api_url}/api/all/news`, {
-        next: { revalidate: 300 },
-    });
-    const { news: allnews } = await news_data.json();
-    const allnew = allnews[decodedCategory] || [];
+    let newsRes = {};
+    try {
+        const data = await fetch(`${base_api_url}/api/news/category/${encodeURIComponent(decodedCategory)}`, {
+            next: { revalidate: 60 }
+        });
+        newsRes = await data.json();
+    } catch (e) {
+        console.error("Category fetch error:", e);
+    }
+    const { news = [], relatedNews = [] } = newsRes || {};
+
+    let allnews = {};
+    try {
+        const news_data = await fetch(`${base_api_url}/api/all/news`, {
+            next: { revalidate: 300 },
+        });
+        const parsed = await news_data.json();
+        allnews = parsed?.news || {};
+    } catch (e) {
+        console.error("All news fetch error:", e);
+    }
+
+    let allnew = [];
+    if (decodedCategory === 'all' || decodedCategory === 'latest' || decodedCategory === 'ALL') {
+        allnew = Object.values(allnews || {}).flat();
+        if (allnew.length === 0 && Array.isArray(news)) {
+            allnew = news;
+        }
+    } else {
+        allnew = (allnews && allnews[decodedCategory] && allnews[decodedCategory].length > 0)
+            ? allnews[decodedCategory]
+            : (Array.isArray(news) ? news : []);
+    }
 
     // BreadcrumbList JSON-LD
     const breadcrumbSchema = {

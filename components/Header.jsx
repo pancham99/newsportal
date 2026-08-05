@@ -11,6 +11,7 @@ import { IoSearchOutline, IoClose } from "react-icons/io5";
 import { HiMenu } from "react-icons/hi";
 import { base_api_url } from '../config/config';
 import useFetch from '../hooks/useFetch';
+import { useAuth } from '../context/AuthContext';
 
 const navMenuList = [
     { name: "Home", slug: "/", isHome: true },
@@ -25,6 +26,7 @@ const navMenuList = [
 const Header = () => {
     const pathname = usePathname();
     const router = useRouter();
+    const { user: authUser, logout: authLogout, openModal } = useAuth();
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -83,28 +85,28 @@ const Header = () => {
         <header className="w-full font-sans sticky top-0 z-50 shadow-md">
             {/* Top Bar */}
             <div className="bg-gray-50 text-gray-700 text-xs py-1.5 px-4 md:px-8 border-b border-gray-200">
-                <div className="max-w-7xl mx-auto flex flex-row justify-between items-center">
+                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-0">
                     {/* Left: Date & Time */}
-                    <div className="font-medium text-gray-600 text-xs md:text-sm tracking-wide">
+                    <div className="font-medium text-gray-600 text-[11px] sm:text-xs md:text-sm tracking-wide text-center sm:text-left">
                         {currentTime || moment().tz("Asia/Kolkata").format("dddd, MMMM D, YYYY | h:mm A")}
                     </div>
 
                     {/* Right: Login/Signup & Social Icons */}
                     <div className="flex items-center gap-3 md:gap-4">
-                        {user ? (
+                        {(authUser || user) ? (
                             <button
                                 onClick={handleLogout}
                                 className="text-[#C92726] hover:text-red-700 font-semibold text-xs md:text-sm hover:underline transition-colors"
                             >
-                                Logout ({user?.name || user?.role})
+                                Logout ({(authUser || user)?.name || (authUser || user)?.role})
                             </button>
                         ) : (
-                            <Link
-                                href="/authPage"
-                                className="text-[#C92726] hover:text-red-700 font-semibold text-xs md:text-sm hover:underline transition-colors"
+                            <button
+                                onClick={() => openModal('login')}
+                                className="text-[#C92726] hover:text-red-700 font-semibold text-xs md:text-sm hover:underline transition-colors cursor-pointer"
                             >
                                 Login / Signup
-                            </Link>
+                            </button>
                         )}
 
                         {/* Social Media Buttons with Official Brand Colors */}
@@ -140,20 +142,10 @@ const Header = () => {
 
             {/* Main Nav Bar: Deep Red background */}
             <div className="bg-[#C92726] text-white relative">
-                <Link href="/" className="flex items-center group py-0.5 absolute -top-4 left-10">
-                    <Image
-                        src="/logo.png"
-                        alt="Top Briefing Logo"
-                        width={180}
-                        height={58}
-                        priority
-                        className="h-24 w-24"
-                    />
-                </Link>
                 <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 flex items-center justify-between">
 
                     {/* Left: Mobile Menu Toggle & Logo */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 md:gap-4 shrink-0">
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="md:hidden text-white p-1 hover:bg-black/20 rounded"
@@ -163,7 +155,16 @@ const Header = () => {
                         </button>
 
                         {/* Top Briefing Logo */}
-
+                        <Link href="/" className="flex items-center group py-0.5">
+                            <Image
+                                src="/logo.png"
+                                alt="Top Briefing Logo"
+                                width={180}
+                                height={50}
+                                priority
+                                className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                            />
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation Links */}
@@ -272,13 +273,13 @@ const Header = () => {
                             <IoSearchOutline className="text-xl md:text-2xl" />
                         </button>
 
-                        <Link
-                            href="#subscribe"
-                            className="border border-white/90 rounded-full px-3.5 py-1 text-xs md:text-sm font-bold text-white flex items-center gap-1.5 hover:bg-white hover:text-[#900000] transition-all shadow-sm"
+                        <button
+                            onClick={() => openModal('subscribe')}
+                            className="border border-white/90 rounded-full px-3.5 py-1 text-xs md:text-sm font-bold text-white flex items-center gap-1.5 hover:bg-white hover:text-[#900000] transition-all shadow-sm cursor-pointer"
                         >
                             <FaBell className="text-xs" />
                             <span>SUBSCRIBE</span>
-                        </Link>
+                        </button>
                     </div>
                 </div>
 

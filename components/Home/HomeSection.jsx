@@ -8,6 +8,8 @@ import moment from 'moment-timezone';
 import LatestNewsGrid from './LatestNewsGrid';
 import CategoryGridSection from './CategoryGridSection';
 import VideoUpdatesSection from './VideoUpdatesSection';
+import TopBanner from './TopBanner';
+import HeroSlider from './HeroSlider';
 import { base_api_url } from '../../config/config';
 
 // Fallback data matching reference image exact text
@@ -129,10 +131,10 @@ const Home = async ({ news = {} }) => {
   return (
     <div className="bg-[#f8f9fa] min-h-screen text-gray-800 font-sans relative">
 
-      {/* Floating Sticky Right Subscribe Banner */}
+      {/* Floating Sticky Right Subscribe Banner (Desktop/Tablet) */}
       <a 
         href="#subscribe"
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#cc0000] text-white py-3 px-1.5 rounded-l-lg font-bold text-xs shadow-xl hover:bg-red-700 transition-all flex flex-col items-center gap-2 cursor-pointer group"
+        className="hidden sm:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#cc0000] text-white py-3 px-1.5 rounded-l-lg font-bold text-xs shadow-xl hover:bg-red-700 transition-all flex-col items-center gap-2 cursor-pointer group"
         style={{ writingMode: 'vertical-rl' }}
       >
         <div className="flex items-center gap-1">
@@ -144,6 +146,9 @@ const Home = async ({ news = {} }) => {
 
       {/* Main Container */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+
+        {/* 0. Top Advertisement Banner */}
+        <TopBanner />
 
         {/* 1. Breaking News Marquee Ticker */}
         <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2">
@@ -174,56 +179,8 @@ const Home = async ({ news = {} }) => {
         {/* 2. Top Hero & Trending Grid (3 Columns) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8">
           
-          {/* Column 1: Main Big Hero Card (~50% width / 6 cols) */}
-          <div className="lg:col-span-6 bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm flex flex-col justify-between">
-            <Link href={`/news/${heroMainItem.slug}`} className="group relative block w-full h-[320px] sm:h-[360px] overflow-hidden bg-gray-900">
-              <Image
-                src={heroMainItem.image || defaultHeroMain.image}
-                alt={heroMainItem.title || 'Hero Main News'}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-              />
-              {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent p-5 flex flex-col justify-end">
-                {/* Red Pill Category Tag */}
-                <div>
-                  <span className="bg-[#cc0000] text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider shadow-sm">
-                    {heroMainItem.category || 'अंतरराष्ट्रीय'}
-                  </span>
-                </div>
-
-                {/* Big Headline */}
-                <h1 className="text-lg sm:text-xl font-extrabold text-white mt-2 leading-snug group-hover:text-red-200 transition-colors drop-shadow-md">
-                  {heroMainItem.title}
-                </h1>
-
-                {/* Excerpt */}
-                <p className="text-xs text-gray-300 font-normal mt-1.5 line-clamp-2 leading-relaxed opacity-90">
-                  {heroMainItem.description || defaultHeroMain.description}
-                </p>
-
-                {/* Meta Date & Writer */}
-                <div className="flex items-center gap-3 text-[11px] text-gray-300 font-medium mt-3">
-                  <span className="flex items-center gap-1">
-                    <FaCalendarAlt className="text-[10px] text-red-400" />
-                    {heroMainItem.createdAt ? moment.utc(heroMainItem.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY, hh:mm A") : (heroMainItem.date || '02 Aug 2026, 09:01 AM')}
-                  </span>
-                  <span>|</span>
-                  <span>{heroMainItem.writerName || 'Ankit'}</span>
-                </div>
-              </div>
-            </Link>
-
-            {/* Pagination Dots Footer */}
-            <div className="bg-white py-2 flex items-center justify-center gap-1.5 border-t border-gray-100">
-              <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
-              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-              <span className="w-2 h-2 rounded-full bg-gray-300"></span>
-            </div>
-          </div>
+          {/* Column 1: Main Big Hero Card Slider (~50% width / 6 cols) */}
+          <HeroSlider slides={latestNews} />
 
           {/* Column 2: Middle Sub-List (4 Stacked Cards ~ 25% width / 3 cols) */}
           <div className="lg:col-span-3 flex flex-col gap-3">
