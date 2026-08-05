@@ -68,9 +68,9 @@ export default function LatestNewsGrid({ news = [] }) {
         {/* Left Cards Container (3 columns grid inside) */}
         <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {displayItems.map((item, index) => (
-            <Link 
+            <Link
               key={index}
-              href={`/news/${item.slug || 'detail'}`} 
+              href={`/news/${item.slug || 'detail'}`}
               className="group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col"
             >
               {/* Image Box */}
@@ -111,11 +111,17 @@ export default function LatestNewsGrid({ news = [] }) {
           <p className="text-sm font-semibold text-gray-700 mb-3">
             संपर्क करें
           </p>
-          <a 
-            href="mailto:ads@topbriefing.in" 
-            className="text-xs font-bold text-red-600 hover:underline bg-red-50 px-3 py-1.5 rounded-full border border-red-100"
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=topbreifing@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            // onClick={() => {
+            //   navigator.clipboard?.writeText("topbriefing@gmail.com");
+            // }}
+            title="Click to compose email in Gmail"
+            className="text-xs font-bold text-red-600 hover:bg-red-100 transition-colors bg-red-50 px-3 py-1.5 rounded-full border border-red-100 inline-flex items-center gap-1 cursor-pointer"
           >
-            ads@topbriefing.in
+            <span>topbreifing@gmail.com</span>
           </a>
         </div>
       </div>
