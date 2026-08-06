@@ -7,6 +7,26 @@ import moment from 'moment-timezone';
 import { FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import { FaCalendarAlt, FaUserEdit, FaFolderOpen } from 'react-icons/fa';
 
+const categoryIcons = {
+  'राजनीति': '🏛️',
+  'खेल': '🏏',
+  'बिजनेस': '📈',
+  'व्यापार': '📈',
+  'बाज़ार': '📊',
+  'टेक': '💻',
+  'प्रौद्योगिकी': '💻',
+  'मनोरंजन': '🎬',
+  'अंतरराष्ट्रीय': '🌐',
+  'भक्ति': '🛕',
+  'लाइफस्टाइल': '✨',
+  'अपराध': '⚖️',
+  'मौसम': '🌤️',
+  'राशि': '🔮',
+  'स्वास्थ्य': '🏥',
+  'शिक्षा': '📚',
+  'ऑटो': '🚗'
+};
+
 const defaultCategories = [
   {
     name: 'राजनीति',
@@ -30,11 +50,11 @@ const defaultCategories = [
     slug: 'बिजनेस'
   },
   {
-    name: 'टेक',
+    name: 'प्रौद्योगिकी',
     badgeIcon: '💻',
     count: '08 खबरें',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
-    slug: 'टेक'
+    slug: 'प्रौद्योगिकी'
   },
   {
     name: 'मनोरंजन',
@@ -42,6 +62,20 @@ const defaultCategories = [
     count: '12 खबरें',
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80',
     slug: 'मनोरंजन'
+  },
+  {
+    name: 'अंतरराष्ट्रीय',
+    badgeIcon: '🌐',
+    count: '10 खबरें',
+    image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&auto=format&fit=crop&q=80',
+    slug: 'अंतरराष्ट्रीय'
+  },
+  {
+    name: 'भक्ति',
+    badgeIcon: '🛕',
+    count: '08 खबरें',
+    image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&auto=format&fit=crop&q=80',
+    slug: 'भक्ति'
   },
   {
     name: 'लाइफस्टाइल',
@@ -113,11 +147,11 @@ const fallbackArticlesByCategory = {
       slug: 'rbi-repo-rate-unchanged-update'
     }
   ],
-  'टेक': [
+  'प्रौद्योगिकी': [
     {
       title: 'स्मार्टफोन की दुनिया में क्रांति: नया AI प्रोसेसर लॉन्च',
       description: 'टेक कंपनियों ने अगली पीढ़ी का सुपर-फास्ट AI चिपसेट पेश किया जो फोन की स्पीड को दोगुना करेगा...',
-      category: 'टेक',
+      category: 'प्रौद्योगिकी',
       date: '02 Aug 2026',
       writerName: 'Tech Desk',
       image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=80',
@@ -126,11 +160,22 @@ const fallbackArticlesByCategory = {
     {
       title: '5G नेटवर्क का विस्तार, अब हर छोटे शहर में तेज इंटरनेट',
       description: 'दूरसंचार कंपनियों ने देश के 500 से अधिक नए शहरों में अल्ट्रा-फास्ट 5G सेवाएं शुरू कर दी हैं...',
-      category: 'टेक',
+      category: 'प्रौद्योगिकी',
       date: '02 Aug 2026',
       writerName: 'Tech Desk',
       image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=80',
       slug: '5g-network-expansion-india'
+    }
+  ],
+  'अंतरराष्ट्रीय': [
+    {
+      title: 'वैश्विक शिखर सम्मेलन में जलवायु परिवर्तन पर बड़ा समझौता',
+      description: 'दुनिया के प्रमुख देशों ने कार्बन उत्सर्जन घटाने और ग्रीन एनर्जी को बढ़ावा देने पर ऐतिहासिक सहमति जताई...',
+      category: 'अंतरराष्ट्रीय',
+      date: '02 Aug 2026',
+      writerName: 'Global Desk',
+      image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=600&auto=format&fit=crop&q=80',
+      slug: 'global-climate-summit-agreement'
     }
   ],
   'मनोरंजन': [
@@ -153,6 +198,17 @@ const fallbackArticlesByCategory = {
       slug: 'ott-new-releases-this-weekend'
     }
   ],
+  'भक्ति': [
+    {
+      title: 'सावन के पावन अवसर पर शिवालयों में उमड़ा श्रद्धालुओं का जनसैलाब',
+      description: 'देशभर के प्रमुख मंदिरों में तड़के से ही जलाभिषेक और पूजा-अर्चना के लिए भक्तों की लंबी कतारें लगीं...',
+      category: 'भक्ति',
+      date: '02 Aug 2026',
+      writerName: 'Bhakti Desk',
+      image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&auto=format&fit=crop&q=80',
+      slug: 'sawan-pawan-shiv-temple-crowd'
+    }
+  ],
   'लाइफस्टाइल': [
     {
       title: 'हेल्दी लाइफस्टाइल के लिए अपनाएं ये 5 आसान आदतें',
@@ -170,7 +226,7 @@ export default function CategoryGridSection({ news = {} }) {
   const [selectedCategory, setSelectedCategory] = useState('सभी');
   const [visibleCount, setVisibleCount] = useState(6);
 
-  // Dynamic extra categories from API news object
+  // Dynamic category list compilation
   const newsCategoryKeys = Object.keys(news).filter(
     key => Array.isArray(news[key]) && news[key].length > 0
   );
@@ -179,7 +235,7 @@ export default function CategoryGridSection({ news = {} }) {
     .filter(key => !defaultCategories.some(cat => cat.name === key))
     .map(key => ({
       name: key,
-      badgeIcon: '📰',
+      badgeIcon: categoryIcons[key] || '📰',
       count: `${String(news[key].length).padStart(2, '0')} खबरें`,
       image: news[key][0]?.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80',
       slug: key
@@ -187,7 +243,7 @@ export default function CategoryGridSection({ news = {} }) {
 
   const allCategoriesList = [...defaultCategories, ...extraCategories];
 
-  // Helper to compile news items for active selection
+  // Helper to compile news items for active selection or specific category
   const getArticlesForCategory = (catName) => {
     if (catName === 'सभी') {
       let combined = [];
@@ -196,7 +252,6 @@ export default function CategoryGridSection({ news = {} }) {
           combined = [...combined, ...news[k]];
         }
       });
-      // Add fallbacks if empty or small
       if (combined.length < 6) {
         Object.values(fallbackArticlesByCategory).forEach(arr => {
           combined = [...combined, ...arr];
@@ -209,17 +264,16 @@ export default function CategoryGridSection({ news = {} }) {
     const fromFallback = fallbackArticlesByCategory[catName] || [];
     const merged = [...fromApi, ...fromFallback];
 
-    // deduplicate by title or slug
     const unique = merged.filter((item, index, self) =>
-      index === self.findIndex((t) => t.slug === item.slug || t.title === item.title)
+      index === self.findIndex((t) => (t.slug && t.slug === item.slug) || (t.title && t.title === item.title))
     );
 
-    return unique.length > 0 ? unique : fromFallback;
+    return unique.length > 0 ? unique : (fromFallback.length > 0 ? fromFallback : []);
   };
 
   const currentCategoryArticles = getArticlesForCategory(selectedCategory);
   const displayedArticles = currentCategoryArticles.slice(0, visibleCount);
-  const hasMore = visibleCount < currentCategoryArticles.length;
+  const hasMore = selectedCategory !== 'सभी' && visibleCount < currentCategoryArticles.length;
 
   const handleShowMore = () => {
     setVisibleCount(prev => prev + 6);
@@ -232,12 +286,12 @@ export default function CategoryGridSection({ news = {} }) {
 
   return (
     <section className="w-full my-8">
-      {/* 1. Section Top Bar */}
+      {/* 1. Section Main Top Bar */}
       <div className="flex items-center justify-between mb-5 border-b border-gray-200 pb-3">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-6 bg-[#cc0000] rounded-full inline-block"></span>
           <h2 className="text-xl font-extrabold text-gray-900 tracking-tight">
-            कैटेगरी से खबरें
+            कैटेगरी अनुसार खबरें (News By Categories)
           </h2>
         </div>
 
@@ -250,151 +304,177 @@ export default function CategoryGridSection({ news = {} }) {
         </Link>
       </div>
 
-      {/* 2. Top Category Quick Cards Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mb-6">
-        {allCategoriesList.map((cat, index) => {
-          const categoryNewsList = news[cat.name];
-          const latestCatImage = categoryNewsList && categoryNewsList[0]?.image
-            ? categoryNewsList[0].image
-            : cat.image;
 
-          const count = categoryNewsList && categoryNewsList.length > 0
-            ? `${String(categoryNewsList.length).padStart(2, '0')} खबरें`
-            : cat.count;
 
-          const isSelected = selectedCategory === cat.name;
-
-          return (
-            <button
-              key={index}
-              onClick={() => handleCategorySelect(cat.name)}
-              className={`group text-left bg-white rounded-xl overflow-hidden border transition-all flex flex-col justify-between cursor-pointer ${
-                isSelected
-                  ? 'border-red-600 ring-2 ring-red-500/20 shadow-md'
-                  : 'border-gray-200 hover:border-red-300 hover:shadow-md'
-              }`}
-            >
-              {/* Category Pill Tag Header */}
-              <div className={`p-2 flex items-center justify-between border-b ${
-                isSelected ? 'bg-red-50 border-red-100' : 'bg-gray-50 border-gray-100'
-              }`}>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-sm">{cat.badgeIcon}</span>
-                  <span className={`font-bold text-xs ${isSelected ? 'text-red-600' : 'text-gray-800 group-hover:text-red-600'}`}>
-                    {cat.name}
-                  </span>
-                </div>
-              </div>
-
-              {/* Thumbnail Image */}
-              <div className="relative w-full h-28 overflow-hidden bg-gray-100">
-                <Image
-                  src={latestCatImage}
-                  alt={cat.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Footer Count Bar */}
-              <div className="p-2 bg-white flex items-center justify-between text-xs font-semibold text-gray-500 border-t border-gray-100">
-                <span>{count}</span>
-                <span className={`transition-transform ${isSelected ? 'text-red-600 font-bold translate-x-1' : 'text-gray-400 group-hover:translate-x-1'}`}>
-                  ›
-                </span>
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* 3. Filter Tabs (सभी + Categories) */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-5 no-scrollbar scroll-smooth">
+      {/* 3. Filter Navigation Tabs */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 no-scrollbar scroll-smooth border-b border-gray-100">
         <button
           onClick={() => handleCategorySelect('सभी')}
-          className={`px-4 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 ${
-            selectedCategory === 'सभी'
+          className={`px-4 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 ${selectedCategory === 'सभी'
               ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
               : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
-          }`}
+            }`}
         >
-          🔥 सभी (All News)
+          🔥 सभी (All Categories)
         </button>
 
         {allCategoriesList.map((cat, idx) => (
           <button
             key={idx}
             onClick={() => handleCategorySelect(cat.name)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 flex items-center gap-1.5 ${
-              selectedCategory === cat.name
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 flex items-center gap-1.5 ${selectedCategory === cat.name
                 ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
                 : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
-            }`}
+              }`}
           >
-            <span>{cat.badgeIcon}</span>
+            <span>{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span>
             <span>{cat.name}</span>
           </button>
         ))}
       </div>
 
-      {/* 4. Category News Grid Cards */}
-      {displayedArticles.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {displayedArticles.map((item, idx) => (
-            <Link
-              key={idx}
-              href={`/news/${item.slug || 'detail'}`}
-              className="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                {/* Image */}
-                <div className="relative w-full h-44 overflow-hidden bg-gray-100">
-                  <Image
-                    src={item.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
-                    alt={item.title || 'Category News'}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <span className="absolute top-2.5 left-2.5 bg-[#cc0000] text-white text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-wider">
-                    {item.category || selectedCategory}
-                  </span>
+      {/* 4. Display Content: All Categories Blocks OR Selected Category Grid */}
+      {selectedCategory === 'सभी' ? (
+        /* Renders EVERY category with its dedicated section & content grid (Matches previous layout) */
+        <div className="space-y-8">
+          {allCategoriesList.map((cat, index) => {
+            const catArticles = getArticlesForCategory(cat.name).slice(0, 4);
+            if (!catArticles || catArticles.length === 0) return null;
+
+            return (
+              <div key={index} className="bg-white rounded-xl border border-gray-200 p-4 shadow-xs">
+                {/* Category Header */}
+                <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span>
+                    <h3 className="font-extrabold text-base md:text-lg text-gray-900 tracking-tight">
+                      {cat.name}
+                    </h3>
+                  </div>
+
+                  <Link
+                    href={`/news/category/${encodeURIComponent(cat.name)}`}
+                    className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1 group"
+                  >
+                    <span>और देखें</span>
+                    <FiArrowRight className="text-xs group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </div>
 
-                {/* Content */}
-                <div className="p-4">
-                  <h3 className="font-extrabold text-base text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  {item.description && (
-                    <p className="text-xs text-gray-500 font-normal mt-2 line-clamp-2 leading-relaxed">
-                      {item.description.replace(/<[^>]*>/g, '')}
-                    </p>
-                  )}
+                {/* News Cards Grid for this Category */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {catArticles.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={`/news/${item.slug || 'detail'}`}
+                      className="group bg-gray-50/60 hover:bg-white rounded-lg overflow-hidden border border-gray-100 hover:border-red-200 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                    >
+                      <div>
+                        {/* Thumbnail */}
+                        <div className="relative w-full h-36 overflow-hidden bg-gray-200">
+                          <Image
+                            src={item.image || cat.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
+                            alt={item.title || cat.name}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+
+                        {/* Title & Description */}
+                        <div className="p-3">
+                          <h4 className="font-bold text-xs md:text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                            {item.title}
+                          </h4>
+                          {item.description && (
+                            <p className="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                              {item.description.replace(/<[^>]*>/g, '')}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Footer Meta */}
+                      <div className="p-3 border-t border-gray-100 flex items-center justify-between text-[10px] text-gray-400 font-medium">
+                        <span className="flex items-center gap-1">
+                          <FaCalendarAlt className="text-[9px] text-red-500" />
+                          {item.createdAt
+                            ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
+                            : (item.date || '02 Aug 2026')}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaUserEdit className="text-[9px] text-gray-400" />
+                          {item.writerName || 'Ankit'}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
-
-              {/* Meta Date & Writer Footer */}
-              <div className="p-4 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400 font-medium">
-                <span className="flex items-center gap-1">
-                  <FaCalendarAlt className="text-[10px] text-red-500" />
-                  {item.createdAt
-                    ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
-                    : (item.date || '02 Aug 2026')}
-                </span>
-                <span className="flex items-center gap-1">
-                  <FaUserEdit className="text-[10px] text-gray-400" />
-                  {item.writerName || 'Ankit'}
-                </span>
-              </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
       ) : (
-        <div className="bg-white p-8 rounded-xl border border-gray-200 text-center text-gray-500 shadow-xs">
-          <FaFolderOpen className="text-3xl text-gray-300 mx-auto mb-2" />
-          <p className="font-semibold text-sm">इस श्रेणी में फ़िलहाल कोई समाचार उपलब्ध नहीं है।</p>
+        /* Filtered Grid View for Specific Selected Category */
+        <div>
+          {displayedArticles.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {displayedArticles.map((item, idx) => (
+                <Link
+                  key={idx}
+                  href={`/news/${item.slug || 'detail'}`}
+                  className="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Image */}
+                    <div className="relative w-full h-44 overflow-hidden bg-gray-100">
+                      <Image
+                        src={item.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
+                        alt={item.title || 'Category News'}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <span className="absolute top-2.5 left-2.5 bg-[#cc0000] text-white text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-wider">
+                        {item.category || selectedCategory}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-4">
+                      <h3 className="font-extrabold text-base text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                        {item.title}
+                      </h3>
+                      {item.description && (
+                        <p className="text-xs text-gray-500 font-normal mt-2 line-clamp-2 leading-relaxed">
+                          {item.description.replace(/<[^>]*>/g, '')}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Meta Date & Writer Footer */}
+                  <div className="p-4 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-400 font-medium">
+                    <span className="flex items-center gap-1">
+                      <FaCalendarAlt className="text-[10px] text-red-500" />
+                      {item.createdAt
+                        ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
+                        : (item.date || '02 Aug 2026')}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <FaUserEdit className="text-[10px] text-gray-400" />
+                      {item.writerName || 'Ankit'}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white p-8 rounded-xl border border-gray-200 text-center text-gray-500 shadow-xs">
+              <FaFolderOpen className="text-3xl text-gray-300 mx-auto mb-2" />
+              <p className="font-semibold text-sm">इस श्रेणी में फ़िलहाल कोई समाचार उपलब्ध नहीं है।</p>
+            </div>
+          )}
         </div>
       )}
 

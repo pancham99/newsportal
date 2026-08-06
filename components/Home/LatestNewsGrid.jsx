@@ -112,7 +112,7 @@ export default function LatestNewsGrid({ news = [] }) {
             संपर्क करें
           </p>
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=topbreifing@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@topbriefing.in"
             target="_blank"
             rel="noopener noreferrer"
             // onClick={() => {
@@ -121,7 +121,7 @@ export default function LatestNewsGrid({ news = [] }) {
             title="Click to compose email in Gmail"
             className="text-xs font-bold text-red-600 hover:bg-red-100 transition-colors bg-red-50 px-3 py-1.5 rounded-full border border-red-100 inline-flex items-center gap-1 cursor-pointer"
           >
-            <span>topbreifing@gmail.com</span>
+            <span>contact@topbriefing.in</span>
           </a>
         </div>
       </div>
