@@ -9,6 +9,7 @@ import LatestNewsGrid from './LatestNewsGrid';
 import CategoryGridSection from './CategoryGridSection';
 import VideoUpdatesSection from './VideoUpdatesSection';
 import TopBanner from './TopBanner';
+import BigStoryBanner from './BigStoryBanner';
 import HeroSlider from './HeroSlider';
 import { base_api_url } from '../../config/config';
 
@@ -132,7 +133,7 @@ const Home = async ({ news = {} }) => {
     <div className="bg-[#f8f9fa] min-h-screen text-gray-800 font-sans relative">
 
       {/* Floating Sticky Right Subscribe Banner (Desktop/Tablet) */}
-      <a 
+      <a
         href="#subscribe"
         className="hidden sm:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#cc0000] text-white py-3 px-1.5 rounded-l-lg font-bold text-xs shadow-xl hover:bg-red-700 transition-all flex-col items-center gap-2 cursor-pointer group"
         style={{ writingMode: 'vertical-rl' }}
@@ -144,11 +145,14 @@ const Home = async ({ news = {} }) => {
         </div>
       </a>
 
-      {/* Main Container */}
+      {/* Full-width Big Story Hero Banner Header */}
+      <BigStoryBanner news={latestNews} />
+
+      {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
 
         {/* 0. Top Advertisement Banner */}
-        <TopBanner />
+        {/* <TopBanner /> */}
 
         {/* 1. Breaking News Marquee Ticker */}
         <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2">
@@ -178,7 +182,7 @@ const Home = async ({ news = {} }) => {
 
         {/* 2. Top Hero & Trending Grid (3 Columns) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-8">
-          
+
           {/* Column 1: Main Big Hero Card Slider (~50% width / 6 cols) */}
           <HeroSlider slides={latestNews} />
 
@@ -259,7 +263,7 @@ const Home = async ({ news = {} }) => {
         <LatestNewsGrid news={latestNews} />
 
         {/* 4. Section 2: News By Category Grid */}
-        <CategoryGridSection news={news} />
+        {/**/} <CategoryGridSection news={news} />
 
         {/* 5. Section 3: Video Updates & Newsletter Subscription */}
         <VideoUpdatesSection />
