@@ -50,6 +50,8 @@ export default function HeroSlider({ slides = [] }) {
     ? [...slides, ...defaultSlides].slice(0, 4)
     : defaultSlides;
 
+    console.log('HeroSlider', slides);
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -114,7 +116,7 @@ export default function HeroSlider({ slides = [] }) {
 
           {/* Excerpt */}
           <p className="text-xs text-gray-300 font-normal mt-1.5 line-clamp-2 leading-relaxed opacity-90">
-            {currentSlide.description?.replace(/<[^>]*>/g, '') || defaultSlides[0].description}
+            {currentSlide.shortDescription?.replace(/<[^>]*>/g, '') || defaultSlides[0].description}
           </p>
 
           {/* Meta Date & Writer */}

@@ -29,7 +29,11 @@ const Footer = ({ news }) => {
                     <div className='w-full'>
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
-                            <div className='text-xl text-white font-extrabold'>Top Briefing</div>
+                            <div className='text-xl text-white font-extrabold'>Top <span className="text-red-500">Briefing</span></div>
+
+                            {/* <div>
+                                <Image  src="/logo-square-badge.png" alt="Logo" width={150} height={50} className="w-[90px]" />
+                            </div> */}
                             <a
                                 href="https://mail.google.com/mail/?view=cm&fs=1&to=topbriefing@gmail.com"
                                 target="_blank"

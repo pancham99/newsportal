@@ -291,6 +291,27 @@ const Header = () => {
                     </div>
                 </div>
 
+                {/* Mobile Horizontal Category Scroll Bar (Fast 1-tap category access) */}
+                <div className="md:hidden bg-[#a81d1c] overflow-x-auto no-scrollbar scroll-smooth border-t border-red-700/60 py-2 px-3">
+                    <div className="flex items-center gap-2 whitespace-nowrap min-w-max">
+                        {navMenuList.map((item, index) => {
+                            const isActive = item.isHome ? pathname === "/" : (decodedCurrentCategory === item.slug || decodedCurrentCategory === item.name);
+                            return (
+                                <Link
+                                    key={index}
+                                    href={item.isHome ? "/" : `/news/category/${item.slug}`}
+                                    className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${isActive
+                                        ? "bg-white text-[#cc0000] shadow-sm scale-105"
+                                        : "bg-black/20 text-white hover:bg-black/30"
+                                        }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </div>
+
                 {/* Mobile Menu Drawer */}
                 {mobileMenuOpen && (
                     <div className="md:hidden bg-[#800000] border-t border-red-800 px-4 py-3 text-white space-y-2">

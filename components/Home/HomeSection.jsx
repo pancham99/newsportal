@@ -149,7 +149,7 @@ const Home = async ({ news = {} }) => {
       <BigStoryBanner news={latestNews} />
 
       {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">
 
         {/* 0. Top Advertisement Banner */}
         {/* <TopBanner /> */}
