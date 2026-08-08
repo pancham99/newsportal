@@ -90,6 +90,10 @@ const Home = async ({ news = {} }) => {
   let breakingNews = [];
   let trendingNews = [];
 
+  let hestorys = [];
+
+
+
   try {
     const latestRes = await fetch(`${base_api_url}/api/latest/news`, { next: { revalidate: 300 } });
     if (latestRes.ok) {
@@ -120,6 +124,19 @@ const Home = async ({ news = {} }) => {
     console.error("Trending API fetch error", err);
   }
 
+  try {
+    const hestoryRes = await fetch(`${base_api_url}/api/hestory`, { next: { revalidate: 300 } });
+    if (hestoryRes.ok) {
+      const data = await hestoryRes.json();
+    
+      hestorys = await data?.news || [];
+      console.log("News", hestorys);
+        
+    }
+  } catch (err) {
+    console.error("Hestory API fetch error", err);
+  }
+
   // Format data with fallbacks matching reference screenshot
   const heroMainItem = latestNews[0] || defaultHeroMain;
   const middleItems = latestNews.length >= 5 ? latestNews.slice(1, 5) : defaultMiddleList;
@@ -146,10 +163,10 @@ const Home = async ({ news = {} }) => {
       </a>
 
       {/* Full-width Big Story Hero Banner Header */}
-      <BigStoryBanner news={latestNews} />
+      <BigStoryBanner news={hestorys} />
 
       {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
+      <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">
 
         {/* 0. Top Advertisement Banner */}
         {/* <TopBanner /> */}
