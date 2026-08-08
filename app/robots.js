@@ -2,16 +2,16 @@ import { SITE_URL } from "../config/site";
 
 export default function robots() {
   return {
-    rules: []
-    // rules: {
-    //   userAgent: "*",
-    //   allow: "/",
-    // },
-    // host: SITE_URL.replace(/^https?:\/\//, ""),
-    // sitemap: [
-    //   `${SITE_URL}/sitemap.xml`,
-    //   `${SITE_URL}/sitemap-news.xml`,
-    // ],
+    
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    host: SITE_URL.replace(/^https?:\/\//, ""),
+    sitemap: [
+      `${SITE_URL}/sitemap.xml`,
+      `${SITE_URL}/sitemap-news.xml`,
+    ],
     
   };
 }
