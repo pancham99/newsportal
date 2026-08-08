@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import SubscribeModal from "../components/SubscribeModal";
 
 const AuthContext = createContext();
 
@@ -8,6 +9,8 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState("login"); // "login" | "signup" | "subscribe"
 
   // Read from localStorage once on mount
   useEffect(() => {
@@ -34,9 +37,31 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const openModal = (mode = "login") => {
+    setModalMode(mode);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        login,
+        logout,
+        isModalOpen,
+        modalMode,
+        setModalMode,
+        openModal,
+        closeModal,
+      }}
+    >
       {children}
+      <SubscribeModal />
     </AuthContext.Provider>
   );
 };
+

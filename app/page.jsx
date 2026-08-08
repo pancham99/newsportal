@@ -89,7 +89,7 @@ export async function generateMetadata() {
 
     // ⚠️ Replace with your actual Google Search Console verification code
     verification: {
-      google: "YOUR_GOOGLE_VERIFICATION_CODE",
+      google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || "YOUR_GOOGLE_VERIFICATION_CODE",
     },
 
     openGraph: {
