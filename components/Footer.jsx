@@ -29,21 +29,18 @@ const Footer = ({ news }) => {
                     <div className='w-full'>
                         <div className='w-full flex flex-col gap-y-[14px]'>
                             {/* <Image src="" alt='' /> */}
-                            <div className='text-xl text-white font-extrabold'>Top Briefing</div>
-                            <a
-                                href="https://mail.google.com/mail/?view=cm&fs=1&to=topbriefing@gmail.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-white font-bold underline cursor-pointer text-sm sm:text-base  transition-colors"
-                            >
-                                contact@topbriefing.in
-                            </a>
+                            <div className='text-xl text-red-600 font-extrabold'>TopBriefing</div>
+                            <Link href="mailto:contact@topbriefing.in">
+                                <h1 className="text-xl underline cursor-pointer text-white">
+                                    contact@topbriefing.in
+                                </h1>
+                            </Link>
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
 
                             <h2 className='text-slate-300'>{`Today's news: Get latest and Breaking News on Politics, Business, Lifestyle, Entertainment and Sports along with News updates from around`}</h2>
                         </div>
-                        <Subscribe />
+                        {/* <Subscribe /> */}
                     </div>
 
                     <div className='w-full flex flex-col gap-y-[14px]'>
