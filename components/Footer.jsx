@@ -8,8 +8,6 @@ import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 import Subscribe from "./Subscribe";
 import moment from 'moment-timezone';
-
-
 const Footer = ({ news }) => {
 
     const formattedDate = moment
