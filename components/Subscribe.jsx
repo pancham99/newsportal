@@ -2,37 +2,65 @@
 import React, { useState, useEffect } from 'react';
 import { base_api_url } from "../config/config"
 
-const Subscribe = () => {
+const Subscribe = ({onSuccess}) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
+
     try {
+        const formData = new FormData();
+        formData.append("email", email);
 
+        const res = await fetch(`${base_api_url}/api/add/subscriber`, {
+            method: "POST",
+            body: formData,
+        });
 
-      const formData = new FormData();
-      formData.append("email", email);
+        const data = await res.json();
 
-      const res = await fetch(`${base_api_url}/api/add/subscriber`, {
-        method: "POST",
-        body: formData, // form-data
-      });
+        setMessage(data.message);
 
-      const data = await res.json();
-      setMessage(data.message || "Something went wrong");
-       if (res.ok) {
-        setEmail('');
-      }
+        if (res.ok) {
+            setEmail("");
+
+            onSuccess?.();
+        }
 
     } catch (error) {
-      console.error("Error subscribing:", error);
-      setMessage("Failed to subscribe. Please try again.");
+        console.error(error);
+        setMessage("Failed to subscribe.");
     }
+};
+
+  // const handleSubscribe = async (e) => {
+  //   e.preventDefault();
+  //   try {
+
+
+  //     const formData = new FormData();
+  //     formData.append("email", email);
+
+  //     const res = await fetch(`${base_api_url}/api/add/subscriber`, {
+  //       method: "POST",
+  //       body: formData, // form-data
+  //     });
+
+  //     const data = await res.json();
+  //     setMessage(data.message || "Something went wrong");
+  //      if (res.ok) {
+  //       setEmail('');
+  //     }
+
+  //   } catch (error) {
+  //     console.error("Error subscribing:", error);
+  //     setMessage("Failed to subscribe. Please try again.");
+  //   }
 
 
 
-  };
+  // };
 
     // Auto hide message after 3 seconds
   useEffect(() => {

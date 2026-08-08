@@ -1,5 +1,6 @@
 import { base_api_url } from "../config/config";
 import HomeSection from "../components/Home/HomeSection";
+import SubscribeModal from "../components/SubscribeModal";
 
 async function getHomeNews() {
   try {
@@ -165,6 +166,8 @@ const Home = async () => {
 
       <WebSiteSchema />
       <HomeSection news={news} />
+      <SubscribeModal />
+
 
     </div>
     

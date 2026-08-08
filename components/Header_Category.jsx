@@ -7,6 +7,7 @@ import { IoSearch, IoClose } from "react-icons/io5";
 import { BsList } from "react-icons/bs";
 import { base_api_url } from "../config/config";
 import useFetch from "../hooks/useFetch";
+import Image from "next/image";
 
 const Header_Category = () => {
   const path = usePathname();
@@ -38,8 +39,20 @@ const Header_Category = () => {
   return (
     <div className="w-full relative">
       {/* Top Navbar */}
-      <div className="bg-[#c80000] text-white uppercase font-semibold">
+      <div className="bg-[#c80000] text-white uppercase font-semibold relative" >
+
+        <div className=" absolute -top-2 left-0 w-full">
+          <div className="flex justify-center lg:justify-start items-center flex-wrap">
+            <div className=" h-28 w-24">
+              <Link href={'/'} className="flex flex-col md:items-start">
+                <Image priority src="/logo.png" alt="Top Briefing - Hindi News" width={150} height={60} />
+              </Link>
+            </div>
+          </div>
+        </div>
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-[50px] relative">
+
+
 
           {/* Mobile Menu Button */}
           <div
@@ -53,9 +66,8 @@ const Header_Category = () => {
           <div className="hidden md:flex items-center flex-wrap">
             <Link
               href="/"
-              className={`px-2 py-3 text-sm ${
-                path === "/" ? "bg-black/20 border-b-4 border-blue-800" : ""
-              }`}
+              className={`px-2 py-3 text-sm ${path === "/" ? "bg-black/20 border-b-4 border-blue-800" : ""
+                }`}
             >
               होम
             </Link>
@@ -66,11 +78,10 @@ const Header_Category = () => {
                 <Link
                   key={i}
                   href={`/news/category/${c.category}`}
-                  className={`px-2 py-3 text-sm ${
-                    decodedCategory === c.category
-                      ? "bg-black/20 border-b-4 border-blue-800"
-                      : ""
-                  }`}
+                  className={`px-2 py-3 text-sm ${decodedCategory === c.category
+                    ? "bg-black/20 border-b-4 border-blue-800"
+                    : ""
+                    }`}
                 >
                   {c.category}
                 </Link>

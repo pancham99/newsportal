@@ -105,7 +105,7 @@ const Header = () => {
 
             {/* Mobile Video Section */}
             <div
-                className='h-[360px] w-full lg:hidden transition-all duration-500 ease-in-out banner-placeholder'
+                className='h-[360px] w-full hidden transition-all duration-500 ease-in-out banner-placeholder'
                 style={{
                     backgroundImage: `url(${loading ? bgimage2.src : mobileImage})`,
                     backgroundSize: "cover",
@@ -146,7 +146,7 @@ const Header = () => {
                     backgroundPosition: "center",
                 }}
             >
-                <div className="">
+                {/* <div className="">
                     <div className="flex justify-center lg:justify-start items-center flex-wrap">
                         <div className="">
                             <Link href={'/'} className="flex flex-col md:items-start">
@@ -154,7 +154,7 @@ const Header = () => {
                             </Link>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <Header_Category />
