@@ -92,6 +92,11 @@ export default function LatestNewsGrid({ news = [] }) {
                 <h3 className="font-bold text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
                   {item.title}
                 </h3>
+                <p className="text-xs  text-gray-600 font-normal leading-relaxed opacity-95">
+                  {item.shortDescription || 'No description available.'}
+                </p>
+
+
                 <span className="text-[11px] font-medium text-gray-400 mt-2 block">
                   {formatDate(item, '02 Aug 2026 | 08:15 AM')}
                 </span>
