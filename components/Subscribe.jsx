@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { base_api_url } from "../config/config";
 import { useAuth } from "../context/AuthContext";
 
-const Subscribe = () => {
+const Subscribe = ({onSuccess}) => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const { openModal } = useAuth();
