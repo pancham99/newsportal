@@ -37,20 +37,25 @@ export function useFcmToken() {
       setLoading(true);
       setError(null);
 
-      const permission = await Notification.requestPermission();
+      let permission = Notification.permission;
+      if (permission !== "granted") {
+        permission = await Notification.requestPermission();
+      }
       setPermissionStatus(permission);
 
       if (permission !== "granted") {
-        setError("Notification permission was denied.");
+        setError("Notification permission is blocked in browser settings. Tap the Lock/Tune icon in address bar to allow.");
         setLoading(false);
         return { success: false, reason: "denied" };
       }
 
-      // Register Service Worker
-      let serviceWorkerRegistration;
-      if ("serviceWorker" in navigator) {
-        serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+      // Check Service Worker support
+      if (!("serviceWorker" in navigator)) {
+        throw new Error("Service Workers are not supported in this browser environment.");
       }
+
+      const serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+      const readyRegistration = await navigator.serviceWorker.ready;
 
       const messaging = await getFcmMessaging();
       if (!messaging) {
@@ -60,7 +65,7 @@ export function useFcmToken() {
       const vapidKey = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY || undefined;
       const currentToken = await getToken(messaging, {
         vapidKey,
-        serviceWorkerRegistration,
+        serviceWorkerRegistration: readyRegistration || serviceWorkerRegistration,
       });
 
       if (currentToken) {

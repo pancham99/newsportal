@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import SubscribeModal from "../components/SubscribeModal";
+import PushNotificationPrompt from "../components/PushNotificationPrompt";
 
 const AuthContext = createContext();
 
@@ -61,6 +62,7 @@ export const AuthProvider = ({ children }) => {
     >
       {children}
       <SubscribeModal />
+      <PushNotificationPrompt />
     </AuthContext.Provider>
   );
 };

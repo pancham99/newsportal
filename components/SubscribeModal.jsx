@@ -353,20 +353,32 @@ const SubscribeModal = () => {
                 <p className="text-[11px] text-gray-500 mt-2">No email or registration required</p>
 
                 {permissionStatus === "denied" && (
-                  <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl text-left text-xs text-amber-900 space-y-1.5">
-                    <p className="font-bold text-amber-800">
-                      🔒 How to unblock notifications in your browser:
+                  <div className="mt-3 p-4 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/80 rounded-2xl text-left text-xs text-amber-950 space-y-2.5 shadow-sm">
+                    <div className="flex items-center gap-2 text-amber-900 font-bold text-xs sm:text-sm">
+                      <span className="text-base">🔒</span>
+                      <span>Notifications Blocked in Browser Settings</span>
+                    </div>
+
+                    <p className="text-[11px] text-amber-800 leading-relaxed">
+                      Your browser blocked notifications. Web browsers prevent sites from showing the permission prompt popup again once blocked.
                     </p>
-                    <ol className="list-decimal pl-4 space-y-0.5 text-[11px]">
-                      <li>Click the <b>Lock / Tune icon (🔒)</b> next to the URL in your browser address bar.</li>
-                      <li>Change <b>Notifications</b> setting to <b>"Allow"</b>.</li>
-                    </ol>
+
+                    <div className="bg-white/90 p-3 rounded-xl border border-amber-200/80 space-y-1.5 text-[11px]">
+                      <p className="font-bold text-amber-950">📱 How to Unblock on Mobile & Desktop:</p>
+                      <ol className="list-decimal pl-4 space-y-1 text-amber-900 leading-snug">
+                        <li>Tap the <b>Tune / Lock icon (🔒 or 🎛️)</b> next to <b>topbriefing.in</b> in your top address bar.</li>
+                        <li>Tap <b>Permissions</b> &rarr; <b>Notifications</b>.</li>
+                        <li>Select <b>&quot;Allow&quot;</b>.</li>
+                      </ol>
+                    </div>
+
                     <button
                       type="button"
                       onClick={handlePushOnly}
-                      className="w-full mt-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition cursor-pointer"
+                      className="w-full mt-1 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white font-extrabold py-2.5 px-4 rounded-xl text-xs sm:text-sm shadow transition-all cursor-pointer flex items-center justify-center gap-2"
                     >
-                      I&apos;ve Unblocked — Check & Subscribe
+                      <FaBell className="text-xs" />
+                      <span>I&apos;ve Allowed Notifications — Enable Now</span>
                     </button>
                   </div>
                 )}
