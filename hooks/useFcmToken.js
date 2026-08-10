@@ -28,15 +28,34 @@ export function useFcmToken() {
   }, [refreshPermission]);
 
   const subscribeToPush = useCallback(async (userEmail = null) => {
-    if (typeof window === "undefined" || !("Notification" in window)) {
-      setError("Web Push Notifications are not supported in this browser.");
+    if (typeof window === "undefined") {
       return { success: false, reason: "unsupported" };
+    }
+
+    // 1. Check HTTPS / Secure Context Requirement
+    const isLocalhost = Boolean(
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname === "[::1]"
+    );
+    if (!window.isSecureContext && !isLocalhost && window.location.protocol !== "https:") {
+      const msg = "Web Push Notifications require a secure HTTPS connection. Please visit via https://";
+      setError(msg);
+      return { success: false, reason: "insecure_context", error: msg };
+    }
+
+    // 2. Check Browser Feature Support
+    if (!("Notification" in window) || !("serviceWorker" in navigator) || !("PushManager" in window)) {
+      const msg = "Web Push Notifications are not supported in this browser. (On iOS/iPhone, please add website to Home Screen first)";
+      setError(msg);
+      return { success: false, reason: "unsupported", error: msg };
     }
 
     try {
       setLoading(true);
       setError(null);
 
+      // 3. Request Notification Permission
       let permission = Notification.permission;
       if (permission !== "granted") {
         permission = await Notification.requestPermission();
@@ -44,29 +63,33 @@ export function useFcmToken() {
       setPermissionStatus(permission);
 
       if (permission !== "granted") {
-        setError("Notification permission is blocked in browser settings. Tap the Lock/Tune icon in address bar to allow.");
+        const msg = "Notification permission is blocked in browser settings. Tap the Lock/Tune icon in address bar to allow.";
+        setError(msg);
         setLoading(false);
-        return { success: false, reason: "denied" };
+        return { success: false, reason: "denied", error: msg };
       }
 
-      // Check Service Worker support
-      if (!("serviceWorker" in navigator)) {
-        throw new Error("Service Workers are not supported in this browser environment.");
-      }
-
-      const serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+      // 4. Register & Wait for Service Worker with root scope
+      const serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js", { scope: "/" });
       const readyRegistration = await navigator.serviceWorker.ready;
 
+      // 5. Get Firebase Messaging Instance
       const messaging = await getFcmMessaging();
       if (!messaging) {
         throw new Error("Firebase Messaging instance could not be initialized.");
       }
 
-      const vapidKey = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY || undefined;
-      const currentToken = await getToken(messaging, {
-        vapidKey,
+      // 6. Request FCM Registration Token
+      const tokenOptions = {
         serviceWorkerRegistration: readyRegistration || serviceWorkerRegistration,
-      });
+      };
+
+      const rawVapid = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY;
+      if (rawVapid && rawVapid.trim().length > 0) {
+        tokenOptions.vapidKey = rawVapid.trim();
+      }
+
+      const currentToken = await getToken(messaging, tokenOptions);
 
       if (currentToken) {
         setToken(currentToken);
@@ -91,9 +114,10 @@ export function useFcmToken() {
       }
     } catch (err) {
       console.error("Error subscribing to FCM push notifications:", err);
-      setError(err.message || "Failed to subscribe to push notifications.");
+      const userMsg = err.message || "Failed to subscribe to push notifications.";
+      setError(userMsg);
       setLoading(false);
-      return { success: false, error: err.message };
+      return { success: false, error: userMsg };
     }
   }, []);
 
@@ -106,3 +130,4 @@ export function useFcmToken() {
     refreshPermission,
   };
 }
+
