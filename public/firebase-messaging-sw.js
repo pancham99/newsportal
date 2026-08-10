@@ -22,11 +22,21 @@ try {
     const notificationTitle = payload.notification?.title || payload.data?.title || 'Top Briefing News Update';
     const targetUrl = payload.data?.url || payload.fcmOptions?.link || payload.notification?.click_action || 'https://topbriefing.in';
 
+    let iconUrl = payload.notification?.icon || payload.data?.icon || 'https://topbriefing.in/logo.png';
+    if (iconUrl.startsWith('/')) {
+      iconUrl = 'https://topbriefing.in' + iconUrl;
+    }
+
+    let imageUrl = payload.notification?.image || payload.data?.image || payload.notification?.imageUrl || null;
+    if (imageUrl && imageUrl.startsWith('http://')) {
+      imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
+    }
+
     const notificationOptions = {
       body: payload.notification?.body || payload.data?.body || 'Read the latest breaking story on Top Briefing.',
-      icon: payload.notification?.icon || payload.data?.icon || '/logo.png',
-      image: payload.notification?.image || payload.data?.image || payload.notification?.imageUrl || null,
-      badge: '/logo.png',
+      icon: iconUrl,
+      image: imageUrl,
+      badge: 'https://topbriefing.in/logo.png',
       vibrate: [200, 100, 200],
       tag: payload.data?.newsId ? `news-${payload.data.newsId}` : 'topbriefing-news',
       renotify: true,
