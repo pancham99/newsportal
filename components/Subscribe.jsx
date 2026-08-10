@@ -44,20 +44,32 @@ const Subscribe = () => {
       )}
 
       {permissionStatus === 'denied' && (
-        <div className="mt-2 p-3 bg-amber-950/70 border border-amber-500/50 rounded-xl text-[11px] text-amber-200 text-left space-y-1.5">
-          <p className="font-bold text-amber-300 flex items-center gap-1">
-            🔒 Notifications Blocked in Browser Settings
+        <div className="mt-3 p-4 bg-amber-950/90 border border-amber-500/60 rounded-2xl text-[11px] text-amber-100 text-left space-y-2.5 shadow-lg">
+          <div className="flex items-center gap-2 text-amber-300 font-bold text-xs sm:text-sm">
+            <span className="text-base">🔒</span>
+            <span>Notifications Blocked in Browser Settings</span>
+          </div>
+
+          <p className="text-[11px] text-amber-200/90 leading-relaxed">
+            Notifications were blocked previously. Browser security prevents websites from re-opening the prompt popup automatically.
           </p>
-          <ol className="list-decimal pl-4 space-y-0.5 text-[10px] text-amber-100">
-            <li>Click the <b>Lock / Settings icon (🔒)</b> next to the website URL in your address bar.</li>
-            <li>Change <b>Notifications</b> from "Block" to <b>"Allow"</b>.</li>
-          </ol>
+
+          <div className="bg-black/40 p-3 rounded-xl border border-amber-500/30 space-y-1.5 text-[11px]">
+            <p className="font-bold text-amber-300">📱 Steps to Unblock on Mobile & Desktop:</p>
+            <ol className="list-decimal pl-4 space-y-1 text-amber-100 leading-snug">
+              <li>Tap the <b>Tune / Lock icon (🔒 or 🎛️)</b> in your browser address bar at the top.</li>
+              <li>Tap <b>Permissions</b> &rarr; <b>Notifications</b>.</li>
+              <li>Select <b>&quot;Allow&quot;</b>.</li>
+            </ol>
+          </div>
+
           <button
             type="button"
             onClick={handleSubscribe}
-            className="w-full mt-1 bg-amber-500 hover:bg-amber-600 text-black font-bold py-1 px-3 rounded-lg text-xs transition cursor-pointer"
+            className="w-full mt-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-extrabold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition cursor-pointer shadow flex items-center justify-center gap-2"
           >
-            I&apos;ve Unblocked — Check & Subscribe
+            <FaBell className="text-xs" />
+            <span>I&apos;ve Allowed Notifications — Enable Now</span>
           </button>
         </div>
       )}
