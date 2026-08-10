@@ -50,7 +50,7 @@ export default function HeroSlider({ slides = [] }) {
     ? [...slides, ...defaultSlides].slice(0, 4)
     : defaultSlides;
 
-    console.log('HeroSlider', slides);
+
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
