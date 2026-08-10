@@ -47,7 +47,7 @@ const LatestNews = ({news}) => {
           infinite={true}
           transitionDuration={500}
         >
-          {news.map((item, i) => (
+          {Array.isArray(news) && news.map((item, i) => (
             <SimpleNewsCard item={item} key={i} type='latest' />
           ))}
         </Carousel>

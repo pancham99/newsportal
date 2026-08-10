@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { FaBookmark, FaBell, FaStar, FaPlay, FaFacebook, FaApple } from "react-icons/fa";
 import { FiUser, FiLock, FiEye, FiEyeOff, FiMail } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
+import { useFcmToken } from "../hooks/useFcmToken";
 import { base_api_url } from "../config/config";
 import axios from "axios";
 
@@ -30,6 +31,8 @@ const GoogleIcon = () => (
 
 const SubscribeModal = () => {
   const { isModalOpen, closeModal, modalMode, setModalMode, login } = useAuth();
+  const { subscribeToPush, permissionStatus } = useFcmToken();
+  const [enablePush, setEnablePush] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -45,6 +48,29 @@ const SubscribeModal = () => {
   if (!isModalOpen) return null;
 
   const mode = modalMode || "subscribe"; // "login" | "signup" | "subscribe"
+
+  const handlePushOnly = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+    setLoading(true);
+    try {
+      const res = await subscribeToPush();
+      if (res.success) {
+        setSuccessMessage("✅ Subscribed to instant push notifications!");
+        setTimeout(() => {
+          closeModal();
+        }, 1200);
+      } else if (res.reason === "denied") {
+        setErrorMessage("⚠️ Notification permission was blocked in your browser settings.");
+      } else {
+        setErrorMessage(res.error || "Failed to subscribe to push notifications.");
+      }
+    } catch (err) {
+      setErrorMessage(err.message || "Failed to subscribe.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -125,6 +151,11 @@ const SubscribeModal = () => {
           body: form,
         });
         const data = await res.json();
+        
+        if (enablePush) {
+          await subscribeToPush(formData.email);
+        }
+
         setSuccessMessage(data.message || "Subscribed successfully!");
         setTimeout(() => {
           closeModal();
@@ -304,6 +335,53 @@ const SubscribeModal = () => {
               </div>
             )}
 
+            {/* 1-Click Push Notification Button (No Email Required) */}
+            {mode === "subscribe" && (
+              <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border border-red-100 text-center">
+                <p className="text-xs font-bold text-gray-700 mb-2">
+                  Get breaking news updates directly on your device with 1-click!
+                </p>
+                <button
+                  type="button"
+                  onClick={handlePushOnly}
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-2.5 bg-[#c92726] hover:bg-[#a80808] text-white font-extrabold py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer disabled:opacity-70 text-xs sm:text-sm tracking-wide"
+                >
+                  <FaBell className={`text-base ${loading ? 'animate-bounce' : ''}`} />
+                  <span>{loading ? "Requesting Permission..." : "Subscribe to Push Notifications"}</span>
+                </button>
+                <p className="text-[11px] text-gray-500 mt-2">No email or registration required</p>
+
+                {permissionStatus === "denied" && (
+                  <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-xl text-left text-xs text-amber-900 space-y-1.5">
+                    <p className="font-bold text-amber-800">
+                      🔒 How to unblock notifications in your browser:
+                    </p>
+                    <ol className="list-decimal pl-4 space-y-0.5 text-[11px]">
+                      <li>Click the <b>Lock / Tune icon (🔒)</b> next to the URL in your browser address bar.</li>
+                      <li>Change <b>Notifications</b> setting to <b>"Allow"</b>.</li>
+                    </ol>
+                    <button
+                      type="button"
+                      onClick={handlePushOnly}
+                      className="w-full mt-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-1.5 px-3 rounded-lg text-xs transition cursor-pointer"
+                    >
+                      I&apos;ve Unblocked — Check & Subscribe
+                    </button>
+                  </div>
+                )}
+
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-200" />
+                  </div>
+                  <div className="relative flex justify-center text-[10px] uppercase">
+                    <span className="bg-gradient-to-r from-red-50 to-orange-50 px-2 text-gray-400 font-semibold">Or subscribe via email</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name field for Sign Up */}
@@ -374,6 +452,21 @@ const SubscribeModal = () => {
                       <FiEye className="text-base" />
                     )}
                   </button>
+                </div>
+              )}
+
+              {/* Options Row: Subscribe Push Notification */}
+              {mode === "subscribe" && (
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <label className="flex items-center gap-2 cursor-pointer text-gray-700 font-medium select-none">
+                    <input
+                      type="checkbox"
+                      checked={enablePush}
+                      onChange={(e) => setEnablePush(e.target.checked)}
+                      className="w-4 h-4 rounded text-red-600 focus:ring-red-500 border-gray-300 accent-red-600 cursor-pointer"
+                    />
+                    Enable instant browser push notifications
+                  </label>
                 </div>
               )}
 

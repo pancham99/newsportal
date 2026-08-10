@@ -18,7 +18,7 @@ const defaultStory = {
 
 export default function BigStoryBanner({ news = [] }) {
 
-  console.log("BigStoryBanner news:", news);
+  // console.log("BigStoryBanner news:", news);
   // Show ONLY ONE single top news item
   const activeItem = (news && Array.isArray(news) && news.length > 0)
     ? news[0]

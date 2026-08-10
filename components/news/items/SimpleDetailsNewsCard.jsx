@@ -6,6 +6,7 @@ import moment from 'moment-timezone';
 import NewsDescription from '../NewsDescription';
 
 const SimpleDetailsNewsCard = ({ news, type, height, priority = false }) => {
+  if (!news) return null;
   const plainText = news?.description ? news?.description.replace(/<[^>]*>/g, '') : '';
   const shortText = plainText.slice(0, 300);
 

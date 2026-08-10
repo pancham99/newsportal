@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import NewsDescription from "../NewsDescription";
 
 const NewsCard = ({ news }) => {
-    // const formattedTime = moment(news?.createdAt).tz("Asia/Kolkata").format('hh:mm A');
+    if (!news) return null;
 
 
 
