@@ -71,6 +71,11 @@ export function useFcmToken() {
 
       // 4. Register & Wait for Service Worker with root scope
       const serviceWorkerRegistration = await navigator.serviceWorker.register("/firebase-messaging-sw.js", { scope: "/" });
+      try {
+        await serviceWorkerRegistration.update();
+      } catch (swErr) {
+        console.warn("SW update check warning:", swErr);
+      }
       const readyRegistration = await navigator.serviceWorker.ready;
 
       // 5. Get Firebase Messaging Instance
