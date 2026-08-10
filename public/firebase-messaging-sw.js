@@ -2,7 +2,7 @@
 importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js');
 
-// Default or environment configuration (compat mode)
+// Firebase Configuration (Compat Mode)
 const firebaseConfig = {
   apiKey: "AIzaSyBYKe1j7Z7i-YNcTTnffEOGWZJh-YtMEms",
   authDomain: "topbrefing.firebaseapp.com",
@@ -17,59 +17,37 @@ try {
   const messaging = firebase.messaging();
 
   messaging.onBackgroundMessage((payload) => {
-    console.log('[firebase-messaging-sw.js] Received background message: ', payload);
+    console.log('[firebase-messaging-sw.js] Received background message:', payload);
 
-    const notificationTitle = payload.notification?.title || payload.data?.title || 'Top Briefing News';
+    const notificationTitle = payload.notification?.title || payload.data?.title || 'Top Briefing News Update';
+    const targetUrl = payload.data?.url || payload.fcmOptions?.link || payload.notification?.click_action || 'https://topbriefing.in';
+
     const notificationOptions = {
-      body: payload.notification?.body || payload.data?.body || 'New article published on Top Briefing!',
-      icon: payload.notification?.icon || payload.data?.icon || 'https://topbriefing.in/logo.png',
-      image: payload.notification?.image || payload.data?.image || null,
-      badge: 'https://topbriefing.in/logo.png',
+      body: payload.notification?.body || payload.data?.body || 'Read the latest breaking story on Top Briefing.',
+      icon: payload.notification?.icon || payload.data?.icon || '/logo.png',
+      image: payload.notification?.image || payload.data?.image || payload.notification?.imageUrl || null,
+      badge: '/logo.png',
       vibrate: [200, 100, 200],
-      tag: payload.data?.newsId || 'news-notification',
+      tag: payload.data?.newsId ? `news-${payload.data.newsId}` : 'topbriefing-news',
       renotify: true,
       data: {
-        url: payload.data?.url || payload.fcmOptions?.link || 'https://topbriefing.in'
+        url: targetUrl
       }
     };
 
     self.registration.showNotification(notificationTitle, notificationOptions);
   });
 } catch (e) {
-  console.error('[firebase-messaging-sw.js] Initialization error:', e);
+  console.error('[firebase-messaging-sw.js] Firebase initialization error:', e);
 }
 
-// Fallback native push listener for mobile browser compatibility
-self.addEventListener('push', (event) => {
-  if (!event.data) return;
+// Service Worker Install & Activate lifecycle
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
 
-  try {
-    const payload = event.data.json();
-    console.log('[firebase-messaging-sw.js] Native push event received:', payload);
-
-    // If FCM SDK already handled notification object natively, skip duplicate
-    if (payload.notification && payload.notification.title && !payload.data) {
-      return;
-    }
-
-    const title = payload.notification?.title || payload.data?.title || 'Top Briefing News Update';
-    const options = {
-      body: payload.notification?.body || payload.data?.body || 'Read the latest story on Top Briefing.',
-      icon: payload.notification?.icon || payload.data?.icon || 'https://topbriefing.in/logo.png',
-      image: payload.notification?.image || payload.data?.image || null,
-      badge: 'https://topbriefing.in/logo.png',
-      vibrate: [200, 100, 200],
-      tag: payload.data?.newsId || 'news-update',
-      renotify: true,
-      data: {
-        url: payload.data?.url || payload.fcmOptions?.link || 'https://topbriefing.in'
-      }
-    };
-
-    event.waitUntil(self.registration.showNotification(title, options));
-  } catch (err) {
-    console.warn('[firebase-messaging-sw.js] Failed to parse push payload:', err);
-  }
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
 });
 
 // Notification click event handler
@@ -91,3 +69,4 @@ self.addEventListener('notificationclick', (event) => {
     })
   );
 });
+

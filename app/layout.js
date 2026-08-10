@@ -21,6 +21,7 @@ export const metadata = {
   creator: "Top Briefing",
   publisher: "Top Briefing",
   category: "News",
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
