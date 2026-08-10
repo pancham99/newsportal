@@ -41,13 +41,20 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 300
-    },
-  });
-
-  const { news } = await news_data?.json()
+  let news = {};
+  try {
+    const news_data = await fetch(`${base_api_url}/api/all/news`, {
+      next: {
+        revalidate: 300
+      },
+    });
+    if (news_data.ok) {
+      const parsed = await news_data.json();
+      news = parsed?.news || {};
+    }
+  } catch (error) {
+    console.error("[RootLayout] News fetch failed:", error.message);
+  }
 
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -97,7 +104,7 @@ export default async function RootLayout({ children }) {
               {children}
             </div>
           </main>
-          <Footer news={news['राजनीति']} />
+          <Footer news={news?.['राजनीति']} />
         </AuthProvider>
 
         {/* Google AdSense — standard HTML script tag prevents Next.js data-nscript attribute issue */}
