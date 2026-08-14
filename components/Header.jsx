@@ -69,7 +69,6 @@ const Header = () => {
             setSearchOpen(false);
         }
     };
-
     const handleStateChange = (e) => {
         const stateVal = e.target.value;
         setSelectedState(stateVal);
@@ -79,7 +78,6 @@ const Header = () => {
             setCategoryDropdownOpen(false);
         }
     };
-
     const decodedCurrentCategory = decodeURIComponent(pathname.split("/")[3] || "");
     return (
         <header className="w-full font-sans sticky top-0 z-50 shadow-md">
