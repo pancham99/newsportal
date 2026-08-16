@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import moment from 'moment-timezone';
+import { formatDate } from '../utils/dateFormatter';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -46,8 +46,7 @@ const Header = () => {
         if (storedUser) setUser(JSON.parse(storedUser));
 
         const updateClock = () => {
-            const now = moment().tz("Asia/Kolkata");
-            setCurrentTime(now.format("dddd, MMMM D, YYYY | h:mm A"));
+            setCurrentTime(formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A"));
         };
         updateClock();
         const timer = setInterval(updateClock, 10000);
@@ -87,11 +86,11 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-0">
                     {/* Left: Date & Time */}
                     <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm">
-                        {currentTime || moment().tz("Asia/Kolkata").format("dddd, MMMM D, YYYY | h:mm A")}
+                        {currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")}
                     </div>
 
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
-                    
+
                     {/* Right: Login/Signup & Social Icons */}
                     <div className="flex items-center gap-2 sm:gap-3">
                         {(authUser || user) ? (
@@ -168,10 +167,11 @@ const Header = () => {
                             <Image
                                 src="/logo-square-badge.png"
                                 alt="Top Briefing Logo"
-                                width={130}
-                                height={50}
+                                width={120}
+                                height={48}
                                 priority
-                                className="h-20 sm:h-12 w-auto object-contain drop-shadow-md"
+                                sizes="120px"
+                                className="h-20 w-auto object-contain drop-shadow-md"
                             />
                         </Link>
                     </div>
@@ -181,10 +181,11 @@ const Header = () => {
                         <Image
                             src="/logo-square-badge.png"
                             alt="Top Briefing Logo"
-                            width={160}
-                            height={80}
+                            width={140}
+                            height={70}
                             priority
-                            className="h-20 md:h-22 lg:h-32 w-auto object-contain drop-shadow-2xl transition-transform group-hover:scale-105"
+                            sizes="140px"
+                            className="h-20 lg:h-24 w-auto object-contain drop-shadow-2xl transition-transform group-hover:scale-105"
                         />
                     </Link>
 

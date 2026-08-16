@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import moment from 'moment-timezone';
+import { formatDate } from '../../utils/dateFormatter';
 import { FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import { FaCalendarAlt, FaUserEdit, FaFolderOpen } from 'react-icons/fa';
 
@@ -371,12 +371,12 @@ export default function CategoryGridSection({ news = {} }) {
                     >
                       <div>
                         {/* Thumbnail */}
-                        <div className="relative w-full h-36 overflow-hidden bg-gray-200">
+                        <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-200">
                           <Image
                             src={item.image || cat.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
                             alt={item.title || cat.name}
                             fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                         </div>
@@ -399,7 +399,7 @@ export default function CategoryGridSection({ news = {} }) {
                         <span className="flex items-center gap-1">
                           <FaCalendarAlt className="text-[9px] text-red-500" />
                           {item.createdAt
-                            ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
+                            ? formatDate(item.createdAt, "DD MMM YYYY")
                             : (item.date || '02 Aug 2026')}
                         </span>
                         <span className="flex items-center gap-1">
@@ -427,12 +427,12 @@ export default function CategoryGridSection({ news = {} }) {
                 >
                   <div>
                     {/* Image */}
-                    <div className="relative w-full h-44 overflow-hidden bg-gray-100">
+                    <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
                       <Image
                         src={item.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
                         alt={item.title || 'Category News'}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       <span className="absolute top-2.5 left-2.5 bg-[#cc0000] text-white text-[10px] font-extrabold px-2.5 py-1 rounded shadow-sm uppercase tracking-wider">
@@ -458,7 +458,7 @@ export default function CategoryGridSection({ news = {} }) {
                     <span className="flex items-center gap-1">
                       <FaCalendarAlt className="text-[10px] text-red-500" />
                       {item.createdAt
-                        ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
+                        ? formatDate(item.createdAt, "DD MMM YYYY")
                         : (item.date || '02 Aug 2026')}
                     </span>
                     <span className="flex items-center gap-1">
