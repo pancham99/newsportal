@@ -83,7 +83,7 @@ const Header = () => {
         <header className="w-full font-sans sticky top-0 z-50 shadow-md">
 
             {/* Top Bar with Indian Flag Tricolor Background */}
-            <div className="bg-gradient-to-r from-[#FF9933] via-[#FFFFFF] to-[#138808] text-slate-900 text-xs py-1.5 px-3 md:px-8 border-b border-emerald-800/30 shadow-md">
+            <div className="bg-gray-50 text-gray-700 text-slate-900 text-xs py-1.5 px-3 md:px-8 border-b border-emerald-800/30 shadow-md">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-0">
                     {/* Left: Date & Time */}
                     <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm">
@@ -91,55 +91,7 @@ const Header = () => {
                     </div>
 
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
-                    <div className="flex items-center justify-center my-0.5 md:my-0">
-                        <div className="relative group overflow-hidden rounded-full p-[1.5px] bg-white shadow-md">
-                            <div className="bg-[#C92726] px-2.5 sm:px-4 py-0.5 rounded-full flex items-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-xs font-bold text-white tracking-wide shadow-inner">
-                                {/* Indian Flag Vector Graphic (Left) */}
-                                <svg width="18" height="12" viewBox="0 0 30 20" className="rounded-sm shadow-sm border border-white/60 shrink-0">
-                                    <rect x="0" y="0" width="30" height="6.67" fill="#FF9933" />
-                                    <rect x="0" y="6.67" width="30" height="6.67" fill="#FFFFFF" />
-                                    <rect x="0" y="13.34" width="30" height="6.67" fill="#138808" />
-                                    <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" strokeWidth="0.5" />
-                                    <circle cx="15" cy="10" r="0.6" fill="#000080" />
-                                    {Array.from({ length: 24 }).map((_, i) => (
-                                        <line
-                                            key={i}
-                                            x1="15"
-                                            y1="10"
-                                            x2={15 + 2.6 * Math.cos((i * 15 * Math.PI) / 180)}
-                                            y2={10 + 2.6 * Math.sin((i * 15 * Math.PI) / 180)}
-                                            stroke="#000080"
-                                            strokeWidth="0.3"
-                                        />
-                                    ))}
-                                </svg>
-
-                                <span className="font-extrabold tracking-wider uppercase text-[10px] sm:text-xs text-white drop-shadow truncate max-w-[230px] sm:max-w-none">
-                                    Top Briefing की तरफ से स्वतंत्रता दिवस की हार्दिक शुभकामनाएं!
-                                </span>
-
-                                {/* Indian Flag Vector Graphic (Right) */}
-                                <svg width="18" height="12" viewBox="0 0 30 20" className="rounded-sm shadow-sm border border-white/60 shrink-0 hidden sm:block">
-                                    <rect x="0" y="0" width="30" height="6.67" fill="#FF9933" />
-                                    <rect x="0" y="6.67" width="30" height="6.67" fill="#FFFFFF" />
-                                    <rect x="0" y="13.34" width="30" height="6.67" fill="#138808" />
-                                    <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" strokeWidth="0.5" />
-                                    <circle cx="15" cy="10" r="0.6" fill="#000080" />
-                                    {Array.from({ length: 24 }).map((_, i) => (
-                                        <line
-                                            key={i}
-                                            x1="15"
-                                            y1="10"
-                                            x2={15 + 2.6 * Math.cos((i * 15 * Math.PI) / 180)}
-                                            y2={10 + 2.6 * Math.sin((i * 15 * Math.PI) / 180)}
-                                            stroke="#000080"
-                                            strokeWidth="0.3"
-                                        />
-                                    ))}
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     {/* Right: Login/Signup & Social Icons */}
                     <div className="flex items-center gap-2 sm:gap-3">
