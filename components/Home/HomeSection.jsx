@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Marquee from 'react-fast-marquee';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { FaFire, FaBell, FaCalendarAlt, FaPlay } from 'react-icons/fa';
-import moment from 'moment-timezone';
+import { formatDate } from '../../utils/dateFormatter';
 import LatestNewsGrid from './LatestNewsGrid';
 import CategoryGridSection from './CategoryGridSection';
 import VideoUpdatesSection from './VideoUpdatesSection';
@@ -172,7 +172,7 @@ const Home = async ({ news = {} }) => {
         {/* <TopBanner /> */}
 
         {/* 1. Breaking News Marquee Ticker */}
-        <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2 min-h-[44px]">
           {/* Red Pill Badge */}
           <div className="bg-[#cc0000] text-white text-xs font-black px-3 py-1.5 rounded flex items-center gap-1 shrink-0 uppercase tracking-wide">
             <span className="text-amber-300">⚡</span>
@@ -180,7 +180,7 @@ const Home = async ({ news = {} }) => {
           </div>
 
           {/* Marquee Scrolling Ticker */}
-          <div className="flex-1 overflow-hidden text-xs md:text-sm font-semibold text-gray-800">
+          <div className="flex-1 overflow-hidden text-xs md:text-sm font-semibold text-gray-800 h-6 flex items-center">
             <Marquee speed={45} pauseOnHover={true} gradient={false}>
               <span className="pr-12">⚡ {breakingTickerText}</span>
             </Marquee>
@@ -228,7 +228,7 @@ const Home = async ({ news = {} }) => {
                     {item.title}
                   </h3>
                   <span className="text-[10px] font-medium text-gray-400 mt-1 block">
-                    {item.createdAt ? moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY | hh:mm A") : (item.date || defaultMiddleList[idx % 4].date)}
+                    {item.createdAt ? formatDate(item.createdAt, "DD MMM YYYY | hh:mm A") : (item.date || defaultMiddleList[idx % 4].date)}
                   </span>
                 </div>
               </Link>

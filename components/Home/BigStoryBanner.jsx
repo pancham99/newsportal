@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import moment from 'moment-timezone';
+import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 
 const defaultStory = {
@@ -27,13 +27,7 @@ export default function BigStoryBanner({ news = [] }) {
   // Format date cleanly
   const formatDate = (dateVal) => {
     if (!dateVal) return '02 Aug 2026';
-    try {
-      const d = moment(dateVal);
-      if (d.isValid()) {
-        return d.format('DD MMM YYYY');
-      }
-    } catch (e) { }
-    return dateVal;
+    return formatCustomDate(dateVal, 'DD MMM YYYY') || dateVal;
   };
 
   // Helper to extract clean full description text
@@ -54,7 +48,7 @@ export default function BigStoryBanner({ news = [] }) {
   const activeImage = activeItem?.image || activeItem?.img || activeItem?.image_url || defaultStory.image;
 
   return (
-    <section className="w-full lg:block hidden mt-1 bg-[#08080a] text-white relative overflow-hidden border-b border-zinc-800/70 shadow-xl py-2 lg:py-0">
+    <section className="w-full block mt-1 bg-[#08080a] text-white relative overflow-hidden border-b border-zinc-800/70 shadow-xl py-2 lg:py-0">
       <div className="max-w-[1440px] mx-auto px-3 sm:px-4 md:px-8">
 
         {/* ========================================================
@@ -172,10 +166,13 @@ export default function BigStoryBanner({ news = [] }) {
 
             {/* Main Foreground Image */}
             <div className="relative w-full h-full min-h-[240px] max-h-[360px] flex items-center justify-center z-10">
-              <img
+              <Image
                 src={activeImage}
                 alt={activeItem.title || 'Big Story News'}
-                className="max-w-full max-h-[360px] w-auto h-auto object-contain rounded-md shadow-2xl transition-all duration-300"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain rounded-md shadow-2xl transition-all duration-300"
               />
             </div>
           </div>

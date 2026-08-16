@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { AuthProvider } from "../context/AuthContext";
 import { base_api_url } from "../config/config";
 import Footer from '../components/Footer';
+import AdSenseScript from '../components/AdSenseScript';
 
 // display: "swap" prevents invisible text during font load (fixes CLS/FOUT)
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -108,12 +109,8 @@ export default async function RootLayout({ children }) {
           <Footer news={news?.['राजनीति']} />
         </AuthProvider>
 
-        {/* Google AdSense — standard HTML script tag prevents Next.js data-nscript attribute issue */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8439565499673815"
-          crossOrigin="anonymous"
-        />
+        {/* Deferred Google AdSense loading */}
+        <AdSenseScript />
       </body>
     </html>
   );
