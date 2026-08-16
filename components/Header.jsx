@@ -16,11 +16,11 @@ import { useAuth } from '../context/AuthContext';
 const navMenuList = [
     { name: "Home", slug: "/", isHome: true },
     { name: "भारत", slug: "राष्ट्रीय" },
-    { name: "राज्य", slug: "राज्य" },
+    { name: "शिक्षा", slug: "शिक्षा" },
     { name: "दुनिया", slug: "अंतरराष्ट्रीय" },
-    { name: "बिज़नेस", slug: "बिजनेस" },
+    { name: "बाज़ार", slug: "बाज़ार" },
     { name: "खेल", slug: "खेल" },
-    { name: "टेक्नोलॉजी", slug: "टेक" },
+    { name: "प्रौद्योगिकी", slug: "प्रौद्योगिकी" },
     { name: "मनोरंजन", slug: "मनोरंजन" },
 ];
 const Header = () => {
@@ -92,7 +92,6 @@ const Header = () => {
 
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
                     
-
                     {/* Right: Login/Signup & Social Icons */}
                     <div className="flex items-center gap-2 sm:gap-3">
                         {(authUser || user) ? (
@@ -158,7 +157,7 @@ const Header = () => {
                     <div className="flex items-center gap-2 shrink-0">
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="text-white p-1 hover:bg-black/20 rounded transition-colors"
+                            className="text-white lg:hidden p-1 hover:bg-black/20 rounded transition-colors"
                             aria-label="Toggle menu"
                         >
                             {mobileMenuOpen ? <IoClose className="text-2xl sm:text-3xl" /> : <HiMenu className="text-2xl sm:text-3xl" />}
