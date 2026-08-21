@@ -1,13 +1,9 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import { AuthProvider } from "../context/AuthContext";
 import { base_api_url } from "../config/config";
 import Footer from '../components/Footer';
 import AdSenseScript from '../components/AdSenseScript';
-
-// display: "swap" prevents invisible text during font load (fixes CLS/FOUT)
-const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata = {
   metadataBase: new URL("https://topbriefing.in"),
@@ -93,7 +89,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="hi">
-      <body className={inter.className}>
+      <body>
         {/* Structured Data: Organization & WebSite Schemas */}
         <script
           type="application/ld+json"
