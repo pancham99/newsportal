@@ -89,7 +89,6 @@ const Home = async ({ news = {} }) => {
   let latestNews = [];
   let breakingNews = [];
   let trendingNews = [];
-
   let hestorys = [];
 
 
@@ -130,7 +129,7 @@ const Home = async ({ news = {} }) => {
       const data = await hestoryRes.json();
     
       hestorys = await data?.news || [];
-      console.log("News", hestorys);
+      // console.log("News", hestorys);
         
     }
   } catch (err) {

@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
+import moment from 'moment-timezone';
 import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 
 const defaultStory = {
@@ -18,7 +18,7 @@ const defaultStory = {
 
 export default function BigStoryBanner({ news = [] }) {
 
-  // console.log("BigStoryBanner news:", news);
+  // console.log("BigStoryBanner n÷ews:", news);
   // Show ONLY ONE single top news item
   const activeItem = (news && Array.isArray(news) && news.length > 0)
     ? news[0]
@@ -27,7 +27,13 @@ export default function BigStoryBanner({ news = [] }) {
   // Format date cleanly
   const formatDate = (dateVal) => {
     if (!dateVal) return '02 Aug 2026';
-    return formatCustomDate(dateVal, 'DD MMM YYYY') || dateVal;
+    try {
+      const d = moment(dateVal);
+      if (d.isValid()) {
+        return d.format('DD MMM YYYY');
+      }
+    } catch (e) { }
+    return dateVal;
   };
 
   // Helper to extract clean full description text
@@ -48,7 +54,7 @@ export default function BigStoryBanner({ news = [] }) {
   const activeImage = activeItem?.image || activeItem?.img || activeItem?.image_url || defaultStory.image;
 
   return (
-    <section className="w-full block mt-1 bg-[#08080a] text-white relative overflow-hidden border-b border-zinc-800/70 shadow-xl py-2 lg:py-0">
+    <section className="w-full lg:block hidden mt-1 bg-[#08080a] text-white relative overflow-hidden border-b border-zinc-800/70 shadow-xl py-2 lg:py-0">
       <div className="max-w-[1440px] mx-auto px-3 sm:px-4 md:px-8">
 
         {/* ========================================================
@@ -166,13 +172,10 @@ export default function BigStoryBanner({ news = [] }) {
 
             {/* Main Foreground Image */}
             <div className="relative w-full h-full min-h-[240px] max-h-[360px] flex items-center justify-center z-10">
-              <Image
+              <img
                 src={activeImage}
                 alt={activeItem.title || 'Big Story News'}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-contain rounded-md shadow-2xl transition-all duration-300"
+                className="max-w-full max-h-[360px] w-auto h-auto object-contain rounded-md shadow-2xl transition-all duration-300"
               />
             </div>
           </div>
