@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { formatDate } from '../../utils/dateFormatter';
 import { FiChevronDown, FiArrowRight } from 'react-icons/fi';
 import { FaCalendarAlt, FaUserEdit, FaFolderOpen } from 'react-icons/fa';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const categoryIcons = {
   'राजनीति': '🏛️',
@@ -311,8 +312,8 @@ export default function CategoryGridSection({ news = {} }) {
         <button
           onClick={() => handleCategorySelect('सभी')}
           className={`px-4 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 ${selectedCategory === 'सभी'
-              ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
-              : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
+            ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
+            : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
             }`}
         >
           🔥 सभी (All Categories)
@@ -323,8 +324,8 @@ export default function CategoryGridSection({ news = {} }) {
             key={idx}
             onClick={() => handleCategorySelect(cat.name)}
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition whitespace-nowrap border shrink-0 flex items-center gap-1.5 ${selectedCategory === cat.name
-                ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
-                : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
+              ? 'bg-[#cc0000] text-white border-[#cc0000] shadow-sm'
+              : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
               }`}
           >
             <span>{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span>
@@ -373,7 +374,12 @@ export default function CategoryGridSection({ news = {} }) {
                         {/* Thumbnail */}
                         <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-200">
                           <Image
-                            src={item.image || cat.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
+                            src={getImageUrl(
+                              item.image ||
+                              cat.image ||
+                              'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'
+                            )}
+                            // src={item.image || cat.image || 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=80'}
                             alt={item.title || cat.name}
                             fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"

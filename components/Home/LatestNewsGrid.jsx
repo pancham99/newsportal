@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const defaultLatest = [
   {
@@ -76,7 +77,8 @@ export default function LatestNewsGrid({ news = [] }) {
               {/* Image Box */}
               <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
                 <Image
-                  src={item.image || defaultLatest[index % 4].image}
+                  // src={item.image || defaultLatest[index % 4].image}
+                  src={getImageUrl(item.image || defaultMiddleList[idx % 4].image)}
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"

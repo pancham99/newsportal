@@ -12,6 +12,7 @@ import TopBanner from './TopBanner';
 import BigStoryBanner from './BigStoryBanner';
 import HeroSlider from './HeroSlider';
 import { base_api_url } from '../../config/config';
+import { getImageUrl } from '../../utils/imageUrl';
 
 // Fallback data matching reference image exact text
 const defaultHeroMain = {
@@ -127,10 +128,10 @@ const Home = async ({ news = {} }) => {
     const hestoryRes = await fetch(`${base_api_url}/api/hestory`, { next: { revalidate: 300 } });
     if (hestoryRes.ok) {
       const data = await hestoryRes.json();
-    
+
       hestorys = await data?.news || [];
       // console.log("News", hestorys);
-        
+
     }
   } catch (err) {
     console.error("Hestory API fetch error", err);
@@ -213,7 +214,8 @@ const Home = async ({ news = {} }) => {
                 {/* Thumbnail Image */}
                 <div className="relative w-20 h-16 rounded-lg overflow-hidden shrink-0 bg-gray-100">
                   <Image
-                    src={item.image || defaultMiddleList[idx % 4].image}
+                    // src={item.image || defaultMiddleList[idx % 4].image}
+                    src={getImageUrl(item.image || defaultMiddleList[idx % 4].image)}
                     alt={item.title}
                     fill
                     sizes="80px"
