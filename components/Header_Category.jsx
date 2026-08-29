@@ -45,7 +45,7 @@ const Header_Category = () => {
           <div className="flex justify-center lg:justify-start items-center flex-wrap">
             <div className=" h-28 w-24">
               <Link href={'/'} className="flex flex-col md:items-start">
-                <Image priority src="/logo.png" alt="Top Briefing - Hindi News" width={150} height={60} />
+                <Image priority src="/logo-square-badge.png" alt="Top Briefing - Hindi News" width={150} height={60} />
               </Link>
             </div>
           </div>

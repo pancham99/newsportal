@@ -57,13 +57,20 @@ import AdvertisementSection from "../../components/AdvertisementSection";
 
 
 const Page = async () => {
-  const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 300
-    },
-  });
-
-  const { news } = await news_data?.json()
+  let news = {};
+  try {
+    const news_data = await fetch(`${base_api_url}/api/all/news`, {
+      next: {
+        revalidate: 300
+      },
+    });
+    if (news_data.ok) {
+      const data = await news_data.json();
+      news = data?.news || {};
+    }
+  } catch (error) {
+    console.error("Topnews fetch error:", error.message);
+  }
 
 
 

@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import moment from 'moment-timezone';
+import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 
 const defaultLatest = [
   {
@@ -45,7 +45,7 @@ export default function LatestNewsGrid({ news = [] }) {
   const formatDate = (item, defaultStr) => {
     if (item?.date) return item.date;
     if (item?.createdAt) {
-      return moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY | hh:mm A");
+      return formatCustomDate(item.createdAt, "DD MMM YYYY | hh:mm A");
     }
     return defaultStr;
   };
@@ -74,12 +74,12 @@ export default function LatestNewsGrid({ news = [] }) {
               className="group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col"
             >
               {/* Image Box */}
-              <div className="relative w-full h-36 overflow-hidden bg-gray-100">
+              <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
                 <Image
                   src={item.image || defaultLatest[index % 4].image}
                   alt={item.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 25vw, 250px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <span className="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase">

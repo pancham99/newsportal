@@ -1,0 +1,25 @@
+{
+  "short_name": "Top Briefing",
+  "name": "Top Briefing - Latest Hindi News & Breaking Updates",
+  "description": "Read latest Hindi News, Breaking News, Politics, Sports and Entertainment on Top Briefing.",
+  "icons": [
+    {
+      "src": "/logo-square-badge.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#c92726",
+  "display": "standalone",
+  "orientation": "portrait",
+  "gcm_sender_id": "103953800533"
+}

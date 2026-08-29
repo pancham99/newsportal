@@ -7,18 +7,11 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoYoutube } from "react-icons/io";
 import VideoPlayer from "./VideoPlayer";
 import Subscribe from "./Subscribe";
-import moment from 'moment-timezone';
+import { formatDate } from "../utils/dateFormatter";
+
 const Footer = ({ news }) => {
-
-    const formattedDate = moment
-        .utc(news?.createdAt)
-        .tz("Asia/Kolkata")
-        .format("DD MMM YYYY");
-
-    const formattedTime = moment
-        .utc(news?.createdAt)
-        .tz("Asia/Kolkata")
-        .format("hh:mm A");
+    const formattedDate = formatDate(news?.createdAt, "DD MMM YYYY");
+    const formattedTime = formatDate(news?.createdAt, "hh:mm A");
 
     return (
         <div className='w-full'>
@@ -82,23 +75,20 @@ const Footer = ({ news }) => {
                         <div className='grid grid-cols-1 gap-y-2 pt-3'>
                             {
                                 news?.map((r, i) => <Link href={"#"} key={i} className="flex gap-x-2 ">
-                                    <div className="group relative overflow-hidden w-[90px] h-[75px]">
-                                        <div className="w-[90px] h-[85px] block group-hover:scale-[1.1] transition-all duration-[1s] ">
-                                            <Image src={r?.image} alt="image footer" className="h-fit w-fit" loading="lazy" quality={80} width={300} height={300} />
-
-                                            <div className='w-full h-full block absolute left-0 top-0 invisible group-hover:visible bg-white cursor-pointer opacity-5 transition-all duration-300'></div>
+                                    <div className="group relative overflow-hidden w-[90px] h-[75px] shrink-0 rounded">
+                                        <div className="relative w-full h-full block group-hover:scale-[1.1] transition-all duration-500">
+                                            {r?.image && (
+                                                <Image src={r.image} alt={r?.title || "Footer news"} fill sizes="90px" className="object-cover" />
+                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col gap-y-1">
                                         <h2 className="text-sm font-semibold text-white hover:text-[#c80000]">{r?.title?.length > 50 ? r.title.slice(0, 50) + '...' : r.title}</h2>
                                         <div className='flex gap-x-2 text-xs font-normal text-white'>
-                                            <span> {moment
-                                                .utc(r?.createdAt)
-                                                .tz("Asia/Kolkata")
-                                                .format("DD MMM YYYY")} </span>
-                                            <span>{r.writerName}</span>
-                                        </div>
-                                    </div>
+                                             <span> {formatDate(r?.createdAt, "DD MMM YYYY")} </span>
+                                             <span>{r.writerName}</span>
+                                         </div>
+                                     </div>
                                 </Link>)
                             }
                         </div>

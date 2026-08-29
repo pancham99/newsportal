@@ -54,11 +54,18 @@ export async function generateMetadata({ params }) {
 }
 
 async function getNewsByState(stateName) {
-    const res = await fetch(`${base_api_url}/api/news/state/${stateName}`, {
-        cache: 'no-store',
-    });
-    const data = await res.json();
-    return data.news || [];
+    try {
+        const res = await fetch(`${base_api_url}/api/news/state/${stateName}`, {
+            cache: 'no-store',
+        });
+        if (res.ok) {
+            const data = await res.json();
+            return data.news || [];
+        }
+    } catch (error) {
+        console.error(`Error fetching news for state ${stateName}:`, error.message);
+    }
+    return [];
 }
 
 const Page = async ({ params }) => {

@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import moment from 'moment-timezone';
+import { formatDate } from '../utils/dateFormatter';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
@@ -16,11 +16,11 @@ import { useAuth } from '../context/AuthContext';
 const navMenuList = [
     { name: "Home", slug: "/", isHome: true },
     { name: "भारत", slug: "राष्ट्रीय" },
-    { name: "राज्य", slug: "राज्य" },
+    { name: "शिक्षा", slug: "शिक्षा" },
     { name: "दुनिया", slug: "अंतरराष्ट्रीय" },
-    { name: "बिज़नेस", slug: "बिजनेस" },
+    { name: "बाज़ार", slug: "बाज़ार" },
     { name: "खेल", slug: "खेल" },
-    { name: "टेक्नोलॉजी", slug: "टेक" },
+    { name: "प्रौद्योगिकी", slug: "प्रौद्योगिकी" },
     { name: "मनोरंजन", slug: "मनोरंजन" },
 ];
 const Header = () => {
@@ -46,8 +46,7 @@ const Header = () => {
         if (storedUser) setUser(JSON.parse(storedUser));
 
         const updateClock = () => {
-            const now = moment().tz("Asia/Kolkata");
-            setCurrentTime(now.format("dddd, MMMM D, YYYY | h:mm A"));
+            setCurrentTime(formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A"));
         };
         updateClock();
         const timer = setInterval(updateClock, 10000);
@@ -69,7 +68,6 @@ const Header = () => {
             setSearchOpen(false);
         }
     };
-
     const handleStateChange = (e) => {
         const stateVal = e.target.value;
         setSelectedState(stateVal);
@@ -79,69 +77,71 @@ const Header = () => {
             setCategoryDropdownOpen(false);
         }
     };
-
     const decodedCurrentCategory = decodeURIComponent(pathname.split("/")[3] || "");
     return (
         <header className="w-full font-sans sticky top-0 z-50 shadow-md">
-            {/* Top Bar */}
-            <div className="bg-gray-50 text-gray-700 text-xs py-1.5 px-4 md:px-8 border-b border-gray-200">
-                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-0">
+
+            {/* Top Bar with Indian Flag Tricolor Background */}
+            <div className="bg-gray-50 text-gray-700 text-slate-900 text-xs py-1.5 px-3 md:px-8 border-b border-emerald-800/30 shadow-md">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-0">
                     {/* Left: Date & Time */}
-                    <div className="font-medium text-gray-600 text-[11px] sm:text-xs md:text-sm tracking-wide text-center sm:text-left">
-                        {currentTime || moment().tz("Asia/Kolkata").format("dddd, MMMM D, YYYY | h:mm A")}
+                    <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm">
+                        {currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")}
                     </div>
 
+                    {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
+
                     {/* Right: Login/Signup & Social Icons */}
-                    <div className="flex items-center gap-3 md:gap-4">
+                    <div className="flex items-center gap-2 sm:gap-3">
                         {(authUser || user) ? (
                             <button
                                 onClick={handleLogout}
-                                className="text-[#C92726] hover:text-red-700 font-semibold text-xs md:text-sm hover:underline transition-colors"
+                                className="bg-white/90 text-[#C92726] font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full border border-slate-300 shadow-sm"
                             >
-                                Logout ({(authUser || user)?.name || (authUser || user)?.role})
+                                Logout
                             </button>
                         ) : (
                             <button
                                 onClick={() => openModal('login')}
-                                className="text-[#C92726] hover:text-red-700 font-semibold text-xs md:text-sm hover:underline transition-colors cursor-pointer"
+                                className="bg-white/90 text-slate-900 hover:text-[#C92726] font-extrabold text-[10px] sm:text-xs px-2.5 py-0.5 rounded-full border border-slate-300 shadow-sm cursor-pointer"
                             >
                                 Login / Signup
                             </button>
                         )}
 
-                        {/* Social Media Buttons with Official Brand Colors & Hover Animations */}
-                        <div className="flex items-center gap-2 ml-1">
+                        {/* Social Media Buttons */}
+                        <div className="flex items-center gap-1.5">
                             <Link
                                 target="_blank"
                                 href="https://www.facebook.com/people/Top-Briefing/61552965021716/"
                                 aria-label="Facebook"
-                                className="w-7 h-7 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
+                                className="w-6 h-6 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
                             >
-                                <FaFacebookF className="text-[12px]" />
+                                <FaFacebookF className="text-[10px]" />
                             </Link>
                             <Link
                                 target="_blank"
                                 href="https://www.instagram.com/topbriefing/"
                                 aria-label="Instagram"
-                                className="w-7 h-7 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#cc2366] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
+                                className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#cc2366] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
                             >
-                                <FaInstagram className="text-[12px] text-white" />
+                                <FaInstagram className="text-[10px]" />
                             </Link>
                             <Link
                                 target="_blank"
                                 href="https://www.youtube.com/results?search_query=topbriefing"
                                 aria-label="YouTube"
-                                className="w-7 h-7 rounded-full bg-[#FF0000] text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-sm"
+                                className="w-6 h-6 rounded-full bg-[#FF0000] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
                             >
-                                <IoLogoYoutube className="text-[13px]" />
+                                <IoLogoYoutube className="text-[11px]" />
                             </Link>
                             <Link
                                 target="_blank"
                                 href="https://x.com/topbriefing"
                                 aria-label="X"
-                                className="w-7 h-7 rounded-full bg-gray-900 text-white flex items-center justify-center hover:scale-110 transition-transform duration-200 border border-gray-300 shadow-sm"
+                                className="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center hover:scale-110 transition-transform border border-gray-300 shadow-sm"
                             >
-                                <FaXTwitter className="text-[11px]" />
+                                <FaXTwitter className="text-[10px]" />
                             </Link>
                         </div>
                     </div>
@@ -149,34 +149,48 @@ const Header = () => {
             </div>
 
             {/* Main Nav Bar: Deep Red background */}
-            <div className="bg-[#C92726] text-white relative">
-                <div className="max-w-7xl mx-auto px-4 md:px-8 py-2 flex items-center justify-between">
+            <div className="bg-[#C92726] text-white md:h-[48px] relative">
+                <div className="max-w-7xl w-full mx-auto px-3 sm:px-4 md:px-8 py-2 md:py-0 flex items-center justify-between relative md:h-full">
 
-                    {/* Left: Mobile Menu Toggle & Logo */}
-                    <div className="flex items-center gap-3 md:gap-4 shrink-0">
+                    {/* Mobile View: Hamburger Menu Icon + Mobile Square Badge Logo (Inline, Zero Overlap!) */}
+                    <div className="flex items-center gap-2 shrink-0">
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="md:hidden text-white p-1 hover:bg-black/20 rounded"
+                            className="text-white lg:hidden p-1 hover:bg-black/20 rounded transition-colors"
                             aria-label="Toggle menu"
                         >
-                            {mobileMenuOpen ? <IoClose className="text-2xl" /> : <HiMenu className="text-2xl" />}
+                            {mobileMenuOpen ? <IoClose className="text-2xl sm:text-3xl" /> : <HiMenu className="text-2xl sm:text-3xl" />}
                         </button>
 
-                        {/* Top Briefing Logo */}
-                        <Link href="/" className="flex items-center group py-0.5">
+                        {/* Mobile Square Badge Logo (Fixed for Mobile) */}
+                        <Link href="/" className="md:hidden absolute -top-1 left-12 flex items-center shrink-0">
                             <Image
-                                src="/logo.png"
+                                src="/logo-square-badge.png"
                                 alt="Top Briefing Logo"
-                                width={180}
-                                height={50}
+                                width={120}
+                                height={48}
                                 priority
-                                className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+                                sizes="120px"
+                                className="h-20 w-auto object-contain drop-shadow-md"
                             />
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation Links */}
-                    <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+                    {/* Desktop View: Aaj Tak Style Floating Overlapping Badge Logo */}
+                    <Link href="/" className="hidden md:flex absolute -top-4 left-14 md:left-16 lg:left-20 z-50 group items-center shrink-0">
+                        <Image
+                            src="/logo-square-badge.png"
+                            alt="Top Briefing Logo"
+                            width={140}
+                            height={70}
+                            priority
+                            sizes="140px"
+                            className="h-20 lg:h-24 w-auto object-contain drop-shadow-2xl transition-transform group-hover:scale-105"
+                        />
+                    </Link>
+
+                    {/* Desktop Navigation Links: Offset to the right of the floating badge logo */}
+                    <nav className="hidden md:flex items-center gap-1 lg:gap-2 ml-28 md:ml-32 lg:ml-36">
                         {/* Home Link */}
                         <Link
                             href="/"
@@ -272,7 +286,7 @@ const Header = () => {
                     </nav>
 
                     {/* Right: Search & Subscribe Action */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                         <button
                             onClick={() => setSearchOpen(!searchOpen)}
                             className="p-1 text-white hover:opacity-80 transition-opacity"
@@ -283,9 +297,9 @@ const Header = () => {
 
                         <button
                             onClick={() => openModal('subscribe')}
-                            className="border border-white/90 rounded-full px-3.5 py-1 text-xs md:text-sm font-bold text-white flex items-center gap-1.5 hover:bg-white hover:text-[#900000] transition-all shadow-sm cursor-pointer"
+                            className="border border-white/90 rounded-full px-2.5 sm:px-3.5 py-0.5 sm:py-1 text-[11px] sm:text-xs md:text-sm font-bold text-white flex items-center gap-1 hover:bg-white hover:text-[#900000] transition-all shadow-sm cursor-pointer"
                         >
-                            <FaBell className="text-xs" />
+                            <FaBell className="text-[10px] sm:text-xs" />
                             <span>SUBSCRIBE</span>
                         </button>
                     </div>

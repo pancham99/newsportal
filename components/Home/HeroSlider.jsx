@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import moment from 'moment-timezone';
+import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const defaultSlides = [
@@ -76,9 +76,13 @@ export default function HeroSlider({ slides = [] }) {
 
   const currentSlide = displaySlides[currentIndex] || defaultSlides[0];
 
+  const imageUrl = getOptimizedImageUrl(
+  currentSlide.image || defaultSlides[0].image
+);
+
   const formatDate = (item) => {
     if (item?.createdAt) {
-      return moment.utc(item.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY, hh:mm A");
+      return formatCustomDate(item.createdAt, "DD MMM YYYY, hh:mm A");
     }
     return item?.date || '05 Aug 2026, 06:41 PM';
   };
@@ -90,14 +94,14 @@ export default function HeroSlider({ slides = [] }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Slide Item Container */}
-      <Link href={`/news/${currentSlide.slug || 'detail'}`} className="relative block w-full h-[280px] sm:h-[320px] md:h-[360px] overflow-hidden bg-gray-900">
+      <Link href={`/news/${currentSlide.slug || 'detail'}`} className="relative block w-full aspect-[16/10] sm:h-[320px] md:h-[360px] overflow-hidden bg-gray-900">
         <Image
           key={currentIndex}
-          src={currentSlide.image || defaultSlides[0].image}
+          src={imageUrl}
           alt={currentSlide.title || 'Hero Main News'}
           fill
-          priority
-          sizes="(max-width: 1024px) 100vw, 50vw"
+          priority={currentIndex === 0}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
           className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 animate-fadeIn"
         />
         {/* Dark Gradient Overlay */}
@@ -166,3 +170,25 @@ export default function HeroSlider({ slides = [] }) {
     </div>
   );
 }
+
+
+const getOptimizedImageUrl = (url) => {
+  if (!url || typeof url !== 'string') {
+    return defaultSlides[0].image;
+  }
+
+  // Cloudinary images
+  if (url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
+    let optimizedUrl = url.replace(
+      '/image/upload/',
+      '/image/upload/f_auto,q_auto/'
+    );
+
+    // Explicit .webp हटाएं ताकि Cloudinary browser के हिसाब से format choose करे
+    optimizedUrl = optimizedUrl.replace(/\.webp($|\?)/i, '$1');
+
+    return optimizedUrl;
+  }
+
+  return url;
+};

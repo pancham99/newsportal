@@ -1,12 +1,9 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import { AuthProvider } from "../context/AuthContext";
 import { base_api_url } from "../config/config";
 import Footer from '../components/Footer';
-
-// display: "swap" prevents invisible text during font load (fixes CLS/FOUT)
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+import AdSenseScript from '../components/AdSenseScript';
 
 export const metadata = {
   metadataBase: new URL("https://topbriefing.in"),
@@ -21,6 +18,7 @@ export const metadata = {
   creator: "Top Briefing",
   publisher: "Top Briefing",
   category: "News",
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
@@ -41,13 +39,20 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const news_data = await fetch(`${base_api_url}/api/all/news`, {
-    next: {
-      revalidate: 300
-    },
-  });
-
-  const { news } = await news_data?.json()
+  let news = {};
+  try {
+    const news_data = await fetch(`${base_api_url}/api/all/news`, {
+      next: {
+        revalidate: 300
+      },
+    });
+    if (news_data.ok) {
+      const parsed = await news_data.json();
+      news = parsed?.news || {};
+    }
+  } catch (error) {
+    console.error("[RootLayout] News fetch failed:", error.message);
+  }
 
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -84,7 +89,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="hi">
-      <body className={inter.className}>
+      <body>
         {/* Structured Data: Organization & WebSite Schemas */}
         <script
           type="application/ld+json"
@@ -97,15 +102,11 @@ export default async function RootLayout({ children }) {
               {children}
             </div>
           </main>
-          <Footer news={news['राजनीति']} />
+          <Footer news={news?.['राजनीति']} />
         </AuthProvider>
 
-        {/* Google AdSense — standard HTML script tag prevents Next.js data-nscript attribute issue */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8439565499673815"
-          crossOrigin="anonymous"
-        />
+        {/* Deferred Google AdSense loading */}
+        <AdSenseScript />
       </body>
     </html>
   );

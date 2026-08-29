@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import moment from 'moment-timezone';
+import { formatDate } from '../../utils/dateFormatter';
 import { FaPlay, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { HiMailOpen } from 'react-icons/hi';
 import { base_api_url } from "../../config/config";
@@ -127,7 +127,7 @@ export default function VideoUpdatesSection() {
             const ytInfo = getYouTubeInfo(rawUrl, defaultImg);
 
             const displayDate = video.createdAt
-              ? moment.utc(video.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY")
+              ? formatDate(video.createdAt, "DD MMM YYYY")
               : (video.date || defaultVideos[index % 3].date);
 
             const displayDuration = video.duration || (index === 0 ? '02:45' : index === 1 ? '01:35' : '03:10');
@@ -139,12 +139,12 @@ export default function VideoUpdatesSection() {
                 className="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer"
               >
                 {/* Video Thumbnail Box with Play Overlay */}
-                <div className="relative w-full h-36 overflow-hidden bg-black">
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
                   <Image
                     src={ytInfo.thumbnail || defaultImg}
                     alt={video.title || "Video thumbnail"}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 25vw, 250px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 300px"
                     className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
