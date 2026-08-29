@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { getImageUrl } from '../../utils/imageUrl';
 
 const defaultSlides = [
   {
@@ -76,10 +77,6 @@ export default function HeroSlider({ slides = [] }) {
 
   const currentSlide = displaySlides[currentIndex] || defaultSlides[0];
 
-  const imageUrl = getOptimizedImageUrl(
-  currentSlide.image || defaultSlides[0].image
-);
-
   const formatDate = (item) => {
     if (item?.createdAt) {
       return formatCustomDate(item.createdAt, "DD MMM YYYY, hh:mm A");
@@ -97,7 +94,8 @@ export default function HeroSlider({ slides = [] }) {
       <Link href={`/news/${currentSlide.slug || 'detail'}`} className="relative block w-full aspect-[16/10] sm:h-[320px] md:h-[360px] overflow-hidden bg-gray-900">
         <Image
           key={currentIndex}
-          src={imageUrl}
+          // src={currentSlide.image || defaultSlides[0].image}
+          src={getImageUrl(currentSlide.image || defaultSlides[0].image)}
           alt={currentSlide.title || 'Hero Main News'}
           fill
           priority={currentIndex === 0}
@@ -170,25 +168,3 @@ export default function HeroSlider({ slides = [] }) {
     </div>
   );
 }
-
-
-const getOptimizedImageUrl = (url) => {
-  if (!url || typeof url !== 'string') {
-    return defaultSlides[0].image;
-  }
-
-  // Cloudinary images
-  if (url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
-    let optimizedUrl = url.replace(
-      '/image/upload/',
-      '/image/upload/f_auto,q_auto/'
-    );
-
-    // Explicit .webp हटाएं ताकि Cloudinary browser के हिसाब से format choose करे
-    optimizedUrl = optimizedUrl.replace(/\.webp($|\?)/i, '$1');
-
-    return optimizedUrl;
-  }
-
-  return url;
-};
