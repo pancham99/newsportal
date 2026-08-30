@@ -197,7 +197,8 @@ const Details = async ({ params }) => {
                                     {news?.image && (
                                         <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
                                             <Image
-                                                src={news.image}
+                                              src={getImageUrl(news?.image)}
+                                                // src={news.image}
                                                 alt={news?.title || 'News Image'}
                                                 fill
                                                 priority
