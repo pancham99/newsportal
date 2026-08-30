@@ -7,6 +7,7 @@ import Title from '../../../components/Title';
 import AdBanner from '../../../components/AdBanner';
 import CommentForm from '../../../components/CommentForm';
 import NewsDescription from '../../../components/news/NewsDescription';
+import { getImageUrl } from "../../../utils/imageUrl";
 
 /* ─────────────────────────────────────────────
    SEO: generateMetadata
