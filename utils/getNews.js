@@ -12,17 +12,35 @@ import { base_api_url } from "../config/config";
 
 export async function getNews(slug) {
   try {
-    const res = await fetch(`${base_api_url}/api/news/details/${slug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${base_api_url}/api/news/details/${encodeURIComponent(slug)}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
-      throw new Error("Failed to fetch news");
+      console.error(
+        "News API failed:",
+        res.status,
+        res.statusText
+      );
+
+      return {
+        news: null,
+        relatedNews: [],
+      };
     }
 
-    return res.json();
+    const data = await res.json();
+
+    return data;
   } catch (error) {
     console.error("Error fetching news:", error);
-    return { news: null, relatedNews: [] };
+
+    return {
+      news: null,
+      relatedNews: [],
+    };
   }
 }
