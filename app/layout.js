@@ -4,7 +4,7 @@ import { AuthProvider } from "../context/AuthContext";
 import { base_api_url } from "../config/config";
 import Footer from '../components/Footer';
 import AdSenseScript from '../components/AdSenseScript';
-
+import GoogleAnalytics from "../components/GoogleAnalytics";
 export const metadata = {
   metadataBase: new URL("https://topbriefing.in"),
   title: {
@@ -99,6 +99,8 @@ export default async function RootLayout({ children }) {
           <Header />
           <main>
             <div className="container mx-auto">
+              <GoogleAnalytics />
+
               {children}
             </div>
           </main>

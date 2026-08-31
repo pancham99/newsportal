@@ -4,6 +4,7 @@ import React from 'react'
 const { convert } = require('html-to-text');
 import moment from 'moment-timezone';
 import NewsDescription from '../NewsDescription';
+import { getImageUrl } from '../../../utils/imageUrl';
 
 const SimpleDetailsNewsCard = ({ news, type, height, priority = false }) => {
   if (!news) return null;
@@ -32,7 +33,8 @@ const SimpleDetailsNewsCard = ({ news, type, height, priority = false }) => {
             height={height || 200}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className='h-full w-full object-cover'
-            src={news?.image}
+             src={getImageUrl(news?.image)}
+            // src={news?.image}
             alt={news?.title || "Breaking news headline image"}
           />
         </div>
