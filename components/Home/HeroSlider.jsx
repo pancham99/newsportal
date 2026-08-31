@@ -7,56 +7,11 @@ import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { getImageUrl } from '../../utils/imageUrl';
 
-const defaultSlides = [
-  {
-    category: 'अंतरराष्ट्रीय',
-    title: "'छात्रों के साथ अन्याय हुआ, उन्होंने हिंसा नहीं की': GenZ और NEET मुद्दे पर बोले राहुल गांधी, सरकार को घेरा",
-    description: 'कास्तिलो राष्ट्रपति डोनाल्ड ट्रंप ने दावा किया है कि अमेरिका और इज़राइल द्वारा ईरान संगठित वह सैन्य हमले के...',
-    date: '05 Aug 2026, 06:41 PM',
-    writerName: 'Saurav kumar',
-    image: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&auto=format&fit=crop&q=80',
-    slug: 'genz-neet-issue-rahul-gandhi'
-  },
-  {
-    category: 'राष्ट्रीय',
-    title: 'संसद में हंगामा: विपक्ष ने सरकार से माँगा जवाब',
-    description: 'संसद परिसर में विपक्ष के नेताओं ने प्रमुख राष्ट्रीय मुद्दों को लेकर विरोध प्रदर्शन किया...',
-    date: '05 Aug 2026, 05:20 PM',
-    writerName: 'Ankit',
-    image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&auto=format&fit=crop&q=80',
-    slug: 'parliament-protest-update'
-  },
-  {
-    category: 'बिजनेस',
-    title: 'शेयर बाजार में नया रिकॉर्ड, सेंसेक्स 800 अंक चढ़ा',
-    description: 'भारतीय बाजार में चौतरफा खरीदारी से निवेशकों के चेहरे खिले, अर्थव्यवस्था में मजबूती का संकेत...',
-    date: '05 Aug 2026, 04:15 PM',
-    writerName: 'Biz Desk',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&auto=format&fit=crop&q=80',
-    slug: 'stock-market-rallies-today'
-  },
-  {
-    category: 'खेल',
-    title: 'टीम इंडिया का धमाकेदार प्रदर्शन, मैच में बनाई मजबूत पकड़',
-    description: 'भारतीय खिलाड़ियों ने शानदार खेल दिखाते हुए प्रतिद्वंद्वी टीम पर दबाव बनाया और बढ़त हासिल की...',
-    date: '05 Aug 2026, 03:10 PM',
-    writerName: 'Sports Desk',
-    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&auto=format&fit=crop&q=80',
-    slug: 'team-india-match-update'
-  }
-];
-
 export default function HeroSlider({ slides = [] }) {
-  const displaySlides = (slides && slides.length > 0)
-    ? [...slides, ...defaultSlides].slice(0, 4)
-    : defaultSlides;
-
-
-
+  const displaySlides = slides || [];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Auto-play slider every 5 seconds (pauses on hover)
   useEffect(() => {
     if (isHovered) return;
 
@@ -75,7 +30,7 @@ export default function HeroSlider({ slides = [] }) {
     setCurrentIndex((prev) => (prev - 1 + displaySlides.length) % displaySlides.length);
   };
 
-  const currentSlide = displaySlides[currentIndex] || defaultSlides[0];
+  const currentSlide = displaySlides[currentIndex] ;
 
   const formatDate = (item) => {
     if (item?.createdAt) {
@@ -95,7 +50,7 @@ export default function HeroSlider({ slides = [] }) {
         <Image
           key={currentIndex}
           // src={currentSlide.image || defaultSlides[0].image}
-          src={getImageUrl(currentSlide.image || defaultSlides[0].image)}
+          src={getImageUrl(currentSlide?.image)}
           alt={currentSlide.title || 'Hero Main News'}
           fill
           priority={currentIndex === 0}

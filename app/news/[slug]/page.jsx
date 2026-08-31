@@ -9,24 +9,15 @@ import CommentForm from '../../../components/CommentForm';
 import NewsDescription from '../../../components/news/NewsDescription';
 import { getImageUrl } from "../../../utils/imageUrl";
 
-/* ─────────────────────────────────────────────
-   SEO: generateMetadata
-   ───────────────────────────────────────────── */
+
 export async function generateMetadata({ params }) {
-
-        const { slug } = await params;
-        console.log('slug', slug);
-
+    const { slug } = await params;
     const { news } = await getNews(slug);
-    // const { news } = await getNews(params?.slug);
-    
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim();
     const shortDesc = cleanDescription.slice(0, 155) || 'Top Briefing पर पढ़ें ताजा हिंदी खबरें।';
     const canonicalUrl = `https://topbriefing.in/news/${slug}`;
     const newsImage = news?.image || 'https://topbriefing.in/logo.png';
     const articleTitle = news?.title || 'Top Briefing - Hindi News';
-
-    // Build rich keyword list from article data
     const keywords = [
         news?.category,
         news?.writerName,
@@ -88,10 +79,7 @@ export async function generateMetadata({ params }) {
     };
 }
 
-/* ─────────────────────────────────────────────
-   JSON-LD: NewsArticle schema
-   Required for Google News / Discover indexing
-   ───────────────────────────────────────────── */
+
 function NewsArticleSchema({ news, slug }) {
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim().slice(0, 155);
     const schema = {
@@ -139,9 +127,6 @@ function NewsArticleSchema({ news, slug }) {
     );
 }
 
-/* ─────────────────────────────────────────────
-   JSON-LD: BreadcrumbList schema
-   ───────────────────────────────────────────── */
 function BreadcrumbSchema({ category, title, slug }) {
     const schema = {
         '@context': 'https://schema.org',
@@ -160,15 +145,9 @@ function BreadcrumbSchema({ category, title, slug }) {
     );
 }
 
-/* ─────────────────────────────────────────────
-   Page Component
-   ───────────────────────────────────────────── */
 const Details = async ({ params }) => {
-        const { slug } = await params;
-
+    const { slug } = await params;
     const { news } = await getNews(slug);
-    // const { news } = await getNews(params?.slug);
-
     const formattedDate = moment.utc(news?.createdAt).tz("Asia/Kolkata").format("DD MMM YYYY");
     const formattedTime = moment.utc(news?.createdAt).tz("Asia/Kolkata").format("hh:mm A");
 
@@ -188,17 +167,15 @@ const Details = async ({ params }) => {
             <div className="bg-slate-200 w-full">
                 <div className="px-4 md:px-8 w-full py-8">
                     <div className="flex flex-wrap">
-
                         {/* ── Main Article Column ── */}
                         <div className="w-full xl:w-8/12">
                             <div className="w-full pr-0 xl:pr-4">
                                 <div className="bg-white rounded-sm overflow-hidden">
-
                                     {/* Hero Image — LCP element: priority load, explicit dimensions */}
                                     {news?.image && (
                                         <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
                                             <Image
-                                              src={getImageUrl(news?.image)}
+                                                src={getImageUrl(news?.image)}
                                                 // src={news.image}
                                                 alt={news?.title || 'News Image'}
                                                 fill
@@ -233,24 +210,20 @@ const Details = async ({ params }) => {
                                             </time>
                                         </div>
 
-                                          <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
+                                        <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
                                             <NewsDescription description={news?.description} />
                                         </div>
 
 
-                                          {/* ── Like & Comments ── */}
+                                        {/* ── Like & Comments ── */}
                                         <CommentForm news={news} />
-
                                         {/* ── In-article ad (shows between meta and body) ── */}
                                         <AdBanner
                                             adSlot="8002892607"
                                             adFormat="fluid"
                                             className="my-2"
                                         />
-
                                         {/* Article body */}
-                                      
-
                                         {/* ── Below-article ad ── */}
                                         <div className="mt-4 pt-4 border-t border-gray-100">
                                             <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
@@ -260,8 +233,6 @@ const Details = async ({ params }) => {
                                                 className="w-full"
                                             />
                                         </div>
-
-                                      
                                     </div>
                                 </div>
                             </div>
