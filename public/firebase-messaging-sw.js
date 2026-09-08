@@ -19,38 +19,34 @@ try {
   messaging.onBackgroundMessage((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message:', payload);
 
-    // If browser natively displays webpush notification via payload.notification, skip manual showNotification to prevent double banners
-    if (payload.notification && payload.notification.title) {
-      return;
-    }
-
-    const notificationTitle = payload.data?.title || 'Top Briefing News Update';
+    const notificationTitle = payload.notification?.title || payload.data?.title || 'Top Briefing News Update';
+    const notificationBody = payload.notification?.body || payload.data?.body || 'Read the latest breaking story on Top Briefing.';
     const targetUrl = payload.data?.url || payload.fcmOptions?.link || 'https://topbriefing.in';
 
-    let iconUrl = payload.data?.icon || 'https://topbriefing.in/logo.png';
-    if (iconUrl.startsWith('/')) {
+    let iconUrl = payload.notification?.icon || payload.data?.icon || 'https://topbriefing.in/logo.png';
+    if (iconUrl && iconUrl.startsWith('/')) {
       iconUrl = 'https://topbriefing.in' + iconUrl;
     }
 
-    let imageUrl = payload.data?.image || null;
+    let imageUrl = payload.notification?.image || payload.notification?.imageUrl || payload.data?.image || null;
     if (imageUrl && imageUrl.startsWith('http://')) {
       imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
     }
 
     const notificationOptions = {
-      body: payload.data?.body || 'Read the latest breaking story on Top Briefing.',
-      icon: iconUrl,
+      body: notificationBody,
+      icon: iconUrl || 'https://topbriefing.in/logo.png',
       image: imageUrl,
       badge: 'https://topbriefing.in/logo.png',
       vibrate: [200, 100, 200],
-      tag: payload.data?.newsId ? `news-${payload.data.newsId}` : 'topbriefing-news',
+      tag: payload.data?.newsId ? `news-${payload.data.newsId}` : `topbriefing-news-${Date.now()}`,
       renotify: true,
       data: {
         url: targetUrl
       }
     };
 
-    self.registration.showNotification(notificationTitle, notificationOptions);
+    return self.registration.showNotification(notificationTitle, notificationOptions);
   });
 } catch (e) {
   console.error('[firebase-messaging-sw.js] Firebase initialization error:', e);

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { formatDate } from '../../utils/dateFormatter';
 import { FaPlay, FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { HiMailOpen } from 'react-icons/hi';
-import { base_api_url } from "../../config/config";
+import { getBaseApiUrl } from "../../config/config";
 
 const defaultVideos = [
   {
@@ -59,8 +59,19 @@ export default function VideoUpdatesSection() {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch(`${base_api_url}/api/video/getall`);
-        if (res.ok) {
+        const targetApiUrl = getBaseApiUrl();
+        let res;
+        try {
+          res = await fetch(`${targetApiUrl}/api/video/getall`);
+        } catch (fetchErr) {
+          if (targetApiUrl !== 'https://bakendtopbrefing.vercel.app') {
+            res = await fetch('https://bakendtopbrefing.vercel.app/api/video/getall');
+          } else {
+            throw fetchErr;
+          }
+        }
+
+        if (res && res.ok) {
           const data = await res.json();
           const fetchedList = data?.data || data?.videos || [];
           const activeList = fetchedList.filter(item => item?.status !== 'deactive');
@@ -73,7 +84,7 @@ export default function VideoUpdatesSection() {
           setVideos(defaultVideos);
         }
       } catch (err) {
-        console.error("Video API fetch error:", err);
+        console.warn("Video API fetch notice (using fallbacks):", err?.message || err);
         setVideos(defaultVideos);
       } finally {
         setLoading(false);

@@ -244,6 +244,23 @@ export default function CategoryGridSection({ news = {} }) {
 
   const allCategoriesList = [...defaultCategories, ...extraCategories];
 
+  const getCardDesc = (item) => {
+    const raw = item?.shortDescription || item?.description || item?.metaDescription || item?.details || item?.summary || '';
+    const clean = raw
+      .replace(/<[^>]*>?/gm, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (clean) return clean;
+    if (item?.title) {
+      return `${item.title} - पूरी खबर पढ़ने के लिए क्लिक करें।`;
+    }
+    return '';
+  };
+
   // Helper to compile news items for active selection or specific category
   const getArticlesForCategory = (catName) => {
     if (catName === 'सभी') {
@@ -392,9 +409,9 @@ export default function CategoryGridSection({ news = {} }) {
                           <h4 className="font-bold text-xs md:text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
                             {item.title}
                           </h4>
-                          {item.description && (
+                          {getCardDesc(item) && (
                             <p className="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
-                              {item.description.replace(/<[^>]*>/g, '')}
+                              {getCardDesc(item)}
                             </p>
                           )}
                         </div>
@@ -451,9 +468,9 @@ export default function CategoryGridSection({ news = {} }) {
                       <h3 className="font-extrabold text-base text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
                         {item.title}
                       </h3>
-                      {item.description && (
+                      {getCardDesc(item) && (
                         <p className="text-xs text-gray-500 font-normal mt-2 line-clamp-2 leading-relaxed">
-                          {item.description.replace(/<[^>]*>/g, '')}
+                          {getCardDesc(item)}
                         </p>
                       )}
                     </div>

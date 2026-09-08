@@ -58,11 +58,16 @@ const SimpleDetailsNewsCard = ({ news, type, height, priority = false }) => {
           <Link href={`/news/${news?.slug}`} className='text-base sm:text-lg font-bold text-gray-900 hover:text-[#c80000] leading-snug block mb-2 transition-colors duration-200'>
             <h2 className='line-clamp-2'>{news?.title}</h2>
           </Link>
-          {news?.shortDescription && (
-            <p className='text-xs sm:text-sm text-gray-600 font-normal leading-relaxed line-clamp-2 mb-3 mt-1'>
-              {news.shortDescription.replace(/<[^>]*>/g, '')}
-            </p>
-          )}
+          {(() => {
+            const raw = news?.shortDescription || news?.description || news?.metaDescription || '';
+            const clean = raw.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+            const text = clean || (news?.title ? `${news.title} - देश और दुनिया की ताज़ा ख़बरों के लिए पढ़ें TopBriefing।` : '');
+            return text ? (
+              <p className='text-xs sm:text-sm text-gray-600 font-normal leading-relaxed line-clamp-2 mb-3 mt-1'>
+                {text}
+              </p>
+            ) : null;
+          })()}
         </div>
 
         <div className='flex items-center gap-x-2 text-xs text-gray-400 font-medium pt-2 border-t border-gray-100 mt-2'>

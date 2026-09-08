@@ -10,6 +10,7 @@ import { getImageUrl } from '../../utils/imageUrl';
 const defaultLatest = [
   {
     title: 'नई शिक्षा नीति 2026 को कैबिनेट की मंजूरी',
+    shortDescription: 'केंद्रीय कैबिनेट ने राष्ट्रीय शिक्षा नीति 2026 के नए दिशानिर्देशों को मंजूरी दे दी है।',
     category: 'राष्ट्रीय',
     date: '02 Aug 2026 | 08:15 AM',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80',
@@ -17,6 +18,7 @@ const defaultLatest = [
   },
   {
     title: 'दिल्ली में प्रदूषण का स्तर फिर गंभीर श्रेणी में',
+    shortDescription: 'राष्ट्रीय राजधानी दिल्ली और NCR में हवा की गुणवत्ता एक बार फिर बेहद खराब श्रेणी में पहुंच गई है।',
     category: 'राज्य',
     date: '02 Aug 2026 | 07:50 AM',
     image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&auto=format&fit=crop&q=80',
@@ -24,6 +26,7 @@ const defaultLatest = [
   },
   {
     title: 'रुपया मजबूत, डॉलर के मुकाबले 15 पैसे चढ़ा',
+    shortDescription: 'भारतीय शेयर बाजार में मजबूती के बीच अमेरिकी डॉलर के मुकाबले रुपया 15 पैसे मजबूत होकर बंद हुआ।',
     category: 'बिजनेस',
     date: '02 Aug 2026 | 07:30 AM',
     image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80',
@@ -31,6 +34,7 @@ const defaultLatest = [
   },
   {
     title: 'भारत ने लॉन्च किया अपना स्वदेशी AI मॉडल',
+    shortDescription: 'भारत ने आर्टिफिशियल इंटेलिजेंस (AI) क्षेत्र में बड़ी सफलता हासिल करते हुए स्वदेशी मॉडल लॉन्च किया।',
     category: 'टेक',
     date: '02 Aug 2026 | 06:55 AM',
     image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80',
@@ -54,6 +58,26 @@ export default function LatestNewsGrid({ news = [] }) {
     return defaultStr;
   };
 
+  const getDescription = (item) => {
+    const raw = item?.shortDescription || item?.description || item?.metaDescription || item?.details || item?.summary || '';
+    const clean = raw
+      .replace(/<[^>]*>?/gm, '')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (clean) {
+      return clean.length > 90 ? clean.slice(0, 90) + '...' : clean;
+    }
+    if (item?.title) {
+      const fallbackText = `${item.title} - देश और दुनिया की ताज़ा ख़बरों के लिए पढ़ें TopBriefing।`;
+      return fallbackText.length > 90 ? fallbackText.slice(0, 90) + '...' : fallbackText;
+    }
+    return '';
+  };
+
   return (
     <section className="w-full my-6">
       {/* Section Header */}
@@ -71,43 +95,46 @@ export default function LatestNewsGrid({ news = [] }) {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         {/* Left Cards Container (3 columns grid inside) */}
         <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {displayItems.map((item, index) => (
-            <Link
-              key={index}
-              href={`/news/${item.slug || 'detail'}`}
-              className="group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col"
-            >
-              {/* Image Box */}
-              <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
-                <Image
-                  // src={item.image || defaultLatest[index % 4].image}
-                  src={getImageUrl(item.image || defaultLatest[index % 4].image)}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <span className="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase">
-                  {item.category || 'न्यूज़'}
-                </span>
-              </div>
+          {displayItems.map((item, index) => {
+            const descriptionText = getDescription(item);
+            return (
+              <Link
+                key={index}
+                href={`/news/${item.slug || 'detail'}`}
+                className="group bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col"
+              >
+                {/* Image Box */}
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
+                  <Image
+                    src={getImageUrl(item.image || defaultLatest[index % 4].image)}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute top-2 left-2 bg-[#cc0000] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase">
+                    {item.category || 'न्यूज़'}
+                  </span>
+                </div>
 
-              {/* Text Body */}
-              <div className="p-3 flex flex-col justify-between flex-1">
-                <h3 className="font-bold text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-xs  text-gray-600 font-normal leading-relaxed opacity-95">
-                  {item.shortDescription || 'No description available.'}
-                </p>
+                {/* Text Body */}
+                <div className="p-3 flex flex-col justify-between flex-1">
+                  <h3 className="font-bold text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  {descriptionText && (
+                    <p className="text-xs text-gray-600 font-normal leading-relaxed opacity-95 my-1 line-clamp-2">
+                      {descriptionText}
+                    </p>
+                  )}
 
-
-                <span className="text-[11px] font-medium text-gray-400 mt-2 block">
-                  {formatDate(item, '02 Aug 2026 | 08:15 AM')}
-                </span>
-              </div>
-            </Link>
-          ))}
+                  <span className="text-[11px] font-medium text-gray-400 mt-2 block">
+                    {formatDate(item, '02 Aug 2026 | 08:15 AM')}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right Side: ADVERTISEMENT Card */}

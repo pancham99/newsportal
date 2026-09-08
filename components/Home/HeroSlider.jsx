@@ -87,7 +87,13 @@ export default function HeroSlider({ slides = [] }) {
 
           {/* Excerpt */}
           <p className="text-xs text-gray-300 font-normal mt-1.5 line-clamp-2 leading-relaxed opacity-90">
-            {currentSlide?.shortDescription?.replace(/<[^>]*>/g, '') || currentSlide?.description || defaultSlides[0].description}
+            {(() => {
+              const raw = currentSlide?.shortDescription || currentSlide?.description || currentSlide?.metaDescription || '';
+              const clean = raw.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+              if (clean) return clean;
+              if (currentSlide?.title) return `${currentSlide.title} - पढ़ें पूरी खबर TopBriefing पर।`;
+              return defaultSlides[0].description;
+            })()}
           </p>
 
           {/* Meta Date & Writer */}

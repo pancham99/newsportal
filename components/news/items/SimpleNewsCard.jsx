@@ -43,11 +43,16 @@ const SimpleNewsCard = ({ item, type, priority = false }) => {
                     {item?.title}
                 </Link>
 
-                {item?.shortDescription && (
-                    <p className='text-xs sm:text-sm text-gray-200 font-normal leading-relaxed line-clamp-2 drop-shadow-sm opacity-90'>
-                        {item.shortDescription.replace(/<[^>]*>/g, '')}
-                    </p>
-                )}
+                {(() => {
+                    const raw = item?.shortDescription || item?.description || item?.metaDescription || '';
+                    const clean = raw.replace(/<[^>]*>?/gm, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+                    const text = clean || (item?.title ? `${item.title} - पढ़ें पूरी खबर TopBriefing पर।` : '');
+                    return text ? (
+                        <p className='text-xs sm:text-sm text-gray-200 font-normal leading-relaxed line-clamp-2 drop-shadow-sm opacity-90'>
+                            {text}
+                        </p>
+                    ) : null;
+                })()}
 
                 <div className='flex items-center gap-x-2 text-[11px] text-gray-300 font-medium pt-1'>
                     <span>{formattedDate} / {formattedTime}</span>
