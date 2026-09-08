@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ['192.168.29.102', '192.168.29.102:3000', 'localhost', '127.0.0.1'],
   images: {
     unoptimized: true,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],

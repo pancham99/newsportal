@@ -365,6 +365,21 @@ const Header = () => {
                             </div>
                         </div>
 
+                        {/* Subscribe Button inside Mobile Drawer */}
+                        <div className="pt-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    openModal('subscribe');
+                                }}
+                                className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-extrabold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md text-sm cursor-pointer border border-white/20 active:scale-95 transition-all"
+                            >
+                                <FaBell className="text-sm animate-pulse text-yellow-300" />
+                                <span>Subscribe to News Alerts</span>
+                            </button>
+                        </div>
+
                         {/* State selection */}
                         <div className="pt-3 border-t border-red-700/50">
                             <select

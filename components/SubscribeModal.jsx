@@ -180,9 +180,9 @@ const SubscribeModal = () => {
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row max-h-[92vh] md:max-h-[85vh] my-auto border border-gray-100">
-        {/* Left Side: Branded Red Panel */}
-        <div className="md:w-5/12 bg-gradient-to-b from-[#e51919] via-[#c92726] to-[#700000] text-white p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden shrink-0">
+      <div className="relative w-full max-w-4xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden z-10 flex flex-col md:flex-row max-h-[92vh] md:max-h-[85vh] my-auto border border-gray-100">
+        {/* Left Side: Branded Red Panel (Hidden on mobile so form panel opens directly) */}
+        <div className="hidden md:flex md:w-5/12 bg-gradient-to-b from-[#e51919] via-[#c92726] to-[#700000] text-white p-6 sm:p-8 md:p-10 flex-col justify-between relative overflow-hidden shrink-0">
           {/* Top Logo Badge */}
           <div className="relative z-10">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/30 rounded-2xl px-3.5 py-1.5 shadow-md mb-6">
@@ -268,12 +268,12 @@ const SubscribeModal = () => {
           </div>
         </div>
 
-        {/* Right Side: Form Panel */}
-        <div className="md:w-7/12 bg-white p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-y-auto">
+        {/* Right Side: Form Panel (Full width on mobile) */}
+        <div className="w-full md:w-7/12 bg-white p-4 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-y-auto max-h-[88vh]">
           {/* Close Button */}
           <button
             onClick={closeModal}
-            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors z-20"
+            className="absolute top-3 right-3 p-2 text-gray-500 hover:text-gray-900 bg-gray-100/90 hover:bg-gray-200 rounded-full transition-all z-30 shadow-sm"
             aria-label="Close modal"
           >
             <IoClose className="text-xl" />

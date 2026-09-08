@@ -13,9 +13,12 @@ export default function PushNotificationPrompt() {
   useEffect(() => {
     if (typeof window === "undefined" || !("Notification" in window)) return;
 
-    // Do not show if granted or if dismissed in this session
     const current = refreshPermission();
-    if (current === "granted") return;
+    if (current === "granted") {
+      // Auto-sync token to backend if permission is already granted
+      subscribeToPush().catch((err) => console.warn("Auto FCM token sync:", err));
+      return;
+    }
 
     const dismissed = sessionStorage.getItem("fcm_prompt_dismissed");
     if (dismissed && current === "default") return;
@@ -26,7 +29,7 @@ export default function PushNotificationPrompt() {
     }, 3500);
 
     return () => clearTimeout(timer);
-  }, [refreshPermission]);
+  }, [refreshPermission, subscribeToPush]);
 
   if (!isVisible) return null;
 
