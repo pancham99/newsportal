@@ -45,6 +45,7 @@ export default async function RootLayout({ children }) {
       next: {
         revalidate: 300
       },
+      signal: AbortSignal.timeout(8000),
     });
     if (news_data.ok) {
       const parsed = await news_data.json();

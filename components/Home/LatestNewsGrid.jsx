@@ -44,9 +44,12 @@ export default function LatestNewsGrid({ news = [] }) {
     : defaultLatest;
 
   const formatDate = (item, defaultStr) => {
-    if (item?.date) return item.date;
-    if (item?.createdAt) {
-      return formatCustomDate(item.createdAt, "DD MMM YYYY | hh:mm A");
+    const rawDate = item?.createdAt || item?.date || item?.updatedAt;
+    if (rawDate) {
+      if (typeof rawDate === 'string' && !rawDate.includes('T') && !rawDate.includes('-')) {
+        return rawDate;
+      }
+      return formatCustomDate(rawDate, "DD MMM YYYY | hh:mm A");
     }
     return defaultStr;
   };
@@ -78,7 +81,7 @@ export default function LatestNewsGrid({ news = [] }) {
               <div className="relative w-full aspect-[16/9] overflow-hidden bg-gray-100">
                 <Image
                   // src={item.image || defaultLatest[index % 4].image}
-                  src={getImageUrl(item.image || defaultMiddleList[idx % 4].image)}
+                  src={getImageUrl(item.image || defaultLatest[index % 4].image)}
                   alt={item.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"

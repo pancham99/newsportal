@@ -95,46 +95,39 @@ const Home = async ({ news = {} }) => {
 
 
   try {
-    const latestRes = await fetch(`${base_api_url}/api/latest/news`, { next: { revalidate: 300 } });
-    if (latestRes.ok) {
-      const data = await latestRes.json();
+    const fetchOptions = {
+      next: { revalidate: 300 },
+      signal: AbortSignal.timeout(8000),
+    };
+
+    const [latestResult, breakingResult, trendingResult, hestoryResult] = await Promise.allSettled([
+      fetch(`${base_api_url}/api/latest/news`, fetchOptions),
+      fetch(`${base_api_url}/api/breaking`, fetchOptions),
+      fetch(`${base_api_url}/api/trending`, fetchOptions),
+      fetch(`${base_api_url}/api/hestory`, fetchOptions),
+    ]);
+
+    if (latestResult.status === "fulfilled" && latestResult.value.ok) {
+      const data = await latestResult.value.json();
       latestNews = data?.latestNews || [];
     }
-  } catch (err) {
-    console.error("Latest API fetch error", err);
-  }
 
-  try {
-    const breakingRes = await fetch(`${base_api_url}/api/breaking`, { next: { revalidate: 300 } });
-    if (breakingRes.ok) {
-      const data = await breakingRes.json();
+    if (breakingResult.status === "fulfilled" && breakingResult.value.ok) {
+      const data = await breakingResult.value.json();
       breakingNews = data?.news || [];
     }
-  } catch (err) {
-    console.error("Breaking API fetch error", err);
-  }
 
-  try {
-    const trendingRes = await fetch(`${base_api_url}/api/trending`, { next: { revalidate: 300 } });
-    if (trendingRes.ok) {
-      const data = await trendingRes.json();
+    if (trendingResult.status === "fulfilled" && trendingResult.value.ok) {
+      const data = await trendingResult.value.json();
       trendingNews = data?.news || [];
     }
-  } catch (err) {
-    console.error("Trending API fetch error", err);
-  }
 
-  try {
-    const hestoryRes = await fetch(`${base_api_url}/api/hestory`, { next: { revalidate: 300 } });
-    if (hestoryRes.ok) {
-      const data = await hestoryRes.json();
-
-      hestorys = await data?.news || [];
-      // console.log("News", hestorys);
-
+    if (hestoryResult.status === "fulfilled" && hestoryResult.value.ok) {
+      const data = await hestoryResult.value.json();
+      hestorys = data?.news || [];
     }
   } catch (err) {
-    console.error("Hestory API fetch error", err);
+    console.error("Parallel API fetch error", err);
   }
 
   // Format data with fallbacks matching reference screenshot

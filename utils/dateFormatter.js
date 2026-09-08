@@ -5,8 +5,9 @@
 
 export function formatDate(dateVal, formatStr = 'DD MMM YYYY') {
   if (!dateVal) return '';
-  const d = new Date(dateVal);
-  if (isNaN(d.getTime())) return String(dateVal);
+  const cleanVal = typeof dateVal === 'string' ? dateVal.replace(/mm$/i, '') : dateVal;
+  const d = new Date(cleanVal);
+  if (isNaN(d.getTime())) return String(dateVal).replace(/mm$/i, '');
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fullMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

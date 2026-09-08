@@ -7,13 +7,25 @@ import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { getImageUrl } from '../../utils/imageUrl';
 
+const defaultSlides = [
+  {
+    category: 'अंतरराष्ट्रीय',
+    title: 'अमेरिका ने दागा ईरान पर हमला... ट्रंप बोले ईरान की अपील पर किया हमला',
+    description: 'कास्तिलो राष्ट्रपति डोनाल्ड ट्रंप ने दावा किया है कि अमेरिका और इज़राइल द्वारा ईरान संगठित वह सैन्य हमले के...',
+    date: '02 Aug 2026, 09:01 AM',
+    writerName: 'Saurav kumar',
+    image: 'https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?w=1200&auto=format&fit=crop&q=80',
+    slug: 'us-iran-strike-trump-statement'
+  }
+];
+
 export default function HeroSlider({ slides = [] }) {
-  const displaySlides = slides || [];
+  const displaySlides = (slides && slides.length > 0) ? slides : defaultSlides;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || displaySlides.length === 0) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % displaySlides.length);
@@ -23,14 +35,16 @@ export default function HeroSlider({ slides = [] }) {
   }, [displaySlides.length, isHovered]);
 
   const handleNext = () => {
+    if (displaySlides.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % displaySlides.length);
   };
 
   const handlePrev = () => {
+    if (displaySlides.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + displaySlides.length) % displaySlides.length);
   };
 
-  const currentSlide = displaySlides[currentIndex] ;
+  const currentSlide = displaySlides[currentIndex] || defaultSlides[0];
 
   const formatDate = (item) => {
     if (item?.createdAt) {
@@ -73,7 +87,7 @@ export default function HeroSlider({ slides = [] }) {
 
           {/* Excerpt */}
           <p className="text-xs text-gray-300 font-normal mt-1.5 line-clamp-2 leading-relaxed opacity-90">
-            {currentSlide.shortDescription?.replace(/<[^>]*>/g, '') || defaultSlides[0].description}
+            {currentSlide?.shortDescription?.replace(/<[^>]*>/g, '') || currentSlide?.description || defaultSlides[0].description}
           </p>
 
           {/* Meta Date & Writer */}
