@@ -161,8 +161,6 @@ const Header = () => {
                         >
                             {mobileMenuOpen ? <IoClose className="text-2xl sm:text-3xl" /> : <HiMenu className="text-2xl sm:text-3xl" />}
                         </button>
-
-                        {/* Mobile Square Badge Logo (Fixed for Mobile) */}
                         <Link href="/" className="md:hidden absolute -top-8 left-6 flex items-center shrink-0">
                             <Image
                                 src="/topbrefing-mobile.png"
