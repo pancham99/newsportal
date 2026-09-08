@@ -93,7 +93,7 @@ export function useFcmToken() {
         serviceWorkerRegistration: readyRegistration || serviceWorkerRegistration,
       };
 
-      const rawVapid = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY;
+      const rawVapid = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY || "BO9BqLBkcVAzg9u6-ndaHRtftgoulnC4ITK5bAvDBUKqsEuQ5Fz0IzO4b97f2sJbqmvDGUj4lSm8gAiOw94ikts";
       if (rawVapid && rawVapid.trim().length > 0) {
         tokenOptions.vapidKey = rawVapid.trim();
       }
