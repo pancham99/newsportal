@@ -163,29 +163,29 @@ const Header = () => {
                         </button>
 
                         {/* Mobile Square Badge Logo (Fixed for Mobile) */}
-                        <Link href="/" className="md:hidden absolute -top-1 left-12 flex items-center shrink-0">
+                        <Link href="/" className="md:hidden absolute -top-8 left-6 flex items-center shrink-0">
                             <Image
-                                src="/logo-square-badge.png"
+                                src="/topbrefing-mobile.png"
                                 alt="Top Briefing Logo"
-                                width={120}
-                                height={48}
+                                width={220}
+                                height={138}
                                 priority
                                 sizes="120px"
-                                className="h-20 w-auto object-contain drop-shadow-md"
+                                className="h-28 w-28  drop-shadow-md"
                             />
                         </Link>
                     </div>
 
                     {/* Desktop View: Aaj Tak Style Floating Overlapping Badge Logo */}
-                    <Link href="/" className="hidden md:flex absolute -top-4 left-14 md:left-16 lg:left-20 z-50 group items-center shrink-0">
+                    <Link href="/" className="hidden md:flex absolute -top-[45px] left-14 md:left-16 lg:left-20 z-50 group items-center shrink-0">
                         <Image
-                            src="/logo-square-badge.png"
+                            src="/topbrefing-mobile.png"
                             alt="Top Briefing Logo"
-                            width={140}
-                            height={70}
+                            width={340}
+                            height={170}
                             priority
                             sizes="140px"
-                            className="h-20 lg:h-24 w-auto object-contain drop-shadow-2xl transition-transform group-hover:scale-105"
+                            className="h-39  w-auto  drop-shadow-2xl transition-transform group-hover:scale-105"
                         />
                     </Link>
 

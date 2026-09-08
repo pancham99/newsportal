@@ -6,6 +6,7 @@ async function getHomeNews() {
   try {
     const res = await fetch(`${base_api_url}/api/all/news`, {
       next: { revalidate: 300 },
+      signal: AbortSignal.timeout(8000),
     });
     if (!res.ok) throw new Error("Failed to fetch news");
     return await res.json();
