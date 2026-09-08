@@ -62,7 +62,7 @@ export default async function RootLayout({ children }) {
     url: 'https://topbriefing.in',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://topbriefing.in/logo.png',
+      url: 'https://topbriefing.in/topbrefing-mobile.png',
       width: 600,
       height: 60,
     },
