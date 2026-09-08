@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { getToken } from "firebase/messaging";
+import { getToken, onMessage } from "firebase/messaging";
 import { getFcmMessaging } from "../utils/firebase";
 import { base_api_url } from "../config/config";
 import axios from "axios";
@@ -33,13 +33,17 @@ export function useFcmToken() {
     }
 
     // 1. Check HTTPS / Secure Context Requirement
-    const isLocalhost = Boolean(
-      window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1" ||
-      window.location.hostname === "[::1]"
+    const hostname = window.location.hostname;
+    const isLocalNetwork = Boolean(
+      hostname === "localhost" ||
+      hostname === "127.0.0.1" ||
+      hostname === "[::1]" ||
+      /^192\.168\.\d+\.\d+$/.test(hostname) ||
+      /^10\.\d+\.\d+\.\d+$/.test(hostname) ||
+      /^172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+$/.test(hostname)
     );
-    if (!window.isSecureContext && !isLocalhost && window.location.protocol !== "https:") {
-      const msg = "Web Push Notifications require a secure HTTPS connection. Please visit via https://";
+    if (!window.isSecureContext && !isLocalNetwork && window.location.protocol !== "https:") {
+      const msg = "Web Push Notifications require a secure HTTPS connection (e.g. https://topbriefing.in) or an allowed origin in browser flags.";
       setError(msg);
       return { success: false, reason: "insecure_context", error: msg };
     }
@@ -99,13 +103,17 @@ export function useFcmToken() {
       if (currentToken) {
         setToken(currentToken);
 
-        // Send token to backend API
         const deviceInfo = {
-          userAgent: navigator.userAgent,
-          platform: navigator.platform,
+          userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
+          platform: typeof navigator !== "undefined" ? navigator.platform : "",
         };
 
-        await axios.post(`${base_api_url}/api/fcm/save-token`, {
+        // Send token to backend API (resolves to dynamic backend IP on mobile LAN testing)
+        const targetApiUrl = (typeof window !== "undefined" && window.location && window.location.hostname && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1")
+          ? `${window.location.protocol}//${window.location.hostname}:5001`
+          : base_api_url;
+
+        await axios.post(`${targetApiUrl}/api/fcm/save-token`, {
           fcmToken: currentToken,
           email: userEmail || undefined,
           deviceInfo,
@@ -126,6 +134,39 @@ export function useFcmToken() {
     }
   }, []);
 
+  // Foreground message listener
+  useEffect(() => {
+    let unsub = null;
+    if (typeof window !== "undefined" && "Notification" in window && permissionStatus === "granted") {
+      getFcmMessaging().then((messaging) => {
+        if (messaging) {
+          unsub = onMessage(messaging, (payload) => {
+            console.log("Foreground FCM Message received:", payload);
+            const title = payload.notification?.title || payload.data?.title || "Top Briefing News Update";
+            const body = payload.notification?.body || payload.data?.body || "Read the latest story on Top Briefing.";
+            const icon = payload.notification?.icon || payload.data?.image || "https://topbriefing.in/logo.png";
+            const url = payload.data?.url || payload.fcmOptions?.link || "https://topbriefing.in";
+
+            if (Notification.permission === "granted") {
+              const notification = new Notification(title, {
+                body,
+                icon,
+                data: { url }
+              });
+              notification.onclick = (e) => {
+                e.preventDefault();
+                window.open(url, "_blank");
+              };
+            }
+          });
+        }
+      });
+    }
+    return () => {
+      if (unsub) unsub();
+    };
+  }, [permissionStatus]);
+
   return {
     token,
     permissionStatus,
@@ -135,4 +176,5 @@ export function useFcmToken() {
     refreshPermission,
   };
 }
+
 
