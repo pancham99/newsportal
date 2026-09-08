@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { getToken, onMessage } from "firebase/messaging";
 import { getFcmMessaging } from "../utils/firebase";
-import { base_api_url } from "../config/config";
+import { base_api_url, getBaseApiUrl } from "../config/config";
 import axios from "axios";
 
 export function useFcmToken() {
@@ -108,10 +108,8 @@ export function useFcmToken() {
           platform: typeof navigator !== "undefined" ? navigator.platform : "",
         };
 
-        // Send token to backend API (resolves to dynamic backend IP on mobile LAN testing)
-        const targetApiUrl = (typeof window !== "undefined" && window.location && window.location.hostname && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1")
-          ? `${window.location.protocol}//${window.location.hostname}:5001`
-          : base_api_url;
+        // Send token to backend API (resolves live Vercel URL or local LAN IP as appropriate)
+        const targetApiUrl = getBaseApiUrl();
 
         await axios.post(`${targetApiUrl}/api/fcm/save-token`, {
           fcmToken: currentToken,

@@ -39,7 +39,10 @@ const Header = () => {
     const { data } = useFetch(`${base_api_url}/api/category/all`);
     const categories = data?.categories || [];
 
+    const [mounted, setMounted] = useState(false);
+
     useEffect(() => {
+        setMounted(true);
         const storedUser = localStorage.getItem("user");
         const storedToken = localStorage.getItem("token");
         if (storedToken) setToken(storedToken);
@@ -85,8 +88,8 @@ const Header = () => {
             <div className="bg-gray-50 text-gray-700 text-slate-900 text-xs py-1.5 px-3 md:px-8 border-b border-emerald-800/30 shadow-md">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-0">
                     {/* Left: Date & Time */}
-                    <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm">
-                        {currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")}
+                    <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm min-h-[1.25rem]">
+                        {mounted ? (currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")) : null}
                     </div>
 
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
