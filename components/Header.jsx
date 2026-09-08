@@ -175,7 +175,7 @@ const Header = () => {
                     </div>
 
                     {/* Desktop View: Aaj Tak Style Floating Overlapping Badge Logo */}
-                    <Link href="/" className="hidden md:flex absolute -top-[45px] left-14 md:left-16 lg:left-20 z-50 group items-center shrink-0">
+                    <Link href="/" className="hidden md:flex absolute -top-14 left-14 md:left-16 lg:left-20 z-50 group items-center shrink-0">
                         <Image
                             src="/topbrefing-mobile.png"
                             alt="Top Briefing Logo"
@@ -183,7 +183,7 @@ const Header = () => {
                             height={170}
                             priority
                             sizes="140px"
-                            className="h-39  w-auto  drop-shadow-2xl transition-transform group-hover:scale-105"
+                            className="h-40  w-auto  drop-shadow-2xl transition-transform group-hover:scale-105"
                         />
                     </Link>
 
