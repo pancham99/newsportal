@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim();
     const shortDesc = cleanDescription.slice(0, 155) || 'Top Briefing पर पढ़ें ताजा हिंदी खबरें।';
     const canonicalUrl = `https://topbriefing.in/news/${slug}`;
-    const newsImage = news?.image || 'https://topbriefing.in/logo.png';
+    const newsImage = news?.image || 'https://topbriefing.in/topbrefing-mobile.png';
     const articleTitle = news?.title || 'Top Briefing - Hindi News';
     const keywords = [
         news?.category,
@@ -89,7 +89,7 @@ function NewsArticleSchema({ news, slug }) {
         description: cleanDescription,
         image: {
             '@type': 'ImageObject',
-            url: news?.image || 'https://topbriefing.in/logo.png',
+            url: news?.image || 'https://topbriefing.in/topbrefing-mobile.png',
             width: 1200,
             height: 630,
         },
@@ -105,7 +105,7 @@ function NewsArticleSchema({ news, slug }) {
             name: 'Top Briefing',
             logo: {
                 '@type': 'ImageObject',
-                url: 'https://topbriefing.in/logo.png',
+                url: 'https://topbriefing.in/topbrefing-mobile.png',
                 width: 600,
                 height: 60,
             },

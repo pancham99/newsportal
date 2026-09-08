@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
             siteName: 'Top Briefing',
             locale: 'hi_IN',
             type: 'website',
-            images: [{ url: 'https://topbriefing.in/logo.png', width: 1200, height: 630, alt: `${decodedCategory} News - Top Briefing` }],
+            images: [{ url: 'https://topbriefing.in/topbrefing-mobile.png', width: 1200, height: 630, alt: `${decodedCategory} News - Top Briefing` }],
         },
         twitter: {
             card: 'summary_large_image',
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }) {
             creator: '@topbriefing',
             title: `${decodedCategory} समाचार | Top Briefing`,
             description: `${decodedCategory} की ताजा खबरें और लाइव अपडेट — Top Briefing पर।`,
-            images: ['https://topbriefing.in/logo.png'],
+            images: ['https://topbriefing.in/topbrefing-mobile.png'],
         },
     }
 }

@@ -48,7 +48,7 @@ export async function generateMetadata() {
     ...dynamicKeywords,
   ];
 
-  const ogImage = latestPolitics?.image || latestSports?.image || "https://topbriefing.in/logo.png";
+  const ogImage = latestPolitics?.image || latestSports?.image || "https://topbriefing.in/topbrefing-mobile.png";
   const ogImageAlt = latestPolitics?.title || "Top Briefing - Hindi News Portal";
 
   return {

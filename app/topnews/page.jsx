@@ -19,7 +19,7 @@ export const metadata = {
     siteName: 'Top Briefing',
     locale: 'hi_IN',
     type: 'website',
-    images: [{ url: 'https://topbriefing.in/logo.png', width: 1200, height: 630, alt: 'Top Briefing - ताजा खबरें' }],
+    images: [{ url: 'https://topbriefing.in/topbrefing-mobile.png', width: 1200, height: 630, alt: 'Top Briefing - ताजा खबरें' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -27,7 +27,7 @@ export const metadata = {
     creator: '@topbriefing',
     title: 'Top News - ताजा ब्रेकिंग न्यूज़ | Top Briefing',
     description: 'Top Briefing पर पढ़ें आज की सबसे बड़ी हिंदी ब्रेकिंग न्यूज़।',
-    images: ['https://topbriefing.in/logo.png'],
+    images: ['https://topbriefing.in/topbrefing-mobile.png'],
   },
 }
 
