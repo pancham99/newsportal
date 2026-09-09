@@ -154,13 +154,14 @@ export function useFcmToken() {
             console.log("Foreground FCM Message received:", payload);
             const title = payload.notification?.title || payload.data?.title || "Top Briefing News Update";
             const body = payload.notification?.body || payload.data?.body || "Read the latest story on Top Briefing.";
-            const icon = payload.notification?.icon || payload.data?.image || "https://topbriefing.in/logo.png";
+            const icon = payload.notification?.icon || payload.data?.icon || "https://topbriefing.in/logo-square-badge.png";
             const url = payload.data?.url || payload.fcmOptions?.link || "https://topbriefing.in";
 
             if (Notification.permission === "granted") {
               const notification = new Notification(title, {
                 body,
                 icon,
+                badge: "https://topbriefing.in/logo-square-badge.png",
                 data: { url }
               });
               notification.onclick = (e) => {
