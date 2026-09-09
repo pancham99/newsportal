@@ -73,8 +73,8 @@ export default function PushNotificationPrompt() {
       {/* Top Header Row */}
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#c92726] to-red-500 text-white flex items-center justify-center font-extrabold text-base shadow-md shrink-0">
-            <FaBell className={loading ? "animate-bounce" : ""} />
+          <div className="w-11 h-11 rounded-xl bg-white border border-red-100 p-0.5 shadow-md shrink-0 flex items-center justify-center overflow-hidden">
+            <img src="/logo-square-badge.png" alt="Top Briefing Logo" className="w-full h-full object-contain rounded-lg" />
           </div>
           <div>
             <h4 className="font-extrabold text-gray-900 text-sm sm:text-base leading-tight">

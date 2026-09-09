@@ -23,9 +23,11 @@ try {
     const notificationBody = payload.notification?.body || payload.data?.body || 'Read the latest breaking story on Top Briefing.';
     const targetUrl = payload.data?.url || payload.fcmOptions?.link || 'https://topbriefing.in';
 
-    let iconUrl = payload.notification?.icon || payload.data?.icon || 'https://topbriefing.in/logo.png';
+    const defaultLogo = 'https://topbriefing.in/logo-square-badge.png';
+
+    let iconUrl = payload.notification?.icon || payload.data?.icon || defaultLogo;
     if (iconUrl && iconUrl.startsWith('/')) {
-      iconUrl = 'https://topbriefing.in' + iconUrl;
+      iconUrl = (self.location?.origin || 'https://topbriefing.in') + iconUrl;
     }
 
     let imageUrl = payload.notification?.image || payload.notification?.imageUrl || payload.data?.image || null;
@@ -35,11 +37,11 @@ try {
 
     const notificationOptions = {
       body: notificationBody,
-      icon: iconUrl || 'https://topbriefing.in/logo.png',
+      icon: iconUrl || defaultLogo,
       image: imageUrl,
-      badge: 'https://topbriefing.in/logo.png',
+      badge: defaultLogo,
       vibrate: [200, 100, 200],
-      tag: payload.data?.newsId ? `news-${payload.data.newsId}` : `topbriefing-news-${Date.now()}`,
+      tag: payload.data?.newsId ? `news-${payload.data.newsId}` : `topbriefing-news`,
       renotify: true,
       data: {
         url: targetUrl
