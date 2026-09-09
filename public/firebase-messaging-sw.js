@@ -19,20 +19,31 @@ try {
   messaging.onBackgroundMessage((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message:', payload);
 
+    // If FCM top-level notification is present, browser displays it natively. Skip manual call to avoid duplicate notification!
+    if (payload.notification) {
+      console.log('[firebase-messaging-sw.js] FCM notification payload present. Skipping manual showNotification to avoid duplicate notifications.');
+      return;
+    }
+
     const notificationTitle = payload.notification?.title || payload.data?.title || 'Top Briefing News Update';
     const notificationBody = payload.notification?.body || payload.data?.body || 'Read the latest breaking story on Top Briefing.';
-    const targetUrl = payload.data?.url || payload.fcmOptions?.link || 'https://topbriefing.in';
+    const targetUrl = (payload.data?.url || payload.fcmOptions?.link || 'https://www.topbriefing.in').replace('://topbriefing.in', '://www.topbriefing.in');
 
-    const defaultLogo = 'https://topbriefing.in/logo-square-badge.png';
+    const defaultLogo = 'https://www.topbriefing.in/logo-square-badge.png';
 
     let iconUrl = payload.notification?.icon || payload.data?.icon || defaultLogo;
     if (iconUrl && iconUrl.startsWith('/')) {
-      iconUrl = (self.location?.origin || 'https://topbriefing.in') + iconUrl;
+      iconUrl = (self.location?.origin || 'https://www.topbriefing.in') + iconUrl;
+    } else if (iconUrl && iconUrl.includes('://topbriefing.in')) {
+      iconUrl = iconUrl.replace('://topbriefing.in', '://www.topbriefing.in');
     }
 
     let imageUrl = payload.notification?.image || payload.notification?.imageUrl || payload.data?.image || null;
     if (imageUrl && imageUrl.startsWith('http://')) {
       imageUrl = imageUrl.replace(/^http:\/\//i, 'https://');
+    }
+    if (imageUrl && imageUrl.includes('://topbriefing.in')) {
+      imageUrl = imageUrl.replace('://topbriefing.in', '://www.topbriefing.in');
     }
 
     const notificationOptions = {
