@@ -104,10 +104,29 @@ export function useFcmToken() {
         setToken(currentToken);
 
         const isMobileDevice = typeof navigator !== "undefined" ? /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) : false;
+        
+        let detectedDeviceName = "Unknown Device";
+        if (typeof navigator !== "undefined") {
+          const ua = navigator.userAgent || "";
+          if (/iPhone/i.test(ua)) detectedDeviceName = "Apple iPhone";
+          else if (/iPad/i.test(ua)) detectedDeviceName = "Apple iPad";
+          else if (/Samsung/i.test(ua)) detectedDeviceName = "Samsung Galaxy";
+          else if (/Pixel/i.test(ua)) detectedDeviceName = "Google Pixel";
+          else if (/Xiaomi|Redmi|POCO/i.test(ua)) detectedDeviceName = "Xiaomi / Redmi";
+          else if (/OnePlus/i.test(ua)) detectedDeviceName = "OnePlus";
+          else if (/Android/i.test(ua)) detectedDeviceName = "Android Mobile";
+          else if (/Macintosh|Mac OS/i.test(ua)) detectedDeviceName = "Macintosh Computer";
+          else if (/Windows/i.test(ua)) detectedDeviceName = "Windows PC";
+          else if (/Linux/i.test(ua)) detectedDeviceName = "Linux PC";
+        }
+
         const deviceInfo = {
           userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
           platform: typeof navigator !== "undefined" ? navigator.platform : "",
-          isMobile: isMobileDevice
+          isMobile: isMobileDevice,
+          deviceName: detectedDeviceName,
+          screen: typeof window !== "undefined" ? `${window.screen?.width || 0}x${window.screen?.height || 0}` : "",
+          language: typeof navigator !== "undefined" ? navigator.language : ""
         };
 
         // Send token to backend API (resolves live Vercel URL or local LAN IP as appropriate)
