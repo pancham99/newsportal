@@ -1,8 +1,8 @@
+import { cache } from "react";
 import { base_api_url } from "../config/config";
 import HomeSection from "../components/Home/HomeSection";
-import SubscribeModal from "../components/SubscribeModal";
 
-async function getHomeNews() {
+const getHomeNews = cache(async () => {
   try {
     const res = await fetch(`${base_api_url}/api/all/news`, {
       next: { revalidate: 300 },
@@ -14,7 +14,7 @@ async function getHomeNews() {
     console.error("Home News Error:", error);
     return { news: {} };
   }
-}
+});
 
 /* ─────────────────────────────────────────────
    SEO: generateMetadata (home page)
@@ -163,15 +163,10 @@ const Home = async () => {
   const { news } = await getHomeNews();
 
   return (
-    <div className="">
-
+    <div>
       <WebSiteSchema />
       <HomeSection news={news} />
-      <SubscribeModal />
-
-
     </div>
-    
   );
 };
 

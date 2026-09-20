@@ -52,7 +52,7 @@ const Header = () => {
             setCurrentTime(formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A"));
         };
         updateClock();
-        const timer = setInterval(updateClock, 10000);
+        const timer = setInterval(updateClock, 60000);
         return () => clearInterval(timer);
     }, []);
 

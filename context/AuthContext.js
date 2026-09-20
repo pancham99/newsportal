@@ -1,8 +1,14 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import SubscribeModal from "../components/SubscribeModal";
-import PushNotificationPrompt from "../components/PushNotificationPrompt";
+import dynamic from "next/dynamic";
+
+const SubscribeModal = dynamic(() => import("../components/SubscribeModal"), {
+  ssr: false,
+});
+const PushNotificationPrompt = dynamic(() => import("../components/PushNotificationPrompt"), {
+  ssr: false,
+});
 
 const AuthContext = createContext();
 

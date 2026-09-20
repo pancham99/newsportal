@@ -156,7 +156,7 @@ const Home = async ({ news = {} }) => {
       </a>
 
       {/* Full-width Big Story Hero Banner Header */}
-      <BigStoryBanner news={hestorys} />
+      {/* <BigStoryBanner news={hestorys} /> */}
 
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">

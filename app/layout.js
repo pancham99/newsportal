@@ -90,6 +90,13 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="hi">
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://bakendtopbrefing.vercel.app" />
+      </head>
       <body>
         {/* Structured Data: Organization & WebSite Schemas */}
         <script

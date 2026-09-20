@@ -17,7 +17,17 @@ export async function GET() {
     console.error("Google News sitemap fetch error:", err);
   }
 
-  const xmlUrls = newsList.slice(0, 1000).map((item) => {
+  // Google News Sitemap spec: Include articles published in the last 48 hours
+  const fortyEightHoursAgo = Date.now() - 48 * 60 * 60 * 1000;
+  const recentNews = newsList.filter((item) => {
+    if (!item?.createdAt) return true;
+    const itemDate = new Date(item.createdAt).getTime();
+    return !isNaN(itemDate) && itemDate >= fortyEightHoursAgo;
+  });
+
+  const finalNewsList = recentNews.length > 0 ? recentNews : newsList;
+
+  const xmlUrls = finalNewsList.slice(0, 1000).map((item) => {
     const pubDate = item?.createdAt ? new Date(item.createdAt).toISOString() : new Date().toISOString();
     const title = (item?.title || "")
       .replace(/&/g, "&amp;")
