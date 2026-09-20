@@ -82,37 +82,55 @@ export async function generateMetadata({ params }) {
 
 function NewsArticleSchema({ news, slug }) {
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim().slice(0, 155);
+    const mainImg = news?.image || 'https://topbriefing.in/topbrefing-mobile.png';
+
     const schema = {
         '@context': 'https://schema.org',
         '@type': 'NewsArticle',
         headline: news?.title,
         description: cleanDescription,
-        image: {
-            '@type': 'ImageObject',
-            url: news?.image || 'https://topbriefing.in/topbrefing-mobile.png',
-            width: 1200,
-            height: 630,
-        },
+        image: [
+            mainImg,
+            mainImg,
+            mainImg
+        ],
         datePublished: news?.createdAt,
         dateModified: news?.updatedAt || news?.createdAt,
-        author: {
+        author: [{
             '@type': 'Person',
             name: news?.writerName || 'Top Briefing Editorial Team',
+            jobTitle: 'News Writer',
             url: 'https://topbriefing.in',
-        },
+            worksFor: {
+                '@type': 'NewsMediaOrganization',
+                name: 'Top Briefing',
+                url: 'https://topbriefing.in'
+            }
+        }],
         publisher: {
-            '@type': 'Organization',
+            '@type': 'NewsMediaOrganization',
             name: 'Top Briefing',
+            url: 'https://topbriefing.in',
             logo: {
                 '@type': 'ImageObject',
                 url: 'https://topbriefing.in/topbrefing-mobile.png',
                 width: 600,
                 height: 60,
             },
+            sameAs: [
+                'https://www.facebook.com/people/Top-Briefing/61552965021716/',
+                'https://www.instagram.com/topbriefing/',
+                'https://www.youtube.com/results?search_query=topbriefing',
+                'https://x.com/topbriefing'
+            ]
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
             '@id': `https://topbriefing.in/news/${slug}`,
+        },
+        speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['h1', '.prose']
         },
         articleSection: news?.category,
         keywords: Array.isArray(news?.keywords) ? news.keywords.join(', ') : (news?.category || ''),

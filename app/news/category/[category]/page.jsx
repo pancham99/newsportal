@@ -101,11 +101,30 @@ const Page = async ({ params }) => {
         ],
     };
 
+    // CollectionPage & ItemList JSON-LD
+    const collectionSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: `${decodedCategory} समाचार - Top Briefing`,
+        description: `${decodedCategory} श्रेणी की ताजा खबरें, ब्रेकिंग न्यूज़ और लाइव अपडेट।`,
+        url: `https://topbriefing.in/news/category/${category}`,
+        mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: allnew.length,
+            itemListElement: allnew.slice(0, 10).map((item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                url: `https://topbriefing.in/news/${item.slug || 'detail'}`,
+                name: item.title,
+            })),
+        },
+    };
+
     return (
         <div>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, collectionSchema]) }}
             />
             <div className='bg-white shadow-sm py-3'>
                 <div className='px-4 md:px-8 w-full'>

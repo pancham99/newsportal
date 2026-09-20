@@ -226,6 +226,7 @@ const fallbackArticlesByCategory = {
 export default function CategoryGridSection({ news = {} }) {
   const [selectedCategory, setSelectedCategory] = useState('सभी');
   const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCategoriesCount, setVisibleCategoriesCount] = useState(4);
 
   // Dynamic category list compilation
   const newsCategoryKeys = Object.keys(news).filter(
@@ -353,9 +354,9 @@ export default function CategoryGridSection({ news = {} }) {
 
       {/* 4. Display Content: All Categories Blocks OR Selected Category Grid */}
       {selectedCategory === 'सभी' ? (
-        /* Renders EVERY category with its dedicated section & content grid (Matches previous layout) */
+        /* Renders initial top categories with progressive load for optimal initial rendering */
         <div className="space-y-8">
-          {allCategoriesList.map((cat, index) => {
+          {allCategoriesList.slice(0, visibleCategoriesCount).map((cat, index) => {
             const catArticles = getArticlesForCategory(cat.name).slice(0, 4);
             if (!catArticles || catArticles.length === 0) return null;
 
@@ -503,6 +504,16 @@ export default function CategoryGridSection({ news = {} }) {
 
       {/* 5. Show More / Category News Link Section */}
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        {selectedCategory === 'सभी' && visibleCategoriesCount < allCategoriesList.length && (
+          <button
+            onClick={() => setVisibleCategoriesCount(prev => prev + 4)}
+            className="w-full sm:w-auto bg-white border border-gray-300 hover:border-red-600 text-gray-800 hover:text-red-600 font-extrabold text-xs px-6 py-3 rounded-lg shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>अन्य कैटेगरी दिखाएं (Load More Categories)</span>
+            <FiChevronDown className="text-sm" />
+          </button>
+        )}
+
         {hasMore && (
           <button
             onClick={handleShowMore}

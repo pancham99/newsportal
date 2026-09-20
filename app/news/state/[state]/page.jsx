@@ -81,11 +81,29 @@ const Page = async ({ params }) => {
         ],
     };
 
+    const collectionSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: `${decodedCategory} समाचार - Top Briefing`,
+        description: `${decodedCategory} राज्य की ताजा खबरें, ब्रेकिंग न्यूज़ और लाइव अपडेट।`,
+        url: `https://topbriefing.in/news/state/${params.state}`,
+        mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: news.length,
+            itemListElement: news.slice(0, 10).map((item, index) => ({
+                '@type': 'ListItem',
+                position: index + 1,
+                url: `https://topbriefing.in/news/${item.slug || 'detail'}`,
+                name: item.title,
+            })),
+        },
+    };
+
     return (
         <div className='bg-slate-200 w-full'>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([breadcrumbSchema, collectionSchema]) }}
             />
             <div className='px-4 md:px-8 w-full py-8'>
                 <h1 className='text-xl font-bold text-gray-800 mb-4'>

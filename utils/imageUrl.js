@@ -3,22 +3,24 @@ export function getImageUrl(url) {
     return "";
   }
 
-  let imageUrl = url.replace(/^http:\/\//i, "https://");
+  let imageUrl = url.trim().replace(/^http:\/\//i, "https://");
 
+  // Cloudinary image auto-optimization
   if (
     imageUrl.includes("res.cloudinary.com") &&
-    imageUrl.includes("/image/upload/")
+    imageUrl.includes("/image/upload/") &&
+    !imageUrl.includes("/f_auto,q_auto/") &&
+    !imageUrl.includes("/f_auto/q_auto/")
   ) {
     imageUrl = imageUrl.replace(
       "/image/upload/",
-      "/image/upload/f_auto/q_auto/"
+      "/image/upload/f_auto,q_auto,w_800,c_limit/"
     );
+  }
 
-    // Remove forced .webp extension
-    imageUrl = imageUrl.replace(
-      /\.(webp|avif|jpg|jpeg|png)$/i,
-      ""
-    );
+  // Unsplash image optimization fallback
+  if (imageUrl.includes("images.unsplash.com") && !imageUrl.includes("q=")) {
+    imageUrl += (imageUrl.includes("?") ? "&" : "?") + "auto=format&fit=crop&q=75&w=800";
   }
 
   return imageUrl;

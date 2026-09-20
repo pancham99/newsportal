@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ['192.168.29.102', '192.168.29.102:3000', 'localhost', '127.0.0.1'],
   images: {
-    unoptimized: true,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/avif', 'image/webp'],
