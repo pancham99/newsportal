@@ -26,7 +26,8 @@ const navMenuList = [
 const Header = () => {
     const pathname = usePathname();
     const router = useRouter();
-    const { user: authUser, logout: authLogout, openModal } = useAuth();
+    const { user: authUser, logout: authLogout, openModal, city } = useAuth();
+    console.log("authUser", city);
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -89,9 +90,10 @@ const Header = () => {
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-0">
                     {/* Left: Date & Time */}
                     <div className="font-extrabold text-slate-950 text-[10px] sm:text-xs md:text-sm tracking-wide text-center md:text-left drop-shadow-sm min-h-[1.25rem]">
-                        {mounted ? (currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")) : null}
+                        {mounted ? (currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")) : null} {""} {city}
                     </div>
 
+   
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
 
                     {/* Right: Login/Signup & Social Icons */}

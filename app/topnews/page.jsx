@@ -119,6 +119,8 @@ const Page = async () => {
               </div>
             </div>
 
+            
+
             {/* second section */}
 
             <div className='lg:mt-0 mt-6 '>
