@@ -30,7 +30,7 @@ const GoogleIcon = () => (
 );
 
 const SubscribeModal = () => {
-  const { isModalOpen, closeModal, modalMode, setModalMode, login } = useAuth();
+  const { isModalOpen, closeModal, modalMode, setModalMode, login, location } = useAuth();
   const { subscribeToPush, permissionStatus } = useFcmToken();
   const [enablePush, setEnablePush] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -54,7 +54,7 @@ const SubscribeModal = () => {
     setSuccessMessage("");
     setLoading(true);
     try {
-      const res = await subscribeToPush();
+      const res = await subscribeToPush(null, location);
       if (res.success) {
         setSuccessMessage("✅ Subscribed to instant push notifications!");
         setTimeout(() => {
@@ -146,6 +146,9 @@ const SubscribeModal = () => {
       } else if (mode === "subscribe") {
         const form = new FormData();
         form.append("email", formData.email);
+        if (location?.formatAddress) form.append("formatAddress", location.formatAddress);
+        if (location?.latitude) form.append("latitude", location.latitude);
+        if (location?.longitude) form.append("longitude", location.longitude);
         const res = await fetch(`${base_api_url}/api/add/subscriber`, {
           method: "POST",
           body: form,
@@ -153,7 +156,7 @@ const SubscribeModal = () => {
         const data = await res.json();
         
         if (enablePush) {
-          await subscribeToPush(formData.email);
+          await subscribeToPush(formData.email, location);
         }
 
         setSuccessMessage(data.message || "Subscribed successfully!");

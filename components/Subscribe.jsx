@@ -2,16 +2,18 @@
 import React, { useState } from 'react';
 import { FaBell, FaCheckCircle } from 'react-icons/fa';
 import { useFcmToken } from '../hooks/useFcmToken';
+import { useAuth } from '../context/AuthContext';
 
 const Subscribe = () => {
   const { subscribeToPush, loading, permissionStatus, refreshPermission } = useFcmToken();
+  const { location } = useAuth();
   const [subscribed, setSubscribed] = useState(false);
   const [msg, setMsg] = useState('');
 
   const handleSubscribe = async () => {
     setMsg('');
     const current = refreshPermission();
-    const res = await subscribeToPush();
+    const res = await subscribeToPush(null, location);
     if (res.success) {
       setSubscribed(true);
       setMsg('✅ Subscribed to instant news notifications!');

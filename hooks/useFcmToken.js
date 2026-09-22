@@ -27,7 +27,7 @@ export function useFcmToken() {
     }
   }, [refreshPermission]);
 
-  const subscribeToPush = useCallback(async (userEmail = null) => {
+  const subscribeToPush = useCallback(async (userEmail = null, userLocation = null) => {
     if (typeof window === "undefined") {
       return { success: false, reason: "unsupported" };
     }
@@ -135,6 +135,9 @@ export function useFcmToken() {
           fcmToken: currentToken,
           email: userEmail || undefined,
           deviceInfo,
+          formatAddress: userLocation?.formatAddress || undefined,
+          latitude: userLocation?.latitude || undefined,
+          longitude: userLocation?.longitude || undefined,
         };
 
         try {
