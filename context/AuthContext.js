@@ -60,13 +60,39 @@ export const AuthProvider = ({ children }) => {
         setCity(data.address?.city || data.address?.town || data.address?.village || 'Unknown');
         setLoadingLocation(false);
 
-        // Send visitor analytics with formatAddress to backend database
+        // Send visitor analytics with formatAddress and deviceId to backend database
         try {
+          let deviceId = "";
+          try {
+            deviceId = localStorage.getItem("tb_device_id");
+            if (!deviceId) {
+              deviceId = `dev_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+              localStorage.setItem("tb_device_id", deviceId);
+            }
+          } catch {
+            deviceId = `dev_${Date.now()}`;
+          }
+
+          let deviceName = "Browser Device";
+          const ua = typeof navigator !== "undefined" ? (navigator.userAgent || "") : "";
+          if (/iPhone/i.test(ua)) deviceName = "Apple iPhone";
+          else if (/iPad/i.test(ua)) deviceName = "Apple iPad";
+          else if (/Samsung/i.test(ua)) deviceName = "Samsung Mobile";
+          else if (/Pixel/i.test(ua)) deviceName = "Google Pixel";
+          else if (/Xiaomi|Redmi|POCO/i.test(ua)) deviceName = "Xiaomi / Redmi";
+          else if (/OnePlus/i.test(ua)) deviceName = "OnePlus";
+          else if (/Android/i.test(ua)) deviceName = "Android Mobile";
+          else if (/Macintosh|Mac OS/i.test(ua)) deviceName = "MacBook / Mac PC";
+          else if (/Windows/i.test(ua)) deviceName = "Windows PC";
+          else if (/Linux/i.test(ua)) deviceName = "Linux PC";
+
           const apiBase = getBaseApiUrl();
           const payload = JSON.stringify({
             latitude,
             longitude,
             formatAddress,
+            deviceId,
+            deviceName,
             timezone: typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : "",
             language: typeof navigator !== "undefined" ? navigator.language : "",
             screenWidth: typeof window !== "undefined" ? window.screen?.width : 0,
