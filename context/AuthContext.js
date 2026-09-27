@@ -44,7 +44,16 @@ export const AuthProvider = ({ children }) => {
     setLoadingLocation(true);
 
     navigator.geolocation.getCurrentPosition(async (position)=>{
-       const { latitude, longitude } = position.coords;
+       const { latitude, longitude, accuracy } = position.coords;
+
+       // Reject approximate/neighbourhood location (accuracy > 2000 meters)
+       if (accuracy && accuracy > 2000) {
+         console.warn(`Approximate location rejected (Accuracy radius: ${accuracy}m). Precise location required.`);
+         setLoadingLocation(false);
+         setCity("Exact Location Required");
+         alert("Notice: You selected 'Approximate Location'. TopBriefing requires 'Precise / Exact Location' to deliver local news. Please click the tune/lock icon in your browser address bar and enable 'Precise Location'.");
+         return;
+       }
 
        try {
         const res = await fetch (`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
@@ -55,6 +64,7 @@ export const AuthProvider = ({ children }) => {
           latitude,
           longitude,
           formatAddress,
+          accuracy,
         };
         setLocation(locObj);
         setCity(data.address?.city || data.address?.town || data.address?.village || 'Unknown');
@@ -119,7 +129,22 @@ export const AuthProvider = ({ children }) => {
         console.error("Error fetching location data:", error);
         setLoadingLocation(false);
        }
-    })
+    },
+    (err) => {
+      const errMsg = err?.message || (err?.code === 1 ? "Permission denied" : err?.code === 2 ? "Position unavailable" : err?.code === 3 ? "Timeout" : "Unknown location error");
+      console.warn("Location request status:", errMsg);
+      setLoadingLocation(false);
+      if (err?.code === 1) {
+        setCity("Location Denied");
+      } else {
+        setCity("Location Unavailable");
+      }
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 15000,
+      maximumAge: 0,
+    });
   }, []);
 
   // login: save to localStorage AND update context state immediately
@@ -166,4 +191,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
