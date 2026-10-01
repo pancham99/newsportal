@@ -120,9 +120,9 @@ const Header = () => {
                                 target="_blank"
                                 href="https://www.facebook.com/people/Top-Briefing/61552965021716/"
                                 aria-label="Facebook"
-                                className="w-6 h-6 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
+                                className="w-12 h-12 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
                             >
-                                <FaFacebookF className="text-[10px]" />
+                                <FaFacebookF className="text-[10px] w-12 -12" />
                             </Link>
                             <Link
                                 target="_blank"
