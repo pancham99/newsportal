@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
        // Reject approximate/neighbourhood location (accuracy > 2000 meters)
        if (accuracy && accuracy > 2000) {
-         console.warn(`Approximate location rejected (Accuracy radius: ${accuracy}m). Precise location required.`);
+        //  console.warn(`Approximate location rejected (Accuracy radius: ${accuracy}m). Precise location required.`);
          setLoadingLocation(false);
          setCity("Exact Location Required");
          alert("Notice: You selected 'Approximate Location'. TopBriefing requires 'Precise / Exact Location' to deliver local news. Please click the tune/lock icon in your browser address bar and enable 'Precise Location'.");
