@@ -138,27 +138,34 @@ export default function LatestNewsGrid({ news = [] }) {
         </div>
 
         {/* Right Side: ADVERTISEMENT Card */}
-        <div className="lg:col-span-1 bg-[#f8f9fa] border border-dashed border-gray-300 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-xs min-h-[220px]">
+        <div className="lg:col-span-1  border border-dashed border-gray-300 rounded-xl p-5 flex flex-col items-center justify-center text-center shadow-xs min-h-[220px]">
           <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-3">
             ADVERTISEMENT
           </span>
-          <p className="text-sm font-semibold text-gray-700 mb-1">
+          {/* <p className="text-sm font-semibold text-gray-700 mb-1">
             विज्ञापन देने के लिए
           </p>
           <p className="text-sm font-semibold text-gray-700 mb-3">
             संपर्क करें
-          </p>
+          </p> */}
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@topbriefing.in"
+            href="https://www.starhealth.in/lp/health-insurance/?utm_source=taboola&utm_medium=native&utm_campaign=SH+Hindi+Campaign+HSM&utm_content=STAR+Health+%E0%A4%95%E0%A5%87+%E0%A4%B8%E0%A4%BE%E0%A4%A5+%E0%A4%AD%E0%A4%B5%E0%A4%BF%E0%A4%B7%E0%A5%8D%E0%A4%AF+%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BF%E0%A4%A4+%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%E0%A5%A4&utm_term=1328900&utm_placement=%7Bdevice%7D&tblci=tblkcHDUgAGYCiD8XvYIWlbEF7I_rDjXcwKdMQIvH-6X1OM1AolFqw9u-xCEjlEYm53Auv70oM51IJCbhPKYNCj8rm8wn-GYGDjSt7qO28S-6TFAAw#tblcitblkcHDUgAGYCiD8XvYIWlbEF7I_rDjXcwKdMQIvH-6X1OM1AolFqw9u-xCEjlEYm53Auv70oM51IJCbhPKYNCj8rm8wn-GYGDjSt7qO28S-6TFAAw"
             target="_blank"
             rel="noopener noreferrer"
             // onClick={() => {
             //   navigator.clipboard?.writeText("topbriefing@gmail.com");
             // }}
             title="Click to compose email in Gmail"
-            className="text-xs font-bold text-red-600 hover:bg-red-100 transition-colors bg-red-50 px-3 py-1.5 rounded-full border border-red-100 inline-flex items-center gap-1 cursor-pointer"
+            className="h-full w-full"
           >
-            <span>contact@topbriefing.in</span>
+            <Image
+              src="/0009s5IngCWAjgxIbhBpJxJpBy3nJXa9s9QBaW1CLxPxZ16T1fb3n1NmWUNIARMqf6ZYosgz4vH9H6oVphNfSG99Dxo7LSt4ms5YBg8gpEGS783xAziE9NzNhE3NcE5Q4Wkg2BTzddiBL7Rn1n2bjN1lYmWWbSGo1Iid0xEbFqG5DcT6wfqemmNyGTZ1cgv1i9dlKfiEgnus487cNmkl.webp"
+              alt="Gmail Icon"
+              width={330}
+              height={220}
+              className="inline-block object-contain h-full w-full"
+            />
+            
           </a>
         </div>
       </div>
