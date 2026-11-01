@@ -7,40 +7,7 @@ import Link from 'next/link';
 import { formatDate as formatCustomDate } from '../../utils/dateFormatter';
 import { getImageUrl } from '../../utils/imageUrl';
 
-const defaultLatest = [
-  {
-    title: 'नई शिक्षा नीति 2026 को कैबिनेट की मंजूरी',
-    shortDescription: 'केंद्रीय कैबिनेट ने राष्ट्रीय शिक्षा नीति 2026 के नए दिशानिर्देशों को मंजूरी दे दी है।',
-    category: 'राष्ट्रीय',
-    date: '02 Aug 2026 | 08:15 AM',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80',
-    slug: 'new-education-policy-2026'
-  },
-  {
-    title: 'दिल्ली में प्रदूषण का स्तर फिर गंभीर श्रेणी में',
-    shortDescription: 'राष्ट्रीय राजधानी दिल्ली और NCR में हवा की गुणवत्ता एक बार फिर बेहद खराब श्रेणी में पहुंच गई है।',
-    category: 'राज्य',
-    date: '02 Aug 2026 | 07:50 AM',
-    image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&auto=format&fit=crop&q=80',
-    slug: 'delhi-pollution-update'
-  },
-  {
-    title: 'रुपया मजबूत, डॉलर के मुकाबले 15 पैसे चढ़ा',
-    shortDescription: 'भारतीय शेयर बाजार में मजबूती के बीच अमेरिकी डॉलर के मुकाबले रुपया 15 पैसे मजबूत होकर बंद हुआ।',
-    category: 'बिजनेस',
-    date: '02 Aug 2026 | 07:30 AM',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80',
-    slug: 'rupee-vs-dollar-rate'
-  },
-  {
-    title: 'भारत ने लॉन्च किया अपना स्वदेशी AI मॉडल',
-    shortDescription: 'भारत ने आर्टिफिशियल इंटेलिजेंस (AI) क्षेत्र में बड़ी सफलता हासिल करते हुए स्वदेशी मॉडल लॉन्च किया।',
-    category: 'टेक',
-    date: '02 Aug 2026 | 06:55 AM',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80',
-    slug: 'indias-own-ai-model-launch'
-  }
-];
+const defaultLatest = [];
 
 export default function LatestNewsGrid({ news = [] }) {
   const displayItems = (news && news.length > 0)
@@ -119,11 +86,11 @@ export default function LatestNewsGrid({ news = [] }) {
 
                 {/* Text Body */}
                 <div className="p-3 flex flex-col justify-between flex-1">
-                  <h3 className="font-bold text-sm text-gray-900 group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
+                  <h3 className="font-bold text-sm text-black group-hover:text-red-600 transition-colors line-clamp-2 leading-snug">
                     {item.title}
                   </h3>
                   {descriptionText && (
-                    <p className="text-xs text-gray-600 font-normal leading-relaxed opacity-95 my-1 line-clamp-2">
+                    <p className="text-xs text-gray-800 font-normal leading-relaxed  my-1 line-clamp-2">
                       {descriptionText}
                     </p>
                   )}

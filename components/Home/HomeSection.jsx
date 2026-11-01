@@ -142,7 +142,7 @@ const Home = async ({ news = {} }) => {
   return (
     <div className="bg-[#f8f9fa] min-h-screen text-gray-800 font-sans relative">
 
-      {/* Floating Sticky Right Subscribe Banner (Desktop/Tablet) */}
+      {/*  Right Subscribe Banner  */}
       <a
         href="#subscribe"
         className="hidden sm:flex fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#cc0000] text-white py-3 px-1.5 rounded-l-lg font-bold text-xs shadow-xl hover:bg-red-700 transition-all flex-col items-center gap-2 cursor-pointer group"
@@ -155,16 +155,12 @@ const Home = async ({ news = {} }) => {
         </div>
       </a>
 
-      {/* Full-width Big Story Hero Banner Header */}
+     
       {/* <BigStoryBanner news={hestorys} /> */}
 
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">
-
-        {/* 0. Top Advertisement Banner */}
         {/* <TopBanner /> */}
-
-        {/* 1. Breaking News Marquee Ticker */}
         <div className="bg-white rounded-lg border border-gray-200 p-1.5 mb-6 shadow-xs flex items-center gap-2 min-h-[44px]">
           {/* Red Pill Badge */}
           <div className="bg-[#cc0000] text-white text-xs font-black px-3 py-1.5 rounded flex items-center gap-1 shrink-0 uppercase tracking-wide">
@@ -270,15 +266,14 @@ const Home = async ({ news = {} }) => {
 
         </div>
 
-        {/* 3. Section 1: Latest News Grid & Ad Card */}
+        {/* 3. Section  */}
         <LatestNewsGrid news={latestNews} />
 
-        {/* 4. Section 2: News By Category Grid */}
-        {/**/} <CategoryGridSection news={news} />
+        {/* 4. Section 2 */}
+        <CategoryGridSection news={news} />
 
-        {/* 5. Section 3: Video Updates & Newsletter Subscription */}
+        {/* 5. Section 3:  */}
         <VideoUpdatesSection />
-
       </div>
     </div>
   );

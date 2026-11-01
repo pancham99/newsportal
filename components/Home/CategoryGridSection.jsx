@@ -128,7 +128,7 @@ const fallbackArticlesByCategory = {
       slug: 'olympic-indian-athletes-history'
     }
   ],
-  'बिजनेस': [
+  'बाज़ार': [
     {
       title: 'शेयर बाजार में रिकॉर्ड तेजी, सेंसेक्स नए शिखर पर',
       description: 'भारतीय शेयर बाजार में आज जबरदस्त उछाल देखने को मिला और निवेशकों की संपत्ति में इजाफा हुआ...',
@@ -307,13 +307,6 @@ export default function CategoryGridSection({ news = {} }) {
     <section className="w-full my-8">
       {/* 1. Section Main Top Bar */}
       <div className="flex items-center justify-between mb-5 border-b border-gray-200 pb-3">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-6 bg-[#cc0000] rounded-full inline-block"></span>
-          <h2 className="text-xl font-extrabold text-gray-900 tracking-tight">
-            कैटेगरी अनुसार खबरें (News By Categories)
-          </h2>
-        </div>
-
         <Link
           href="/news/category/all"
           className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 px-3 py-1.5 rounded-full transition flex items-center gap-1 shadow-2xs"
@@ -334,7 +327,7 @@ export default function CategoryGridSection({ news = {} }) {
             : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
             }`}
         >
-          🔥 सभी (All Categories)
+           All
         </button>
 
         {allCategoriesList.map((cat, idx) => (
@@ -346,7 +339,7 @@ export default function CategoryGridSection({ news = {} }) {
               : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
               }`}
           >
-            <span>{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span>
+            {/* <span>{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span> */}
             <span>{cat.name}</span>
           </button>
         ))}
@@ -365,7 +358,7 @@ export default function CategoryGridSection({ news = {} }) {
                 {/* Category Header */}
                 <div className="flex items-center justify-between pb-3 mb-4 border-b border-gray-100">
                   <div className="flex items-center gap-2">
-                    <span className="text-lg">{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span>
+                    {/* <span className="text-lg">{cat.badgeIcon || categoryIcons[cat.name] || '📰'}</span> */}
                     <h3 className="font-extrabold text-base md:text-lg text-gray-900 tracking-tight">
                       {cat.name}
                     </h3>
@@ -411,7 +404,7 @@ export default function CategoryGridSection({ news = {} }) {
                             {item.title}
                           </h4>
                           {getCardDesc(item) && (
-                            <p className="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                            <p className="text-[11px] text-gray-800 mt-1 line-clamp-2 leading-relaxed">
                               {getCardDesc(item)}
                             </p>
                           )}
@@ -509,7 +502,7 @@ export default function CategoryGridSection({ news = {} }) {
             onClick={() => setVisibleCategoriesCount(prev => prev + 4)}
             className="w-full sm:w-auto bg-white border border-gray-300 hover:border-red-600 text-gray-800 hover:text-red-600 font-extrabold text-xs px-6 py-3 rounded-lg shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>अन्य कैटेगरी दिखाएं (Load More Categories)</span>
+            <span>Load More Categories</span>
             <FiChevronDown className="text-sm" />
           </button>
         )}
@@ -523,18 +516,6 @@ export default function CategoryGridSection({ news = {} }) {
             <FiChevronDown className="text-sm" />
           </button>
         )}
-
-        <Link
-          href={`/news/category/${encodeURIComponent(selectedCategory === 'सभी' ? 'all' : selectedCategory)}`}
-          className="w-full sm:w-auto bg-[#cc0000] hover:bg-red-700 text-white font-extrabold text-xs px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
-        >
-          <span>
-            {selectedCategory === 'सभी'
-              ? 'सभी कैटेगरी की खबरें देखें'
-              : `${selectedCategory} श्रेणी की सभी खबरें देखें`}
-          </span>
-          <FiArrowRight className="text-sm" />
-        </Link>
       </div>
     </section>
   );
