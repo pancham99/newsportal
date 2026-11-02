@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim();
     const shortDesc = cleanDescription.slice(0, 155) || 'Top Briefing पर पढ़ें ताजा हिंदी खबरें।';
     const canonicalUrl = `https://topbriefing.in/news/${slug}`;
-    const newsImage = news?.image || 'https://topbriefing.in/topbrefing-mobile.png';
+    const newsImage = news?.image || 'https://topbriefing.in/topbrefing-mobile.public\connect.netmeds.com.png';
     const articleTitle = news?.title || 'Top Briefing - Hindi News';
     const keywords = [
         news?.category,
@@ -82,7 +82,7 @@ export async function generateMetadata({ params }) {
 
 function NewsArticleSchema({ news, slug }) {
     const cleanDescription = (news?.description || '').replace(/<[^>]*>?/gm, '').replace(/\s+/g, ' ').trim().slice(0, 155);
-    const mainImg = news?.image || 'https://topbriefing.in/topbrefing-mobile.png';
+    const mainImg = news?.image || 'https://topbriefing.in/topbrefing-mobile.public\connect.netmeds.com.png';
 
     const schema = {
         '@context': 'https://schema.org',
@@ -272,11 +272,31 @@ const Details = async ({ params }) => {
                                     {/* ── Sidebar sticky ad ── */}
                                     <div className="bg-white p-3 rounded-sm">
                                         <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
-                                        <AdBanner
+                                       <a
+                                                  href="https://www.netmeds.com/?source_attribution=NMS-Email&utm_source=NMSCus-Email&utm_medium=EmailB&utm_campaign=WALLET02OCT26EMAIL"
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                                  // onClick={() => {
+                                                  //   navigator.clipboard?.writeText("topbriefing@gmail.com");
+                                                  // }}
+                                                  title="Click to compose email in Gmail"
+                                                  className="h-full w-full"
+                                                >
+                                                  <Image
+                                                    src="/connect.netmeds.com.png"
+                                                    alt="Gmail Icon"
+                                                    width={330}
+                                                    height={220}
+                                                    className="inline-block object-contain h-full w-full"
+                                                  />
+                                                  
+                                                </a>
+                                      
+                                        {/* <AdBanner
                                             adSlot="8002892607"
                                             adFormat="vertical"
                                             style={{ minHeight: 250 }}
-                                        />
+                                        /> */}
                                     </div>
                                 </div>
                             </div>
