@@ -155,8 +155,40 @@ const Home = async ({ news = {} }) => {
         </div>
       </a>
 
-     
+
       {/* <BigStoryBanner news={hestorys} /> */}
+
+      {/* add here diwali banner for topbrefing */}
+      
+      <section
+        aria-label="Top Briefing की ओर से दीपावली की शुभकामनाएँ"
+        className="relative isolate mx-auto mb-4 mt-2 max-w-7xl overflow-hidden rounded-xl border border-amber-300/40 bg-[#52150f] px-5 py-5 text-white shadow-lg sm:mb-6 sm:px-8 sm:py-6"
+      >
+        <div aria-hidden="true" className="diwali-glow pointer-events-none absolute inset-0" />
+        <div aria-hidden="true" className="diwali-spark diwali-spark-one">✦</div>
+        <div aria-hidden="true" className="diwali-spark diwali-spark-two">✧</div>
+        <div className="relative flex flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <span aria-hidden="true" className="diwali-diya shrink-0 text-4xl sm:text-5xl">🪔</span>
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-200 sm:text-xs">
+                Top Briefing परिवार की ओर से
+              </p>
+              <h2 className="text-xl font-extrabold leading-tight text-amber-100 sm:text-2xl">
+                दीपावली की हार्दिक शुभकामनाएँ
+              </h2>
+              <p className="mt-1.5 text-xs leading-relaxed text-orange-100/90 sm:text-sm">
+                आपके जीवन में रोशनी, खुशहाली और नई उम्मीदें बनी रहें।
+              </p>
+            </div>
+          </div>
+          <div aria-hidden="true" className="flex shrink-0 items-center gap-2 text-3xl sm:gap-3 sm:text-4xl">
+            <span className="diwali-diya diwali-diya-delay">🪔</span>
+            <span className="diwali-diya">🪔</span>
+          </div>
+        </div>
+      </section>
+      
 
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">
