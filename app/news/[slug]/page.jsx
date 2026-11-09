@@ -236,21 +236,52 @@ const Details = async ({ params }) => {
                                         {/* ── Like & Comments ── */}
                                         <CommentForm news={news} />
                                         {/* ── In-article ad (shows between meta and body) ── */}
-                                        <AdBanner
+
+                                         <div className="bg-white p-3 rounded-sm">
+                                        <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
+                                        <a
+                                            href="https://apps.apple.com/in/app/ola-book-cab-auto-bike-taxi/id539179365"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            // onClick={() => {
+                                            //   navigator.clipboard?.writeText("topbriefing@gmail.com");
+                                            // }}
+                                            title="Click to compose email in Gmail"
+                                            className="h-full w-full flex justify-center"
+                                        >
+                                            <Image
+                                                src="/ola.jpg"
+                                                alt="Gmail Icon"
+                                                width={330}
+                                                height={220}
+                                                className="inline-block object-contain h-96 w-96 flex justify-center"
+                                            />
+
+                                        </a>
+
+                                        {/* <AdBanner
+                                            adSlot="8002892607"
+                                            adFormat="vertical"
+                                            style={{ minHeight: 250 }}
+                                        /> */}
+                                    </div>
+                                        {/* <AdBanner
                                             adSlot="8002892607"
                                             adFormat="fluid"
                                             className="my-2"
-                                        />
+                                        /> */}
                                         {/* Article body */}
                                         {/* ── Below-article ad ── */}
-                                        <div className="mt-4 pt-4 border-t border-gray-100">
+                                        {/* <div className="mt-4 pt-4 border-t border-gray-100">
                                             <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
+
+                                            
                                             <AdBanner
                                                 adSlot="8002892607"
                                                 adFormat="auto"
                                                 className="w-full"
                                             />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>
@@ -272,26 +303,26 @@ const Details = async ({ params }) => {
                                     {/* ── Sidebar sticky ad ── */}
                                     <div className="bg-white p-3 rounded-sm">
                                         <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
-                                       <a
-                                                  href="https://www.netmeds.com/?source_attribution=NMS-Email&utm_source=NMSCus-Email&utm_medium=EmailB&utm_campaign=WALLET02OCT26EMAIL"
-                                                  target="_blank"
-                                                  rel="noopener noreferrer"
-                                                  // onClick={() => {
-                                                  //   navigator.clipboard?.writeText("topbriefing@gmail.com");
-                                                  // }}
-                                                  title="Click to compose email in Gmail"
-                                                  className="h-full w-full"
-                                                >
-                                                  <Image
-                                                    src="/connect.netmeds.com.png"
-                                                    alt="Gmail Icon"
-                                                    width={330}
-                                                    height={220}
-                                                    className="inline-block object-contain h-full w-full"
-                                                  />
-                                                  
-                                                </a>
-                                      
+                                        <a
+                                            href="https://www.netmeds.com/?source_attribution=NMS-Email&utm_source=NMSCus-Email&utm_medium=EmailB&utm_campaign=WALLET02OCT26EMAIL"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            // onClick={() => {
+                                            //   navigator.clipboard?.writeText("topbriefing@gmail.com");
+                                            // }}
+                                            title="Click to compose email in Gmail"
+                                            className="h-full w-full"
+                                        >
+                                            <Image
+                                                src="/connect.netmeds.com.png"
+                                                alt="Gmail Icon"
+                                                width={330}
+                                                height={220}
+                                                className="inline-block object-contain h-full w-full"
+                                            />
+
+                                        </a>
+
                                         {/* <AdBanner
                                             adSlot="8002892607"
                                             adFormat="vertical"
