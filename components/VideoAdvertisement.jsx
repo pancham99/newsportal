@@ -66,6 +66,8 @@ const VideoAdvertisement = ({
                 ) : (
                     <div className='flex justify-center items-center h-full'>
                         <p>No advertisement available</p>
+
+                        
                     </div>
                 )}
 
