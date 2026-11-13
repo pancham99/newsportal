@@ -37,36 +37,67 @@ iframe {
    ============================================= */
 
 .hide-scrollbar {
-  -ms-overflow-style: none; /* IE 10+ */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
+  /* Chrome, Safari */
 }
 
 .custom-scrollbar {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 @keyframes diwali-glow {
-  0%, 100% { opacity: 0.35; transform: scale(0.96); }
-  50% { opacity: 0.75; transform: scale(1.04); }
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
 }
 
 @keyframes diwali-twinkle {
-  0%, 100% { opacity: 0.25; transform: scale(0.8) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.15) rotate(18deg); }
+
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(18deg);
+  }
 }
 
 @keyframes diwali-flame {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50% { transform: translateY(-3px) rotate(3deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(3deg);
+  }
 }
 
 .diwali-glow {
@@ -105,10 +136,58 @@ iframe {
   animation-delay: 0.45s;
 }
 
+/* Chhath Puja Animations */
+@keyframes chhath-sun {
+
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.7));
+  }
+
+  50% {
+    transform: scale(1.1) translateY(-2px);
+    filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.9));
+  }
+}
+
+.chhath-sun {
+  display: inline-block;
+  animation: chhath-sun 3s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.chhath-sun-delay {
+  animation-delay: 1.5s;
+}
+
+@keyframes chhath-glow {
+
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+.chhath-glow {
+  z-index: -1;
+  background: radial-gradient(ellipse at 75% 50%, rgba(245, 158, 11, 0.38), transparent 60%);
+  animation: chhath-glow 5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+
   .diwali-glow,
   .diwali-spark,
-  .diwali-diya {
+  .diwali-diya,
+  .chhath-glow,
+  .chhath-sun {
     animation: none;
   }
 }
