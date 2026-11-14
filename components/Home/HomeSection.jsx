@@ -130,6 +130,35 @@ const Home = async ({ news = {} }) => {
     console.error("Parallel API fetch error", err);
   }
 
+
+
+  const news_data = await fetch(`${base_api_url}/api/banner/getall`, {
+    next: {
+      revalidate: 300
+    },
+  });
+
+  if (!news_data.ok) {
+    throw new Error("Failed to fetch banners");
+  }
+
+  const { banners } = await news_data.json();
+  const desktopBanners = banners.find(
+    (banner) => banner.device === "desktop" && banner.status === "active"
+
+  );
+
+  const MobileBanners = banners.find(
+    (banner) => banner.device === "mobile"
+  );
+
+
+
+
+
+
+
+
   // Format data with fallbacks matching reference screenshot
   const heroMainItem = latestNews[0] || defaultHeroMain;
   const middleItems = latestNews.length >= 5 ? latestNews.slice(1, 5) : defaultMiddleList;
@@ -158,14 +187,16 @@ const Home = async ({ news = {} }) => {
 
       {/* <BigStoryBanner news={hestorys} /> */}
 
-
-      <div className='w-full h-[200px] mt-4 hidden md:block'>
-        <Image src="/topbriefing-banner.webp" alt='' width={300} height={20} className='w-full object-cover h-full' />
-      </div>
-
-      <div className='w-full h-[200px] mt-4  md:hidden'>
-        <Image src="/mobile.webp" alt='' width={300} height={20} className='w-full object-cover h-full' />
-      </div>
+      {desktopBanners?.image && (
+        <div className='w-full h-[200px] mt-4 hidden md:block'>
+          <Image src={desktopBanners?.image} alt='' width={300} height={20} className='w-full object-cover h-full' />
+        </div>
+      )}
+      {MobileBanners?.image && (
+        <div className='w-full h-[200px] mt-4  md:hidden'>
+          <Image src={MobileBanners?.image || "/mobile.webp"} alt='' width={300} height={20} className='w-full object-cover h-full' />
+        </div>
+      )}
       {/* Main Content Container */}
       <div className="max-w-7xl mx-auto px-1 md:px-8 py-4">
         {/* <TopBanner /> */}
