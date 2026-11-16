@@ -1,5 +1,5 @@
 export const SITE_URL =
-  process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://topbriefing.in";
+  process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://www.topbriefing.in";
 
 export const STATIC_SITEMAP_PAGES = [
   { path: "", changeFrequency: "hourly", priority: 1 },
