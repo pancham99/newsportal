@@ -48,11 +48,11 @@ export async function generateMetadata() {
     ...dynamicKeywords,
   ];
 
-  const ogImage = latestPolitics?.image || latestSports?.image || "https://topbriefing.in/topbrefing-mobile.png";
+  const ogImage = latestPolitics?.image || latestSports?.image || "https://www.topbriefing.in/topbrefing-mobile.png";
   const ogImageAlt = latestPolitics?.title || "Top Briefing - Hindi News Portal";
 
   return {
-    metadataBase: new URL("https://topbriefing.in"),
+    metadataBase: new URL("https://www.topbriefing.in"),
 
     title: {
       default: "Top Briefing - ताजा हिंदी खबरें | Breaking News | Live Updates",
@@ -65,13 +65,13 @@ export async function generateMetadata() {
     keywords,
 
     applicationName: "Top Briefing",
-    authors: [{ name: "Top Briefing Editorial Team", url: "https://topbriefing.in" }],
+    authors: [{ name: "Top Briefing Editorial Team", url: "https://www.topbriefing.in" }],
     creator: "Top Briefing",
     publisher: "Top Briefing",
     category: "News",
 
     alternates: {
-      canonical: "https://topbriefing.in",
+      canonical: "https://www.topbriefing.in",
     },
 
     robots: {
@@ -96,7 +96,7 @@ export async function generateMetadata() {
     openGraph: {
       type: "website",
       locale: "hi_IN",
-      url: "https://topbriefing.in",
+      url: "https://www.topbriefing.in",
       siteName: "Top Briefing",
       title: "Top Briefing - ताजा हिंदी खबरें | Breaking News | Live Updates",
       description:
@@ -136,14 +136,14 @@ function WebSiteSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Top Briefing',
-    url: 'https://topbriefing.in',
+    url: 'https://www.topbriefing.in',
     description: 'भारत का भरोसेमंद हिंदी न्यूज़ पोर्टल — ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन, व्यापार और तकनीक।',
     inLanguage: 'hi',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://topbriefing.in/search?q={search_term_string}',
+        urlTemplate: 'https://www.topbriefing.in/search?q={search_term_string}',
       },
       'query-input': 'required name=search_term_string',
     },
