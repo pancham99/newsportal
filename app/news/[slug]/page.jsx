@@ -240,7 +240,7 @@ const Details = async ({ params }) => {
                                          <div className="bg-white p-3 rounded-sm">
                                         <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
                                         <a
-                                            href="https://apps.apple.com/in/app/ola-book-cab-auto-bike-taxi/id539179365"
+                                            href="https://www.hostinger.com/in-hi/web-hosting?utm_source=google&utm_medium=cpc&utm_id=22483375405&utm_campaign=Intent-VAC-DemandGen-Hosting-WordPress|NT:YouTube|Lang:HI|LO:IN&utm_term=177762623759&utm_content=831607272146&gad_source=0&gad_campaignid=22483375405&gclid=Cj0KCQiAk_DXBhCoARIsAHE-omPyXXLIe_kLCj-F0elXoOBZ-xj9NVMjdTJx8BgjB_6l3Bqp0arpDdEaAr5eEALw_wcB"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             // onClick={() => {
@@ -250,7 +250,7 @@ const Details = async ({ params }) => {
                                             className="h-full w-full flex justify-center"
                                         >
                                             <Image
-                                                src="/ola.jpg"
+                                                src="/hostinger.png"
                                                 alt="Gmail Icon"
                                                 width={330}
                                                 height={220}
