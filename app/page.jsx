@@ -162,7 +162,7 @@ function OrganizationSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "NewsMediaOrganization",
+        "@type": "Organization",
         "@id": "https://www.topbriefing.in/#organization",
         "name": "TopBriefing",
         "alternateName": [

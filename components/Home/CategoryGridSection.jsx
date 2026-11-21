@@ -84,6 +84,13 @@ const defaultCategories = [
     count: '06 खबरें',
     image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80',
     slug: 'लाइफस्टाइल'
+  },
+  {
+    name: "यात्रा",
+    badgeIcon: "",
+    count: "",
+    image: "",
+    slug: "यात्रा"
   }
 ];
 
@@ -327,7 +334,7 @@ export default function CategoryGridSection({ news = {} }) {
             : 'bg-white text-gray-700 border-gray-300 hover:border-red-400 hover:text-red-600'
             }`}
         >
-           All
+          All
         </button>
 
         {allCategoriesList.map((cat, idx) => (
