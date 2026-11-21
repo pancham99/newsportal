@@ -8,7 +8,8 @@ import { formatDate } from '../../utils/dateFormatter';
 import LatestNewsGrid from './LatestNewsGrid';
 import CategoryGridSection from './CategoryGridSection';
 import VideoUpdatesSection from './VideoUpdatesSection';
-
+import TopBanner from './TopBanner';
+import BigStoryBanner from './BigStoryBanner';
 import HeroSlider from './HeroSlider';
 import { base_api_url } from '../../config/config';
 import { getImageUrl } from '../../utils/imageUrl';
@@ -50,7 +51,6 @@ const defaultMiddleList = [
     slug: 'olympics-2026-india-medal'
   }
 ];
-
 const defaultTrendingList = [
   {
     id: 1,
@@ -129,6 +129,8 @@ const Home = async ({ news = {} }) => {
     console.error("Parallel API fetch error", err);
   }
 
+
+
   const news_data = await fetch(`${base_api_url}/api/banner/getall`, {
     next: {
       revalidate: 300
@@ -148,6 +150,12 @@ const Home = async ({ news = {} }) => {
   const MobileBanners = banners.find(
     (banner) => banner.device === "mobile"
   );
+
+
+
+
+
+
 
 
   // Format data with fallbacks matching reference screenshot
