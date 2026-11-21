@@ -104,7 +104,7 @@ export function useFcmToken() {
         setToken(currentToken);
 
         const isMobileDevice = typeof navigator !== "undefined" ? /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) : false;
-        
+
         let detectedDeviceName = "Unknown Device";
         if (typeof navigator !== "undefined") {
           const ua = navigator.userAgent || "";
@@ -143,9 +143,9 @@ export function useFcmToken() {
         try {
           await axios.post(`${targetApiUrl}/api/fcm/save-token`, payload);
         } catch (postErr) {
-          if (targetApiUrl !== 'https://bakendtopbrefing.vercel.app') {
+          if (targetApiUrl !== 'https://bakendtopbrefing.onrender.com') {
             console.warn("Local backend unreachable, registering FCM token with live backend fallback...");
-            await axios.post('https://bakendtopbrefing.vercel.app/api/fcm/save-token', payload);
+            await axios.post('https://bakendtopbrefing.onrender.com/api/fcm/save-token', payload);
           } else {
             throw postErr;
           }
