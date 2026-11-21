@@ -51,7 +51,6 @@ const defaultMiddleList = [
     slug: 'olympics-2026-india-medal'
   }
 ];
-
 const defaultTrendingList = [
   {
     id: 1,
