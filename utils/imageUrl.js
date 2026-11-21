@@ -2,7 +2,6 @@ export function getImageUrl(url) {
   if (!url || typeof url !== "string") {
     return "";
   }
-
   let imageUrl = url.trim().replace(/^http:\/\//i, "https://");
 
   // Cloudinary image auto-optimization

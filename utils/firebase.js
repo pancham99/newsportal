@@ -13,7 +13,6 @@ const firebaseConfig = {
 
 // Initialize Firebase App
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-
 // Helper to safely get messaging instance
 const getFcmMessaging = async () => {
   try {
