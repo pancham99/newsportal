@@ -129,8 +129,6 @@ const Home = async ({ news = {} }) => {
     console.error("Parallel API fetch error", err);
   }
 
-
-
   const news_data = await fetch(`${base_api_url}/api/banner/getall`, {
     next: {
       revalidate: 300
@@ -150,12 +148,6 @@ const Home = async ({ news = {} }) => {
   const MobileBanners = banners.find(
     (banner) => banner.device === "mobile"
   );
-
-
-
-
-
-
 
 
   // Format data with fallbacks matching reference screenshot
