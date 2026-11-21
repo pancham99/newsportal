@@ -92,7 +92,6 @@ const Home = async ({ news = {} }) => {
   let hestorys = [];
 
 
-
   try {
     const fetchOptions = {
       next: { revalidate: 300 },
