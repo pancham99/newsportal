@@ -22,6 +22,7 @@ const navMenuList = [
     { name: "खेल", slug: "खेल" },
     { name: "प्रौद्योगिकी", slug: "प्रौद्योगिकी" },
     { name: "मनोरंजन", slug: "मनोरंजन" },
+    { name: "यात्रा", slug: "यात्रा" }
 ];
 const Header = () => {
     const pathname = usePathname();
@@ -38,7 +39,9 @@ const Header = () => {
     const [currentTime, setCurrentTime] = useState('');
 
     const { data } = useFetch(`${base_api_url}/api/category/all`);
+
     const categories = data?.categories || [];
+    // console.log(categories, "categories")
 
     const [mounted, setMounted] = useState(false);
 
@@ -93,7 +96,7 @@ const Header = () => {
                         {mounted ? (currentTime || formatDate(new Date(), "dddd, MMMM D, YYYY | h:mm A")) : null} {""} {city}
                     </div>
 
-   
+
                     {/* Center: Dynamic Independence Day Slogan in Top Briefing Theme */}
 
                     {/* Right: Login/Signup & Social Icons */}

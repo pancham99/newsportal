@@ -95,7 +95,10 @@ export default async function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://bakendtopbrefing.vercel.app" />
+        <link rel="preconnect" href="https://bakendtopbrefing.onrender.com" />
+        <link rel="dns-prefetch" href="https://bakendtopbrefing.onrender.com" />
+        <link rel="preconnect" href="https://bakendtopbrefing.onrender.com" />
+        <link rel="dns-prefetch" href="https://bakendtopbrefing.onrender.com" />
       </head>
       <body>
         {/* Structured Data: Organization & WebSite Schemas */}

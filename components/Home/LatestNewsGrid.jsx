@@ -116,7 +116,7 @@ export default function LatestNewsGrid({ news = [] }) {
             संपर्क करें
           </p> */}
           <a
-            href="https://www.starhealth.in/lp/health-insurance/?utm_source=taboola&utm_medium=native&utm_campaign=SH+Hindi+Campaign+HSM&utm_content=STAR+Health+%E0%A4%95%E0%A5%87+%E0%A4%B8%E0%A4%BE%E0%A4%A5+%E0%A4%AD%E0%A4%B5%E0%A4%BF%E0%A4%B7%E0%A5%8D%E0%A4%AF+%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BF%E0%A4%A4+%E0%A4%95%E0%A4%B0%E0%A5%87%E0%A4%82%E0%A5%A4&utm_term=1328900&utm_placement=%7Bdevice%7D&tblci=tblkcHDUgAGYCiD8XvYIWlbEF7I_rDjXcwKdMQIvH-6X1OM1AolFqw9u-xCEjlEYm53Auv70oM51IJCbhPKYNCj8rm8wn-GYGDjSt7qO28S-6TFAAw#tblcitblkcHDUgAGYCiD8XvYIWlbEF7I_rDjXcwKdMQIvH-6X1OM1AolFqw9u-xCEjlEYm53Auv70oM51IJCbhPKYNCj8rm8wn-GYGDjSt7qO28S-6TFAAw"
+            href="https://manipalonlinedegrees.com/?utm_source=google&utm_medium=DG&utm_campaign=DLP_MUJ_DG_Gmail_Nov_26&utm_id=SubDomain&utm_term=&gad_source=0&gad_campaignid=24454971512&gclid=Cj0KCQiAk_DXBhCoARIsAHE-omPx3VF6aF0m6PVIipEhbrVr3AAjE7-TrhoNOe0CoD-luE12e45w-oEaAuZGEALw_wcB"
             target="_blank"
             rel="noopener noreferrer"
             // onClick={() => {
@@ -126,7 +126,7 @@ export default function LatestNewsGrid({ news = [] }) {
             className="h-full w-full"
           >
             <Image
-              src="/0009s5IngCWAjgxIbhBpJxJpBy3nJXa9s9QBaW1CLxPxZ16T1fb3n1NmWUNIARMqf6ZYosgz4vH9H6oVphNfSG99Dxo7LSt4ms5YBg8gpEGS783xAziE9NzNhE3NcE5Q4Wkg2BTzddiBL7Rn1n2bjN1lYmWWbSGo1Iid0xEbFqG5DcT6wfqemmNyGTZ1cgv1i9dlKfiEgnus487cNmkl.webp"
+              src="/manipal_university.jpg"
               alt="Gmail Icon"
               width={330}
               height={220}

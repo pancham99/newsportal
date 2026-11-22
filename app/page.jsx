@@ -48,11 +48,11 @@ export async function generateMetadata() {
     ...dynamicKeywords,
   ];
 
-  const ogImage = latestPolitics?.image || latestSports?.image || "https://topbriefing.in/topbrefing-mobile.png";
+  const ogImage = latestPolitics?.image || latestSports?.image || "https://www.topbriefing.in/topbrefing-mobile.png";
   const ogImageAlt = latestPolitics?.title || "Top Briefing - Hindi News Portal";
 
   return {
-    metadataBase: new URL("https://topbriefing.in"),
+    metadataBase: new URL("https://www.topbriefing.in"),
 
     title: {
       default: "Top Briefing - ताजा हिंदी खबरें | Breaking News | Live Updates",
@@ -65,13 +65,13 @@ export async function generateMetadata() {
     keywords,
 
     applicationName: "Top Briefing",
-    authors: [{ name: "Top Briefing Editorial Team", url: "https://topbriefing.in" }],
+    authors: [{ name: "Top Briefing Editorial Team", url: "https://www.topbriefing.in" }],
     creator: "Top Briefing",
     publisher: "Top Briefing",
     category: "News",
 
     alternates: {
-      canonical: "https://topbriefing.in",
+      canonical: "https://www.topbriefing.in",
     },
 
     robots: {
@@ -96,7 +96,7 @@ export async function generateMetadata() {
     openGraph: {
       type: "website",
       locale: "hi_IN",
-      url: "https://topbriefing.in",
+      url: "https://www.topbriefing.in",
       siteName: "Top Briefing",
       title: "Top Briefing - ताजा हिंदी खबरें | Breaking News | Live Updates",
       description:
@@ -131,30 +131,97 @@ export async function generateMetadata() {
    JSON-LD: WebSite schema with SearchAction
    Enables Google Sitelinks Searchbox
    ───────────────────────────────────────────── */
-function WebSiteSchema() {
+// function WebSiteSchema() {
+//   const schema = {
+//     '@context': 'https://schema.org',
+//     '@type': 'WebSite',
+//     name: 'Top Briefing',
+//     url: 'https://www.topbriefing.in',
+//     description: 'भारत का भरोसेमंद हिंदी न्यूज़ पोर्टल — ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन, व्यापार और तकनीक।',
+//     inLanguage: 'hi',
+//     potentialAction: {
+//       '@type': 'SearchAction',
+//       target: {
+//         '@type': 'EntryPoint',
+//         urlTemplate: 'https://www.topbriefing.in/search?q={search_term_string}',
+//       },
+//       'query-input': 'required name=search_term_string',
+//     },
+//   };
+//   return (
+//     <script
+//       type="application/ld+json"
+//       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+//     />
+//   );
+// }
+
+
+function OrganizationSchema() {
   const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Top Briefing',
-    url: 'https://topbriefing.in',
-    description: 'भारत का भरोसेमंद हिंदी न्यूज़ पोर्टल — ब्रेकिंग न्यूज़, राजनीति, खेल, मनोरंजन, व्यापार और तकनीक।',
-    inLanguage: 'hi',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://topbriefing.in/search?q={search_term_string}',
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.topbriefing.in/#organization",
+        "name": "TopBriefing",
+        "alternateName": [
+          "Top Briefing",
+          "TopBriefing.in"
+        ],
+        "url": "https://www.topbriefing.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://www.topbriefing.in/#logo",
+          "url": "https://www.topbriefing.in/topbrefing-mobile.png",
+          "contentUrl": "https://www.topbriefing.in/topbrefing-mobile.png"
+        },
+        "image": "https://www.topbriefing.in/topbrefing-mobile.png",
+        "description": "TopBriefing is a Hindi digital news publisher covering India, world news, politics, sports, entertainment, business and technology.",
+        "sameAs": [
+          "https://www.facebook.com/people/Top-Briefing/61552965021716/",
+          "https://www.instagram.com/topbriefing/",
+          "https://www.youtube.com/results?search_query=topbriefing",
+          "https://x.com/topbriefing"
+        ]
       },
-      'query-input': 'required name=search_term_string',
-    },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.topbriefing.in/#website",
+        "url": "https://www.topbriefing.in/",
+        "name": "TopBriefing",
+        "alternateName": "Top Briefing",
+        "publisher": {
+          "@id": "https://www.topbriefing.in/#organization"
+        },
+        "inLanguage": "hi-IN"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.topbriefing.in/#webpage",
+        "url": "https://www.topbriefing.in/",
+        "name": "TopBriefing - Latest Hindi News",
+        "isPartOf": {
+          "@id": "https://www.topbriefing.in/#website"
+        },
+        "about": {
+          "@id": "https://www.topbriefing.in/#organization"
+        },
+        "inLanguage": "hi-IN"
+      }
+    ]
   };
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(schema).replace(/</g, "\\u003c")
+      }}
     />
   );
 }
+
 
 /* ─────────────────────────────────────────────
    Page Component
@@ -164,7 +231,7 @@ const Home = async () => {
 
   return (
     <div>
-      <WebSiteSchema />
+      <OrganizationSchema />
       <HomeSection news={news} />
     </div>
   );

@@ -64,8 +64,8 @@ export default function VideoUpdatesSection() {
         try {
           res = await fetch(`${targetApiUrl}/api/video/getall`);
         } catch (fetchErr) {
-          if (targetApiUrl !== 'https://bakendtopbrefing.vercel.app') {
-            res = await fetch('https://bakendtopbrefing.vercel.app/api/video/getall');
+          if (targetApiUrl !== 'https://bakendtopbrefing.onrender.com') {
+            res = await fetch('https://bakendtopbrefing.onrender.com/api/video/getall');
           } else {
             throw fetchErr;
           }
@@ -129,7 +129,7 @@ export default function VideoUpdatesSection() {
 
       {/* Grid: Left 3 Video Cards (~65% width), Right Newsletter (~35% width) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-        
+
         {/* Left Side: 3 Dynamic YouTube Video Cards */}
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {displayVideos.map((video, index) => {
@@ -185,7 +185,7 @@ export default function VideoUpdatesSection() {
 
         {/* Right Side: Newsletter Subscribe Card */}
         <div className="lg:col-span-4 bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
-          
+
           {/* Top content & Envelope Graphic */}
           <div className="flex items-start justify-between">
             <div className="space-y-1">

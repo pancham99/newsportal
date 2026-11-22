@@ -51,7 +51,6 @@ const defaultMiddleList = [
     slug: 'olympics-2026-india-medal'
   }
 ];
-
 const defaultTrendingList = [
   {
     id: 1,
@@ -93,7 +92,6 @@ const Home = async ({ news = {} }) => {
   let hestorys = [];
 
 
-
   try {
     const fetchOptions = {
       next: { revalidate: 300 },
@@ -132,25 +130,29 @@ const Home = async ({ news = {} }) => {
 
 
 
-  const news_data = await fetch(`${base_api_url}/api/banner/getall`, {
-    next: {
-      revalidate: 300
-    },
-  });
+  let desktopBanners = null;
+  let MobileBanners = null;
 
-  if (!news_data.ok) {
-    throw new Error("Failed to fetch banners");
+  try {
+    const news_data = await fetch(`${base_api_url}/api/banner/getall`, {
+      next: {
+        revalidate: 300,
+      },
+      signal: AbortSignal.timeout(8000),
+    });
+
+    if (news_data.ok) {
+      const { banners } = await news_data.json();
+      desktopBanners = banners?.find(
+        (banner) => banner.device === "desktop" && banner.status === "active"
+      );
+      MobileBanners = banners?.find(
+        (banner) => banner.device === "mobile"
+      );
+    }
+  } catch (err) {
+    console.error("[HomeSection] Failed to fetch banners:", err.message);
   }
-
-  const { banners } = await news_data.json();
-  const desktopBanners = banners.find(
-    (banner) => banner.device === "desktop" && banner.status === "active"
-
-  );
-
-  const MobileBanners = banners.find(
-    (banner) => banner.device === "mobile"
-  );
 
 
 

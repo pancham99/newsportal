@@ -1,7 +1,6 @@
 import AddContactFrom from '../../components/AddContactFrom'
 import Addcontacthero from '../../components/Addcontacthero'
 import React from 'react'
-
 export const metadata = {
   title: 'Contact Us | Top Briefing - Hindi News Portal',
   description: 'Contact the Top Briefing team. Send us your feedback, news tips or advertising inquiries. We are here to help.',
