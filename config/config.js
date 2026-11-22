@@ -1,5 +1,4 @@
 const LIVE_API_URL = 'https://bakendtopbrefing.vercel.app';
-
 export const getBaseApiUrl = () => {
     if (process.env.NEXT_PUBLIC_API_URL) {
         return process.env.NEXT_PUBLIC_API_URL;
