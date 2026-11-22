@@ -8,8 +8,6 @@ import { useRouter } from "next/navigation";
 
 import { useAuth } from "../../context/AuthContext";
 import { base_api_url } from "../../config/config";
-
-
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const { login } = useAuth();
