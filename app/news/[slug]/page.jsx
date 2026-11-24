@@ -240,7 +240,7 @@ const Details = async ({ params }) => {
                                          <div className="bg-white p-3 rounded-sm">
                                         <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
                                         <a
-                                            href="https://www.hostinger.com/in-hi/web-hosting?utm_source=google&utm_medium=cpc&utm_id=22483375405&utm_campaign=Intent-VAC-DemandGen-Hosting-WordPress|NT:YouTube|Lang:HI|LO:IN&utm_term=177762623759&utm_content=831607272146&gad_source=0&gad_campaignid=22483375405&gclid=Cj0KCQiAk_DXBhCoARIsAHE-omPyXXLIe_kLCj-F0elXoOBZ-xj9NVMjdTJx8BgjB_6l3Bqp0arpDdEaAr5eEALw_wcB"
+                                            href="https://www.malaysiaairlines.com/in/en/promotions/black-friday-travel-deals.html?cid=gdg|IN2026AO|goo|Black_Friday_Thailand|ppla|alw|in|pros_contextual|en|campaign|mh|conv_selectflight&gad_source=0&gad_campaignid=24097348012&gclid=Cj0KCQiAiJXYBhD_ARIsAAx2AHnuzHfH_OnU7n8iwXLg7uhRHuqInaYjeHaxUHR2VBzq5sktVIiMfEAaAqKhEALw_wcB"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             // onClick={() => {
@@ -250,7 +250,7 @@ const Details = async ({ params }) => {
                                             className="h-full w-full flex justify-center"
                                         >
                                             <Image
-                                                src="/hostinger.png"
+                                                src="/malaysiaairlines.jpg"
                                                 alt="Gmail Icon"
                                                 width={330}
                                                 height={220}
@@ -304,7 +304,7 @@ const Details = async ({ params }) => {
                                     <div className="bg-white p-3 rounded-sm">
                                         <p className="text-xs text-gray-400 text-center mb-1">Advertisement</p>
                                         <a
-                                            href="https://www.netmeds.com/?source_attribution=NMS-Email&utm_source=NMSCus-Email&utm_medium=EmailB&utm_campaign=WALLET02OCT26EMAIL"
+                                            href="https://tarcdevelopersgurgaon.com/discovery/?utm_source=google&utm_medium=demandgen&utm_campaignid=24407378317&utm_campaign=Tarc-ishva-DG-(IM)&utm_adgroupid=203102465162&utm_adid=829632448521&utm_targetid=&utm_device=c&utm_loc_interest=9075215&utm_loc_physical=9061779&gclid=Cj0KCQiAiJXYBhD_ARIsAAx2AHk8bX4Rxl3WCNP1vvgs-06WO8RLNViQ2NASCJY_Fnm9aNEgbe6D20gaAgNqEALw_wcB&gad_source=0&gad_campaignid=24407378317"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             // onClick={() => {
@@ -314,7 +314,7 @@ const Details = async ({ params }) => {
                                             className="h-full w-full"
                                         >
                                             <Image
-                                                src="/connect.netmeds.com.png"
+                                                src="/tarcdevelopersgurgaon.jpg"
                                                 alt="Gmail Icon"
                                                 width={330}
                                                 height={220}
